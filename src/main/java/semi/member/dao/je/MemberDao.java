@@ -1,4 +1,4 @@
-package semi.member.dao.이니셜;
+package semi.member.dao.je;
 
 public class MemberDao {
 	

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title> 
+</head>
+<body>
+<form name="inform">
+		비밀번호 : <input type="password" name="pwd" required="required" id="pwd"><br> 
+		주민번호 : <input type="text" name="jnum" id="jnum" required="required" placeholder="1234567890000"><br>
+		<p style="color: black; font-size: 7px">*주민번호는 "-"를 제외한 13자리를 입력해 주세요.</p>	
+		<div style="color:red; font-size:13px;">*탈퇴하시면 모든 정보가 사라집니다. 정말 탈퇴하시겠습니까?
+		<input type="checkbox" id="check" name="check"></div><br>
+		<input type="button" value="탈퇴하기" onclick="openDelete()"> 
+		<input type="button" value="취소" onclick="rollback()"><br>
+		<div id="result"></div>
+	</form>
+	<script type="text/javascript">
+		function rollback() {
+			location.href = "../mainje.jsp"
+		}
+		function openDelete(){
+			let xhr=new XMLHttpRequest();
+			let pwd=document.getElementById("pwd").value;
+			let jnum=document.getElementById("jnum").value;
+			xhr.onreadystatechange=function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				let data=xhr.responseText;
+				let json=JSON.parse(data);
+				let div=document.getElementById("result");
+				let find=json.find;
+				if(find==true){
+					div.innerHTML="<br>" + "회원 탈퇴가 완료되었습니다." + "<br>" +
+					               "<a href='main.jsp'>" + "메인페이지로 이동" + "</a>";
+					
+				}else{
+					div.innerHTML="정보가 일치하지 않습니다.";
+				}
+				
+			}	
+		};
+		xhr.open('get','/세미프로젝트je/update/num?pwd=' + pwd + '&jnum=' + jnum,true);
+		xhr.send();
+		}
+		 
+	</script>
+</body>
+</html>
