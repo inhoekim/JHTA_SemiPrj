@@ -15,7 +15,7 @@ CREATE TABLE HLOGIN (
 	JNUM varchar2(20) NOT NULL,
 	AGE number(5),
 	AREA varchar2(15),
-	REGDATE date NOT NULL
+	REGDATE date NOT NULL,
 	NUM number(5) default 1 NOT NULL -- 1: 정상회원, 2: 탈퇴회원
 );
 
