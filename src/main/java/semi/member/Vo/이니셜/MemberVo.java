@@ -1,4 +1,4 @@
-package semi.이니셜.member.Vo;
+package semi.member.Vo.이니셜;
 
 public class MemberVo {
 

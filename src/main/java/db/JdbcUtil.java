@@ -1,21 +1,32 @@
 package db;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class JdbcUtil {
-	public static Connection getCon() { 
+	public static Connection getCon() {
+		Properties prop = new Properties();
 		Connection con = null;
 		try {
+			prop.load(new FileReader("jdbc.properties"));
+			String url = prop.getProperty("url");
+			String id = prop.getProperty("id");
+			String pwd = prop.getProperty("pwd");
 			Class.forName("oracle.jdbc.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			con = DriverManager.getConnection(url, "c##scott", "tiger");
+			con = DriverManager.getConnection(url, "id", "pwd");
 			System.out.println("db접속완료!");
 			return con;
-		}catch(ClassNotFoundException e) {
+		}catch(IOException e) {
+			System.out.println("properties 파일 로딩 실패");
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException e) {
 			System.out.println("db접속 실패");
 			e.printStackTrace();
 		}catch(SQLException e) {
