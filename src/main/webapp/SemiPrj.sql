@@ -10,7 +10,7 @@ DROP TABLE ADMIN;
 
 CREATE TABLE HLOGIN (
 	HLOGIN_ID varchar2(15) PRIMARY KEY,
-	PWD varchar2(15) NOT NULL,
+	PWD varchar2(200) NOT NULL,
 	NAME varchar2(15) NOT NULL,
 	JNUM varchar2(20) NOT NULL,
 	AGE number(5),
