@@ -3,7 +3,7 @@ package semi.member.Vo.je;
 import java.util.Date;
 
 public class HloginVoje {
-	private String id;
+	private String hlogin_id;
 	private String pwd;
 	private String name;
 	private String jnum;
@@ -14,9 +14,9 @@ public class HloginVoje {
 	
 	public HloginVoje() {}
 
-	public HloginVoje(String id, String pwd, String name, String jnum, String area, int age, Date regdate, int num) {
+	public HloginVoje(String hlogin_id, String pwd, String name, String jnum, String area, int age, Date regdate, int num) {
 		super();
-		this.id = id;
+		this.hlogin_id = hlogin_id;
 		this.pwd = pwd;
 		this.name = name;
 		this.jnum = jnum;
@@ -26,8 +26,8 @@ public class HloginVoje {
 		this.num = num;
 	}
 
-	public String getId() {
-		return id;
+	public String getHlogin_id() {
+		return hlogin_id;
 	}
 
 	public String getPwd() {
@@ -58,8 +58,8 @@ public class HloginVoje {
 		return num;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setHlogin_id(String hlogin_id) {
+		this.hlogin_id = hlogin_id;
 	}
 
 	public void setPwd(String pwd) {

@@ -34,5 +34,10 @@
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/Downloads/SemiPrj.sql</locationURI>
 		</link>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/ojdbc6.jar</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/2107/ojdbc6.jar</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>
