@@ -14,17 +14,24 @@
 		<input type="button" value="탈퇴하기" onclick="openDelete()"> 
 		<input type="button" value="취소" onclick="rollback()"><br>
 		<div id="result"></div>
-	</form>
+	</form> 
 	<script type="text/javascript">
 		function rollback() {
 			location.href = "../mainje.jsp"
 		}
 		function openDelete(){
+			let check=document.getElementById("check");
+			if(check.checked==false){
+				alert("체크박스를 확인해주세요");
+				return;
+			}else{
+			
 			let xhr=new XMLHttpRequest();
 			let pwd=document.getElementById("pwd").value;
 			let jnum=document.getElementById("jnum").value;
 			xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
+
 				let data=xhr.responseText;
 				let json=JSON.parse(data);
 				let div=document.getElementById("result");
@@ -42,7 +49,7 @@
 		xhr.open('get','/세미프로젝트je/update/num?pwd=' + pwd + '&jnum=' + jnum,true);
 		xhr.send();
 		}
-		 
+		}
 	</script>
 </body>
 </html>
