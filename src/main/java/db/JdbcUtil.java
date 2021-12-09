@@ -1,6 +1,6 @@
 package db;
 
-import java.io.FileReader;
+import java.io.FileReader;  
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,19 +11,19 @@ import java.util.Properties;
 
 public class JdbcUtil {
 	public static Connection getCon() {
-		Properties prop = new Properties(); 
+		Properties prop = new Properties();
 		Connection con = null;
 		try {
-			prop.load(new FileReader("C:\\Users\\nm940\\OneDrive\\바탕 화면\\세미프로젝트\\project\\JHTA_SemiPrj\\src\\main\\webapp\\jdbc.properies"));
+			prop.load(new JdbcUtil().getClass().getResourceAsStream("jdbc.properties"));
 			String url = prop.getProperty("url");
 			String id = prop.getProperty("id");
 			String pwd = prop.getProperty("pwd");
 			Class.forName("oracle.jdbc.OracleDriver");
-			con = DriverManager.getConnection(url, "id", "pwd");
+			con = DriverManager.getConnection(url, id, pwd);
 			System.out.println("db접속완료!");
 			return con;
 		}catch(IOException e) {
-			System.out.println("properies 파일 로딩 실패");
+			System.out.println("properties 파일 로딩 실패");
 			e.printStackTrace();
 		}
 		catch(ClassNotFoundException e) {

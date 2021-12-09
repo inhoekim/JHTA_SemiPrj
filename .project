@@ -28,6 +28,7 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+<<<<<<< HEAD
 	<linkedResources>
 		<link>
 			<name>src/main/webapp/SemiPrj.sql</name>
@@ -40,4 +41,6 @@
 			<locationURI>PARENT-3-PROJECT_LOC/2107/ojdbc6.jar</locationURI>
 		</link>
 	</linkedResources>
+=======
+>>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj.git
 </projectDescription>
