@@ -4,41 +4,53 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function InsertBoard(){
+function InsertBoard(){ 
 	var xhr= new XMLHttpRequest();
+	let service_id=document.getElementById("service_id").value;
+	let ref=document.getElementById("ref").value;
+	let lev=document.getElementById("lev").value;
+	let step=document.getElementById("step").value;
+	let hlogin_id=document.getElementById("hlogin_id").value;
+	let title=document.getElementById("title").value;
+	let content=document.getElementById("content").value;
+	let pwd=document.getElementById("pwd").value;	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status ==200){
 			let data = xhr.responseText;
 			let json = JSON.parse(data);
-			if(json.cods == 'success'){
+			let find=json.find;
+			if(find == true){
 				alert("문의글이 등록되었습니다."); 
+				//location.href = "";
 			}else{
-				alert(""); //not null값 검사하기
+				alert("모든 내용을 입력해 주세요!"); //not null값 검사하기
 			}
 		}
 	};
-	let id=document.getElementById("id").value;
-	let title=document.getElementById("title").value;
-	let content=document.getElementById("content").value;
-	let pwd=document.getElementById("pwd").value;	
-	xhr.open=('get','${pageContext.request.contextPath}/board/insert',true);
+	xhr.open('get','/semiPrj/board/insert?service_id=' + service_id +
+			'&ref=' + ref + '&lev=' + lev + '&step=' + step + '&hlogin_id=' + hlogin_id
+			+ '&title=' + title + '&content=' + content + '&pwd=' + pwd,true);
 	xhr.send();
 }
 function ReturnMain(){
 	location.href = "../mainje.jsp"
 }
 </script>
-</head>
+</head> 
 <body>
 <form>
-작성자  <input type="text" name="id"><br>
-제목  <input type="text" name="title"><br>
+<input type="hidden" name="service_id" id="service_id">
+<input type="hidden" name="ref" id="ref">
+<input type="hidden" name="lev" id="lev">
+<input type="hidden" name="step" id="step">
+작성자  <input type="text" name="hlogin_id" id="hlogin_id"><br>
+제목  <input type="text" name="title" id="title"><br>
 내용<br>
-<textarea rows="5" cols="50" name="content"></textarea><br>
-비밀번호 <input type="password" name="pwd"><br>
+<textarea rows="5" cols="50" name="content" id="content"></textarea><br>
+비밀번호 <input type="password" name="pwd" id="pwd"><br>
 <p style="color: red; font-size: 7px">
 *비밀번호는 필수 입력 사항입니다.</p>
-<input type="submit" value="등록" onclick="InsertBoard()">
+<input type="button" value="등록" onclick="InsertBoard()">
 <input type="button" value="취소" onclick="ReturnMain()">
 </form>
 </body>
