@@ -32,17 +32,17 @@ public class HloginDaoje {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String id=null;
+		String hlogin_id=null;
 		try {
-			String sql="select id from hlogin where jnum=?";
-			con=JdbcUtil.getCon();
+			String sql="select hlogin_id from hlogin where jnum=?";
+			con=db.JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, jnum);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				id=rs.getString(1);
+				hlogin_id=rs.getString(1); 
 			}
-			return id;
+			return hlogin_id;
 			
 		}catch(SQLException s) {
 			s.printStackTrace();

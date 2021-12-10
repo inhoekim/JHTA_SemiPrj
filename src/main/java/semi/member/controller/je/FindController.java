@@ -13,20 +13,18 @@ import org.json.JSONObject;
 
 import semi.member.dao.je.HloginDaoje;
 
-
-
 @WebServlet("/select/id")
 public class FindController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String jnum=req.getParameter("jnum");
 		HloginDaoje dao=new HloginDaoje();
-		String id=dao.select(jnum);
+		String hlogin_id=dao.select(jnum);
 		
 		JSONObject json=new JSONObject();
-		if(id!=null) {
+		if(hlogin_id!=null) {
 			json.put("find",true);
-			json.put("id", id);
+			json.put("hlogin_id", hlogin_id);
 		}else {
 			json.put("find", false);
 		}
