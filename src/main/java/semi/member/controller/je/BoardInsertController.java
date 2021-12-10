@@ -17,6 +17,7 @@ public class BoardInsertController extends HttpServlet{
 		String content=req.getParameter("content");
 		String pwd=req.getParameter("pwd");
 		
+		
 	}
 
 }
