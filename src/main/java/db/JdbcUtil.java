@@ -1,6 +1,5 @@
 package db;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,12 +13,12 @@ public class JdbcUtil {
 		Properties prop = new Properties();
 		Connection con = null;
 		try {
-			prop.load(new FileReader("jdbc.properties"));
+			Class.forName("oracle.jdbc.OracleDriver");
+			prop.load(new JdbcUtil().getClass().getResourceAsStream("jdbc.properties"));
 			String url = prop.getProperty("url");
 			String id = prop.getProperty("id");
 			String pwd = prop.getProperty("pwd");
-			Class.forName("oracle.jdbc.OracleDriver");
-			con = DriverManager.getConnection(url, "id", "pwd");
+			con = DriverManager.getConnection(url, id, pwd);
 			System.out.println("db접속완료!");
 			return con;
 		}catch(IOException e) {
