@@ -15,9 +15,13 @@ import semi.member.dao.je.BoardDaoje;
 @WebServlet("/board/insert")
 public class BoardInsertController extends HttpServlet{
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect(req.getContextPath() + "/je/Board.jsp");
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		String hlogin_id=req.getParameter("hlogin_id");
+		String writer=req.getParameter("writer");
 		String title=req.getParameter("title");
 		String content=req.getParameter("content");
 		String pwd=req.getParameter("pwd");
@@ -33,17 +37,15 @@ public class BoardInsertController extends HttpServlet{
 			step=Integer.parseInt(req.getParameter("step"));
 		}
 		BoardDaoje dao=new BoardDaoje();
-		BoardVoje vo=new BoardVoje(service_id, hlogin_id, title, content, pwd, ref, lev, step, null, null);
+		BoardVoje vo=new BoardVoje(service_id, writer, title, content, pwd, ref, lev, step, null, null);
 		int n=dao.insert(vo);
-		JSONObject json=new JSONObject();
 		if(n>0) {
-			json.put("find", true);
+			req.setAttribute("result", "success");
 		}else {
-			json.put("find", false);
+			req.setAttribute("result", "fail");
 		}
-		resp.setContentType("text/plain;charset=utf-8");
-		PrintWriter pw=resp.getWriter();
-		pw.print(json);
+		req.getRequestDispatcher("/je/BoardList.jsp").forward(req, resp);
+		
 	}
 
 }
