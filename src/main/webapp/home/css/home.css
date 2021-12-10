@@ -4,14 +4,14 @@
 	margin: 20px;
 	background-color: gainsboro;
 	visibility: hidden;
-	width: 980px;
+	width: 900px;
 	height: 350px;
+	position: absolute;
 }
 
 .calendar {
 	padding: 20px;
-	width: 45%;
-	margin-right: 30px;
+	width: 50%;
 	float: left;
 	text-align: center;
 	table-layout: fixed;
