@@ -13,7 +13,9 @@ public class BoardVoje {
 	private int step;
 	private Date created_day;
 	private Date updated_day;
+
 	
+
 	public BoardVoje() {}
 
 	public BoardVoje(int service_id, String writer, String title, String content, String pwd, int ref, int lev,
@@ -111,5 +113,4 @@ public class BoardVoje {
 		this.updated_day = update_day;
 	}
 	
-
 }
