@@ -1,10 +1,18 @@
 function printCalendar() {
 	let today = new Date();
-	setCalendar(2021,12,1);
-	setCalendar(2021,13,2);
+	let month = today.getMonth() + 1;
+	let year = today.getFullYear();
+	setCalendar(1,year,month);
+	setCalendar(2,year,month+1);
 }
 
-function setCalendar(year,month,type) {
+function setCalendar(type,year,month) {
+	let today = new Date();
+	let today_mm = today.getMonth() + 1;
+	let today_yy = today.getFullYear();
+	let today_dd = today.getDay();
+	let date = today.getDate();
+
 	if(month == 13) {
 		year++;
 		month=1;
@@ -36,7 +44,9 @@ function setCalendar(year,month,type) {
 		"<td>목</td>" +
 		"<td>금</td>" +
 		"<td>토</td>" +
-		"</tr></table>";
+		"</tr>";
+		
+	calHTML += "</table>";
 	let calendarBox = document.getElementById("calendarBox");
 	calendarBox.innerHTML += calHTML;
 }
@@ -55,6 +65,6 @@ function next(year,month){
 	let calendar = document.getElementsByClassName("calendar");
 	calendarBox.removeChild(calendar[1]);
 	calendarBox.removeChild(calendar[0]);
-	setCalendar(year,month,1);
-	setCalendar(year,month+1,2);
+	setCalendar(1,year,month);
+	setCalendar(2,year,month+1);
 }
