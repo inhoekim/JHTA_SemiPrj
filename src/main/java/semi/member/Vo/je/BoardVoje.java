@@ -13,4 +13,7 @@ public class BoardVoje {
 	private int step;
 	private Date created_day;
 	private Date update_day;
+	
+	
+
 }
