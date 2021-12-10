@@ -111,7 +111,5 @@ public class BoardVoje {
 		this.update_day = update_day;
 	}
 	
-	
-	
 
 }
