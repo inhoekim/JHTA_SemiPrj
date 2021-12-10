@@ -81,21 +81,21 @@
 				<option value="title_content">제목 + 내용</option>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-				<option value="id">아이디</option>
+				<option value="hlogin_id">아이디</option>
 				<option value="comment">댓글</option>
 			</select>
 			<input type="text" class="text_search" name="keyword">
-			<input type="button" value="검색">
+			<input type="submit" value="검색">
 		</form>
 	</div>
 	<div class="paging">
 		<c:forEach var="i" begin="${rs.startPage }" end="${rs.endPage }">
 			<c:choose>
 				<c:when test="${rs.pageNum == i }">
-					<a href="${path }/review/list?pageNum=${i}"><span style="color: red;">${i }</span></a>
+					<a href="${path }/review/list?pageNum=${i}&field=${rs.field}&keyword=${rs.keyword}"><span style="color: red;">${i }</span></a>
 				</c:when>
 				<c:otherwise>
-					<a href="${path }/review/list?pageNum=${i}"><span style="color: black;">${i }</span></a>
+					<a href="${path }/review/list?pageNum=${i}&field=${rs.field}&keyword=${rs.keyword}"><span style="color: black;">${i }</span></a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -103,7 +103,6 @@
 </div>
 <script>
 	var xhr = null;
-	viewList();
 	function viewList() {
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {

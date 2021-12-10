@@ -31,16 +31,28 @@ public class ReviewBoardDao {
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "";
-			
+			if (field == null || field.equals("")) {
 				sql = "select * from "
-					+ "    ("
-					+ "    select board.*, rownum rnum from "
-					+ "        ("
-					+ "            select * "
-					+ "            from review2 "
-					+ "            order by review_id desc"
-					+ "        )board"
-					+ "    )where rnum >= ? and rnum <= ?";
+						+ "    ("
+						+ "    select board.*, rownum rnum from "
+						+ "        ("
+						+ "            select * "
+						+ "            from review2 "
+						+ "            order by review_id desc"
+						+ "        )board"
+						+ "    )where rnum >= ? and rnum <= ?";
+			} else {
+				sql = "select * from "
+						+ "    ("
+						+ "    select board.*, rownum rnum from "
+						+ "        ("
+						+ "            select * "
+						+ "            from review2 "
+						+ "			   where " + field + " like '%" + keyword + "%' "
+						+ "            order by review_id desc"
+						+ "        )board"
+						+ "    )where rnum >= ? and rnum <= ?";
+			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -68,7 +80,7 @@ public class ReviewBoardDao {
 	}
 	
 	// 총 페이지 수
-	public int getPageMaxNum() {
+	public int getPageMaxNum(String field, String keyword) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -77,6 +89,9 @@ public class ReviewBoardDao {
 			con = JdbcUtil.getCon();
 			String sql = "select nvl(count(review_id), 0) cnt "
 					+ "from review2";
+			if (field != null && !field.equals("")) {
+				sql += " where " + field + " like '%" + keyword + "%'";
+			}
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

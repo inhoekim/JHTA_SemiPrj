@@ -21,11 +21,12 @@ import semi.review.vo.kth.ReviewBoardVo;
 public class ReviewListController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 현재 페이지
+		req.setCharacterEncoding("utf-8");
 		String spageNum = req.getParameter("pageNum");
 		String field = req.getParameter("field");
 		String keyword = req.getParameter("keyword");
-		
+		System.out.println("field : " + field);
+		System.out.println("keyword : " + keyword);
 		int pageNum = 1;
 		if (spageNum != null) {
 			pageNum = Integer.parseInt(spageNum);
@@ -35,7 +36,7 @@ public class ReviewListController extends HttpServlet {
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		ArrayList<ReviewBoardVo> list = dao.reviewList(startRow, endRow, field, keyword);
 		
-		int count = dao.getPageMaxNum();
+		int count = dao.getPageMaxNum(field, keyword);
 		
 		int pageCount = (int)Math.ceil(count / 10.0);
 		int startPage = ((pageNum - 1) / 10 * 10) + 1;
@@ -50,7 +51,8 @@ public class ReviewListController extends HttpServlet {
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("startPage", startPage);
 		req.setAttribute("endPage", endPage);
-		
+		req.setAttribute("field", field);
+		req.setAttribute("keyword", keyword);
 		req.getRequestDispatcher("/review/roomReviewList.jsp").forward(req, resp);
 		
 	}
