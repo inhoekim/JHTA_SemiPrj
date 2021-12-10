@@ -13,6 +13,15 @@
 <div id="calendarBox" class="calendarBox">
 	
 	<table class="calendar" id="c1">
+		<colgroup>
+			<col width="14%" />
+			<col width="14%" />
+			<col width="14%" />
+			<col width="14%" />
+			<col width="14%" />
+			<col width="14%" />
+			<col width="14%" />
+		</colgroup>
 		<tr>
 			<th><input type="button" id="preMonth" value="<"></th>
 			<th colspan="6">${year}년 ${month}월</th>

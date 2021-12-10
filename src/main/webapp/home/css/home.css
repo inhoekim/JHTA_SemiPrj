@@ -1,21 +1,19 @@
 @charset "UTF-8";
 
 .calendarBox {
+	margin: 20px;
 	background-color: gainsboro;
 	visibility: hidden;
-	width: 1050px;
+	width: 980px;
 	height: 350px;
 }
 
 .calendar {
+	padding: 20px;
 	width: 45%;
-	margin: auto;
 	margin-right: 30px;
 	float: left;
 	text-align: center;
+	table-layout: fixed;
 	
-}
-
-#calendarBox table tr{
-	width: 250px;
 }
