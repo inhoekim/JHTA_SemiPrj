@@ -11,16 +11,16 @@
 		location.href="${pageContext.request.contextPath }/board/list";
 	}
 </script>
-</head>
+</head> 
 <body>
 	<%
 	String service_id = request.getParameter("service_id");
 	%>
 	<div>
 		비밀번호를 입력해 주세요.
-		<form action="${pageContext.request.contextPath }/je/inputpwd">
-			<input type="hidden" name="service_id" value="<%=service_id%>"> 
-			<input type="password" id="pwd" name="pwd"><br> 
+		<form action="${pageContext.request.contextPath }/je/inputpwd" method="post">
+			<input type="hidden" name="service_id" value="<%=service_id%>"><br>
+			<input type="password" id="pwd" name="pwd"><br><br>
 			<input type="submit" value="확인"> 
 			<input type="button" value="닫기" onclick="rollback()">
 		</form>

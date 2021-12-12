@@ -9,6 +9,6 @@
 </head>
 <body>
 	<li><a href="${pageContext.request.contextPath }/board/insert">글작성</a></li>
-	<li><a href="${pageContext.request.contextPath }/board/list"/>글목록</a></li>
+	<li><a href="${pageContext.request.contextPath }/board/list">글목록</a></li>
 </body>
 </html>   
