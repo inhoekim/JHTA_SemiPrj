@@ -5,10 +5,10 @@ public class RoomVo {
 	private String kind;
 	private int capcity;
 	private int price;
-	private int rate; // 평점
+	private Double rate; // 평점
 	private String src_name; // 파일 경로
 	
-	public RoomVo(int room_id, String kind, int capcity, int price, int rate, String src_name) {
+	public RoomVo(int room_id, String kind, int capcity, int price, Double rate, String src_name) {
 		this.room_id = room_id;
 		this.kind = kind;
 		this.capcity = capcity;
@@ -49,11 +49,11 @@ public class RoomVo {
 		this.price = price;
 	}
 
-	public int getRate() {
+	public Double getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
 

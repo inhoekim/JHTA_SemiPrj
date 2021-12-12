@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import db.JdbcUtil;
 import semi.review.vo.kth.ReviewBoardVo;
+import semi.room.dao.kth.RoomDao;
 
 public class ReviewBoardDao {
 	private static ReviewBoardDao instance;
@@ -179,8 +180,15 @@ public class ReviewBoardDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		RoomDao dao = RoomDao.getInstance();
+		// 객실 평점 가져오기
+		int room_rate = dao.reviewRate(vo.getRoom_id());
 		
 		
+		// 객실 평점
+		int rating = (room_rate + vo.getRate()) / 2;
+		// 평점 소수 점 변환
+		double rate = Double.parseDouble(String.format("%.1f", rating));
 		con = JdbcUtil.getCon();
 		return -1;
 	}
