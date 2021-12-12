@@ -10,6 +10,8 @@
 	<ul>
 		<li>
 			<a href="${pageContext.request.contextPath }/review/list">리뷰 목록</a>
+			<a href="${pageContext.request.contextPath }/room/detail?room_id=1">객실 정보</a>
+			<a href="${pageContext.request.contextPath }/review/write">리뷰쓰기</a>
 		</li>
 	</ul>
 </body>
