@@ -44,4 +44,27 @@ public class RoomDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	
+	// 객실 평점 업데이트
+	public int roomRateUpdate(int room_id, double rate) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "update room "
+					+ "set rate = ? "
+					+ "where room_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setDouble(1, rate);
+			pstmt.setInt(2, room_id);
+			int n = pstmt.executeUpdate();
+			return n;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }

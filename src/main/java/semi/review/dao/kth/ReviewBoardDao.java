@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
+import semi.img_file.dao.kth.ImgFileDao;
+import semi.img_file.vo.kth.ImgFileVo;
 import semi.review.vo.kth.ReviewBoardVo;
 import semi.room.dao.kth.RoomDao;
 
@@ -153,7 +155,7 @@ public class ReviewBoardDao {
 	}
 	
 	// review_id 최대 수 출력
-	public int pageMaxNum() {
+	public int reviewMaxNum() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -180,16 +182,39 @@ public class ReviewBoardDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		RoomDao dao = RoomDao.getInstance();
+		RoomDao roomDao = RoomDao.getInstance();
+		ImgFileDao imgFileDao = ImgFileDao.getInstance();
 		// 객실 평점 가져오기
-		int room_rate = dao.reviewRate(vo.getRoom_id());
-		
-		
+		int roomRate = roomDao.reviewRate(vo.getRoom_id());
 		// 객실 평점
-		int rating = (room_rate + vo.getRate()) / 2;
+		double rating = (roomRate + vo.getRate()) / 2;
 		// 평점 소수 점 변환
 		double rate = Double.parseDouble(String.format("%.1f", rating));
-		con = JdbcUtil.getCon();
-		return -1;
+		// 객실 평점 업데이트
+		roomDao.roomRateUpdate(vo.getRoom_id(), rate);
+		
+		int reviewNum = reviewMaxNum() + 1;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "insert into review2 "
+					+ "values(?, ?, ?, ?, ?, ?, ?, sysdate, null)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reviewNum);
+			pstmt.setInt(2, vo.getRoom_id());
+			pstmt.setString(3, vo.getHlogin_id());
+			pstmt.setString(4, vo.getTitle());
+			pstmt.setString(5, vo.getContent());
+			pstmt.setInt(6, vo.getViews());
+			pstmt.setInt(7, vo.getRecommend());
+			int n = pstmt.executeUpdate();
+			return n;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		
 	}
 }
