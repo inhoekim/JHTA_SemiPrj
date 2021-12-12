@@ -13,6 +13,30 @@ import semi.member.Vo.je.BoardVoje;
 
 public class BoardDaoje {
 	
+  public int update(String writer,String title, String content,String pwd,int service_id) {	
+	  Connection con=null;
+	  PreparedStatement pstmt=null;
+	  try {
+		  con=JdbcUtil.getCon();
+		  String sql="update service set writer=?, title=?, content=?, pwd=?, updated_day=sysdate where service_id=?";
+		  pstmt=con.prepareStatement(sql);
+		  pstmt.setString(1, writer);
+		  pstmt.setString(2, title);
+		  pstmt.setString(3, content);
+		  pstmt.setString(4, pwd);
+		  pstmt.setInt(5, service_id);
+		  int n=pstmt.executeUpdate();
+		  return n;
+	  }catch(SQLException s) {
+		  s.printStackTrace();
+	  }finally {
+		  JdbcUtil.close(con,pstmt,null);
+	  }
+	return -1;
+  }
+	
+	
+	
   public BoardVoje select(String pwd,int service_id){
 	  Connection con=null;
 	  PreparedStatement pstmt=null;

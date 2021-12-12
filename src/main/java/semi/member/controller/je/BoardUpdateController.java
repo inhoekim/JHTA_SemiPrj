@@ -1,7 +1,7 @@
 package semi.member.controller.je;
-
+ 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,43 +9,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-import semi.member.Vo.je.BoardVoje;
-import semi.member.dao.je.BoardDaoje; 
-@WebServlet("/board/insert")
-public class BoardInsertController extends HttpServlet{
+import semi.member.dao.je.BoardDaoje;
+@WebServlet("/board/update")
+public class BoardUpdateController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath() + "/je/Service/Board.jsp");
+		resp.sendRedirect(req.getContextPath() + "/je/Service/BoardUpdate.jsp");
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		int service_id=Integer.parseInt(req.getParameter("service_id"));
 		String writer=req.getParameter("writer");
 		String title=req.getParameter("title");
 		String content=req.getParameter("content");
 		String pwd=req.getParameter("pwd");
-		int service_id=0;
-		int ref=0;
-		int lev=0;
-		int step=0;
-		String snum=req.getParameter("service_id");
-		if(snum!=null && !snum.equals("")) {//답글인 경우			
-			service_id=Integer.parseInt(snum);
-			ref=Integer.parseInt(req.getParameter("ref"));
-			lev=Integer.parseInt(req.getParameter("lev"));
-			step=Integer.parseInt(req.getParameter("step"));
-		}
+		int ref=Integer.parseInt(req.getParameter("ref"));
+		int lev=Integer.parseInt(req.getParameter("lev")); 
+		int step=Integer.parseInt(req.getParameter("step"));
 		BoardDaoje dao=new BoardDaoje();
-		BoardVoje vo=new BoardVoje(service_id, writer, title, content, pwd, ref, lev, step, null, null);
-		int n=dao.insert(vo);
+		int n= dao.update(writer, title, content, pwd, service_id);
 		if(n>0) {
 			req.setAttribute("result", "success");
 		}else {
-			req.setAttribute("result", "fail");
+			req.setAttribute("result", "false");
 		}
 		req.getRequestDispatcher("/je/Service/BoardResult.jsp").forward(req, resp);
-		
 	}
 
 }

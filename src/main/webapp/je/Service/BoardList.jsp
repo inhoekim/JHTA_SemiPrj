@@ -15,7 +15,7 @@
 		<th>글번호</th>
 		<th>작성자</th>
 		<th>제목</th>
-		<th>작성날짜</th>
+		<th>작성날짜</th> 
 		<th>수정날짜</th>
 		<th>비밀글 여부</th>
 	</tr>
@@ -29,7 +29,7 @@
 		      </c:forEach>
 		       [답글]
 		</c:if>
-		<a href="/semiPrj/je/InputPwd.jsp?service_id=${vo.service_id }" >${ vo.title }</a></td>
+		<a href="/semiPrj/je/Service/InputPwd.jsp?service_id=${vo.service_id }" >${ vo.title }</a></td>
 		<td>${ vo.created_day }</td>
 		<td>${ vo.updated_day }</td>
 		<td>Y</td><!-- 비밀글여부 따로 표시할것 -->
@@ -54,7 +54,7 @@
     <a href="${cp }/board/list?pageNum=${endPage+1}">[다음페이지]</a>
   </c:if>
 </div>
-<a href="${pageContext.request.contextPath }/je/Boardmain.jsp">메인페이지</a>
+<a href="${pageContext.request.contextPath }/je/Service/Boardmain.jsp">메인페이지</a>
 </body>
 <script type="text/javascript">
 
