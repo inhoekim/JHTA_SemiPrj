@@ -89,6 +89,9 @@
 		</form>
 	</div>
 	<div class="paging">
+		<c:if test="${rs.startPage > 10 }">
+			<a href="${path }/review/list?pageNum=${rs.startPage - 1}">이전</a>
+		</c:if>
 		<c:forEach var="i" begin="${rs.startPage }" end="${rs.endPage }">
 			<c:choose>
 				<c:when test="${rs.pageNum == i }">
@@ -99,31 +102,11 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
+		<c:if test="${rs.endPage < pageCount }">
+			<a href="${path }/review/list?pageNum=${rs.endPage + 1}">다음</a>
+		</c:if>
 	</div>
 </div>
 <script>
-	var xhr = null;
-	function viewList() {
-		xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				let data = xhr.responseText;
-				let json = JSON.parse(data);
-				// 클래스 접근
-				let num = document.getElementByClassName("num");
-				let id = document.getElementByClassName("id");
-				let title = document.getElementByClassName("title");
-				let created_day = document.getElementByClassName("created_day");
-				let views = document.getElementByClassName("views");
-				let recommend = document.getElementByClassName("recommend");
-				
-				for (let i = 0; i < json.length; i++) {
-					alert(json.id);
-				}
-			}
-		};
-		let url = '${pageContext.request.contextPath}/review/list';
-		xhr.open('get', url, true);
-		xhr.send();
-	}
+	
 </script>

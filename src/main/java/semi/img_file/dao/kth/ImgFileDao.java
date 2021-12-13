@@ -24,8 +24,8 @@ public class ImgFileDao {
 		PreparedStatement pstmt = null;
 		
 		con = JdbcUtil.getCon();
-		String sql = "insert into files "
-				   + "values(seq_files.nextval, ?, ?, ?, ?, sysdate)";
+		String sql = "insert into files2 "
+				   + "values(seq_files2.nextval, ?, ?, ?, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getReview_id());
