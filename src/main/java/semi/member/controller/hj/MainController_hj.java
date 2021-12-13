@@ -38,17 +38,18 @@ public class MainController_hj extends HttpServlet{
 		boolean chk=dao.isMember(map);
 		
 		if(chk==true){
-			Cookie cook1=new Cookie("hlogin_id", );
-			cook1.setMaxAge(10);
-			cook1.setPath("/");
-			resp.addCookie(cook1);
-			Cookie cook2=new Cookie("pwd", pwd);
-			cook2.setMaxAge(10);
-			cook2.setPath("/");
-			resp.addCookie(cook2);
+//			Cookie cook1=new Cookie("hlogin_id", );
+//			cook1.setMaxAge(10);
+//			cook1.setPath("/");
+//			resp.addCookie(cook1);
+//			Cookie cook2=new Cookie("pwd", pwd);
+//			cook2.setMaxAge(10);
+//			cook2.setPath("/");
+//			resp.addCookie(cook2);
+			HttpSession session=req.getSession();
+			session.setAttribute("hlogin_id", map.get("hlogin_id"));
+			req.getRequestDispatcher("/semiPrj/hj/main_test.jsp").forward(req, resp);
 		}
-		HttpSession session=req.getSession();
-		session.setAttribute("hlogin_id", hlogin_id);
-		req.getRequestDispatcher("/semiPrj/hj/main_test.jsp").forward(req, resp);
+		
 	}
 }	
