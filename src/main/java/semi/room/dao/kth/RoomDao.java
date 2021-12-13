@@ -18,7 +18,7 @@ public class RoomDao {
 	}
 	
 	// 리뷰 작성(평점 불러오기)
-	public int reviewRate(int room_id) {
+	public double reviewRate(int room_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -26,14 +26,14 @@ public class RoomDao {
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "select rate "
-					+ "from room "
+					+ "from room2 "
 					+ "where room_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, room_id);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				int rate = rs.getInt("rate");
+				double rate = rs.getDouble("rate");
 				return rate;
 			}
 			return -1;
@@ -49,14 +49,25 @@ public class RoomDao {
 	public int roomRateUpdate(int room_id, double rate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		double roomRate = reviewRate(room_id);
 		
+		if (roomRate != 0) {
+			// 객실 평점
+			double rating = (reviewRate(room_id) + rate) / 2;
+			// 평점 소수 점 변환
+			roomRate = Double.parseDouble(String.format("%.1f", rating));
+		} else {
+			roomRate = rate;
+		}
+		
+		System.out.println("room R :" + roomRate);
 		try {
 			con = JdbcUtil.getCon();
-			String sql = "update room "
+			String sql = "update room2 "
 					+ "set rate = ? "
 					+ "where room_id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setDouble(1, rate);
+			pstmt.setDouble(1, roomRate);
 			pstmt.setInt(2, room_id);
 			int n = pstmt.executeUpdate();
 			return n;

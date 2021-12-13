@@ -18,6 +18,7 @@ import semi.img_file.dao.kth.ImgFileDao;
 import semi.img_file.vo.kth.ImgFileVo;
 import semi.review.dao.kth.ReviewBoardDao;
 import semi.review.vo.kth.ReviewBoardVo;
+import semi.room.dao.kth.RoomDao;
 
 @WebServlet("/review/write")
 public class ReviewWriteController extends HttpServlet {
@@ -32,6 +33,7 @@ public class ReviewWriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 디렉터리 주소 추출
+		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		ServletContext context = this.getServletContext();
 		String saveDir = context.getRealPath("/images");
 		System.out.println("경로" + saveDir);
@@ -56,16 +58,15 @@ public class ReviewWriteController extends HttpServlet {
 		String org_name = mr.getOriginalFileName("file"); // 전송된 파일명
 		String src_name = mr.getFilesystemName("file"); // 저장된 파일명
 		// getParameter end
-		
-		// 파일 확장자명 추출
-		String type = src_name.substring(src_name.lastIndexOf(".") + 1);
-		System.out.println("타입:" + type);
-		// 파일 저장
-		File file = new File(saveDir + "\\" + src_name);
-		
 	
 		// 이미지 파일이 있을경우
 		if (org_name != null) {
+			// 파일 확장자명 추출
+			String type = src_name.substring(src_name.lastIndexOf(".") + 1);
+			System.out.println("타입:" + type);
+			// 파일 저장
+			File file = new File(saveDir + "\\" + src_name);
+			System.out.println("이미지 파일 있음");
 			ImgFileDao fileDao = ImgFileDao.getInstance();
 			ImgFileVo fileVo = new ImgFileVo(0, 0, type, org_name, src_name, null);
 			fileDao.imgFileInsert(fileVo);
@@ -77,7 +78,10 @@ public class ReviewWriteController extends HttpServlet {
 				title, content, rate, 0, 0, null, null);
 		reviewDao.reviewInsert(reviewVo);
 		
-		resp.sendRedirect(req.getContextPath() + "/main.jsp");
+		RoomDao roomDao = RoomDao.getInstance();
+		roomDao.roomRateUpdate(room_id, rate);
+		
+		resp.sendRedirect(req.getContextPath() + "/review/main.jsp");
 		
 	}
 }

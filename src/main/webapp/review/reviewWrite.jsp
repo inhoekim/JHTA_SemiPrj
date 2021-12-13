@@ -47,8 +47,7 @@
 </style>
 <div class="review_writewrap">
 	<div class="review_write">
-		<!-- ${pageContext.request.contextPath }/review/insert -->
-		<form id="review_write_form" action="">
+		<form id="review_write_form" method="post" action="${pageContext.request.contextPath }/review/write" enctype="multipart/form-data">
 			<label>제목</label>
 			<br>
 			<input type="text" name="title" id="title" onkeyup="titleCheck()">
@@ -62,7 +61,8 @@
 				<input type="radio" name="rating" value="2" id="rate4" onclick="rateSelect(event)"><label for="rate4">⭐</label>
 				<input type="radio" name="rating" value="1" id="rate5" onclick="rateSelect(event)"><label for="rate5">⭐</label>
 			</fieldset>
-			<span id="rate_err"></span>
+			<input type="hidden" name="rate" id="rate">
+			<span id="rate_err" class="err"></span>
 			<br>
 			<label>내용</label>
 			<br>
@@ -75,6 +75,7 @@
 			<label>첨부파일</label>
 			<br>
 			<input type="file" name="file" id="file">
+			<span id="file_err" class="err"></span>
 			<br>
 			<input type="button" value="등록"  onclick="check()">
 			<input type="reset" value="다시 작성">
@@ -107,31 +108,54 @@
 	}
 	
 	function rateSelect(e) {
+		let rate_err = document.getElementById("rate_err");
 		rate = e.target.value;
+		if (rate > 0) {
+			rate_err.innerHTML = "";
+		}
 	}
 	
 	
 	function check() {
+		// input
 		let title = document.getElementById("title").value;
 		let content = document.getElementById("content").value;
 		let file = document.getElementById("file").value;
+		let hRate = document.getElementById("rate");
+		// 에러 관련 메시지
 		let title_err = document.getElementById("title_err");
 		let content_err = document.getElementById("content_err");
-		let rate = e.target.value;
+		let rate_err = document.getElementById("rate_err");
+		let file_err = document.getElementById("file_err");
+		// 평점
+		let rating = rate;
+		
+		// form
+		let form = document.getElementById("review_write_form");
+		
 		if (title == "") {
 			title_err.innerHTML = "<br>제목을 입력해주세요.";
 			return;
 		}
 		
-		if (rate == 0) {
-			
+		if (rating == 0) {
+			rate_err.innerHTML = "<br>객실에 대한 평가를 선택해주세요.";
+			return;
 		}
+		// 히든에 rate 값 넣기
+		hRate.value = rating;
 		
-		if (content == "" || content.length < 11) {
+		if (content == "" || content.length < 10) {
 			content_err.innerText = "10자 이상 입력해주세요.";
 			return;
 		}
 		
+		let fileName = file.substring(file.lastIndexOf(".") + 1);
 		
+		if (fileName != "" && fileName != 'png' && fileName != 'jpg') {
+			file_err.innerHTML = "<br>png 또는 jpg 파일을 선택해주세요.";
+			return;
+		}
+		form.submit();
 	} 
 </script>
