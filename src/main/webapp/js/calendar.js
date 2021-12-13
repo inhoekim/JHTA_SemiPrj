@@ -7,21 +7,20 @@ function printCalendar() {
 }
 
 function setCalendar(type,year,month) {
-	let today = new Date();
-	let today_mm = today.getMonth() + 1;
-	let today_yy = today.getFullYear();
-	let today_dd = today.getDay();
-	let date = today.getDate();
-	let endDay = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
 	if(month == 13) {
-		year++;
-		month=1;
+	year++;
+	month=1;
 	}
 	else if(month == 0) {
 		year--;
 		month=12;
 	}
-	
+	let today = new Date();
+	let first_date = new Date(year,month-1,1).getDay();
+	let endDay = new Array(31,28,31,30,31,30,31,31,30,31,30,31);	
+	//윤년계산
+	if((year%400==0) || ((year%4==0) && year%100 !=0)) {endDay[1]=29;}
+
 	calHTML = "<table class='calendar'>" +
 		"<colgroup> " +
 		"<col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/>" +
@@ -29,14 +28,14 @@ function setCalendar(type,year,month) {
 		"<tr>";
 	if(type == 1) {
 		calHTML += "<th><input type='button' id='preMonth' value='<' onclick='prev("+ year + "," + (month) + ")'></th>"+ 			
-			"<th colspan='6'>"+ year +"년"+ month +"월</th>";
+			"<th colspan='6'>"+ year +"년"+ month +"월</th></tr>";
 	}
 	else if(type == 2) {
 		calHTML += "<th colspan='6'>"+ year +"년"+ month +"월</th>" +
-			"<th><input type='button' id='nextMonth' value='>' onclick='next("+ year + "," + (month) + ")'></th>";
+			"<th><input type='button' id='nextMonth' value='>' onclick='next("+ year + "," + (month) + ")'></th></tr>";
 	}
 		
-	calHTML += "</tr><tr>" +
+	calHTML += "<tr>" +
 		"<td style='color:red;'>일</td>" + 
 		"<td>월</td>" +
 		"<td>화</td>" +
@@ -45,7 +44,21 @@ function setCalendar(type,year,month) {
 		"<td>금</td>" +
 		"<td>토</td>" +
 		"</tr>";
+	calHTML += "<tr>"
+	for(let i=0; i < first_date; i++) {
+		calHTML += "<td>&nbsp;</td>"
+	}
+	for(let i=1; i <= endDay[month-1]; i++) {
+		if((i+first_date-1)%7 ==0) {
+			calHTML += "</tr>";
+			if(new Date(year,month-1,i,23,59) < today) {calHTML += "<tr><td style='color:rgb(205,205,205);'>" + i + "</td>";}
+			else {calHTML += "<tr><td class='cdate' style='color:red' onclick='checkin(this,year)'>" + i + "</td>";}
+			
+		}
+		else if(new Date(year,month-1,i,23,59) < today) {calHTML += "<td style='color:rgb(205,205,205);'>" + i + "</td>";}
+		else {calHTML += "<td class='cdate' onclick='checkin(this,year)'>" + i + "</td>"; 	}
 		
+	}
 	calHTML += "</table>";
 	let calendarBox = document.getElementById("calendarBox");
 	calendarBox.innerHTML += calHTML;
@@ -67,4 +80,9 @@ function next(year,month){
 	calendarBox.removeChild(calendar[0]);
 	setCalendar(1,year,month);
 	setCalendar(2,year,month+1);
+}
+
+function checkin(event,year){
+	console.log(event);
+	console.log(year);
 }
