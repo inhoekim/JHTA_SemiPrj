@@ -17,3 +17,18 @@
 	table-layout: fixed;
 	
 }
+
+.checkbar{
+	display: inline-block;
+	border: 1px solid black;
+	height: 100%;
+}
+
+.checkbar p{
+	width:100%;
+}
+
+.cdate:hover {
+	border: 1px solid red;
+	border-radius: 100px;
+}
