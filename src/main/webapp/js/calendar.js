@@ -12,7 +12,7 @@ function setCalendar(type,year,month) {
 	let today_yy = today.getFullYear();
 	let today_dd = today.getDay();
 	let date = today.getDate();
-
+	let endDay = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
 	if(month == 13) {
 		year++;
 		month=1;
@@ -56,8 +56,8 @@ function prev(year,month){
 	let calendar = document.getElementsByClassName("calendar");
 	calendarBox.removeChild(calendar[1]);
 	calendarBox.removeChild(calendar[0]);
-	setCalendar(year,month-1,1);
-	setCalendar(year,month,2);
+	setCalendar(1,year,month-1);
+	setCalendar(2,year,month);
 
 }
 function next(year,month){
