@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import semi.member.dao.je.HloginDaoje;
 
 
-@WebServlet("/update/num")
+@WebServlet("/hlogin/update/num")
 public class UpdateControllerje extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

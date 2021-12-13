@@ -17,7 +17,7 @@
 	</form> 
 	<script type="text/javascript">
 		function rollback() {
-			location.href = "../mainje.jsp"
+			location.href = "../../hj/login_hj.jsp"
 		}
 		function openDelete(){
 			let check=document.getElementById("check");
@@ -38,7 +38,7 @@
 				let find=json.find;
 				if(find==true){
 					div.innerHTML="<br>" + "회원 탈퇴가 완료되었습니다." + "<br>" +
-					               "<a href='main.jsp'>" + "메인페이지로 이동" + "</a>";
+					               "<a href='../../hj/login_hj.jsp'>" + "메인페이지로 이동" + "</a>";
 					
 				}else{
 					div.innerHTML="정보가 일치하지 않습니다.";  
@@ -46,7 +46,7 @@
 				
 			}	
 		};
-		xhr.open('get','/semiPrj/update/num?pwd=' + pwd + '&jnum=' + jnum,true);
+		xhr.open('get','/semiPrj/hlogin/update/num?pwd=' + pwd + '&jnum=' + jnum,true);
 		xhr.send();
 		}
 		}

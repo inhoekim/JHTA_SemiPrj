@@ -13,6 +13,133 @@ import semi.member.Vo.je.BoardVoje;
 
 public class BoardDaoje {
 	
+	public ArrayList<BoardVoje>selectAll(int startRow,int endRow,String field,String keyword){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="";
+		if(field==null || field.equals("")) {
+			sql="select * from "
+					+ "("
+					+ " select service.*,rownum rnum from"
+					+ " ("
+					+ "    select * from service "
+					+ "    order by ref desc,step asc"
+					+ " )service"
+					+ ") "
+					+ "where rnum>=? and rnum<=?";
+		}else {
+			sql="select * from "
+					+ "("
+					+ " select service.*,rownum rnum from"
+					+ "  ("
+					+ "    select * from service where "+ field +"  like '%" + keyword + "%'"
+					+ "    order by ref desc,step asc"
+					+ " )service"
+					+ ") "
+					+ "where rnum>=? and rnum<=?";
+		}
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs=pstmt.executeQuery();
+			ArrayList<BoardVoje>list=new ArrayList<BoardVoje>();
+			while(rs.next()) {
+				int service_id=rs.getInt("service_id");
+				String writer=rs.getString("writer");
+				String title=rs.getString("title");
+				String content=rs.getString("content");
+				String pwd=rs.getString("pwd");
+				int ref=rs.getInt("ref");
+				int lev=rs.getInt("lev");
+				int step=rs.getInt("step");
+				Date created_day=rs.getDate("created_day");
+				Date updated_day=rs.getDate("updated_day");
+				BoardVoje vo=new BoardVoje(service_id,writer,title,content,pwd,ref,lev,step,created_day,updated_day);
+				list.add(vo);			
+			}
+			return list;
+			
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con,pstmt,rs);
+		}
+	}
+	
+	public BoardVoje Adminselect(int service_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select * from service where service_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, service_id);
+			 rs=pstmt.executeQuery();
+			  if(rs.next()) {
+				  String writer=rs.getString("writer");
+				  String title=rs.getString("title");
+				  String content=rs.getString("content");
+				  String pwd=rs.getString("pwd");
+				  int ref=rs.getInt("ref");
+				  int lev=rs.getInt("lev");
+				  int step=rs.getInt("step");
+				  Date created_day=rs.getDate("created_day");
+				  Date updated_day=rs.getDate("updated_day");
+				  BoardVoje vo=new BoardVoje(service_id, writer,title,content,pwd,ref,lev,step, created_day,updated_day);
+				  return vo;
+			  }
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con,pstmt,rs);
+		}
+		return null;
+	}
+	
+	public int Adminlogin(String id,String pwd) {
+		Connection con=null;
+		PreparedStatement pstmt= null;
+		try {
+			con=JdbcUtil.getCon();
+			String sql="select * from admin where admin_id=? and pwd=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			int n=pstmt.executeUpdate();
+			return n;
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+	
+  public int delete(int ref) {
+	  Connection con=null;
+	  PreparedStatement pstmt=null;
+	  try {
+		  con=JdbcUtil.getCon();
+		  String sql="delete from service where ref=?";
+		  pstmt=con.prepareStatement(sql);
+		  pstmt.setInt(1, ref);
+		  int n=pstmt.executeUpdate();
+		  return n;
+	  }catch(SQLException s) {
+		  s.printStackTrace();
+		  return -1;
+	  }finally {
+		  JdbcUtil.close(con,pstmt,null);
+	  }
+  }
+	
+	
   public int update(String writer,String title, String content,String pwd,int service_id) {	
 	  Connection con=null;
 	  PreparedStatement pstmt=null;
@@ -52,9 +179,12 @@ public class BoardDaoje {
 			  String writer=rs.getString("writer");
 			  String title=rs.getString("title");
 			  String content=rs.getString("content");
+			  int ref=rs.getInt("ref");
+			  int lev=rs.getInt("lev");
+			  int step=rs.getInt("step");
 			  Date created_day=rs.getDate("created_day");
 			  Date updated_day=rs.getDate("updated_day");
-			  BoardVoje vo=new BoardVoje(service_id, writer,title,content,pwd,0,0,0, created_day,updated_day);
+			  BoardVoje vo=new BoardVoje(service_id, writer,title,content,pwd,ref,lev,step, created_day,updated_day);
 			  return vo;
 		  }
 	  }catch(SQLException s) {
@@ -99,18 +229,22 @@ public class BoardDaoje {
 	return null;
   }
 	
-  public int getCount() {	
+  public int getCount(String field,String keyword) {	
 	  Connection con=null;
 	  PreparedStatement pstmt=null;
 	  ResultSet rs=null;
-	  String sql="select NVL(count(service_id),0) mnum from service";
+	  String sql="select NVL(count(service_id),0) from service ";
 	  try {
+		  if(field!=null && !field.equals("")) {
+			  sql += "where " + field + " like '%" + keyword + "%'";
+		  }
 		  con=JdbcUtil.getCon();
 		  pstmt=con.prepareStatement(sql);
 		  rs=pstmt.executeQuery();
-		  rs.next();
-		  int count=rs.getInt(1);
-		  return count;
+		  if(rs.next()) {
+			  return rs.getInt(1);
+		  }
+		  return -1;
 	  }catch(SQLException s) {
 		  s.printStackTrace();
 		  return -1;
@@ -150,7 +284,7 @@ public class BoardDaoje {
 			  int step=rs.getInt("step");
 			  Date created_day=rs.getDate("created_day");
 			  Date updated_day=rs.getDate("updated_day");
-			  BoardVoje vo=new BoardVoje(service_id, writer, title, content, content, ref, lev, step, created_day, updated_day);
+			  BoardVoje vo=new BoardVoje(service_id, writer, title, pwd, content, ref, lev, step, created_day, updated_day);
 			  list.add(vo);		
 		  }	  
 		  return list;

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.member.Vo.je.BoardVoje;
 import semi.member.dao.je.BoardDaoje;
 
-@WebServlet("/je/inputpwd")
+@WebServlet("/service/je/inputpwd")
 public class BoardInputPwd extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

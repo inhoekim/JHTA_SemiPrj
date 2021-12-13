@@ -17,7 +17,7 @@
 	로그인 유지 <input type="checkbox" name="chk" checked="checked"><br>
 
 	<input type="submit" value="로그인">
-<p><a href="">아이디 찾기</a> | <a href="findPwd.html">비밀번호 찾기</a></p>
+<p><a href="${pageContext.request.contextPath }/je/Hlogin/findidje.jsp">아이디 찾기</a> | <a href="findPwd.html">비밀번호 찾기</a></p>
 <p>아직 회원이 아니신가요? <a href="">회원가입</a></p>
 </form>
 </body>

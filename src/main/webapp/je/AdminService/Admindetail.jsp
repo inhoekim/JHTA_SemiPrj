@@ -9,28 +9,17 @@
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 <script type="text/javascript">
 	function rollback() {
-		location.href="${cp }/service/board/list";
-	}
-	function Re() {
-		location.href = "${cp}/service/board/insert?service_id=${vo.service_id}&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}";
-	}
-	function ReturnMain() {
-		location.href = "${cp}/je/Service/Boardmain.jsp";
-	}
-	function Update(){
-		location.href= "${cp}/service/board/select?service_id=${vo.service_id}&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&writer=${vo.writer}&title=${vo.title}&content=${vo.content}&pwd=${vo.pwd}&created_day=${vo.created_day}";
+		location.href="${cp }/service/admin/list";
 	}
 	function Delete(){
 		location.href= "${cp}/service/board/delete?service_id=${vo.service_id}&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}";
 	}
 	function Comment(){
-		location.href="${cp}/je/Service/BoardComment.jsp?service_id=${vo.service_id}&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&title=${vo.title}&pwd=${vo.pwd}";
+		location.href="${cp}/je/AdminService/BoardComment.jsp?service_id=${vo.service_id}&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&title=${vo.title}&pwd=${vo.pwd}";	
 	}
 </script>
 </head>
 <body>
-<c:choose>
-<c:when test="${!empty vo.title}">
 <h3>문의 게시판</h3>
 	<table border="1" >
 		<tr>
@@ -56,18 +45,13 @@
 		<tr>
 			<td>수정날짜</td>
 			<td>${vo.updated_day }</td>
+			
 		</tr>
 	</table><p></p>
+	
 	   <input type="button" value="답글" onclick="Comment()">
-	   <input type="button" value="수정" onclick="Update()">
 	   <input type="button" value="삭제" onclick="Delete()">
 	   <input type="button" value="목록" onclick="rollback()">
-	 </c:when>
-	<c:otherwise>
-		<p>비밀번호가 일치하지 않습니다.</p><br>
-		<input type="button" value="목록보기" onclick="RollbackList()">
-		<input type="button" value="메인페이지로" onclick="ReturnMain()">
-	</c:otherwise>
-</c:choose>
+
 </body>
 </html>

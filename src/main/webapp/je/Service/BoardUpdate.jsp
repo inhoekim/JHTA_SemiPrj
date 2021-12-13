@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:set var="cp" value="${pageContext.request.contextPath }" />
 <script type="text/javascript">
 function ReturnList(){
-	location.href="${cp }/board/list";
+	location.href="${cp }/service/board/list";
 }
 function Update(){
 		var inform=document.inform;
@@ -30,7 +31,7 @@ function Update(){
 </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/board/update" method="post" name="inform">
+<form action="${pageContext.request.contextPath }/service/board/update" method="post" name="inform">
 		<input type="hidden" name="service_id" id="service_id" value="${vo.service_id }">
 		<input type="hidden" name="ref" id="ref" value="${vo.ref }">
 		<input type="hidden" name="lev" id="lev" value="${vo.lev }">

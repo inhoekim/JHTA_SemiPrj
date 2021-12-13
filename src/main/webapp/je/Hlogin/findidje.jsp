@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title> 
+<title>Insert title here</title>
 <script type="text/javascript">
 function findId(){
 	let xhr=new XMLHttpRequest();
@@ -21,7 +23,7 @@ function findId(){
 			}  
 		}
 	};
-	xhr.open('get','/semiPrj/select/id?jnum=' + jnum,true);
+	xhr.open('get','/semiPrj/hlogin/select/id?jnum=' + jnum,true);
 	xhr.send();
 } 
 
@@ -35,6 +37,6 @@ function findId(){
 		*주민번호는 "-"를 제외한 13자리를 입력해 주세요.</p>
 <div id="result">
 </div>
-<a href="">로그인하러가기</a>
+<a href="${pageContext.request.contextPath }/hj/login_hj.jsp">로그인하러가기</a>
 </body>
 </html>

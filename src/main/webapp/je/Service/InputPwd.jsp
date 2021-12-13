@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function rollback() {
-		location.href="${pageContext.request.contextPath }/board/list";
+		location.href="${pageContext.request.contextPath }/service/board/list";
 	}
 </script>
 </head> 
@@ -18,7 +18,7 @@
 	%>
 	<div>
 		비밀번호를 입력해 주세요.
-		<form action="${pageContext.request.contextPath }/je/inputpwd" method="post">
+		<form action="${pageContext.request.contextPath }/service/je/inputpwd" method="post">
 			<input type="hidden" name="service_id" value="<%=service_id%>"><br>
 			<input type="password" id="pwd" name="pwd"><br><br>
 			<input type="submit" value="확인"> 

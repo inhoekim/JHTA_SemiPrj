@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import semi.member.dao.je.HloginDaoje;
 
-@WebServlet("/select/id")
+@WebServlet("/hlogin/select/id")
 public class FindController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

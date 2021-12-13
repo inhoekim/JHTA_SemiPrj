@@ -16,6 +16,8 @@
 	<c:otherwise>
 		[${sessionScope.hlogin_id }님 반갑습니다.]<br>
 		<a href="<%=cp %>/logout">로그아웃</a>
+		<a href="<%=cp %>/service/board/list">문의게시판</a>
+		<a href="<%=cp %>/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
 	</c:otherwise>
 </c:choose>
 </body>
