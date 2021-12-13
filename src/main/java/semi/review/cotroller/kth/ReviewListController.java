@@ -25,8 +25,7 @@ public class ReviewListController extends HttpServlet {
 		String spageNum = req.getParameter("pageNum");
 		String field = req.getParameter("field");
 		String keyword = req.getParameter("keyword");
-		System.out.println("field : " + field);
-		System.out.println("keyword : " + keyword);
+		
 		int pageNum = 1;
 		if (spageNum != null) {
 			pageNum = Integer.parseInt(spageNum);

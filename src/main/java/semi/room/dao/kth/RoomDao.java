@@ -10,6 +10,8 @@ import db.JdbcUtil;
 public class RoomDao {
 	private static RoomDao instance;
 	
+	private RoomDao() {}
+	
 	public static RoomDao getInstance() {
 		if (instance == null) {
 			instance = new RoomDao();

@@ -58,7 +58,11 @@ public class ReviewWriteController extends HttpServlet {
 		String org_name = mr.getOriginalFileName("file"); // 전송된 파일명
 		String src_name = mr.getFilesystemName("file"); // 저장된 파일명
 		// getParameter end
-	
+		
+		// 리뷰 DAO
+		ReviewBoardDao reviewDao = ReviewBoardDao.getInstance();
+		ReviewBoardVo reviewVo = null;
+		
 		// 이미지 파일이 있을경우
 		if (org_name != null) {
 			// 파일 확장자명 추출
@@ -69,14 +73,15 @@ public class ReviewWriteController extends HttpServlet {
 			System.out.println("이미지 파일 있음");
 			ImgFileDao fileDao = ImgFileDao.getInstance();
 			ImgFileVo fileVo = new ImgFileVo(0, 0, type, org_name, src_name, null);
-			fileDao.imgFileInsert(fileVo);
+			// 리뷰 DAO
+			reviewVo = new ReviewBoardVo(0, room_id, hlogin_id,
+					title, content, rate, 0, 0, null, null);
+			reviewDao.reviewInsert(reviewVo, fileVo);
+		} else {
+			reviewVo = new ReviewBoardVo(0, room_id, hlogin_id,
+					title, content, rate, 0, 0, null, null);
+			reviewDao.reviewInsert(reviewVo, null);
 		}
-		
-		// 리뷰 DAO
-		ReviewBoardDao reviewDao = ReviewBoardDao.getInstance();
-		ReviewBoardVo reviewVo = new ReviewBoardVo(0, room_id, hlogin_id,
-				title, content, rate, 0, 0, null, null);
-		reviewDao.reviewInsert(reviewVo);
 		
 		RoomDao roomDao = RoomDao.getInstance();
 		roomDao.roomRateUpdate(room_id, rate);

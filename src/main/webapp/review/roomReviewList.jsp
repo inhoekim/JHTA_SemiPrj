@@ -67,7 +67,7 @@
 				<tr class="review_td">
 					<td class="num">${list.review_id }</td>
 					<td class="id">${list.hlogin_id }</td>
-					<td class="title"><a href="#">${list.title }</a></td>
+					<td class="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }</a></td>
 					<td class="created_day">${list.created_day }</td>
 					<td class="views">${list.views }</td>
 					<td class="recommend">${list.recommend }</td>
@@ -90,7 +90,7 @@
 	</div>
 	<div class="paging">
 		<c:if test="${rs.startPage > 10 }">
-			<a href="${path }/review/list?pageNum=${rs.startPage - 1}">이전</a>
+			<a href="${path }/review/list?pageNum=${rs.startPage - 1}&field=${rs.field}&keyword=${rs.keyword}">이전</a>
 		</c:if>
 		<c:forEach var="i" begin="${rs.startPage }" end="${rs.endPage }">
 			<c:choose>
@@ -103,7 +103,7 @@
 			</c:choose>
 		</c:forEach>
 		<c:if test="${rs.endPage < pageCount }">
-			<a href="${path }/review/list?pageNum=${rs.endPage + 1}">다음</a>
+			<a href="${path }/review/list?pageNum=${rs.endPage + 1}&field=${rs.field}&keyword=${rs.keyword}">다음</a>
 		</c:if>
 	</div>
 </div>

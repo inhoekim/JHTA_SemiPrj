@@ -52,6 +52,10 @@
 		padding-top: 10px;
 	}
 	
+	.comments_div {
+		float: letf;
+	}
+	
 	#comment_btn {
 		width: 100px;
 		height: 64px;
@@ -61,27 +65,27 @@
 		resize: none;
 	}
 </style>
-
+<c:set var="vo" value="${requestScope.vo }"/>
 <div class="review_detail_wrap">
 	<div class="review_area">
 		<div class="rivew_header">
 			<h3>
-				<span>여기 별로임</span>
+				<span>${vo.title }</span>
 			</h3>
 			<div>
-				<span>작성자:kth | 작성일:21.10.11</span>
+				<span>작성자:${vo.hlogin_id } | 작성일:${vo.created_day }</span>
 			</div>
 		</div>
-		<%-- <c:if test="${img != null }"> --%>
+		<c:if test="${requestScope.src_name != null }">
 			<div class="img_wrap">
 				<span>
-					<img src="/semiPrj/images/a.jpg" width="400" height="350">
+					<img src="/semiPrj/images/img.png" width="400" height="350">
 				</span>
 			</div>
-		<%--</c:if>--%>
+		</c:if>
 		<div class="write_wrap">
 			<p>
-				어쩌고 저쩌고
+				${vo.content }
 			</p>
 		</div>
 		<div class="btn_wrap">
@@ -93,23 +97,20 @@
 	</div>
 	<div class="comment_wrap">
 		<div class="comment_list">
+			<!-- <div id="hlogin_id_div">
+			</div>
+			<div id="content_div">
+			</div>
+			<div id="created_day">
+			</div> -->
 			<table width="800">
 				<colgroup>
 					<col style="width: 20%">
 					<col style="widht: 60%">
 					<col style="width: 20%">
 				</colgroup>
-				<tbody>
-					<tr class="commend_tr">
-						<td>kth</td>
-						<td>여기 원래 후짐</td>
-						<td>21.10.17</td>	
-					</tr>
-					<tr class="commend_tr">
-						<td>kth</td>
-						<td>여기 원래 후짐</td>
-						<td>21.10.17</td>	
-					</tr>
+				<tbody id="comment_tbody">
+					
 				</tbody>
 			</table>
 		</div>
@@ -119,10 +120,50 @@
 			<textarea rows="4" cols="80" id="comment_text_area"></textarea>
 		</div>
 		<div class="comment_btn">
-			<input type="button" value="댓글쓰기" id="comment_btn">
+			<input type="button" value="댓글쓰기" id="comment_btn" onclick="commentsBtn()">
 		</div>
 	</div>
 </div>
 <script>
+	var xhr = null;
 	
+	function commentsBtn() {
+		xhr = new XMLHttpRequest();
+		
+		let content = document.getElementById("comment_text_area").value;
+		
+		let url = '${pageContext.request.contextPath}/review/comments';
+		let param = 'review_id=' + ${vo.review_id} + '&content=' + content; 
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				
+				let data = xhr.responseText;
+				let json = JSON.parse(data);
+				
+				for (let i = 0; i < json.length; i++) {
+					let comment_id = json[i].comment_id;
+					let hlogin_id = json[i].hlogin_id;
+					let content = json[i].content;
+					let ref = json[i].ref;
+					let lev = json[i].lev;
+					let step = json[i].step;
+					let created_day = json[i].created_day;
+					
+					let tbody = document.getElementById("comment_tbody");
+					let comm_tr = document.createElement("tr");
+					
+					comm_tr.innerHTML = "<td>" + hlogin_id + "</td>"
+									  + "<td>" + content + "</td>"
+									  + "<td>" + created_day + "</td>";
+						
+					
+					tbody.appendChild(comm_tr);
+				}
+				
+			}
+		};
+		xhr.open('post', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(param);
+	}
 </script>

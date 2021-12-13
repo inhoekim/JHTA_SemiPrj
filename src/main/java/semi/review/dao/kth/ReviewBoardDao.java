@@ -16,6 +16,8 @@ import semi.room.dao.kth.RoomDao;
 public class ReviewBoardDao {
 	private static ReviewBoardDao instance;
 	
+	private ReviewBoardDao() {}
+	
 	public static ReviewBoardDao getInstance() {
 		if (instance == null) {
 			instance = new ReviewBoardDao();
@@ -180,13 +182,19 @@ public class ReviewBoardDao {
 	}
 	
 	// 리뷰 등록
-	public int reviewInsert(ReviewBoardVo vo) {
+	public int reviewInsert(ReviewBoardVo vo, ImgFileVo imgFileVo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		ImgFileDao imgFiledao = ImgFileDao.getInstance();
+		
 		int reviewNum = reviewMaxNum() + 1;
-		System.out.println("최몇 : "  + reviewNum);
+		// 이미지 파일 등록
+		if (imgFileVo != null) {
+			imgFiledao.imgFileInsert(imgFileVo, reviewNum);
+		}
+		
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "insert into review2 "
@@ -210,4 +218,37 @@ public class ReviewBoardDao {
 		}
 		
 	}
+	
+	// 리뷰 가져오기
+	public ReviewBoardVo getReivew(int review_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "select * from review2 where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				int room_id = rs.getInt("room_id");
+				String hlogin_id = rs.getString("hlogin_id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				Date created_day = rs.getDate("created_day");
+				
+				ReviewBoardVo vo = new ReviewBoardVo(review_id, room_id, hlogin_id, title, content, 0, 0, 0, created_day, null);
+				return vo;
+			}
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+
 }
