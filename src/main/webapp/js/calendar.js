@@ -52,11 +52,11 @@ function setCalendar(type,year,month) {
 		if((i+first_date-1)%7 ==0) {
 			calHTML += "</tr>";
 			if(new Date(year,month-1,i,23,59) < today) {calHTML += "<tr><td style='color:rgb(205,205,205);'>" + i + "</td>";}
-			else {calHTML += "<tr><td class='cdate' style='color:red' onclick='checkin(this,year)'>" + i + "</td>";}
+			else {calHTML += "<tr><td id='"+(""+year+month+i)+"' class='cdate' style='color:red' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>";}
 			
 		}
 		else if(new Date(year,month-1,i,23,59) < today) {calHTML += "<td style='color:rgb(205,205,205);'>" + i + "</td>";}
-		else {calHTML += "<td class='cdate' onclick='checkin(this,year)'>" + i + "</td>"; 	}
+		else {calHTML += "<td id='"+(""+year+month+i)+"' class='cdate' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>"; 	}
 		
 	}
 	calHTML += "</table>";
@@ -82,7 +82,62 @@ function next(year,month){
 	setCalendar(2,year,month+1);
 }
 
-function checkin(event,year){
-	console.log(event);
-	console.log(year);
+function checkin(event,year,month){
+	let checkInForm = document.getElementById("checkInForm");
+	let checkOutForm = document.getElementById("checkOutForm");
+	let inDate = document.getElementById("inDate");
+	let outDate = document.getElementById("outDate");
+	let nights = document.getElementById("nights");
+	//체크인 날짜 결정
+	if(checkInForm.value == "") {
+		checkInForm.value = year + "-" + month + "-" + event.innerText;
+		inDate.innerHTML = checkInForm.value;
+		event.style.backgroundColor = "#FEC5E5";
+	//체크아웃 날짜 결정
+	}else if(checkOutForm.value == "") {
+		//체크아웃 날짜 결정이 미확정된 상태에서 결정한 체크인 날짜보다 이전 날짜를 선택한 경우
+		if(new Date(checkInForm.value) > new Date(year,month-1,event.innerText)) {
+			let str = checkInForm.value.split("-");
+			console.log(str[0]+str[1]+str[2]);
+			let td = document.getElementById(str[0]+str[1]+str[2]);
+			td.style.backgroundColor = "";
+			checkInForm.value = year + "-" + month + "-" + event.innerText;
+			inDate.innerHTML = checkInForm.value;
+			event.style.backgroundColor = "#FEC5E5";
+		//체크아웃 날짜 확정
+		}else{
+			checkOutForm.value = year + "-" + month + "-" + event.innerText;
+			outDate.innerHTML = checkOutForm.value;
+			event.style.backgroundColor = "#FEC5E5";
+			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
+			day = Math.ceil(day);
+			nights.innerText = day + "박";
+			for(let i = 0; i <= day; i++) {
+				let temp = new Date(checkInForm.value);
+				temp.setDate(temp.getDate() + i);
+				let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+				console.log(td_str);
+				let td = document.getElementById(td_str);
+				td.style.backgroundColor= "#FEC5E5";
+			}
+		}
+	//새롭게 체크인 날짜 결정
+	}else{
+		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
+		day = Math.ceil(day);
+		for(let i = 0; i <= day; i++) {
+			let temp = new Date(checkInForm.value);
+			temp.setDate(temp.getDate() + i);
+			let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+			console.log(td_str);
+			let td = document.getElementById(td_str);
+			td.style.backgroundColor= "";
+		}
+		checkInForm.value = year + "-" + month + "-" + event.innerText;
+		inDate.innerHTML = checkInForm.value;
+		checkOutForm.value = "";
+		nights.innerText = "0박";
+		outDate.innerHTML = "날짜추가";
+		event.style.backgroundColor = "#FEC5E5";
+	}	
 }
