@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function ReturnMain(){
-	location.href="${pageContext.request.contextPath }/je/Boardmain.jsp";
+	location.href="${pageContext.request.contextPath }/je/Service/Boardmain.jsp";
 }
 function ShowList(){
 	var inform=document.inform;

@@ -2,7 +2,6 @@ package semi.review.cotroller.kth;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,7 +25,7 @@ public class ReviewWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		//int room_id = Integer.parseInt(req.getParameter("room_id"));
-		int room_id = 1;
+		int room_id = 1; // 더미 값 (삭제 예정)
 		resp.sendRedirect(req.getContextPath() + "/review/reviewWrite.jsp?room_id=" + room_id);
 	}
 	
@@ -46,11 +45,11 @@ public class ReviewWriteController extends HttpServlet {
 		);
 		
 		HttpSession session = req.getSession();
-		String hlogin_id = (String)session.getAttribute("hloing_id");
-		
+		//String hlogin_id = (String)session.getAttribute("hloing_id");
+		String hlogin_id = "gli"; // 더미 값 (삭제 예정)
 		// getParameter
-		int review_id = Integer.parseInt(mr.getParameter("review_id"));
-		int room_id = Integer.parseInt(mr.getParameter("room_id"));
+		//int room_id = Integer.parseInt(mr.getParameter("room_id"));
+		int room_id = 1; // 더미 값 (삭제 예정)
 		int rate = Integer.parseInt(mr.getParameter("rate"));
 		String title = mr.getParameter("title");
 		String content = mr.getParameter("content");
@@ -65,10 +64,10 @@ public class ReviewWriteController extends HttpServlet {
 		File file = new File(saveDir + "\\" + src_name);
 		
 	
-		// 이미지 파일 DAO
-		if (org_name != null || !org_name.equals("")) {
+		// 이미지 파일이 있을경우
+		if (org_name != null) {
 			ImgFileDao fileDao = ImgFileDao.getInstance();
-			ImgFileVo fileVo = new ImgFileVo(0, review_id, type, org_name, src_name, null);
+			ImgFileVo fileVo = new ImgFileVo(0, 0, type, org_name, src_name, null);
 			fileDao.imgFileInsert(fileVo);
 		}
 		
@@ -78,7 +77,7 @@ public class ReviewWriteController extends HttpServlet {
 				title, content, rate, 0, 0, null, null);
 		reviewDao.reviewInsert(reviewVo);
 		
-		
+		resp.sendRedirect(req.getContextPath() + "/main.jsp");
 		
 	}
 }
