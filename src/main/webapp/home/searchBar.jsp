@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 
-<div id="interaction">	
+<div id="serachBar">	
 	<form action="">
 		<div style="width:40%;">
 		

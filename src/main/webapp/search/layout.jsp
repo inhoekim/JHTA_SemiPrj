@@ -1,28 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
 	<meta charset="UTF-8">
-	<title>검색결과</title>
-	<style type="text/css">
-		*{margin:0; padding: 0;}
+	<title>HTML Layouts</title>
+	<style>
+		header {
+			background-color:lightgrey;
+			height:100px;
+		}
+		nav {
+			background-color:#339999;
+			color:white;
+			width:200px;
+			height:300px;
+			float:left;
+		}
+		section {
+			width:200px;
+			text-align:left;
+			float:left;
+			padding:10px;
+		}
+		footer {
+			background-color:#FFCC00;
+			height:100px;
+			clear:both;
+		}
+		header, nav, section, footer { text-align:center; }
+		header, footer { line-height:100px; }
+		nav, section { line-height:240px; }
 	</style>
 </head>
 
 <body>
-	<div id="wrapper">
-		<div id="header">
-			
-		</div>
-		<div id="content">
-		
-		</div>
-		<div id="footer">
 
-		</div>
+	<h1>HTML5 레이아웃</h1>
+	<header>
+		<h2>HEADER 영역</h2>
+	</header>
+	<div id="searchBar">
+	
 	</div>
+	<nav>
+		<h2>NAV 영역</h2>
+	</nav>
+	<section>
+		<p>SECTION 영역</p>
+	</section>
+	<footer>
+		<h2>FOOTER 영역</h2>
+	</footer>
+
 </body>
+
 </html>

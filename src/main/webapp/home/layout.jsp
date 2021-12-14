@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>우리우리호텔</title>
-	<link href="${pageContext.request.contextPath}/home/css/home.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css"/>
 	<style type="text/css">
 		*{margin:0; padding: 0;}
 	</style>
@@ -17,6 +17,9 @@
 	<div id="wrapper">
 		<div id="header">
 			<jsp:include page="${requestScope.header}"/>
+		</div>
+		<div id="searchBar">
+			<jsp:include page="${requestScope.searchBar}"/>
 		</div>
 		<div id="content">
 			<jsp:include page="${requestScope.main}"/>
