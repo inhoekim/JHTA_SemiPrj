@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function ReturnMain(){
-	location.href="${pageContext.request.contextPath }/je/Service/Boardmain.jsp";
+	location.href="${pageContext.request.contextPath }/service/board/list";
 }
 function ShowList(){
 	var inform=document.inform;
@@ -44,11 +44,24 @@ String pwd=request.getParameter("pwd");
 		<input type="hidden" name="ref" id="ref" value=<%=ref %>>
 		<input type="hidden" name="lev" id="lev" value=<%=lev %>>
 		<input type="hidden" name="step" id="step" value=<%=step %>> 
-		작성자  <input type="text" name="writer" id="writer"><br>
-		제목  <input type="text" name="title" id="title" value=<%=title %> readonly="readonly"><br>
-		내용<br>
-		<textarea rows="5" cols="50" name="content" id="content"></textarea><br>
-		비밀번호 <input type="password" name="pwd" id="pwd" value=<%=pwd %> readonly="readonly"><br>
+		<table>
+		<tr>
+		<td>작성자</td>  
+		<td><input type="text" name="writer" id="writer"></td>
+		</tr>
+		<tr>		
+		<td>제목</td>  
+		<td><input type="text" name="title" id="title" value=<%=title %> readonly="readonly"></td>
+		</tr>
+		<tr>
+		<td>내용</td>
+		<td><textarea rows="5" cols="50" name="content" id="content"></textarea></td>
+		</tr>
+	    <tr>
+	    <td>비밀번호</td>
+	    <td><input type="password" name="pwd" id="pwd" value=<%=pwd %> readonly="readonly"></td>
+	    </tr>
+	    </table>
 		<p style="color: red; font-size: 7px">
 		*비밀번호는 필수 입력 사항입니다.</p>
 		<input type="button" value="등록" onclick="ShowList()">

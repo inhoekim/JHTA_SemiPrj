@@ -159,7 +159,7 @@
 					
 					tbody.appendChild(comm_tr);
 				}
-				
+				 
 			}
 		};
 		xhr.open('post', url, true);
