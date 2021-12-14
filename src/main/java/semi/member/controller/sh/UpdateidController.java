@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.gaip.util.sh.Utility;
 import semi.member.Vo.sh.GaipVo;
 import semi.member.dao.sh.GaipDao;
 @WebServlet("/updateid")
@@ -31,7 +32,7 @@ public class UpdateidController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String hlogin_id=req.getParameter("hlogin_id");
-		String pwd=req.getParameter("pwd");
+		String pwd=Utility.encoding(req.getParameter("pwd"));
 		String name=req.getParameter("name");
 		String jnum=req.getParameter("jnum");
 		int age=Integer.parseInt(req.getParameter("age"));

@@ -45,7 +45,7 @@ public class GaipController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/hj/login_hj.jsp").forward(req, resp);
 	}
 }
 
