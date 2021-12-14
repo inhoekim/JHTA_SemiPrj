@@ -15,6 +15,11 @@
 	table {
 		margin: auto
 	}
+	td#title {
+		text-align:left
+	}
+	
+	
 	</style>
 	<script type="text/javascript">
 		function WriteBoard() {
@@ -51,7 +56,7 @@
 	<tr>
 		<td>${vo.service_id }</td>
 		<td>${vo.writer }</td>
-		<td><c:if test="${vo.lev>0 }">
+		<td id="title"><c:if test="${vo.lev>0 }">
 		<c:forEach var="i" begin="1" end="${vo.lev }">
 		    &nbsp;&nbsp;
 		      </c:forEach>

@@ -15,6 +15,9 @@
 	table {
 		margin: auto
 	}
+	td#title {
+		text-align:left
+	}
 	</style>
 	<script type="text/javascript">
 		function WriteBoard() {
@@ -33,7 +36,7 @@
 		</select>
 		<input type="text" name="keyword" value="${keyword }">
 		<input type="submit" value="검색">
-		<input type="button" value="글쓰기" onclick="WriteBoard()">
+<!--<input type="button" value="글쓰기" onclick="WriteBoard()">  -->		
 	</form>	
 </div><br>
 <table border="1" width="800">
@@ -49,7 +52,7 @@
 	<tr>
 		<td>${vo.service_id }</td>
 		<td>${vo.writer }</td>
-		<td><c:if test="${vo.lev>0 }">
+		<td id="title"><c:if test="${vo.lev>0 }">
 		<c:forEach var="i" begin="1" end="${vo.lev }">
 		    &nbsp;&nbsp;
 		      </c:forEach>

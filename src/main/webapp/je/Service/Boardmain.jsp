@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<li><a href="${pageContext.request.contextPath }/service/board/insert">글작성</a></li>
-	<li><a href="${pageContext.request.contextPath }/service/board/list">글목록</a></li>
+	<li><a href="${pageContext.request.contextPath }/service/board/list">문의게시판</a></li>
 </body>
 </html>   
