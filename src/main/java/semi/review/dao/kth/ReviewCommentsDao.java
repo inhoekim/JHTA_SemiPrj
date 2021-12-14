@@ -69,7 +69,8 @@ public class ReviewCommentsDao {
 	}
 	
 	// 해당 게시물 모든 댓글 출력
-	public ArrayList<ReviewCommentsVo> getCommentList(int review_id) {
+	public ArrayList<ReviewCommentsVo> getCommentList(int review_id,
+			int startRow, int endRow) {
 		ArrayList<ReviewCommentsVo> list = new ArrayList<ReviewCommentsVo>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -77,9 +78,20 @@ public class ReviewCommentsDao {
 		
 		try {
 			con = JdbcUtil.getCon();
-			String sql = "select * from comments2 where review_id = ?";
+			String sql = " select * from "
+					+ "("
+					+ "    select comments.*, rownum rnum from "
+					+ "    (                "
+					+ "        select * "
+					+ "        from comments2 "
+					+ "        where review_id = ? "
+					+ "        order by comment_id asc, step desc"
+					+ "    )comments"
+					+ ")where rnum >= ? and rnum <= ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {

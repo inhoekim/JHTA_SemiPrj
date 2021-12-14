@@ -63,10 +63,17 @@
 	</div>
 </div>
 <script>
-	<c:forEach var="list" items="${requestScope.list}">
-		for (let i = 1; i < ${list.rate} + 1; i++) {
-			let rate = document.querySelector('label[for="rate' + i + '"]');
-			rate.style.textShadow = "0 0 0 #a00";
-		}
-	</c:forEach>
+	window.onload = function() {
+		dd();
+	}
+	
+	function dd() {
+		<c:forEach var="list" items="${requestScope.list}">
+			for (let i = 1; i < ${list.rate} + 1; i++) {
+				let rate = document.querySelector('label[for="rate' + i + '"]');
+				rate.style.textShadow = "0 0 0 #a00";
+			}
+		</c:forEach>
+	}
+	
 </script>
