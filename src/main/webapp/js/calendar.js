@@ -65,22 +65,31 @@ function setCalendar(type,year,month) {
 }
 
 function prev(year,month){
-	let calendarBox = document.getElementById("calendarBox");
-	let calendar = document.getElementsByClassName("calendar");
-	calendarBox.removeChild(calendar[1]);
-	calendarBox.removeChild(calendar[0]);
+	resetAll();
 	setCalendar(1,year,month-1);
 	setCalendar(2,year,month);
 
 }
 function next(year,month){
+	resetAll();
+	setCalendar(1,year,month);
+	setCalendar(2,year,month+1);
+}
+
+function resetAll(){
+	//interaction Bar Reset
+	document.getElementById("checkInForm").value="";
+	document.getElementById("checkOutForm").value="";
+	document.getElementById("inDate").innerText="날짜추가";
+	document.getElementById("outDate").innerText="날짜추가";
+	document.getElementById("nights").innerText="0박";
+	//Calendar Reset
 	let calendarBox = document.getElementById("calendarBox");
 	let calendar = document.getElementsByClassName("calendar");
 	calendarBox.removeChild(calendar[1]);
 	calendarBox.removeChild(calendar[0]);
-	setCalendar(1,year,month);
-	setCalendar(2,year,month+1);
 }
+
 
 function checkin(event,year,month){
 	let checkInForm = document.getElementById("checkInForm");
@@ -98,7 +107,6 @@ function checkin(event,year,month){
 		//체크아웃 날짜 결정이 미확정된 상태에서 결정한 체크인 날짜보다 이전 날짜를 선택한 경우
 		if(new Date(checkInForm.value) > new Date(year,month-1,event.innerText)) {
 			let str = checkInForm.value.split("-");
-			console.log(str[0]+str[1]+str[2]);
 			let td = document.getElementById(str[0]+str[1]+str[2]);
 			td.style.backgroundColor = "";
 			checkInForm.value = year + "-" + month + "-" + event.innerText;
@@ -112,24 +120,25 @@ function checkin(event,year,month){
 			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 			day = Math.ceil(day);
 			nights.innerText = day + "박";
+			//달력에 하이라이팅 표시
 			for(let i = 0; i <= day; i++) {
 				let temp = new Date(checkInForm.value);
 				temp.setDate(temp.getDate() + i);
 				let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
-				console.log(td_str);
 				let td = document.getElementById(td_str);
 				td.style.backgroundColor= "#FEC5E5";
 			}
+			document.getElementById("calendarBox").style.visibility="hidden";
 		}
 	//새롭게 체크인 날짜 결정
 	}else{
 		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 		day = Math.ceil(day);
+		//달력에 표시된 하이라이팅 지우기
 		for(let i = 0; i <= day; i++) {
 			let temp = new Date(checkInForm.value);
 			temp.setDate(temp.getDate() + i);
 			let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
-			console.log(td_str);
 			let td = document.getElementById(td_str);
 			td.style.backgroundColor= "";
 		}

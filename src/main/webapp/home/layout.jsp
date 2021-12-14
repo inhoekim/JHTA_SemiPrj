@@ -30,5 +30,39 @@
 <script src="${pageContext.request.contextPath}/js/calendar.js"></script>
 <script type="text/javascript">
 	printCalendar();
+	function openCalendar(){
+		let calendarBox = document.getElementById("calendarBox");
+		let peopleBox = document.getElementById("peopleBox");
+		if(calendarBox.style.visibility == "" || calendarBox.style.visibility == "hidden") {
+			calendarBox.style.visibility = "visible";
+			peopleBox.style.visibility = "hidden";
+		}
+		else calendarBox.style.visibility = "hidden";
+	}
+	
+	function openPeopleBox(){
+		let calendarBox = document.getElementById("calendarBox");
+		let peopleBox = document.getElementById("peopleBox");
+		if(peopleBox.style.visibility == "" || peopleBox.style.visibility == "hidden") {
+			calendarBox.style.visibility = "hidden";
+			peopleBox.style.visibility = "visible";
+		}
+		else peopleBox.style.visibility = "hidden";
+	}
+	
+	function plusPN(){
+		let num = Number(document.getElementById("pn").innerText);
+		document.getElementById("pn").innerText = num + 1;
+		document.getElementById("peopleNum").value = num + 1;
+		document.getElementById("people").innerText = (num + 1) + "명";
+	}
+	
+	function minusPN(){
+		if(document.getElementById("pn").innerText > 0) {
+			document.getElementById("pn").innerText -= 1;
+			document.getElementById("peopleNum").value -= 1;
+			document.getElementById("people").innerText = document.getElementById("peopleNum").value + "명";
+		}
+	}
 </script>
 </html>

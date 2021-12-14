@@ -22,21 +22,20 @@
 				<input id="checkOutForm" type="hidden" value="">
 			</div>
 			
-			<div id="calendarBox" class="calendarBox">
+			<div class="checkbar" onclick="openPeopleBox()">
+				<p>인원</p>
+				<p id="people">0명</p>
 			</div>
 			
+			<div id="calendarBox" class="calendarBox">
+			</div>
+			<div id="peopleBox" class="peopleBox">
+			<p style="margin-top:10px;">인원</p>
+			<input type="button" value="-" onclick="minusPN()" style="width:30px;">
+			<p id="pn" style="display:inline-block; margin-top:15px;">0</p>
+			<input id="peopleNum" type="hidden" value="0">
+			<input type="button" value="+" onclick="plusPN()" style="width:30px;">
+			</div>
 		</div>
 	</form>
 </div>
-
-
-
-
-
-<script type="text/javascript">
-function openCalendar(){
-	let calendarBox = document.getElementById("calendarBox");
-	if(calendarBox.style.visibility == "" || calendarBox.style.visibility == "hidden") calendarBox.style.visibility = "visible";
-	else calendarBox.style.visibility = "hidden";
-}
-</script>

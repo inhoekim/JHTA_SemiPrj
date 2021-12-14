@@ -2,11 +2,12 @@
 
 .calendarBox {
 	margin: 20px;
-	background-color: gainsboro;
+	position: absolute;
 	visibility: hidden;
 	width: 900px;
 	height: 350px;
-	position: absolute;
+	background-color: gainsboro;
+	box-shadow: 0px 5px 20px 0px;
 }
 
 .calendar {
@@ -15,6 +16,7 @@
 	float: left;
 	text-align: center;
 	table-layout: fixed;
+	
 	
 }
 
@@ -31,4 +33,16 @@
 .cdate:hover {
 	border: 1px solid red;
 	border-radius: 100px;
+}
+
+.peopleBox {
+	margin: 20px;
+	position: absolute;
+	visibility: hidden;
+	width: 100px;
+	height: 80px;
+	left: 30%;
+	text-align : center;
+	background-color: gainsboro;
+	box-shadow: 0px 5px 20px 0px;
 }
