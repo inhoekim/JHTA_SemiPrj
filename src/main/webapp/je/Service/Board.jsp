@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<script type="text/javascript">
+	   *{margin:5px;}
+	</script>
 <script type="text/javascript">
 function ReturnMain(){
-	location.href="${pageContext.request.contextPath }/je/Service/Boardmain.jsp";
+	location.href="${pageContext.request.contextPath }/service/board/list";
 }
 function ShowList(){
 	var inform=document.inform;
@@ -28,23 +33,40 @@ function ShowList(){
 	}
 	
 }
+
 </script>
 </head>
 <body>
+
+<div>
 <form action="${pageContext.request.contextPath }/service/board/insert" method="post" name="inform">
 		<input type="hidden" name="service_id" id="service_id">
 		<input type="hidden" name="ref" id="ref">
 		<input type="hidden" name="lev" id="lev">
 		<input type="hidden" name="step" id="step">
-		작성자  <input type="text" name="writer" id="writer"><br>
-		제목  <input type="text" name="title" id="title"><br>
-		내용<br>
-		<textarea rows="5" cols="50" name="content" id="content"></textarea><br>
-		비밀번호 <input type="password" name="pwd" id="pwd"><br>
-		<p style="color: red; font-size: 7px">
+  <table>
+      <tr>
+		<td>작성자</td>  
+		<td><input type="text" name="writer" id="writer" class="form-control"></td>
+	  </tr>
+	  <tr>	
+		<td>제목</td>  
+		<td><input type="text" name="title" id="title"></td>
+	  </tr>
+	  <tr>
+		<td>내용</td>
+		<td><textarea rows="5" cols="50" name="content" id="content"></textarea></td>
+	  </tr>
+	  <tr>
+		<td>비밀번호</td> 
+		<td><input type="password" name="pwd" id="pwd"></td>
+	</tr>
+   </table>
+        <p style="color: red; font-size: 7px">
 		*비밀번호는 필수 입력 사항입니다.</p>
 		<input type="button" value="등록" onclick="ShowList()">
 		<input type="button" value="취소" onclick="ReturnMain()">
 </form>
+</div>
 </body>
 </html>

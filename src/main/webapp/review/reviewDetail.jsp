@@ -265,6 +265,7 @@
 				let json = JSON.parse(data);
 				
 				commentsList();
+				
 			}
 		};
 		xhr.open('post', url, true);

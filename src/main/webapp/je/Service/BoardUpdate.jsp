@@ -36,11 +36,24 @@ function Update(){
 		<input type="hidden" name="ref" id="ref" value="${vo.ref }">
 		<input type="hidden" name="lev" id="lev" value="${vo.lev }">
 		<input type="hidden" name="step" id="step" value="${vo.step }"> 
-		작성자  <input type="text" name="writer" id="writer" value="${vo.writer }"><br>
-		제목  <input type="text" name="title" id="title" value="${vo.title }"><br>
-		내용<br>
-		<textarea rows="5" cols="50" name="content" id="content">${vo.content}</textarea><br>
-		비밀번호 <input type="password" name="pwd" id="pwd" value="${vo.pwd }"><br>
+		<table>
+		<tr>
+		<td>작성자</td>  
+		<td><input type="text" name="writer" id="writer" value="${vo.writer }"></td>
+		</tr>
+		<tr>
+		<td>제목</td>  
+		<td><input type="text" name="title" id="title" value="${vo.title }"></td>
+		</tr>
+		<tr>
+		<td>내용</td>
+		<td><textarea rows="5" cols="50" name="content" id="content">${vo.content}</textarea></td>
+		</tr>
+		<tr>
+		<td>비밀번호</td> 
+		<td><input type="password" name="pwd" id="pwd" value="${vo.pwd }"></td>
+		</tr>
+		</table>
 		<p style="color: red; font-size: 7px">
 		*비밀번호는 필수 입력 사항입니다.</p>
 		<input type="button" value="수정하기" onclick="Update()">
