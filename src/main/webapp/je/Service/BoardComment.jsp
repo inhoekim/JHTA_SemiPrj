@@ -6,39 +6,40 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function ReturnMain(){
-	location.href="${pageContext.request.contextPath }/service/board/list";
-}
-function ShowList(){
-	var inform=document.inform;
-	var service_id=inform.service_id.value;
-	var ref=inform.ref.value;
-	var lev=inform.lev.value;
-	var step=inform.step.value;
-	var writer=inform.writer.value;
-	var title=inform.title.value;
-	var content=inform.content.value;
-	var pwd=inform.pwd.value; 
-	 
-	if(!pwd || !title || !content){
-		alert("내용은 필수 입력사항입니다.");
-	}else{
-		inform.submit();
-		
-	}
-	
-}
-</script>
-</head>
+		function ReturnMain(){
+			location.href="${pageContext.request.contextPath }/service/board/list";
+		}
+		function ShowList(){
+			var inform=document.inform;
+			var service_id=inform.service_id.value;
+			var ref=inform.ref.value;
+			var lev=inform.lev.value;
+			var step=inform.step.value;
+			var writer=inform.writer.value;
+			var title=inform.title.value;
+			var content=inform.content.value;
+			var pwd=inform.pwd.value; 
+			 
+			if(!pwd || !title || !content){
+				alert("내용은 필수 입력사항입니다.");
+			}else{
+				inform.submit();
+				
+			}
+			
+		}
+  </script>
+ </head>
 <body>
-<%
-String title=request.getParameter("title");
-String ref=request.getParameter("ref");
-String lev=request.getParameter("lev");
-String step=request.getParameter("step");
-String service_id=request.getParameter("service_id");
-String pwd=request.getParameter("pwd");
-%>
+	<%
+	    request.setCharacterEncoding("utf-8");
+		String title=request.getParameter("title");
+		String ref=request.getParameter("ref");
+		String lev=request.getParameter("lev");
+		String step=request.getParameter("step");
+		String service_id=request.getParameter("service_id");
+		String pwd=request.getParameter("pwd");
+	%>
 <form action="${pageContext.request.contextPath }/service/board/insert" method="post" name="inform">
 		<input type="hidden" name="service_id" id="service_id" value=<%=service_id %>>
 		<input type="hidden" name="ref" id="ref" value=<%=ref %>>

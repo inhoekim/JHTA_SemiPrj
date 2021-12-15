@@ -62,7 +62,7 @@
 		      </c:forEach>
 		       [답글]
 		</c:if>
-		<a href="/semiPrj/je/Service/InputPwd.jsp?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}" >${ vo.title }</a></td>
+		<a href="/semiPrj/je/Service/InputPwd.jsp?service_id=${vo.service_id }" >${ vo.title }</a></td>
 		<td>${ vo.created_day }</td>
 		<td>${ vo.updated_day }</td>
 		<td>Y</td><!-- 비밀글여부 따로 표시할것 -->

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 	<script type="text/javascript">
 	   *{margin:5px;}
 	</script>
@@ -33,18 +32,17 @@ function ShowList(){
 	}
 	
 }
-
-</script>
-</head>
+     </script>
+  </head>
 <body>
 
 <div>
-<form action="${pageContext.request.contextPath }/service/board/insert" method="post" name="inform">
-		<input type="hidden" name="service_id" id="service_id">
+  <form action="${pageContext.request.contextPath }/service/board/insert" method="post" name="inform">
+		<input type="hidden" name="service_id" id="service_id" value="${vo.service_id }">
 		<input type="hidden" name="ref" id="ref">
 		<input type="hidden" name="lev" id="lev">
 		<input type="hidden" name="step" id="step">
-  <table>
+    <table>
       <tr>
 		<td>작성자</td>  
 		<td><input type="text" name="writer" id="writer" class="form-control"></td>
@@ -66,7 +64,7 @@ function ShowList(){
 		*비밀번호는 필수 입력 사항입니다.</p>
 		<input type="button" value="등록" onclick="ShowList()">
 		<input type="button" value="취소" onclick="ReturnMain()">
-</form>
-</div>
-</body>
+    </form>
+   </div>
+  </body>
 </html>

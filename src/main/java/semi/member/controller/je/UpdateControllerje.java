@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import semi.gaip.util.sh.Utility;
 import semi.member.dao.je.HloginDaoje;
 
 
@@ -18,7 +19,7 @@ import semi.member.dao.je.HloginDaoje;
 public class UpdateControllerje extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String pwd=req.getParameter("pwd");
+		String pwd=Utility.encoding(req.getParameter("pwd"));//암호화공정 사용 수정
 		String jnum=req.getParameter("jnum");
 		HloginDaoje dao=new HloginDaoje();
 		int n=dao.update(pwd,jnum);

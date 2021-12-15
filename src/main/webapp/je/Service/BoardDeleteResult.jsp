@@ -9,13 +9,13 @@
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 <script type="text/javascript">
 
-function rollback(){
-	location.href="${cp }/je/Service/Boardmain.jsp";
-}
-
-function BoardMain(){
-	location.href="${cp }/service/board/list";
-}
+	function rollback(){
+		location.href="${cp }/je/Service/Boardmain.jsp";
+	}
+	
+	function BoardMain(){
+		location.href="${cp }/service/board/list";
+	}
 </script>
 </head>
 <body>

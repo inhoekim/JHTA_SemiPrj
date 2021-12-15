@@ -19,7 +19,7 @@ public class MemberDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="select * from hlogin where hlogin_id=? and pwd=?";
+			String sql="select * from hlogin where hlogin_id=? and pwd=? and num=1";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
