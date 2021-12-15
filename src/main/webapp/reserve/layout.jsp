@@ -12,13 +12,18 @@
 
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.searchBar}"/>
 	<jsp:include page="${requestScope.main}"/>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
 
-<script src="${cp}/js/calendar.js"></script>
+<script src="${cp}/js/dateCalc.js"></script>
+
 <script type="text/javascript">
-	printCalendar();
+window.onload = function() {
+
+	document.getElementById("days").innerText = getday("${param.checkIn}", "${param.checkOut}") + "박";
+	document.getElementById("pay").innerText = "결제금액: " + getTotalPrice("${param.checkIn}", "${param.checkOut}", ${room.price}) + "원";
+}
+
 </script>
 </html>

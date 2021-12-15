@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HTML Layouts</title>
-<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css"/>
+<link href="${cp}/css/home.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -22,7 +22,8 @@
 	<jsp:include page="/search/footer.html"/>
 </body>
 
-<script src="${pageContext.request.contextPath}/js/calendar.js"></script>
+<script src="${cp}/js/calendar.js"></script>
+<script src="${cp}/js/dateCalc.js"></script>
 <script type="text/javascript">
 	printCalendar("${param.checkInForm}");
 	
@@ -36,16 +37,19 @@
 					let searchResult = document.getElementById("searchResult");
 					for(let i = 0; i < json.length; i++) {
 						let newSection = document.createElement("section");
+						let checkIn = document.getElementById("checkInForm").value;
+						let checkOut = document.getElementById("checkOutForm").value;
 						newSection.innerHTML = "<p>객실번호: " + json[i].room_id + "</p>";
 						newSection.innerHTML += "<p>객실이미지: " + json[i].src + "</p>";
 						newSection.innerHTML += "<p>객실평점 :" + json[i].rate + "</p>";
-						newSection.innerHTML += "<p>예상가격 :" + json[i].price + "원</p>";
-						newSection.innerHTML += "<a href=''>예약하기</a>";
+						newSection.innerHTML += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,json[i].price) + "원</p>";
+						let link = "${cp}/reserve?room=" + json[i].room_id + "&checkIn=" + checkIn + "&checkOut=" + checkOut;
+						newSection.innerHTML += "<a href='" + link + "'>예약하기</a>";
 						searchResult.appendChild(newSection);
 					}
 				}
 			};
-		xhr.open("post","${pageContext.request.contextPath}/search",true);
+		xhr.open("post","${cp}/search",true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		let checkIn = document.getElementById("checkInForm").value;
 		let checkOut = document.getElementById("checkOutForm").value;
@@ -64,10 +68,35 @@
 		for(let i = length - 1; i >= 0; i--) searchResult.removeChild(searchResult.childNodes[i]);
 		
 	}
-	window.onload = function(){
-		console.log(${requestScope.result});
-		}
 	
+	function rangeBar(event,EID){
+		let element = document.getElementById(EID);
+		if(EID =="cmin") element.innerText = event.value + "원이상";
+		if(EID == "cmax") element.innerText = event.value + "원이하";	
+	}
+	
+	function reviewBar(event){
+		let element = document.getElementById("reviewBar");
+		element.innerText = event.value + "점이상";
+
+	}
+	
+	window.onload = function(){
+		let searchResult = document.getElementById("searchResult");
+		let checkIn = document.getElementById("checkInForm").value;
+		let checkOut = document.getElementById("checkOutForm").value;
+		let arr = ${requestScope.result};
+		for(let i = 0; i < arr.length; i++) {
+			let newSection = document.createElement("section");
+			newSection.innerHTML = "<p>객실번호: " + arr[i].room_id + "</p>";
+			newSection.innerHTML += "<p>객실이미지: " + arr[i].src + "</p>";
+			newSection.innerHTML += "<p>객실평점 :" + arr[i].rate + "</p>";
+			newSection.innerHTML += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,arr[i].price) + "원</p>";
+			let link = "${cp}/reserve?room=" + arr[i].room_id + "&checkIn=" + checkIn + "&checkOut=" + checkOut;
+			newSection.innerHTML += "<a href='" + link + "'>예약하기</a>";
+			searchResult.appendChild(newSection);
+		}
+	}	
 </script>
 
 </html>

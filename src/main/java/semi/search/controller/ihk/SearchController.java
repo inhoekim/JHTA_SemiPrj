@@ -92,7 +92,6 @@ public class SearchController extends HttpServlet{
 				System.out.println(totalPrice);
 				if(totalPrice < Integer.parseInt(costMin) || totalPrice > Integer.parseInt(costMax)) continue;
 				if(rate < Integer.parseInt(review)) continue;
-				room.put("price", totalPrice);
 				jsonArr.put(room);
 			}
 			pw.print(jsonArr);
