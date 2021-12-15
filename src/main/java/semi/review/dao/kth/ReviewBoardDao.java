@@ -1,5 +1,6 @@
 package semi.review.dao.kth;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -42,7 +43,7 @@ public class ReviewBoardDao {
 						+ "    select board.*, rownum rnum from "
 						+ "        ("
 						+ "            select * "
-						+ "            from review2 "
+						+ "            from review "
 						+ "            order by review_id desc"
 						+ "        )board"
 						+ "    )where rnum >= ? and rnum <= ?";
@@ -52,7 +53,7 @@ public class ReviewBoardDao {
 						+ "    select board.*, rownum rnum from "
 						+ "        ("
 						+ "            select * "
-						+ "            from review2 "
+						+ "            from review "
 						+ "			   where " + field + " like '%" + keyword + "%' "
 						+ "            order by review_id desc"
 						+ "        )board"
@@ -93,7 +94,7 @@ public class ReviewBoardDao {
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "select nvl(count(review_id), 0) cnt "
-					+ "from review2";
+					+ "from review";
 			if (field != null && !field.equals("")) {
 				sql += " where " + field + " like '%" + keyword + "%'";
 			} else if (room_id != 0) {
@@ -126,7 +127,7 @@ public class ReviewBoardDao {
 					+ "    select board.*, rownum rnum from "
 					+ "        ("
 					+ "            select * "
-					+ "            from review2 "
+					+ "            from review "
 					+ "            order by review_id desc"
 					+ "        )board"
 					+ "    )where room_id = ? and rnum >= ? and rnum <= ?";
@@ -165,7 +166,7 @@ public class ReviewBoardDao {
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "select nvl(max(review_id), 0) mnum "
-					+ "from review2";
+					+ "from review";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -190,14 +191,11 @@ public class ReviewBoardDao {
 		ImgFileDao imgFiledao = ImgFileDao.getInstance();
 		
 		int reviewNum = reviewMaxNum() + 1;
-		// 이미지 파일 등록
-		if (imgFileVo != null) {
-			imgFiledao.imgFileInsert(imgFileVo, reviewNum);
-		}
+		
 		
 		try {
 			con = JdbcUtil.getCon();
-			String sql = "insert into review2 "
+			String sql = "insert into review "
 					+ "values(?, ?, ?, ?, ?, ?, ?, ?, sysdate, null)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, reviewNum);
@@ -209,6 +207,10 @@ public class ReviewBoardDao {
 			pstmt.setInt(7, vo.getViews());
 			pstmt.setInt(8, vo.getRecommend());
 			int n = pstmt.executeUpdate();
+			// 이미지 파일 등록
+			if (imgFileVo != null) {
+				imgFiledao.imgFileInsert(imgFileVo, reviewNum);
+			}
 			return n;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -227,7 +229,7 @@ public class ReviewBoardDao {
 		
 		try {
 			con = JdbcUtil.getCon();
-			String sql = "select * from review2 where review_id = ?";
+			String sql = "select * from review where review_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_id);
 			rs = pstmt.executeQuery();
@@ -248,6 +250,45 @@ public class ReviewBoardDao {
 			return null;
 		} finally {
 			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+	// 리뷰 삭제
+	public boolean reviewDelete(int review_id) {
+		Connection con = null;
+		CallableStatement cstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "{call review_del_proc(?)}";
+			cstmt = con.prepareCall(sql);
+			cstmt.setInt(1, review_id);
+			boolean check = cstmt.execute();
+			return check;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JdbcUtil.close(con, cstmt, null);
+		}
+	}
+
+	public void viewsUpdate(int review_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "update review "
+					+ "set views = views + 1 "
+					+ "where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
 		}
 	}
 

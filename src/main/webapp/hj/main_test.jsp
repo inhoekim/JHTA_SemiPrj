@@ -18,7 +18,11 @@
 		<a href="<%=cp %>/logout">로그아웃</a>
 		<a href="<%=cp %>/service/board/list">문의게시판</a>
 		<a href="<%=cp %>/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
+<<<<<<< HEAD
+		<a href="<%=cp %>/review/main.jsp">리뷰 메인</a>
+=======
 		<a href="<%=cp %>/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
+>>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj
 	</c:otherwise>
 </c:choose>
 </body>

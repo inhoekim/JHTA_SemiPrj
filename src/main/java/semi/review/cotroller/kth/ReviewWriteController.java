@@ -34,6 +34,7 @@ public class ReviewWriteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 디렉터리 주소 추출
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
+		// 서블렛 절대경로 클래스
 		ServletContext context = this.getServletContext();
 		String saveDir = context.getRealPath("/images");
 		System.out.println("경로" + saveDir);
@@ -46,10 +47,7 @@ public class ReviewWriteController extends HttpServlet {
 				new DefaultFileRenamePolicy() // 동일한 파일명 존재 시 처리할 객체
 		);
 		
-		HttpSession session = req.getSession();
-		//String hlogin_id = (String)session.getAttribute("hloing_id");
-		String hlogin_id = "gli"; // 더미 값 (삭제 예정)
-		// getParameter
+		String hlogin_id = "hong"; // 더미 값 (삭제 예정)
 		//int room_id = Integer.parseInt(mr.getParameter("room_id"));
 		int room_id = 1; // 더미 값 (삭제 예정)
 		int rate = Integer.parseInt(mr.getParameter("rate"));

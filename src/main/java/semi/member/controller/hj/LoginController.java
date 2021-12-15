@@ -38,20 +38,15 @@ public class LoginController extends HttpServlet{
 		
 		if(chk!=null){ //체크박스에 체크한 경우
 			Cookie cook1=new Cookie("hlogin_id",hlogin_id);
-			cook1.setMaxAge(10); //30분 -테스트중이라 10초
+			cook1.setMaxAge(60*60); //30분 -테스트중이라 10초
 			cook1.setPath("/");
 			resp.addCookie(cook1);
-			Cookie cook2=new Cookie("pwd",pwd);
-			cook2.setMaxAge(10);
-			cook2.setPath("/");
-			resp.addCookie(cook2);
-
+		}
 		if(b) {
 			HttpSession session=req.getSession();
 			session.setAttribute("hlogin_id", hlogin_id);
-			
 			resp.sendRedirect("/semiPrj/hj/main_test.jsp");
-		}
+		
 		}else {
 			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않아요");
 			req.getRequestDispatcher("/hj/login_hj.jsp").forward(req, resp);
