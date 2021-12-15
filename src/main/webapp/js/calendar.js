@@ -1,9 +1,27 @@
-function printCalendar() {
-	let today = new Date();
-	let month = today.getMonth() + 1;
-	let year = today.getFullYear();
+function printCalendar(checkIn) {
+	let day = 0;
+	let month = 0;
+	let year = 0;
+	if(checkIn == "undefined" || checkIn == null || checkIn == "") {
+		let today = new Date();
+		month = today.getMonth() + 1;
+		year = today.getFullYear();
+	}else {
+		let checkInForm = document.getElementById("checkInForm");
+		let checkOutForm = document.getElementById("checkOutForm");
+		console.log(checkIn);
+		year = (new Date(checkIn)).getFullYear();
+		month = (new Date(checkIn)).getMonth();
+		month += 1;
+		day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
+		day = Math.ceil(day);
+	}
 	setCalendar(1,year,month);
 	setCalendar(2,year,month+1);
+	if(day!="0") {
+		document.getElementById("nights").innerText= day + "박";
+		highlighting(day);
+	}
 }
 
 function setCalendar(type,year,month) {
@@ -120,28 +138,14 @@ function checkin(event,year,month){
 			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 			day = Math.ceil(day);
 			nights.innerText = day + "박";
-			//달력에 하이라이팅 표시
-			for(let i = 0; i <= day; i++) {
-				let temp = new Date(checkInForm.value);
-				temp.setDate(temp.getDate() + i);
-				let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
-				let td = document.getElementById(td_str);
-				td.style.backgroundColor= "#FEC5E5";
-			}
+			highlighting(day); //달력에 하이라이팅 표시
 			document.getElementById("calendarBox").style.visibility="hidden";
 		}
 	//새롭게 체크인 날짜 결정
 	}else{
 		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 		day = Math.ceil(day);
-		//달력에 표시된 하이라이팅 지우기
-		for(let i = 0; i <= day; i++) {
-			let temp = new Date(checkInForm.value);
-			temp.setDate(temp.getDate() + i);
-			let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
-			let td = document.getElementById(td_str);
-			td.style.backgroundColor= "";
-		}
+		disHighlighting(day); //달력에 표시된 하이라이팅 지우기
 		checkInForm.value = year + "-" + month + "-" + event.innerText;
 		inDate.innerHTML = checkInForm.value;
 		checkOutForm.value = "";
@@ -149,4 +153,59 @@ function checkin(event,year,month){
 		outDate.innerHTML = "날짜추가";
 		event.style.backgroundColor = "#FEC5E5";
 	}	
+}
+
+function openCalendar(){
+	let calendarBox = document.getElementById("calendarBox");
+	let peopleBox = document.getElementById("peopleBox");
+	if(calendarBox.style.visibility == "" || calendarBox.style.visibility == "hidden") {
+		calendarBox.style.visibility = "visible";
+		peopleBox.style.visibility = "hidden";
+	}
+	else calendarBox.style.visibility = "hidden";
+}
+
+function openPeopleBox(){
+	let calendarBox = document.getElementById("calendarBox");
+	let peopleBox = document.getElementById("peopleBox");
+	if(peopleBox.style.visibility == "" || peopleBox.style.visibility == "hidden") {
+		calendarBox.style.visibility = "hidden";
+		peopleBox.style.visibility = "visible";
+	}
+	else peopleBox.style.visibility = "hidden";
+}
+
+function plusPN(){
+	let num = Number(document.getElementById("pn").innerText);
+	document.getElementById("pn").innerText = num + 1;
+	document.getElementById("peopleNum").value = num + 1;
+	document.getElementById("people").innerText = (num + 1) + "명";
+}
+
+function minusPN(){
+	if(document.getElementById("pn").innerText > 0) {
+		document.getElementById("pn").innerText -= 1;
+		document.getElementById("peopleNum").value -= 1;
+		document.getElementById("people").innerText = document.getElementById("peopleNum").value + "명";
+	}
+}
+
+function highlighting(day) {
+	for(let i = 0; i <= day; i++) {
+	let temp = new Date(checkInForm.value);
+	temp.setDate(temp.getDate() + i);
+	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+	let td = document.getElementById(td_str);
+	td.style.backgroundColor= "#FEC5E5";
+	}
+}
+
+function disHighlighting(day){
+	for(let i = 0; i <= day; i++) {
+	let temp = new Date(checkInForm.value);
+	temp.setDate(temp.getDate() + i);
+	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+	let td = document.getElementById(td_str);
+	td.style.backgroundColor= "";
+	}
 }
