@@ -52,11 +52,11 @@
 		</tr>
 		<tr>
 			<td>제목</td>
-			<td colspan="3" id="title"><input type="text" value="${vo.title }" name="title" style="width:95%;text-align:left"></td>
+			<td colspan="3" id="title"><input type="text" value="${vo.title }" name="title" style="width:95%;text-align:left" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td colspan="3" id="content"><textarea rows="5" cols="50" name="content" style="white-space:;width:95%;text-align:left" > ${vo.content }</textarea></td>
+			<td colspan="3" id="content"><textarea rows="5" cols="50" name="content" style="white-space:;width:95%;text-align:left" readonly="readonly">${vo.content }</textarea></td>
 		</tr>
 	</table>
 	   <input type="submit" value="답글" formaction="${cp}/je/Service/BoardComment.jsp?service_id=${vo.service_id}&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&title=${vo.title}&pwd=${vo.pwd}">

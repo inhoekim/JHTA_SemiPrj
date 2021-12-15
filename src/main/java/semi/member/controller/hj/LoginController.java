@@ -49,7 +49,6 @@ public class LoginController extends HttpServlet{
 		if(b) {
 			HttpSession session=req.getSession();
 			session.setAttribute("hlogin_id", hlogin_id);
-			
 			resp.sendRedirect("/semiPrj/hj/main_test.jsp");
 		}
 		}else {

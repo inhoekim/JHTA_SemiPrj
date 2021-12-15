@@ -36,7 +36,7 @@
 					<c:if test="${field=='writer' }">selected</c:if>>작성자</option>
 				<option value="title"
 					<c:if test="${field=='title' }">selected</c:if>>제목</option>
-			</select> <input type="text" name="keyword" value="${keyword }"> <input
+			</select> <input type="text" name="keyword" value="${keyword }"  style="text-align:left"> <input
 				type="submit" value="검색">
 			<!--<input type="button" value="글쓰기" onclick="WriteBoard()">  -->
 		</form>
@@ -49,7 +49,6 @@
 			<th>제목</th>
 			<th>작성날짜</th>
 			<th>수정날짜</th>
-			<th>비밀글 여부</th>
 		</tr>
 		<c:forEach var="vo" items="${list }">
 			<tr>
@@ -61,11 +60,9 @@
 		      </c:forEach>
 		       [답글]
 		</c:if> <a
-					href="${cp }/service/admin/detail?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&pwd=${vo.pwd}">${ vo.title }</a></td>
+					href="${cp }/service/admin/detail?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&pwd=${vo.pwd}"><img src="${cp }/je/img/자물쇠수정.PNG">${ vo.title }</a></td>
 				<td>${ vo.created_day }</td>
 				<td>${ vo.updated_day }</td>
-				<td>Y</td>
-				<!-- 비밀글여부 따로 표시할것 -->
 			</tr>
 		</c:forEach>
 	</table>

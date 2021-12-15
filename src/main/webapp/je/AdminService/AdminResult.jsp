@@ -14,10 +14,10 @@
 		location.href="${cp }/je/AdminService/AdminLogin.jsp";
 	}
     function BoardMain(){
-    	location.href="";//홈페이지 메인창으로 넘어가기
+    	location.href="${cp}/hj/login_hj.jsp";//홈페이지 메인창으로 넘어가기
 	}
     function Logout(){
-    	
+    	location.href="${cp}/je/AdminService/AdminLogout.jsp";
     }
     function AdminService(){
     	location.href="${cp}/service/admin/list";
