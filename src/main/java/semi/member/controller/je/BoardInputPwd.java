@@ -19,8 +19,15 @@ public class BoardInputPwd extends HttpServlet {
 		int service_id = Integer.parseInt(req.getParameter("service_id"));
 		BoardDaoje dao = new BoardDaoje();
 		BoardVoje vo = dao.select(pwd,service_id);
+		
+	    if(vo!=null) {
+	    //String content =vo.getContent();
+		//vo.setContent(content.replaceAll("\n","<br>"));
 		req.setAttribute("vo", vo);
 		req.getRequestDispatcher("/je/Service/detail.jsp").forward(req, resp);
-
+	     }else {
+	    req.getRequestDispatcher("/je/Service/Boarddetailfail.jsp").forward(req, resp);
+	     }
+		}
 	}
-}
+

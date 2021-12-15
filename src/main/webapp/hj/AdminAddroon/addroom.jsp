@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>환영합니다</h1>
-<a href="<%=request.getContextPath() %>/hj/login_hj.jsp">로그인하러가기</a>
+<!-- 
+호텔이름
+호텔가격
+상세내용
+위치
+호텔이미지
+
+ -->
 </body>
 </html>

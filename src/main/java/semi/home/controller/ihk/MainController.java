@@ -13,7 +13,8 @@ public class MainController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setAttribute("header", "/home/header.html");
-		req.setAttribute("main", "/home/main.jsp");
+		req.setAttribute("searchBar", "/home/searchBar.jsp");
+		req.setAttribute("main", "/home/main.html");
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}

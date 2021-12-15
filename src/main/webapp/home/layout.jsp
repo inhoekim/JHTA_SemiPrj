@@ -7,24 +7,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>우리우리호텔</title>
-	<link href="${pageContext.request.contextPath}/home/css/home.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css"/>
 	<style type="text/css">
 		*{margin:0; padding: 0;}
 	</style>
 </head>
 
 <body>
-	<div id="wrapper">
-		<div id="header">
-			<jsp:include page="${requestScope.header}"/>
-		</div>
-		<div id="content">
-			<jsp:include page="${requestScope.main}"/>
-		</div>
-		<div id="footer">
-			<jsp:include page="${requestScope.footer}"/>
-		</div>
-	</div>
+	<jsp:include page="${requestScope.header}"/>
+	<jsp:include page="${requestScope.searchBar}"/>
+	<jsp:include page="${requestScope.main}"/>
+	<jsp:include page="${requestScope.footer}"/>
 </body>
 
 <script src="${pageContext.request.contextPath}/js/calendar.js"></script>

@@ -8,10 +8,7 @@ import java.sql.SQLException;
 import db.JdbcUtil;
 
 public class HloginDaoje {
-	
-	
-	
-	
+
 	public int update(String pwd,String jnum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;

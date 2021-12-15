@@ -31,12 +31,12 @@ function findId(){
 </script>
 </head>
 <body>
-주민번호 <input type="text" id="jnum" placeholder="1111111111111">
-<input type="submit" value="찾기" onclick="findId()">
-<p style="color: red; font-size: 7px">
-		*주민번호는 "-"를 제외한 13자리를 입력해 주세요.</p>
-<div id="result">
-</div>
-<a href="${pageContext.request.contextPath }/hj/login_hj.jsp">로그인하러가기</a>
+	주민번호
+	<input type="text" id="jnum" placeholder="1111111111111">
+	<input type="submit" value="찾기" onclick="findId()">
+	<p style="color: red; font-size: 7px">*주민번호는 "-"를 제외한 13자리를 입력해
+		주세요.</p>
+	<div id="result"></div>
+	<a href="${pageContext.request.contextPath }/hj/login_hj.jsp">로그인하러가기</a>
 </body>
 </html>

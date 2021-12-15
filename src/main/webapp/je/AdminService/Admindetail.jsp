@@ -6,11 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <style type="text/css">
-			* { text-align: center; margin:5px}
-			table{margin: auto}
-			td#content{text-align:left} 
-			td#title{text-align:left}
+	<style type="text/css">
+		* {
+			text-align: center;
+			margin: 5px
+		}
+		
+		table {
+			margin: auto
+		}
+		
+		td#content {
+			text-align: left
+		}
+		
+		td#title {
+			text-align: left
+		}
 	</style>
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 <script type="text/javascript">
