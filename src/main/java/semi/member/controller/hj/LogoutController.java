@@ -23,11 +23,7 @@ public class LogoutController extends HttpServlet{
 		Cookie cook1=new Cookie("hlogin_id",hlogin_id);
 		cook1.setMaxAge(0);
 		cook1.setPath("/");
-		Cookie cook2=new Cookie("pwd",pwd);
-		cook2.setMaxAge(0);
-		cook2.setPath("/");
 		resp.addCookie(cook1);
-		resp.addCookie(cook2);
 		
 		resp.sendRedirect("/semiPrj/hj/main_test.jsp");
 	}

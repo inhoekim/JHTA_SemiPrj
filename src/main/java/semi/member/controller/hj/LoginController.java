@@ -45,12 +45,12 @@ public class LoginController extends HttpServlet{
 			cook2.setMaxAge(10);
 			cook2.setPath("/");
 			resp.addCookie(cook2);
-
+		}
 		if(b) {
 			HttpSession session=req.getSession();
 			session.setAttribute("hlogin_id", hlogin_id);
 			resp.sendRedirect("/semiPrj/hj/main_test.jsp");
-		}
+		
 		}else {
 			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않아요");
 			req.getRequestDispatcher("/hj/login_hj.jsp").forward(req, resp);

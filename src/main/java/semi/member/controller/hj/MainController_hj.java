@@ -29,9 +29,6 @@ public class MainController_hj extends HttpServlet{
 				if(ckName.equals("hlogin_id")) {
 					map.put("hlogin_id", ckValue);
 				}
-				if(ckName.equals("pwd")) {
-					map.put("pwd", ckValue);
-				}
 			}
 		}
 		MemberDao dao=new MemberDao(); 
