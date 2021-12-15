@@ -78,11 +78,9 @@
 	<div class="review_search">
 		<form method="post" action="${path }/review/list">
 			<select class="search_select" name="field">
-				<option value="title_content">제목 + 내용</option>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
 				<option value="hlogin_id">아이디</option>
-				<option value="comment">댓글</option>
 			</select>
 			<input type="text" class="text_search" name="keyword">
 			<input type="submit" value="검색">

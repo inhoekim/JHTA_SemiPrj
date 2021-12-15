@@ -28,7 +28,7 @@ public class ReviewCommentsDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		int comment_id = commentMaxNum() + 1;
+		int comment_id = commentAllMaxNum() + 1;
 		System.out.println("comm : " + comment_id);
 //		int num = 0;
 //		int ref = 0;
@@ -48,7 +48,7 @@ public class ReviewCommentsDao {
 //			pstmt2.executeUpdate();
 //		}
 			con = JdbcUtil.getCon();
-			String sql = "insert into comments2 "
+			String sql = "insert into comments "
 					+ "values(?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, comment_id);
@@ -83,7 +83,7 @@ public class ReviewCommentsDao {
 					+ "    select comments.*, rownum rnum from "
 					+ "    (                "
 					+ "        select * "
-					+ "        from comments2 "
+					+ "        from comments "
 					+ "        where review_id = ? "
 					+ "        order by comment_id asc, step desc"
 					+ "    )comments"
@@ -114,26 +114,72 @@ public class ReviewCommentsDao {
 		}
 	}
 	
-	// review_id 최대 수 출력
-		public int commentMaxNum() {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				con = JdbcUtil.getCon();
-				String sql = "select nvl(max(comment_id), 0) mnum "
-						   + "from comments2";
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				rs.next();
-				int maxNum = rs.getInt("mnum");
-				return maxNum;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return -1;
-			} finally {
-				JdbcUtil.close(con, pstmt, rs);
-			}
+	//  전체 댓글 수 출력
+	public int commentAllMaxNum() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "select nvl(max(comment_id), 0) mnum "
+					   + "from comments";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int maxNum = rs.getInt("mnum");
+			return maxNum;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
 		}
+	}
+	
+	// 해당 리뷰 댓글 수
+	public int commentCountNum(int review_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "select nvl(count(review_id), 0) cnt "
+					   + "from comments "
+					   + "where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int maxNum = rs.getInt("cnt");
+			return maxNum;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+	// 댓글 삭제
+	public int commentDelete(int comment_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		con = JdbcUtil.getCon();
+		String sql = "delete comments "
+				   + "where comment_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, comment_id);
+			int n = pstmt.executeUpdate();
+			return n;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
