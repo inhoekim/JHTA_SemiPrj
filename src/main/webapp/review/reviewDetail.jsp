@@ -160,10 +160,10 @@
 			<input type="button" value="댓글쓰기" id="comment_btn" onclick="commentsBtn()">
 		</div>
 		<div class="comment_edit">
-			<c:if test="">
+			<%-- <c:if test=""> --%>
 				<input type="button" value="수정" onclick="reviewEdit()">
 				<input type="button" value="삭제" onclick="reviewDel()">
-			</c:if>
+			<%--</c:if>--%>
 		</div>
 	</div>
 	
