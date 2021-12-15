@@ -30,9 +30,24 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/main/webapp/je/img/자물쇠수정.PNG</name>
+			<name>src/main/webapp/je/Event/password.PNG</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/%EC%9E%90%EB%AC%BC%EC%87%A0%EC%88%98%EC%A0%95.PNG</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/password.PNG</locationURI>
+		</link>
+		<link>
+			<name>src/main/webapp/je/Event/room1.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room1.jpg</locationURI>
+		</link>
+		<link>
+			<name>src/main/webapp/je/Event/room2.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room2.jpg</locationURI>
+		</link>
+		<link>
+			<name>src/main/webapp/je/Event/room3.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room3.jpg</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
