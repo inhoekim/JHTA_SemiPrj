@@ -16,6 +16,6 @@
 		<h1>요청작업 실패!</h1>
 	</c:otherwise>
 </c:choose>
-<a href="<%=request.getContextPath() %>/login_hj.jsp">로그인 페이지로</a>
+<a href="hj/login_hj.jsp">로그인 페이지로</a>
 </body>
 </html>

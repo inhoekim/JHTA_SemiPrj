@@ -19,7 +19,7 @@ public class MemberDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="select * from hlogin where hlogin_id=? and pwd=?";
+			String sql="select * from hlogin where hlogin_id=? and pwd=? and num=1";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
@@ -67,13 +67,12 @@ public class MemberDao {
 	public int changepwd(MemberVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		String sql="update hlogin set pwd=? where hlogin_id=?";
 		try {
 			con=JdbcUtil.getCon();
-			String sql="update hlogin set pwd=? where hlogin_id=? and jnum=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPwd());
 			pstmt.setString(2, vo.getHlogin_id());
-			pstmt.setString(3, vo.getJnum());
 			return pstmt.executeUpdate();
 		}catch(SQLException s) {
 			s.printStackTrace();

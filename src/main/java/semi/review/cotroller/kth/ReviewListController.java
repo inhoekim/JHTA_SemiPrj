@@ -27,11 +27,14 @@ public class ReviewListController extends HttpServlet {
 		String keyword = req.getParameter("keyword");
 		
 		int pageNum = 1;
+		
 		if (spageNum != null) {
 			pageNum = Integer.parseInt(spageNum);
 		}
+		
 		int startRow = (pageNum - 1) * 10 + 1;
 		int endRow = startRow + 9;
+		
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		ArrayList<ReviewBoardVo> list = dao.reviewList(startRow, endRow, field, keyword);
 		

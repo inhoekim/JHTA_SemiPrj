@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findPwd.html</title>
+<title>Insert title here</title>
 </head>
 <body>
 <h1>비밀번호 변경</h1>
@@ -14,5 +16,3 @@
 </form>
 </body>
 </html>
-
-jsp 변경

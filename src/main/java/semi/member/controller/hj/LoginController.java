@@ -25,7 +25,8 @@ public class LoginController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		
 		String hlogin_id=req.getParameter("hlogin_id");
-		String pwd=req.getParameter("pwd"); //비밀번호 암호화로 Utility추가: String pwd=Utility.encoding(req.getParameter("pwd"));
+		String pwd=Utility.encoding(req.getParameter("pwd")); //비밀번호 암호화로 Utility추가: String pwd=Utility.encoding(req.getParameter("pwd"));
+		//12-14일 13시 상훈 수정
 		String chk=req.getParameter("chk");
 			
 		HashMap<String, String> map=new HashMap<String, String>();

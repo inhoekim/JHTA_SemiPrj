@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import semi.review.dao.kth.ReviewBoardDao;
 import semi.review.vo.kth.ReviewBoardVo;
 
@@ -39,6 +42,12 @@ public class RoomDetailController extends HttpServlet {
 		
 		if (endPage > pageCount) {
 			endPage = pageCount;
+		}
+		
+		JSONArray jsonArr = new JSONArray();
+		
+		for (ReviewBoardVo vo : list) {
+			JSONObject json = new JSONObject();
 		}
 		
 		req.setAttribute("list", list);
