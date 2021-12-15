@@ -28,7 +28,7 @@ public class RoomDao {
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "select rate "
-					+ "from room2 "
+					+ "from room "
 					+ "where room_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, room_id);
@@ -62,10 +62,9 @@ public class RoomDao {
 			roomRate = rate;
 		}
 		
-		System.out.println("room R :" + roomRate);
 		try {
 			con = JdbcUtil.getCon();
-			String sql = "update room2 "
+			String sql = "update room "
 					+ "set rate = ? "
 					+ "where room_id = ?";
 			pstmt = con.prepareStatement(sql);

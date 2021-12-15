@@ -18,6 +18,7 @@
 		<a href="<%=cp %>/logout">로그아웃</a>
 		<a href="<%=cp %>/service/board/list">문의게시판</a>
 		<a href="<%=cp %>/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
+		<a href="<%=cp %>/review/main.jsp">리뷰 메인</a>
 	</c:otherwise>
 </c:choose>
 </body>
