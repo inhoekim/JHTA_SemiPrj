@@ -12,7 +12,7 @@
 
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.searchBar}"/>
+	<jsp:include page="${requestScope.searchBar}"/>	
 	<jsp:include page="${requestScope.main}"/>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
