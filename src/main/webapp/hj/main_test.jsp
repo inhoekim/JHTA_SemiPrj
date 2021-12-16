@@ -61,6 +61,9 @@
 </style>
 </head>
 <body>
+ 
+ 
+ 
 <div>
 <% String cp=request.getContextPath(); %>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
@@ -71,6 +74,7 @@
 		<a href="<%=cp %>/je/AdminService/AdminLogin.jsp">관리자로그인</a>
 	</c:when>
 	<c:otherwise>
+	
 		<div class="header_wrap">
 			<span>[${sessionScope.hlogin_id }님 반갑습니다.] </span>
 			<img id="alarm_img" src="/semiPrj/images/bell_off.png" width="20px" height="20">
