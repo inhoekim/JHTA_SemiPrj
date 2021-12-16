@@ -224,9 +224,6 @@
 						let comment_id = json[i].comment_id;
 						let hlogin_id = json[i].hlogin_id;
 						let content = json[i].content;
-						let ref = json[i].ref;
-						let lev = json[i].lev;
-						let step = json[i].step;
 						let created_day = json[i].created_day;
 					
 						

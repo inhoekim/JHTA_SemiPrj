@@ -60,14 +60,12 @@ public class CommentsListController extends HttpServlet {
 		json.put("count", count);
 		json.put("review_id", review_id);
 		jsonArr.put(json);
+		
 		for (ReviewCommentsVo rVo : list) {
 			JSONObject json2 = new JSONObject();
 			json2.put("comment_id", rVo.getComment_id());
 			json2.put("hlogin_id", rVo.getHlogin_id());
 			json2.put("content", rVo.getContent());
-			json2.put("ref", rVo.getRef());
-			json2.put("lev", rVo.getLev());
-			json2.put("step", rVo.getStep());
 			json2.put("created_day", rVo.getCreated_day());
 			jsonArr.put(json2);
 		}

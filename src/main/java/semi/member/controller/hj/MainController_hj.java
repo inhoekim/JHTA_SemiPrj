@@ -1,6 +1,8 @@
 package semi.member.controller.hj;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -17,7 +19,6 @@ public class MainController_hj extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //	메인 컨트롤러 작성 => 안에 로그인컨트롤러에 있는 쿠키값(아이디, 비번)을 메인컨트롤러에 작성	
-
 		Cookie[] cookies=req.getCookies();
 
 		HashMap<String, String> map=new HashMap<String, String>();
@@ -45,6 +46,7 @@ public class MainController_hj extends HttpServlet{
 //			resp.addCookie(cook2);
 			HttpSession session=req.getSession();
 			session.setAttribute("hlogin_id", map.get("hlogin_id"));
+			
 			req.getRequestDispatcher("/semiPrj/hj/main_test.jsp").forward(req, resp);
 		}
 		
