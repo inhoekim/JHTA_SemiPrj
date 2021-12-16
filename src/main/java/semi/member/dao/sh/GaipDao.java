@@ -12,10 +12,6 @@ import semi.member.Vo.je.HloginVoje;
 
 
 
-
-
-
-
 public class GaipDao {
 	public int insert(HloginVoje vo) {
 		Connection con=null;

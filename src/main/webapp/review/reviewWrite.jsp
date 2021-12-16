@@ -78,12 +78,10 @@
 			<span id="file_err" class="err"></span>
 			<br>
 			<input type="button" value="등록"  onclick="check()">
-			<input type="reset" value="다시 작성">
 		</form>
 	</div>
 </div>
 <script>
-	var xhr = null;
 	var rate = 0;
 	
 	function titleCheck() {

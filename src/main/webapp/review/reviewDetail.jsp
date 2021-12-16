@@ -91,8 +91,8 @@
 	}
 	
 	#reply_delete {
-		padding-left: 70px;
-		padding-right: 5px;
+		padding-left: 20px;
+		padding-right: 10px;
 	}
 	
 	#reply_edit {
@@ -120,7 +120,7 @@
 		</c:if>
 		<div class="write_wrap">
 			<p>
-				${vo.content }
+				${vo.content   }
 			</p>
 		</div>
 		<div class="btn_wrap">
@@ -224,9 +224,6 @@
 						let comment_id = json[i].comment_id;
 						let hlogin_id = json[i].hlogin_id;
 						let content = json[i].content;
-						let ref = json[i].ref;
-						let lev = json[i].lev;
-						let step = json[i].step;
 						let created_day = json[i].created_day;
 					
 						
@@ -236,9 +233,9 @@
 						comm_tr.innerHTML = "<td id='comment_td'>" + hlogin_id + "</td>"
 										  + "<td id='comment_td'>" + content + "</td>"
 										  + "<td id='comment_td'>" + created_day 
-										  + "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='reply'>답글</a>"
-										  + "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a>"
-										  + "<a href='#' id='reply_edit'>수정</a></td>";
+										  //+ "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='reply'>답글</a>"
+										  + "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a>";
+										  //+ "<a href='#' id='reply_edit'>수정</a></td>";
 						
 						tbody.appendChild(comm_tr);
 					}

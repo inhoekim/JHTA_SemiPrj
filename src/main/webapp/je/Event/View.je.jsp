@@ -6,50 +6,49 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+ #slide{
+ 	position:relative;
+ 	width:500px;
+ }
+ #slide li{
+ 	position:absolute;
+ 	top:0;
+ 	left:0;
+ 	display:none;
+ }
+ #slide img{
+ 	width:500px;
+ 	height:300px;
+ }
+
 
 </style>
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }" />
-    <div class="content">
-  		<img alt="사진1" src="${cp}/je/Event/room1.jpg" onmouseover="View()" name="imgr">
-    </div>
+   <div id="slide" val="1" max="3">
+
+      <li id="img1"><img src="${cp}/je/Event/room1.jpg" alt=""/></li>
+      <li id="img2"><img src="${cp}/je/Event/room2.jpg" alt=""/></li>
+      <li id="img3"><img src="${cp}/je/Event/room3.jpg" alt=""/></li>
+      <li id="img4"><img src="${cp}/je/Event/room4.jpg" alt=""/></li>
+
+   </div>  
  <script type="text/javascript">
- 
- 	var img1=new Image();
- 	img1.src = '${cp}/je/Event/room2.jpg';
- 	var img2=new Image();
-	img2.src = '${cp}/je/Event/room3.jpg';
- 	var img3=new Image();
-	img3.src = '${cp}/je/Event/room4.jpg';
-	var img4=new Image();
-	img4.src = '${cp}/je/Event/room1.jpg';
-	
-	var count = 1;
-	var maxCount = 4;
-	
-	function slideView(){
-		if(count == (maxCount+1)){count =1;}
-		document.imgr.src = eval("img"+count + ".src");
-		count++;
-		
-	} 
-	function startView(){
-		slideTime = setInterval("slideView()",2000);
-	}
-	function stopView(){
-		clearInterval(slideTime);
-	}
-	if(document.addEventListener){
-		document.imgr.addEventListener("mouseover",stopView,false);
-		document.imgr.addEventListener("mouseout",startView,false);
-	}else{
-		document.imgr.attachEvent("onmouseover",stopView);
-		document.imgr.arrachEvent("onmouseout",startView);
-	}
-	startView();
- 
+ imgslide();
+    function imgslide(){
+    	$val = $("#slide").attr("val");//현재 이미지 번호 가져오기
+    	$max = $("#slide").attr("max");//총 이미지 가져오기
+    		$("#img" + $val).hide();//현재이미지를 사라지게 함
+    		if($val == $max){$val = 1;}
+    		else{$val++;}
+    		$("#img" + $val).fadeln(500);//변경된 번호의 이미지 영역을 나타나게 함
+    		$("#slide").attr('val',$val);
+    		setTimeout('imgslide()',1000);
+    }
+
  </script>
+
 </body>
 
 </html>

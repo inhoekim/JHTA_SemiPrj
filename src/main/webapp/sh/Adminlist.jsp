@@ -6,7 +6,7 @@
 <head>
 <style type="text/css">
 		* {text-align: center;}
-		
+		     
 		table {margin: auto}
 
 	</style>
@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2 >회원정보관리</h2>
+<h2 >회원정보관리     </h2>
 
 
 <table border="1" width="500">
