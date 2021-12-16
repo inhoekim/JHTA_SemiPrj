@@ -1,8 +1,6 @@
 package semi.member.controller.hj;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -31,24 +29,12 @@ public class MainController_hj extends HttpServlet{
 					map.put("hlogin_id", ckValue);
 				}
 			}
+		}else {
+			resp.sendRedirect(req.getContextPath() + "/hj/main_test.jsp");
+			return; 
 		}
-		MemberDao dao=new MemberDao(); 
-		boolean chk=dao.isMember(map);
-		
-		if(chk==true){
-//			Cookie cook1=new Cookie("hlogin_id", );
-//			cook1.setMaxAge(10);
-//			cook1.setPath("/");
-//			resp.addCookie(cook1);
-//			Cookie cook2=new Cookie("pwd", pwd);
-//			cook2.setMaxAge(10);
-//			cook2.setPath("/");
-//			resp.addCookie(cook2);
-			HttpSession session=req.getSession();
-			session.setAttribute("hlogin_id", map.get("hlogin_id"));
-			
-			req.getRequestDispatcher("/semiPrj/hj/main_test.jsp").forward(req, resp);
-		}
-		
+		HttpSession session=req.getSession();
+		session.setAttribute("hlogin_id", map.get("hlogin_id"));
+		resp.sendRedirect(req.getContextPath() + "/hj/main_test.jsp");
 	}
 }	

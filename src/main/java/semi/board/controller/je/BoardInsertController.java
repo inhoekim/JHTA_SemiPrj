@@ -1,6 +1,7 @@
-package semi.member.controller.je;
+package semi.board.controller.je;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,10 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import semi.member.Vo.je.BoardVoje;
-import semi.member.dao.je.BoardDaoje;
-@WebServlet("/service/admin/comment")
-public class BoardAdminCommentController extends HttpServlet{
+import semi.member.dao.je.BoardDaoje; 
+@WebServlet("/service/board/insert")
+public class BoardInsertController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.sendRedirect(req.getContextPath() + "/je/Service/Board.jsp");
@@ -42,7 +44,7 @@ public class BoardAdminCommentController extends HttpServlet{
 		}else {
 			req.setAttribute("result", "fail");
 		}
-		req.getRequestDispatcher("/je/AdminService/AdminBoardResult.jsp").forward(req, resp);
+		req.getRequestDispatcher("/je/Service/BoardResult.jsp").forward(req, resp);
 		
 	}
 
