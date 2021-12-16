@@ -41,7 +41,7 @@ public class ReviewListController extends HttpServlet {
 		int count = dao.getPageMaxNum(field, keyword, 0);
 		
 		int pageCount = (int)Math.ceil(count / 10.0);
-		int startPage = ((pageNum - 1) / 10 * 10) + 1;
+		int startPage = (pageNum - 1) / 10 * 10 + 1;
 		int endPage = startPage + 9;
 		
 		if (endPage > pageCount) {

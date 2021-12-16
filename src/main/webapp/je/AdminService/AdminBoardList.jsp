@@ -60,7 +60,7 @@
 		      </c:forEach>
 		       [답글]
 		</c:if> <a
-					href="${cp }/service/admin/detail?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&pwd=${vo.pwd}"><img src="${cp }/je/img/자물쇠수정.PNG">${ vo.title }</a></td>
+					href="${cp }/service/admin/detail?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&pwd=${vo.pwd}"><img src="${cp }/je/Event/password.PNG">${ vo.title }</a></td>
 				<td>${ vo.created_day }</td>
 				<td>${ vo.updated_day }</td>
 			</tr>

@@ -61,7 +61,7 @@
 		      </c:forEach>
 		       [답글]
 		</c:if>
-		<a href="/semiPrj/je/Service/InputPwd.jsp?service_id=${vo.service_id }" ><img src="${cp }/je/img/자물쇠수정.PNG">${ vo.title }</a></td>
+		<a href="/semiPrj/je/Service/InputPwd.jsp?service_id=${vo.service_id }" ><img src="${cp }/je/Event/password.PNG">${ vo.title }</a></td>
 		<td>${ vo.created_day }</td>
 		<td>${ vo.updated_day }</td>
 	</tr>

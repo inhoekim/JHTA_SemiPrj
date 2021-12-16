@@ -31,17 +31,17 @@ public class CommentsListController extends HttpServlet {
 			pageNum = Integer.parseInt(spageNum);
 		}
 		
-		int startRow = (pageNum - 1) * 15 + 1;
+		int startRow = (pageNum - 1) * 10 + 1;
 		int endRow = startRow + 14;
 		
 		ReviewCommentsDao dao = ReviewCommentsDao.getInstance();
 		ArrayList<ReviewCommentsVo> list = dao.getCommentList(review_id, startRow, endRow);
 		
-		int count = dao.commentMaxNum();
+		int count = dao.commentCountNum(review_id);
 		
 		int pageCount = (int)Math.ceil(count / 15.0);
 		int startPage = ((pageNum - 1) / 10 * 10) + 1; 
-		int endPage = startPage + 4;
+		int endPage = startPage + 9;
 		
 		if (endPage > pageCount) {
 			endPage = pageCount;

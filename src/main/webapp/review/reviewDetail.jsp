@@ -7,13 +7,14 @@
 	.review_area {
 		margin: auto;
 		width: 800px;
-		height: 800px;
+		height: auto;
 	}
 	
 	.comment_count {
 		margin: auto;
 		width: 800px;
 		height: 25px;
+		padding: 10 0 10 10;
 	}
 	
 	.comment_wrap {
@@ -37,6 +38,10 @@
 		float: left;
 		padding-left: 60px;
 		padding-top: 10px;
+	}
+	
+	.id_day_div {
+		padding: 5 0 10 0;
 	}
 	
 	#comment_table {
@@ -70,7 +75,28 @@
 	}
 	
 	#comment_td {
+		padding: 5 0;
+	}
+	
+	.comment_edit {
+		float: right;
 		padding: 10 10;
+	}
+	
+	#reply {
+		color: black;
+		font-weight: bold;
+		text-decoration: none;
+		padding-right: 10px;
+	}
+	
+	#reply_delete {
+		padding-left: 70px;
+		padding-right: 5px;
+	}
+	
+	#reply_edit {
+		padding-left: 5px;
 	}
 </style>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
@@ -81,8 +107,8 @@
 			<h3>
 				<span>${vo.title }</span>
 			</h3>
-			<div>
-				<span>작성자:${vo.hlogin_id } | 작성일:${vo.created_day }</span>
+			<div class="id_day_div">
+				<span>${vo.hlogin_id }&nbsp;&nbsp;|&nbsp;&nbsp;${vo.created_day }</span>
 			</div>
 		</div>
 		<c:if test="${requestScope.src_name != null }">
@@ -124,6 +150,8 @@
 			</table>
 		</div>
 	</div>
+	<div class="comment_paging" id="comment_paging">
+	</div>
 	<div class="comment_write_wrap">
 		<div class="comment_area">
 			<textarea rows="4" cols="80" id="comment_text_area"></textarea>
@@ -131,9 +159,14 @@
 		<div class="comment_btn">
 			<input type="button" value="댓글쓰기" id="comment_btn" onclick="commentsBtn()">
 		</div>
+		<div class="comment_edit">
+			<%-- <c:if test=""> --%>
+				<input type="button" value="수정" onclick="reviewEdit()">
+				<input type="button" value="삭제" onclick="reviewDel()">
+			<%--</c:if>--%>
+		</div>
 	</div>
-	<div class="comment_paging" id="comment_paging">
-	</div>
+	
 </div>
 <script>
 	var xhr = null;
@@ -202,7 +235,10 @@
 						
 						comm_tr.innerHTML = "<td id='comment_td'>" + hlogin_id + "</td>"
 										  + "<td id='comment_td'>" + content + "</td>"
-										  + "<td id='comment_td'>" + created_day + "</td>";
+										  + "<td id='comment_td'>" + created_day 
+										  + "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='reply'>답글</a>"
+										  + "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a>"
+										  + "<a href='#' id='reply_edit'>수정</a></td>";
 						
 						tbody.appendChild(comm_tr);
 					}
@@ -230,12 +266,12 @@
 					let comment_paging = document.getElementById("comment_paging");
 					let a_tag = document.createElement("a");
 					
-					if (pageNum == i) {
+					if (pageNum != 0 && pageNum == i) {
 						a_tag.innerHTML = "<span>" + i + "</span>";
 						a_tag.style.color = "red";
 						a_tag.href = "javascript:commentsList(" + i + ", " + review_id + ")";
 						
-					} else {
+					} else if (pageNum != 0) {
 						a_tag.innerHTML = "<span>" + i + "</span>";
 						a_tag.style.color = "black";
 						//a_tag.href = "${path}/comments/list?pageNum=" + i + "&review_id=" + review_id;
@@ -250,7 +286,7 @@
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.send(param);
 	}
-	
+	// 댓글 등록
 	function commentsBtn() {
 		xhr = new XMLHttpRequest();
 		
@@ -271,6 +307,39 @@
 		xhr.open('post', url, true);
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.send(param);
+	}
+	
+	// 댓글 삭제
+	function commentDel(comment_id) {
+		xhr = new XMLHttpRequest();
+		
+		let content = document.getElementById("comment_text_area").value;
+		
+		let url = '${pageContext.request.contextPath}/comments/delete';
+		let param = 'comment_id=' + comment_id; 
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				
+				let data = xhr.responseText;
+				let json = JSON.parse(data);
+				
+				commentsList();
+				
+			}
+		};
+		xhr.open('post', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(param);
+	}
+	
+	// 리뷰 수정
+	function commentEdit() {
+		
+	}
+	
+	// 리뷰 삭제
+	function reviewDel() {
+		location.href = "${path}/review/delete?review_id=${vo.review_id}";
 	}
 	
 	window.onload = function() {
