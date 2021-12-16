@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
-import semi.member.Vo.sh.GaipVo;
+import semi.member.Vo.je.HloginVoje;
+
 
 
 
@@ -16,7 +17,7 @@ import semi.member.Vo.sh.GaipVo;
 
 
 public class GaipDao {
-	public int insert(GaipVo vo) {
+	public int insert(HloginVoje vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
@@ -50,9 +51,9 @@ public class GaipDao {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-				return 1; //존재하는회원
+				return 1; 
 			}else {
-				return 0; //가입가능한회원
+				return 0; 
 			}
 			
 		}catch(SQLException s) {
@@ -67,9 +68,9 @@ public class GaipDao {
 			}
 			JdbcUtil.close(con, pstmt, null);
 		}
-		return -1; //데이터베이스 오류
+		return -1; 
 	}
-	public GaipVo selecthloginid(String hlogin_id){
+	public HloginVoje selecthloginid(String hlogin_id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -83,11 +84,14 @@ public class GaipDao {
 				String pwd=rs.getString("pwd");
 				String name=rs.getString("name");
 				String jnum=rs.getString("jnum");
-				int age=rs.getInt("age");
+			
 				String area=rs.getString("area");
+				int age=rs.getInt("age");
+				Date regdate=rs.getDate("regdate");
+				int num=rs.getInt("num");
 				
-				GaipVo gaipVo=new GaipVo(hlogin_id,pwd,name,jnum,age,area,null,1);
-				return gaipVo;
+				HloginVoje hloginVoje=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, regdate, num);
+				return hloginVoje;
 			}
 			return null;
 		}catch(SQLException s) {
@@ -97,7 +101,7 @@ public class GaipDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int updateid(GaipVo vo) {
+	public int updateid(HloginVoje vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
@@ -119,7 +123,7 @@ public class GaipDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public ArrayList<GaipVo> AdminselectAll(){
+	public ArrayList<HloginVoje> AdminselectAll(){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -128,7 +132,7 @@ public class GaipDao {
 			String sql="select * from hlogin";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			ArrayList<GaipVo> list=new ArrayList<GaipVo>();
+			ArrayList<HloginVoje> list=new ArrayList<HloginVoje>();
 			while(rs.next()) {
 				String hlogin_id=rs.getString("hlogin_id");
 				String pwd=rs.getString("pwd");
@@ -138,8 +142,8 @@ public class GaipDao {
 				String area=rs.getString("area");
 				Date regdate=rs.getDate("regdate");
 				int num=rs.getInt("num");
-				GaipVo gaipVo=new GaipVo(hlogin_id, pwd, name, jnum, age, area, regdate, num);
-				list.add(gaipVo);
+				HloginVoje hloginVoje=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, regdate, num);
+				list.add(hloginVoje);
 			}
 			return list;
 		}catch(SQLException s) {
@@ -165,7 +169,7 @@ public class GaipDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	public int adminupdate(GaipVo vo) {
+	public int adminupdate(HloginVoje vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
@@ -177,7 +181,7 @@ public class GaipDao {
 			pstmt.setString(3,vo.getJnum());
 			pstmt.setInt(4,vo.getAge());
 			pstmt.setString(5,vo.getArea());
-			pstmt.setDate(6,vo.getRegdate());
+			pstmt.setDate(6,(Date) vo.getRegdate());
 			pstmt.setInt(7,vo.getNum());
 			pstmt.setString(8,vo.getHlogin_id());
 			return pstmt.executeUpdate();
@@ -189,7 +193,7 @@ public class GaipDao {
 		}
 	
 }
-	public GaipVo adminselect(String hlogin_id){
+	public HloginVoje adminselect(String hlogin_id){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -206,8 +210,8 @@ public class GaipDao {
 				int age=rs.getInt("age");
 				String area=rs.getString("area");
 				
-				GaipVo gaipVo=new GaipVo(hlogin_id,pwd,name,jnum,age,area,null,1);
-				return gaipVo;
+				HloginVoje hloginVoje=new HloginVoje(hlogin_id,pwd,name,jnum,age,area,null,1);
+				return hloginVoje;
 			}
 			return null;
 		}catch(SQLException s) {

@@ -14,7 +14,7 @@ public class HloginVoje {
 	
 	public HloginVoje() {}
 
-	public HloginVoje(String hlogin_id, String pwd, String name, String jnum, String area, int age, Date regdate, int num) {
+	public HloginVoje(String hlogin_id, String pwd, String name, String jnum, int age, String area, Date regdate, int num) {
 		super();
 		this.hlogin_id = hlogin_id;
 		this.pwd = pwd;

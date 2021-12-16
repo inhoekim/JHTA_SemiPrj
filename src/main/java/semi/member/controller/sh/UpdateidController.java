@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.gaip.util.sh.Utility;
-import semi.member.Vo.sh.GaipVo;
+import semi.member.Vo.je.HloginVoje;
 import semi.member.dao.sh.GaipDao;
 @WebServlet("/updateid")
 public class UpdateidController extends HttpServlet{
@@ -17,7 +17,7 @@ public class UpdateidController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String hlogin_id = req.getParameter("hlogin_id");
 		GaipDao dao=new GaipDao();
-		GaipVo vo=dao.selecthloginid(hlogin_id);
+		HloginVoje vo=dao.selecthloginid(hlogin_id);
 		if(vo==null) {
 			req.setAttribute("result","fail");
 			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
@@ -35,8 +35,8 @@ public class UpdateidController extends HttpServlet{
 		String jnum=req.getParameter("jnum");
 		int age=Integer.parseInt(req.getParameter("age"));
 		String area=req.getParameter("area");
-		//왜안됨?
-		GaipVo vo=new GaipVo(hlogin_id, pwd, name, jnum, age, area, null, 1);
+		
+		HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, null, 1);
 		GaipDao dao=new GaipDao();
 		int n=dao.updateid(vo);
 		if(n>0) {

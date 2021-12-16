@@ -5,23 +5,17 @@
 <html>
 <head>
 <style type="text/css">
-		* {
-			text-align: center;
-		}
+		* {text-align: center;}
 		
-		table {
-			margin: auto
-		}
-		
-		td#title {
-			text-align: left
-		}
+		table {margin: auto}
+
 	</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <h2 >회원정보관리</h2>
+
 
 <table border="1" width="500">
 	<tr>
@@ -45,5 +39,17 @@
 		
 	</c:forEach>
 </table>
+<div>
+	<form method="post" action="${cp }/select/list">
+		<select name="field">
+			<option value="hlogin_id" <c:if test="${field=='hlogin_id' }">selected</c:if>>아이디</option>
+			<option value="name" <c:if test="${field=='name' }">selected</c:if>>이름</option>
+			<option value="num" <c:if test="${field=='num' }">selected</c:if>>회원상태</option>
+		</select>
+		<input type="text" name="keyword" value="${keyword }">
+		<input type="submit" value="검색">
+	</form>
+	
+</div>
 </body>
 </html>
