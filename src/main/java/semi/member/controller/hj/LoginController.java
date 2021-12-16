@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet{
 		MemberDao dao=new MemberDao(); 
 		boolean b=dao.isMember(map);	
 		
-		if(chk!=null){ //체크박스에 체크한 경우
+		if(chk!=null){ //체크박스에 체크한 경우 
 			Cookie cook1=new Cookie("hlogin_id",hlogin_id);
 			cook1.setMaxAge(60*60); //60분 -테스트중이라 10초
 			cook1.setPath("/");
