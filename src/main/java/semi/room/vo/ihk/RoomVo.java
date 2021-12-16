@@ -3,15 +3,15 @@ package semi.room.vo.ihk;
 public class RoomVo {
 	private int room_id;
 	private String kind;
-	private int capcity;
+	private int capacity;
 	private int price;
 	private Double rate; // 평점
 	private String src_name; // 파일 경로
 	
-	public RoomVo(int room_id, String kind, int capcity, int price, Double rate, String src_name) {
+	public RoomVo(int room_id, String kind, int capacity, int price, Double rate, String src_name) {
 		this.room_id = room_id;
 		this.kind = kind;
-		this.capcity = capcity;
+		this.capacity = capacity;
 		this.price = price;
 		this.rate = rate;
 		this.src_name = src_name;
@@ -33,12 +33,12 @@ public class RoomVo {
 		this.kind = kind;
 	}
 
-	public int getCapcity() {
-		return capcity;
+	public int getCapacity() {
+		return capacity;
 	}
 
-	public void setCapcity(int capcity) {
-		this.capcity = capcity;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
 	public int getPrice() {
@@ -64,5 +64,6 @@ public class RoomVo {
 	public void setSrc_name(String src_name) {
 		this.src_name = src_name;
 	}
+
 	
 }

@@ -16,8 +16,6 @@ public class UpdateidController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String hlogin_id = req.getParameter("hlogin_id");
-		
-	
 		GaipDao dao=new GaipDao();
 		GaipVo vo=dao.selecthloginid(hlogin_id);
 		if(vo==null) {

@@ -7,10 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>우리우리호텔</title>
-	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css"/>
-	<style type="text/css">
-		*{margin:0; padding: 0;}
-	</style>
+	<link href="${cp}/css/home.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -20,7 +17,7 @@
 	<jsp:include page="${requestScope.footer}"/>
 </body>
 
-<script src="${pageContext.request.contextPath}/js/calendar.js"></script>
+<script src="${cp}/js/calendar.js"></script>
 <script type="text/javascript">
 	printCalendar();
 </script>

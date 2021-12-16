@@ -3,7 +3,7 @@
     
 
 <div class="searchBar">	
-	<form action="${pageContext.request.contextPath}/search" method="post">
+	<form action="${cp}/search" method="post">
 		<div>
 			<div class="checkbar" onclick="openCalendar()" style="width:30%;">
 				<p>체크인</p>

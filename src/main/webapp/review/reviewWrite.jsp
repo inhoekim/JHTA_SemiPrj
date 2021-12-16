@@ -83,7 +83,6 @@
 	</div>
 </div>
 <script>
-	var xhr = null;
 	var rate = 0;
 	
 	function titleCheck() {
