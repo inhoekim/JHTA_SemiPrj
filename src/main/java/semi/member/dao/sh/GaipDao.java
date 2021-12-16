@@ -11,10 +11,6 @@ import db.JdbcUtil;
 import semi.member.Vo.sh.GaipVo;
 
 
-
-
-
-
 public class GaipDao {
 	public int insert(GaipVo vo) {
 		Connection con=null;

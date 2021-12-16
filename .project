@@ -34,25 +34,5 @@
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/password.PNG</locationURI>
 		</link>
-		<link>
-			<name>src/main/webapp/je/Event/room1.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room1.jpg</locationURI>
-		</link>
-		<link>
-			<name>src/main/webapp/je/Event/room2.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room2.jpg</locationURI>
-		</link>
-		<link>
-			<name>src/main/webapp/je/Event/room3.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room3.jpg</locationURI>
-		</link>
-		<link>
-			<name>src/main/webapp/je/Event/room4.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B0%9D%EC%8B%A4%EC%82%AC%EC%A7%84/room4.jpg</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>
