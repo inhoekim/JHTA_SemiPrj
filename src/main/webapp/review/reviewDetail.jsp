@@ -120,7 +120,7 @@
 		</c:if>
 		<div class="write_wrap">
 			<p>
-				${vo.content }
+				${vo.content   }
 			</p>
 		</div>
 		<div class="btn_wrap">
