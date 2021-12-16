@@ -74,10 +74,6 @@
 		resize: none;
 	}
 	
-	#comment_td {
-		padding: 5 0;
-	}
-	
 	.comment_edit {
 		float: right;
 		padding: 10 10;
@@ -91,8 +87,6 @@
 	}
 	
 	#reply_delete {
-		padding-left: 20px;
-		padding-right: 10px;
 	}
 	
 	#reply_edit {
@@ -114,7 +108,7 @@
 		<c:if test="${requestScope.src_name != null }">
 			<div class="img_wrap">
 				<span>
-					<img src="/semiPrj/images/img.png" width="400" height="350">
+					<img src="${requestScope.src }" width="400" height="350">
 				</span>
 			</div>
 		</c:if>
@@ -154,22 +148,74 @@
 	</div>
 	<div class="comment_write_wrap">
 		<div class="comment_area">
-			<textarea rows="4" cols="80" id="comment_text_area"></textarea>
+			<textarea rows="4" cols="80" id="comment_text_area" onclick="loginCheck()"></textarea>
 		</div>
 		<div class="comment_btn">
 			<input type="button" value="댓글쓰기" id="comment_btn" onclick="commentsBtn()">
 		</div>
 		<div class="comment_edit">
-			<%-- <c:if test=""> --%>
+			<c:if test="${vo.hlogin_id eq cookie.hlogin_id.value }">
 				<input type="button" value="수정" onclick="reviewEdit()">
 				<input type="button" value="삭제" onclick="reviewDel()">
-			<%--</c:if>--%>
+			</c:if>
 		</div>
 	</div>
 	
 </div>
 <script>
 	var xhr = null;
+	
+	function loginCheck() {
+		key = 'hlogin_id';
+	    var result = null;
+	    var cookie = document.cookie.split(';');
+	    cookie.some(function (item) {
+	        // 공백을 제거
+	        item = item.replace(' ', '');
+	 
+	        var dic = item.split('=');
+	 
+	        if (key === dic[0]) {
+	            result = dic[1];
+	            alert(result);
+	            return true;    // break;
+	        }
+	    });
+	    alert(result);
+	    return result;
+	}
+	
+	function getCookie() {
+		let name = 'hlogin_id';
+		// 문서에 있는 쿠키 값 저장
+		let cookie = document.cookie.replace(" ", "");
+		// ; 기준으로 쿠키 나누기
+		cookie = cookie.split(";");
+		// 쿠키 길이만큼 루프
+		for (let i = 0; i < cookie.length; i++) {
+			if (cookie[i].split) {
+				
+			}
+		}
+	}
+	
+	function getCookie(cname) {
+		let name = cname + "=";
+		let decodedCookie = decodeURIComponent(document.cookie);
+		let ca = decodeCooke.split(';');
+		
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
 	
 	function commentsList(i, review_id) {
 		xhr = new XMLHttpRequest();
@@ -230,11 +276,10 @@
 						let tbody = document.getElementById("comment_tbody");
 						let comm_tr = document.createElement("tr");
 						
-						comm_tr.innerHTML = "<td id='comment_td'>" + hlogin_id + "</td>"
-										  + "<td id='comment_td'>" + content + "</td>"
-										  + "<td id='comment_td'>" + created_day 
-										  //+ "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='reply'>답글</a>"
-										  + "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a>";
+						comm_tr.innerHTML = "<td class='comment_td'>" + hlogin_id + "</td>"
+										  + "<td class='comment_td'>" + content + "</td>"
+										  + "<td class='comment_td'>" + created_day  + 
+										  "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a></td>";
 										  //+ "<a href='#' id='reply_edit'>수정</a></td>";
 						
 						tbody.appendChild(comm_tr);
@@ -330,8 +375,8 @@
 	}
 	
 	// 리뷰 수정
-	function commentEdit() {
-		
+	function reviewEdit() {
+		location.href = "${path}/review/update?review_id=${vo.review_id}"
 	}
 	
 	// 리뷰 삭제

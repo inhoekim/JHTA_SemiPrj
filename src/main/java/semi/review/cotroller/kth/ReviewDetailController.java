@@ -60,11 +60,14 @@ public class ReviewDetailController extends HttpServlet {
 		String path = context.getRealPath("/images");
 		String change = path.replace("\\", "/");
 		String saveDir = change.substring(change.lastIndexOf("/semiPrj"));
+		System.out.println("src_name : " + src_name);
 		
 		req.setAttribute("vo", vo);
 		req.setAttribute("src_name", src_name);
 		req.setAttribute("src", saveDir + "/" + src_name);
-		req.getRequestDispatcher("/review/reviewDetail.jsp").forward(req, resp);
+		req.setAttribute("main", "/review/reviewDetail.jsp");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		
 	}
 	
 }

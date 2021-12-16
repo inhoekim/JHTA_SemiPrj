@@ -20,9 +20,9 @@ public class ReviewDeleteController extends HttpServlet {
 		
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		boolean check = dao.reviewDelete(review_id);
-		System.out.println("체크 : " + check);
 		
-		resp.sendRedirect(req.getContextPath() + "/review/main.jsp");
+		req.setAttribute("main", "/review/list");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 	
 }

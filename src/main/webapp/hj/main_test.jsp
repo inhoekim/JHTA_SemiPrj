@@ -90,7 +90,7 @@
 </body>
 <script>
 	var xhr = null;
-	
+	// 알림 리스트 on / off
 	function divHiddin() {
 		let div = document.getElementById("alarm_hidden_div");
 		
@@ -102,6 +102,7 @@
 		
 	}
 	
+	// 알람 리스트
 	function alarmList() {
 		xhr = new XMLHttpRequest();
 		let url = '${cp}/alarm/list';
@@ -153,10 +154,11 @@
 		xhr.send();
 	}
 	
+	// 알람 확인
 	function alarmCheck(comment_id, review_id) {
 		location.href = "${cp}/alarm/check?review_id=" + review_id + "&comment_id=" + comment_id;
 	}
-	
+	// 알람 삭제
 	function alarmDelete(comment_id) {
 		xhr = new XMLHttpRequest();
 		let url = '${cp}/alarm/delete';

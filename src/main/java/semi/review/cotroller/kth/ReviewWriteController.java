@@ -84,7 +84,7 @@ public class ReviewWriteController extends HttpServlet {
 		RoomDao roomDao = RoomDao.getInstance();
 		roomDao.roomRateUpdate(room_id, rate);
 		
-		resp.sendRedirect(req.getContextPath() + "/review/main.jsp");
-		
+		req.setAttribute("main", "/review/list");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }
