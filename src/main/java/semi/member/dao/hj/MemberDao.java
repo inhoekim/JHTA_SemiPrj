@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import db.JdbcUtil;
-import semi.member.Vo.hj.MemberVo;
+import semi.member.Vo.je.HloginVoje;
+
 
 public class MemberDao {
 	public boolean isMember(HashMap<String, String> map) {
@@ -35,7 +36,7 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public MemberVo selectpwd (String hlogin_id, String jnum) {
+	public HloginVoje selectpwd (String hlogin_id, String jnum) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -53,7 +54,7 @@ public class MemberDao {
 				String area=rs.getString("area");
 				Date regdate=rs.getDate("regdate");
 				int num=rs.getInt("num");
-				MemberVo vo=new MemberVo(hlogin_id, pwd, name, jnum, age, area, null, num);
+				HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, regdate, num);
 				return vo;
 			}
 			return null;
@@ -64,7 +65,7 @@ public class MemberDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int changepwd(MemberVo vo) {
+	public int changepwd(HloginVoje vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		String sql="update hlogin set pwd=? where hlogin_id=?";

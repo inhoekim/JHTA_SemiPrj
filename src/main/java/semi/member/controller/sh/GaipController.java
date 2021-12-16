@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.gaip.util.sh.Utility;
-import semi.member.Vo.sh.GaipVo;
+import semi.member.Vo.je.HloginVoje;
+
 import semi.member.dao.sh.GaipDao;
 
 
@@ -35,8 +36,8 @@ public class GaipController extends HttpServlet{
 		String area=req.getParameter("area");
 		
 		
-		GaipVo vo=new GaipVo(hlogin_id, pwd, name, jnum, age, area, null,1);
-
+		HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, null,1);
+		
 		GaipDao dao=new GaipDao();
 		int n=dao.insert(vo);
 		

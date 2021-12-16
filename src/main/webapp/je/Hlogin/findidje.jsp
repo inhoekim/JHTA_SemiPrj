@@ -5,6 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	* {
+		text-align: center;
+		
+	}
+	
+	div#serchid {
+		
+		width:300px;
+		height:200px;
+		border: 2px solid pink;	
+		padding:50px;
+	}
+</style>
 <script type="text/javascript">
 function findId(){
 	let xhr=new XMLHttpRequest();
@@ -31,12 +45,14 @@ function findId(){
 </script>
 </head>
 <body>
-	주민번호
-	<input type="text" id="jnum" placeholder="1111111111111">
-	<input type="submit" value="찾기" onclick="findId()">
-	<p style="color: red; font-size: 7px">*주민번호는 "-"를 제외한 13자리를 입력해
-		주세요.</p>
-	<div id="result"></div>
-	<a href="${pageContext.request.contextPath }/hj/login_hj.jsp">로그인하러가기</a>
+  <div id="serchid">
+		주민번호
+		<input type="text" id="jnum" placeholder="1111111111111">
+		<input type="submit" value="찾기" onclick="findId()">
+		<p style="color: red; font-size: 7px">
+		*주민번호는 "-"를 제외한 13자리를 입력해주세요.</p>
+		<div id="result"></div>
+		<a href="${pageContext.request.contextPath }/hj/login_hj.jsp">로그인하러가기</a>
+  </div>
 </body>
 </html>

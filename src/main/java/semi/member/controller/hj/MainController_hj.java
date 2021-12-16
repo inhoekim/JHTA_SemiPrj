@@ -17,7 +17,6 @@ public class MainController_hj extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //	메인 컨트롤러 작성 => 안에 로그인컨트롤러에 있는 쿠키값(아이디, 비번)을 메인컨트롤러에 작성	
-
 		Cookie[] cookies=req.getCookies();
 
 		HashMap<String, String> map=new HashMap<String, String>();

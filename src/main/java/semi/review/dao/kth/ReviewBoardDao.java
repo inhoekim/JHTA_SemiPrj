@@ -12,6 +12,7 @@ import db.JdbcUtil;
 import semi.img_file.dao.kth.ImgFileDao;
 import semi.img_file.vo.kth.ImgFileVo;
 import semi.review.vo.kth.ReviewBoardVo;
+import semi.review.vo.kth.ReviewCommentsVo;
 import semi.room.dao.kth.RoomDao;
 
 public class ReviewBoardDao {
@@ -291,5 +292,5 @@ public class ReviewBoardDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-
+	
 }

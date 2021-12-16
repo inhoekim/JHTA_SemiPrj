@@ -1,4 +1,4 @@
-package semi.member.controller.je;
+package semi.board.controller.je;
 
 import java.io.IOException;
 

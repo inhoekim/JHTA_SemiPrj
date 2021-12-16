@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.member.Vo.sh.GaipVo;
+import semi.member.Vo.je.HloginVoje;
 import semi.member.dao.sh.GaipDao;
 
 
@@ -20,7 +20,7 @@ public class SelectGaipController extends HttpServlet{
 		
 	
 		GaipDao dao=new GaipDao();
-		GaipVo vo=dao.selecthloginid(hlogin_id);
+		HloginVoje vo=dao.selecthloginid(hlogin_id);
 		if(vo==null) {
 			req.setAttribute("result","fail");
 			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
