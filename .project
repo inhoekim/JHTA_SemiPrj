@@ -28,11 +28,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/webapp/je/img/자물쇠수정.PNG</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/%EC%9E%90%EB%AC%BC%EC%87%A0%EC%88%98%EC%A0%95.PNG</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

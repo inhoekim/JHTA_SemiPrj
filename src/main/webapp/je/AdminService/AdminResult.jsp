@@ -22,6 +22,9 @@
     function AdminService(){
     	location.href="${cp}/service/admin/list";
     }
+    function AdminMemberlist(){
+    	location.href="${cp}/select/list";
+    }<!-- 상훈수정 -->
     
 </script>
 </head>
@@ -32,6 +35,7 @@
            <input type="button" value="메인" onclick="BoardMain()">
            <input type="button" value="로그아웃" onclick="Logout()">
            <input type="button" value="문의게시판" onclick="AdminService()">
+           <input type="button" value="회원정보관리" onclick="AdminMemberlist()"><!-- 상훈수정 -->
             </c:when>
 		<c:otherwise>
            <p>아이디 또는 비밀번호가 일치하지 않습니다.</p>
