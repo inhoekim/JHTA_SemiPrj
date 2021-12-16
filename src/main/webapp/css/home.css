@@ -7,7 +7,7 @@ header {
 nav {
 	background-color:#339999;
 	color:white;
-	width:200px;
+	width:220px;
 	height:100%;
 	float:left;
 }
@@ -20,8 +20,8 @@ footer {
 
 header, nav, section, footer { text-align:center; }
 header, footer { line-height:100px; }
-section { line-height:220px; }
 body, html {height: 100%}
+section {height: 220px;}
 
 .searchBar {
 	margin-top: 5px;

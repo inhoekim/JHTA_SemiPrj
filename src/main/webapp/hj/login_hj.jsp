@@ -12,7 +12,7 @@
 <form method="post" action="<%=request.getContextPath() %>/login">
 	아이디<input type="text" name="hlogin_id"><br>
 	비밀번호 <input type="password" name="pwd"><br>
-	<div>${requestScope.errMsg }</div>
+	<div style="color:red">${requestScope.errMsg }</div>
 	
 	로그인 유지 <input type="checkbox" name="chk" checked="checked"><br>
 	

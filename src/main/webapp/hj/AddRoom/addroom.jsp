@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>addroom</title>
 </head>
 <body>
 <!-- 
-호텔이름
-호텔가격
-상세내용
-위치
-호텔이미지
+객실번호
+객실종류
+객실인원
+객실비용
+이미지파일경로(첨부파일?)
 
  -->
 </body>

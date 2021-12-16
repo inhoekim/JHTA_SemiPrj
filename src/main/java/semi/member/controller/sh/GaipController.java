@@ -36,6 +36,7 @@ public class GaipController extends HttpServlet{
 		
 		
 		GaipVo vo=new GaipVo(hlogin_id, pwd, name, jnum, age, area, null,1);
+
 		GaipDao dao=new GaipDao();
 		int n=dao.insert(vo);
 		
@@ -45,6 +46,7 @@ public class GaipController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
+				
 		req.getRequestDispatcher("/hj/login_hj.jsp").forward(req, resp);
 	}
 }

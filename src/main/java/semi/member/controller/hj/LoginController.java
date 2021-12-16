@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet{
 		
 		if(chk!=null){ //체크박스에 체크한 경우
 			Cookie cook1=new Cookie("hlogin_id",hlogin_id);
-			cook1.setMaxAge(60*60); //30분 -테스트중이라 10초
+			cook1.setMaxAge(60*60); //60분 -테스트중이라 10초
 			cook1.setPath("/");
 			resp.addCookie(cook1);
 		}
@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet{
 			resp.sendRedirect("/semiPrj/hj/main_test.jsp");
 		
 		}else {
-			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않아요");
+			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않습니다.");
 			req.getRequestDispatcher("/hj/login_hj.jsp").forward(req, resp);
 		}
 	}
