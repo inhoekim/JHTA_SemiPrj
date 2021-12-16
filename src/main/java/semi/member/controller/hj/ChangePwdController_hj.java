@@ -32,7 +32,7 @@ public class ChangePwdController_hj extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		String hlogin_id=req.getParameter("hlogin_id");
 		String pwd=Utility.encoding(req.getParameter("pwd"));
-		HloginVoje vo=new HloginVoje(hlogin_id, pwd, pwd, hlogin_id, pwd, 0, null, 0);
+		HloginVoje vo=new HloginVoje(hlogin_id, pwd, pwd, hlogin_id, 0, pwd, null, 0);
 		MemberDao dao=new MemberDao();
 		int n=dao.changepwd(vo);
 		if(n>0) {

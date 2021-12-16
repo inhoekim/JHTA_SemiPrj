@@ -54,7 +54,7 @@ public class MemberDao {
 				String area=rs.getString("area");
 				Date regdate=rs.getDate("regdate");
 				int num=rs.getInt("num");
-				HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, area, age, regdate, num);
+				HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, regdate, num);
 				return vo;
 			}
 			return null;
