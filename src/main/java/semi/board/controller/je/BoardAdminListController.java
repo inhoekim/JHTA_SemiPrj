@@ -1,4 +1,4 @@
-package semi.member.controller.je;
+package semi.board.controller.je;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,15 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.member.Vo.je.BoardVoje;
 import semi.member.dao.je.BoardDaoje;
-@WebServlet("/service/board/list")
-public class BoardListController extends HttpServlet{
+@WebServlet("/service/admin/list")
+public class BoardAdminListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String field=req.getParameter("field");
 		String keyword=req.getParameter("keyword");
 		String spageNum = req.getParameter("pageNum");
-
 		
 		int pageNum =1;
 		if(spageNum != null) {
@@ -27,9 +26,9 @@ public class BoardListController extends HttpServlet{
 		}
 		
 		int startRow = (pageNum-1)*10+1;
-		int endRow = startRow+9;
+		int enfRow = startRow+9;
 		BoardDaoje dao=new BoardDaoje();
-		ArrayList<BoardVoje> list=dao.selectAll(startRow, endRow,field,keyword);
+		ArrayList<BoardVoje> list=dao.selectAll(startRow, enfRow,field,keyword);
 		int pageCount=(int)Math.ceil(dao.getCount(field,keyword)/10.0);
 		int startPageNum=((pageNum-1)/10*10)+1;
 		int endPageNum=startPageNum+9;
@@ -43,8 +42,9 @@ public class BoardListController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("keyword", keyword);
 		req.setAttribute("field", field);
-		req.getRequestDispatcher("/je/Service/BoardList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/je/AdminService/AdminBoardList.jsp").forward(req, resp);
 				
 	}
 
 }
+
