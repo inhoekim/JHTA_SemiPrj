@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.gaip.util.sh.Utility;
-import semi.member.Vo.hj.MemberVo;
+import semi.member.Vo.je.HloginVoje;
 import semi.member.dao.hj.MemberDao;
 @WebServlet("/changepwd")
 public class ChangePwdController_hj extends HttpServlet{
@@ -18,7 +18,7 @@ public class ChangePwdController_hj extends HttpServlet{
 		String hlogin_id=req.getParameter("hlogin_id");
 		String jnum=req.getParameter("jnum");
 		MemberDao dao=new MemberDao();
-		MemberVo vo=dao.selectpwd(hlogin_id, jnum);
+		HloginVoje vo=dao.selectpwd(hlogin_id, jnum);
 		if(vo==null) {	//아이디랑 주민번호가 일치하면 changePwd.jsp페이지로 이동
 			req.setAttribute("result", "fail");
 			req.getRequestDispatcher("/hj/result.jsp").forward(req, resp);
@@ -32,7 +32,7 @@ public class ChangePwdController_hj extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		String hlogin_id=req.getParameter("hlogin_id");
 		String pwd=Utility.encoding(req.getParameter("pwd"));
-		MemberVo vo=new MemberVo(hlogin_id, pwd, null, null, 0, null, null, 0);
+		HloginVoje vo=new HloginVoje(hlogin_id, pwd, pwd, hlogin_id, pwd, 0, null, 0);
 		MemberDao dao=new MemberDao();
 		int n=dao.changepwd(vo);
 		if(n>0) {
