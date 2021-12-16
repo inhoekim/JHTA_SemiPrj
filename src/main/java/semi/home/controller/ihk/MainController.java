@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("header", "/home/header.html");
+		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("searchBar", "/home/searchBar.jsp");
 		req.setAttribute("main", "/home/main.html");
 		req.setAttribute("footer", "/home/footer.html");
