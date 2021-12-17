@@ -15,7 +15,7 @@
 <div id="loginform" align="center">
 	<h1>로그인</h1>
 	<form method="post" action="<%=request.getContextPath() %>/login">
-		아이디<input type="text" name="hlogin_id"><br>
+		아이디 <input type="text" name="hlogin_id"><br>
 		비밀번호 <input type="password" name="pwd"><br>
 		<div style="color:red">${requestScope.errMsg }</div>
 		
