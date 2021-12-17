@@ -7,7 +7,7 @@
 	.review_left #star_span {
 		font-size: 1em; /* 별 크기 */
 		color: transparent; /* 기존 별 컬러 제거 */
-		text-shadow: 0 0 0 #a00; /* 새로운 별 이미지 색상 부여 */
+		text-shadow: 0 0 0 #f0ec13; /* 새로운 별 이미지 색상 부여 */
 	}
 	
 	.review-area {

@@ -99,9 +99,25 @@ section {height: 220px;}
 }
 
 .alarm_hidden_div {
+	overflow-y: auto;
 	width: 175px;
-	height: auto;
+	height: 300px;
 	border: skyblue solid 1px;
+	scrollbar-color: #D4AA70 #e4e4e4;
+}
+/* 스크롤바 설정 */
+.alarm_hidden_div::-webkit-scrollbar {
+	width: 12px; /* 스크롤바 막대 너비 */
+}
+/* 스크롤바 뒷 배경 설정 */
+.alarm_hidden_div::-webkit-scrollbar-track {
+	background-color: #e4e4e4;
+	border-radius: 100px;
+}
+/* 스크롤바 막대 설정 */
+.alarm_hidden_div::-webkit-scrollbar-thumb {
+	background-color: skyblue;
+	border-radius: 100px; 
 }
 
 .alarm_wrap {

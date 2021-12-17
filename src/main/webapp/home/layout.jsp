@@ -60,11 +60,11 @@
 						let hlogin_id = json[i].hlogin_id;
 						let content = json[i].content;
 						
-						comment_div.innerHTML = "<span id='hlogin_id_span'>" + hlogin_id + "</span>"
-											  + "<span id='content_span'>" + content + "</span>";
+						comment_div.innerHTML = "<div class='alarm_text_div'><span id='hlogin_id_span'>" + hlogin_id + "</span><br>"
+											  + "<span id='content_span'>" + content + "</span></div>";
 						alarm_wrap.appendChild(comment_div);
-						alarm_btn_div.innerHTML = "<input type='button' value='확인' onclick='alarmCheck(" + comment_id + ', ' + review_id + ")'>"
-											    + "<input type='button' value='삭제' onclick='alarmDelete(" + comment_id + ")'>"
+						alarm_btn_div.innerHTML = "<div class='alarm_btn_div'><input type='button' id='alarm_chk' class='alarm_btn' value='확인' onclick='alarmCheck(" + comment_id + ', ' + review_id + ")'>"
+											    + "<input type='button' id='alarm_del' class='alarm_btn' value='삭제' onclick='alarmDelete(" + comment_id + ")'></div>";
 						alarm_wrap.appendChild(alarm_btn_div);
 					}
 				}
