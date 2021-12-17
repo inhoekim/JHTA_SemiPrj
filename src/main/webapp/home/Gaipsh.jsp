@@ -19,7 +19,7 @@
 <body>
 
 
-<div class="gaip_div">
+<div class="gaip_div"><br>
 	<h2 style="">회원가입</h2>
 	<br>
 	<form id="gaip_chk" method="post" action="<%=request.getContextPath() %>/Gaipsh">
