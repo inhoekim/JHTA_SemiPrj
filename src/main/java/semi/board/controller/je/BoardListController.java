@@ -46,5 +46,4 @@ public class BoardListController extends HttpServlet{
 		req.getRequestDispatcher("/je/Service/BoardList.jsp").forward(req, resp);
 				
 	}
-
 }

@@ -86,9 +86,6 @@
 		padding-right: 10px;
 	}
 	
-	#reply_delete {
-	}
-	
 	#reply_edit {
 		padding-left: 5px;
 	}
@@ -154,38 +151,25 @@
 			<input type="button" value="댓글쓰기" id="comment_btn" onclick="commentsBtn()">
 		</div>
 		<div class="comment_edit">
-			<c:if test="${vo.hlogin_id eq cookie.hlogin_id.value }">
+			<c:if test="${sessionScope.hlogin_id == vo.hlogin_id }">
 				<input type="button" value="수정" onclick="reviewEdit()">
 				<input type="button" value="삭제" onclick="reviewDel()">
 			</c:if>
 		</div>
 	</div>
-	
 </div>
 <script>
 	var xhr = null;
 	
 	function loginCheck() {
-		key = 'hlogin_id';
-	    var result = null;
-	    var cookie = document.cookie.split(';');
-	    cookie.some(function (item) {
-	        // 공백을 제거
-	        item = item.replace(' ', '');
-	 
-	        var dic = item.split('=');
-	 
-	        if (key === dic[0]) {
-	            result = dic[1];
-	            alert(result);
-	            return true;    // break;
-	        }
-	    });
-	    alert(result);
-	    return result;
+		// 로그인 안 하면 로그인 페이지로
+		let check = '<c:out value="${requestScope.id}"/>';
+		if (check == 'fail') {
+			location.href = '${path}/login';
+		}
 	}
 	
-	function getCookie() {
+	/* function getCookie() {
 		let name = 'hlogin_id';
 		// 문서에 있는 쿠키 값 저장
 		let cookie = document.cookie.replace(" ", "");
@@ -197,25 +181,7 @@
 				
 			}
 		}
-	}
-	
-	function getCookie(cname) {
-		let name = cname + "=";
-		let decodedCookie = decodeURIComponent(document.cookie);
-		let ca = decodeCooke.split(';');
-		
-		for (let i = 0; i < ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-			}
-			
-			if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
+	} */
 	
 	function commentsList(i, review_id) {
 		xhr = new XMLHttpRequest();
@@ -234,6 +200,7 @@
 				let data = xhr.responseText;
 				let json = JSON.parse(data);
 				let comment_cnt = document.getElementById("comment_max");
+				let id = '<c:out value="${requestScope.id}"/>';
 				// 부모 태그
 				let tbody = document.getElementById("comment_tbody");
 				let comment_paging = document.getElementById("comment_paging");
@@ -276,10 +243,15 @@
 						let tbody = document.getElementById("comment_tbody");
 						let comm_tr = document.createElement("tr");
 						
+						let del = "</td>";
+						if (hlogin_id == id) {
+						  	del = "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a></td>";
+						  }
+						
 						comm_tr.innerHTML = "<td class='comment_td'>" + hlogin_id + "</td>"
 										  + "<td class='comment_td'>" + content + "</td>"
-										  + "<td class='comment_td'>" + created_day  + 
-										  "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a></td>";
+										  + "<td class='comment_td'>" + created_day
+										  + del;
 										  //+ "<a href='#' id='reply_edit'>수정</a></td>";
 						
 						tbody.appendChild(comm_tr);
@@ -330,6 +302,12 @@
 	}
 	// 댓글 등록
 	function commentsBtn() {
+		// 로그인 안 하면 로그인 페이지로
+		let check = '<c:out value="${requestScope.id}"/>';
+		if (check == 'fail') {
+			location.href = '${path}/login';
+		}
+		
 		xhr = new XMLHttpRequest();
 		
 		let content = document.getElementById("comment_text_area").value;

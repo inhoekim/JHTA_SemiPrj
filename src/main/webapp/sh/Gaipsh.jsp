@@ -5,25 +5,38 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style type="text/css">
+		* {
+			text-align: center;
+			margin: 10px
+		}
+		
+
+	</style>
 </head>
 <body>
-<h1>회원가입</h1>
+<h2 style="">회원가입</h2>
+<br>
+<div>
 <form id="gaip_chk" method="post" action="<%=request.getContextPath() %>/Gaipsh">
-아이디<input placeholder="아이디" type="text" id= "hlogin_id" name="hlogin_id">
-	 <input type="button" id= "hcheck_btn" value="중복확인" onclick="openIdChk()">
+<input placeholder="아이디 입력" type="text" id= "hlogin_id" name="hlogin_id" maxlength="12" size="20"  style="width: 200pt; height:25pt; border-radius: 5px;">
+	 <input type="button" id= "hcheck_btn" value="중복확인" onclick="openIdChk()" style="width: 65pt; height:27pt; background-color: red;color: white; border: 1px solid white;
+	border-radius: 9px; font-size: 14px; position: absolute; " > <br>
 	 <small id= "hlogin_id_check" style="color: blue; display: inline;"></small>
 	 <br>
 	 <input type="hidden" value="idDup" onkeydown="idUnChk()">
-비밀번호 <input placeholder="비밀번호" type="password" name="pwd" id="hlogin_pass"><br>
-비밀번호확인 <input placeholder="비밀번호 확인" type="password" name="pwdChk" id="hlogin_passcheck" maxlength="12" size="15" required >
-<small id= "pw_text_check" style="color: blue; display: inline;">비밀번호와 동일하게 입력해주세요.</small><br>
-이름<input type="text" name="name" ><br>
-주민번호<input  placeholder="0000000000000" type="text" id="jnum" name="jnum" maxlength="13">
-<small id= "jnum_text_check" style="color: blue; display: inline;">주민등록번호 13자리를 입력해주세요.</small><br>
-나이<input type="text" name="age" ><br>
-사는곳<input type="text" name="area" ><br>
-	<input type="submit" value="가입하기">
+ <input placeholder="비밀번호 입력" type="password" name="pwd" id="hlogin_pass" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+ <input placeholder="비밀번호 확인" type="password" name="pwdChk" id="hlogin_passcheck" maxlength="12" size="20" required  style="width: 200pt; height:25pt; border-radius: 5px;"><br>
+<small id= "pw_text_check" style="color: blue; display: inline;"></small><br>
+<input placeholder="이름 입력"  type="text" name="name" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+<input  placeholder="주민등록번호 입력" type="text" id="jnum" name="jnum" maxlength="13" style="width: 200pt; height:25pt; border-radius: 5px;"><br>
+<small id= "jnum_text_check" style="color: blue; display: inline;"></small><br>
+<input placeholder="나이 입력" type="text" name="age" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+<input placeholder="주소 입력"type="text" name="area" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br><br><br>
+	<input type="submit" value="가입하기" style="width: 215pt; height:35pt; background-color: red;color: white; border: 3px solid white;
+	border-radius: 12px; font-size: 16px">
 	</form>
+	</div>
 </body>
 <script type="text/javascript">
 window.onload = function(){
@@ -45,18 +58,18 @@ window.onload = function(){
 		//비밀번호 비교
 		if(pw2 == '' || pw2 == null){
 			document.getElementById('pw_text_check').style.color = 'blue';
-			document.getElementById('pw_text_check').innerText = '비밀번호와 동일하게 입력해주세요.';
+			document.getElementById('pw_text_check').innerText = '비밀번호와 동일하게 입력해주세요';
 		} 
 		
 		if(pw == pw2){ // 비밀번호, 확인이랑 일치할때
 			console.log(pw);
 			console.log(pw2);
-			document.getElementById('pw_text_check').style.color = 'blue';
-			document.getElementById('pw_text_check').innerText = '비밀번호와 일치합니다.';
+			document.getElementById('pw_text_check').style.color = 'black';
+			document.getElementById('pw_text_check').innerText = '비밀번호와 일치합니다';
 			return;
 		}else{// 비밀번호, 확인이랑 일치 하지 않을때
 			document.getElementById('pw_text_check').style.color = 'red';
-			document.getElementById('pw_text_check').innerText = '비밀번호와 일치 하지 않습니다.';
+			document.getElementById('pw_text_check').innerText = '비밀번호와 일치 하지 않습니다';
 		}
 	})
 	
@@ -65,18 +78,18 @@ window.onload = function(){
         var juminRule=/[0-9]{13}$/
 
         if(jnum == '' || jnum == null){
-			document.getElementById('jnum_text_check').style.color = 'blue';
-			document.getElementById('jnum_text_check').innerText = '주민등록번호 13자리를 입력해주세요.';
+			document.getElementById('jnum_text_check').style.color = 'black';
+			document.getElementById('jnum_text_check').innerText = '주민등록번호 13자리를 입력해주세요';
 		}
         
         if(!juminRule.test(jnum)) { // 주민등록번호 양식이 일치 할때            
         	document.getElementById('jnum_text_check').style.color = 'red';
-			document.getElementById('jnum_text_check').innerText = '주민등록번호 양식이 일치하지 않습니다.';
+			document.getElementById('jnum_text_check').innerText = '주민등록번호 양식이 일치하지 않습니다';
 
 
         }else{// 주민등록번호 양식이 일치 할떄
-			document.getElementById('jnum_text_check').style.color = 'blue';
-			document.getElementById('jnum_text_check').innerText = '주민등록번호 양식이 일치합니다.';
+			document.getElementById('jnum_text_check').style.color = 'black';
+			document.getElementById('jnum_text_check').innerText = '주민등록번호 양식이 일치합니다';
 		}
 	})
 	
@@ -98,7 +111,7 @@ function openIdChk(){//중복버튼을 누르면 실행될 함수
 			}else{
 				
 				span.innerHTML="사용가능한 아이디입니다";
-				span.style.color = 'blue';
+				span.style.color = 'black';
 			}
 		}
 	};

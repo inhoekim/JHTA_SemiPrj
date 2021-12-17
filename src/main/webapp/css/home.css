@@ -1,7 +1,7 @@
 @charset "UTF-8";
 header {
-	background-color:lightgrey;
-	height:100px;
+	height:110px;
+	border-bottom: 1px solid #eeeeee;
 }
 
 nav {
@@ -13,16 +13,31 @@ nav {
 }
 
 footer {
-	background-color:#FFCC00;	
-	height:100px;
+	position: relative;
+	left: 6%;
+	border-top: 1px solid #eeeeee;
+	text-align : left;
+	height:200px;
 	clear:both;
+	margin : 0;
+	width: 85%;
 }
 
-header, nav, section, footer { text-align:center; }
-header, footer { line-height:100px; }
-body, html {height: 100%}
+footer p{
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+	color: #CDCDCD;
+}
+
+header, nav, section { text-align:center;}
+body, html {height: 100%; font-family: do hyeon;}
 section {height: 220px;}
 
+#memberTab a{
+	display: inline-block;
+	line-height: 100px;
+	text-decoration:none;
+}
 .searchBar {
 	margin-top: 5px;
 	text-align: center;

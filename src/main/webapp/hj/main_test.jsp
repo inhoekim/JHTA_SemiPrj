@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>hj/main_test.jsp</title>
@@ -58,18 +61,20 @@
 </style>
 </head>
 <body>
+ 
+<div>
 <% String cp=request.getContextPath(); %>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<c:choose>
-	<c:when test="${empty sessionScope.hlogin_id }">
-		<a href="<%=cp %>/hj/login_hj.jsp">로그인</a> |
-		<a href="<%=cp %>/sh/Gaipsh.jsp">회원가입</a><!-- 상훈수정 --> |
-		<a href="<%=cp %>/je/AdminService/AdminLogin.jsp">관리자로그인</a>
-	</c:when>
+	<c:choose>
+		<c:when test="${empty sessionScope.hlogin_id }">
+			<a href="${cp}/hj/login_hj.jsp">로그인</a> |
+			<a href="${cp}/sh/Gaipsh.jsp">회원가입</a><!-- 상훈수정 --> |
+			<a href="${cp}/je/AdminService/AdminLogin.jsp">관리자로그인</a>
+		</c:when>
 	<c:otherwise>
 		<div class="header_wrap">
-			<span>[${sessionScope.hlogin_id }님 반갑습니다.]</span>
-			<img id="alarm_img" src="/semiPrj/images/bell_off.png" width="20px" height="20">
+			<span>[${sessionScope.hlogin_id }님 반갑습니다.] </span>
+			<img id="alarm_img" src="/semiPrj/images/bell_off.png" width="20" height="20">
 			<div class="alarm_count_div" onclick="divHiddin()">
 				<span id="alarm_cnt">0</span>
 			</div>
@@ -87,6 +92,7 @@
 		</div>
 	</c:otherwise>
 </c:choose>
+</div>
 </body>
 <script>
 	var xhr = null;

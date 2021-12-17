@@ -39,11 +39,13 @@
 						let newSection = document.createElement("section");
 						let checkIn = document.getElementById("checkInForm").value;
 						let checkOut = document.getElementById("checkOutForm").value;
+						let peopleNum = document.getElementById("peopleNum").value;
 						newSection.innerHTML = "<p>객실번호: " + json[i].room_id + "</p>";
 						newSection.innerHTML += "<p>객실이미지: " + json[i].src + "</p>";
 						newSection.innerHTML += "<p>객실평점 :" + json[i].rate + "</p>";
 						newSection.innerHTML += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,json[i].price) + "원</p>";
-						let link = "${cp}/reserve?room=" + json[i].room_id + "&checkIn=" + checkIn + "&checkOut=" + checkOut;
+						let link = "${cp}/reserve?room=" + json[i].room_id + "&checkIn=" + checkIn + 
+								"&checkOut=" + checkOut + "&people=" + peopleNum;
 						newSection.innerHTML += "<a href='" + link + "'>예약하기</a>";
 						searchResult.appendChild(newSection);
 					}
@@ -85,6 +87,7 @@
 		let searchResult = document.getElementById("searchResult");
 		let checkIn = document.getElementById("checkInForm").value;
 		let checkOut = document.getElementById("checkOutForm").value;
+		let peopleNum = document.getElementById("peopleNum").value;
 		let arr = ${requestScope.result};
 		for(let i = 0; i < arr.length; i++) {
 			let newSection = document.createElement("section");
@@ -92,7 +95,8 @@
 			newSection.innerHTML += "<p>객실이미지: " + arr[i].src + "</p>";
 			newSection.innerHTML += "<p>객실평점 :" + arr[i].rate + "</p>";
 			newSection.innerHTML += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,arr[i].price) + "원</p>";
-			let link = "${cp}/reserve?room=" + arr[i].room_id + "&checkIn=" + checkIn + "&checkOut=" + checkOut;
+			let link = "${cp}/reserve?room=" + arr[i].room_id + "&checkIn=" + checkIn + 
+			"&checkOut=" + checkOut + "&people=" + peopleNum;
 			newSection.innerHTML += "<a href='" + link + "'>예약하기</a>";
 			searchResult.appendChild(newSection);
 		}

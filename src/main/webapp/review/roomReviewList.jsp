@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <style>
 	thead {
-		background-color: #E6E6E6;
+		background-color: #ff6666;
 	}
 	
 	.review_td {
@@ -21,6 +21,7 @@
 	
 	th {
 		padding: 6px 4px;
+		color: white;
 	}
 	
 	.review_list {
@@ -35,14 +36,62 @@
 	.paging {
 		text-align: center;
 	}
+	
+	#title {
+	  overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+	}
+	
+	h2 {
+		text-align: center;
+	}
+	
+	input[type="text"] {
+		border: 1px solid #ff6666;
+		border-radius: 5px;
+		height: 20px;
+		width: 140px;
+	}
+	
+	#search_btn {
+		border: 1px solid #ff6666;
+		border-radius: 5px;
+		color: #ff6666;
+		background-color: white;
+		height: 24px;
+	}
+	
+	input:focus {
+		outline: 1px solid #ff6666;
+	}
+	
+	select:focus {
+		outline: 1px solid #ff6666;
+	}
+	
+	select {
+		border: 1px solid #ff6666;
+		border-radius: 5px;
+		height: 24px;
+	}
+	
+	option {
+		outline: 1px solid #ff6666;
+	}
+	
+	#search_btn:hover {
+		background-color: #ff6666;
+		color: white;
+	}
 </style>
 <!-- background-image: url('/semiPrj/images/search2.png'); -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="rs" value="${requestScope }"/>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <div class="review_listwrap">
+	<h2>리뷰 게시판</h2>
 	<table class="review_list" width="800px">
-		<caption>리뷰 리스트</caption>
 		<!-- col 컬럼  -->
 		<colgroup>
 			<col style="width: 10%">
@@ -65,12 +114,12 @@
 		<tbody>
 			<c:forEach var="list" items="${requestScope.list }">
 				<tr class="review_td">
-					<td class="num">${list.review_id }</td>
-					<td class="id">${list.hlogin_id }</td>
-					<td class="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }</a></td>
-					<td class="created_day">${list.created_day }</td>
-					<td class="views">${list.views }</td>
-					<td class="recommend">${list.recommend }</td>
+					<td id="num">${list.review_id }</td>
+					<td id="id">${list.hlogin_id }</td>
+					<td id="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }</a></td>
+					<td id="created_day">${list.created_day }</td>
+					<td id="views">${list.views }</td>
+					<td id="recommend">${list.recommend }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -83,7 +132,7 @@
 				<option value="hlogin_id">아이디</option>
 			</select>
 			<input type="text" class="text_search" name="keyword">
-			<input type="submit" value="검색">
+			<input type="submit" id="search_btn" value="검색">
 		</form>
 	</div>
 	<div class="paging">
@@ -106,5 +155,10 @@
 	</div>
 </div>
 <script>
+
+	function aa() {
+		
+	}
+	
 	
 </script>

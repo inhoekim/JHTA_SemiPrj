@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import semi.img_file.dao.kth.ImgFileDao;
 import semi.review.dao.kth.ReviewBoardDao;
@@ -52,7 +53,16 @@ public class ReviewDetailController extends HttpServlet {
 		
 		ImgFileDao imgFileDao = ImgFileDao.getInstance();
 		String src_name = imgFileDao.getImage(review_id);
-		
+		// 로그인 여부 확인
+		HttpSession session = req.getSession();
+		String login_check = (String)session.getAttribute("hlogin_id");
+		//boolean id_check = false;
+		String id = "";
+		if (login_check != null) {
+			id = login_check;
+		} else {
+			id = "fail";
+		}
 		// 디렉터리 주소
 		ServletContext context = this.getServletContext();
 		
@@ -62,10 +72,13 @@ public class ReviewDetailController extends HttpServlet {
 		String saveDir = change.substring(change.lastIndexOf("/semiPrj"));
 		System.out.println("src_name : " + src_name);
 		
+		req.setAttribute("id", id);
 		req.setAttribute("vo", vo);
 		req.setAttribute("src_name", src_name);
 		req.setAttribute("src", saveDir + "/" + src_name);
+		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/reviewDetail.jsp");
+		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 		
 	}

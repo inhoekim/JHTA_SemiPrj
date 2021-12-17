@@ -21,7 +21,10 @@ public class ReivewUpdateController extends HttpServlet {
 		ReviewBoardVo vo = dao.getReivew(review_id);
 		
 		req.setAttribute("vo", vo);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("searchBar", "/home/searchBar.jsp");
 		req.setAttribute("main", "/review/reviewEdit.jsp");
+		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 	
@@ -35,7 +38,9 @@ public class ReivewUpdateController extends HttpServlet {
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		dao.reviewUpdate(review_id, title, content);
 		
+		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/list");
+		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }
