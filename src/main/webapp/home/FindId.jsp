@@ -1,4 +1,8 @@
-<section>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
 <style type="text/css">
 	div#serchid {
 		
@@ -54,7 +58,5 @@ function findId(){
 		border-radius: 4px; line-height: 40px; color: #ffffff; min-width: 82px; ">로그인</a>
   </div>
 
-
-
-</section>
-
+</body>
+</html>
