@@ -7,7 +7,7 @@
 <title>changePwd.jsp</title>
 <style>
 	#changepwd1{
-		width:500px; height:220px; border:solid 2px #EAEAEA;
+		width:500px; height:220px; border:solid 2px #ff6666;
 	}
 </style>
 </head>

@@ -23,7 +23,7 @@ import semi.review.vo.kth.ReviewCommentsVo;
 public class LoginController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath() + "/login/login_hj.jsp");
+		resp.sendRedirect(req.getContextPath() + "/login/login.jsp");
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet{
 		
 		}else {
 			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않습니다.");
-			req.getRequestDispatcher("/login/login_hj.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home?spage=/home/login.jsp").forward(req, resp);
 		}
 	}
 }
