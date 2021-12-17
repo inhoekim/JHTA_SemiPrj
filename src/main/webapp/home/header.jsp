@@ -2,6 +2,42 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+	#alarm_chk {
+		border-radius: 5px;
+		border: #58ACFA solid 1px; 
+		color: white;
+		background-color: #58ACFA;
+		margin-right: 5px;
+	}
+	
+	#alarm_del {
+		border-radius: 5px;
+		border: #F2F2F2 solid 1px; 
+		color: black;
+		background-color: #F2F2F2;
+		margin-left: 5px;
+	}
+	
+	#alarm_chk:hover {
+		border: #2E9AFE solid 1px; 
+		background-color: #2E9AFE;
+	}
+	
+	#alarm_del:hover {
+		border: #E6E6E6 solid 1px;
+		background-color: #E6E6E6;
+	}
+	
+	.alarm_text_div {
+		margin-top: 5px;
+	}
+	
+	.alarm_btn_div {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+</style>
 <header>
 <a href="${cp}/home">
 	<h2 style="line-height:50px; display: inline; position: absolute; left:15%; color: #ff6666;">
@@ -14,7 +50,7 @@
 			<a href="${cp}/home?spage=/je/AdminService/AdminLogin.jsp">관리자로그인</a>
 			<a href="${cp}/home?spage=/sh/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
 			 line-height: 40px; color: #ff6666;">회원가입</a>
-			<a href="${cp}/home?spage=/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
+			<a href="${cp}/home?spage=/home/login.jsp" style="background-color: #ff6666; min-width: 82px; 
 			border-radius: 4px; line-height: 40px; color: #ffffff;">로그인</a>
 		</c:when>
 		

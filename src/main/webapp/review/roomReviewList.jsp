@@ -84,6 +84,15 @@
 		background-color: #ff6666;
 		color: white;
 	}
+	
+	a:link {
+		color: black;
+		text-decoration: none;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
 </style>
 <!-- background-image: url('/semiPrj/images/search2.png'); -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

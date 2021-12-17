@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet{
 			
 			// 12월15일 태형 수정
 			req.setAttribute("list", list);
-			req.getRequestDispatcher("/hj/main_test.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home").forward(req, resp);
 			
 			//resp.sendRedirect("/semiPrj/hj/main_test.jsp");
 		

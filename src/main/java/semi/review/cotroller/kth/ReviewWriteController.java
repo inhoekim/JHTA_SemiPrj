@@ -50,7 +50,8 @@ public class ReviewWriteController extends HttpServlet {
 				new DefaultFileRenamePolicy() // 동일한 파일명 존재 시 처리할 객체
 		);
 		
-		String hlogin_id = "hong"; // 더미 값 (삭제 예정)
+		HttpSession session = req.getSession();
+		String hlogin_id = (String)session.getAttribute("hlogin_id");
 		//int room_id = Integer.parseInt(mr.getParameter("room_id"));
 		int room_id = 1; // 더미 값 (삭제 예정)
 		int rate = Integer.parseInt(mr.getParameter("rate"));
@@ -63,7 +64,7 @@ public class ReviewWriteController extends HttpServlet {
 		// 리뷰 DAO
 		ReviewBoardDao reviewDao = ReviewBoardDao.getInstance();
 		ReviewBoardVo reviewVo = null;
-		
+		System.out.println("그림 : " + org_name);
 		// 이미지 파일이 있을경우
 		if (org_name != null) {
 			// 파일 확장자명 추출
@@ -78,6 +79,7 @@ public class ReviewWriteController extends HttpServlet {
 			reviewVo = new ReviewBoardVo(0, room_id, hlogin_id,
 					title, content, rate, 0, 0, null, null);
 			reviewDao.reviewInsert(reviewVo, fileVo);
+			
 		} else {
 			reviewVo = new ReviewBoardVo(0, room_id, hlogin_id,
 					title, content, rate, 0, 0, null, null);
