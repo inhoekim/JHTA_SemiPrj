@@ -13,9 +13,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 </head>
 
+
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.main}"/>
+	<jsp:include page="${requestScope.serchbar }"/>
+	<jsp:include page="${requestScope.main }"/>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
+
 </html>

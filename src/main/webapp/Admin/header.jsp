@@ -7,20 +7,14 @@
  
 <div id="memberTab" style="float : right; position: absolute; right:15%;">
 	<c:choose>
-		<c:when test="${empty sessionScope.hlogin_id }">
+		<c:when test="${empty sessionScope.admin_id }">
 			<a href="${cp}/hlogin?spage=/je/AdminService/AdminLogin.jsp">관리자로그인</a>
-			<a href="${cp}/hlogin?spage=/sh/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
-			 line-height: 40px; color: #ff6666;">회원가입</a>
-			<a href="${cp}/hlogin?spage=/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
-			border-radius: 4px; line-height: 40px; color: #ffffff;">
-			로그인</a>
 		</c:when>
 		
 		<c:otherwise>
-			<span>[${sessionScope.hlogin_id}님 반갑습니다]</span>
-			<a href="${cp}/hlogin?spage=/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
+			<span>[${sessionScope.admin_id}님 반갑습니다]</span>
 			<a href="${cp}/hlogin?spage=/service/board/list">문의게시판</a> 
-			<a href="${cp}/hlogin?spage=/deleteid">회원탈퇴하기</a>
+			<a href="${cp}">회원관리하기</a>
 			<a href="${cp}/hlogin?spage=/review/main.jsp">리뷰메인</a>
 			<a href="${cp}/hlogin?spage=/logout">로그아웃</a>
 	
