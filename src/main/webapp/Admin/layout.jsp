@@ -12,12 +12,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 </head>
-
-
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.main }"/>
-	<jsp:include page="${requestScope.footer}"/>
+	<jsp:include page="${requestScope.main }"/><!-- 사이즈 수정 -->
+	<jsp:include page="${requestScope.footer}"/> 
 </body>
 
 </html>

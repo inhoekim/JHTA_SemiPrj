@@ -13,7 +13,7 @@ public class AdminHomeController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String apage=req.getParameter("apage");
 	    if(apage==null){
-	    	apage="/Hlogin/main.jsp";
+	    	apage="/Admin/main.jsp";
 	    }
 		req.setAttribute("header", "/Admin/header.jsp");
 		req.setAttribute("main", apage);
