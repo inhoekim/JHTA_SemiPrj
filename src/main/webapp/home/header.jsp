@@ -11,7 +11,7 @@
 			<a href="${cp}/je/AdminService/AdminLogin.jsp">관리자로그인</a>
 			<a href="${cp}/sh/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
 			 line-height: 40px; color: #ff6666;">회원가입</a>
-			<a href="${cp}/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
+			<a href="${cp}/login/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
 			border-radius: 4px; line-height: 40px; color: #ffffff;">
 			
 			

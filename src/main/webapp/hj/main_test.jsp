@@ -68,7 +68,7 @@
 >>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj
 <c:choose>
 	<c:when test="${empty sessionScope.hlogin_id }">
-		<a href="${cp}/hj/login_hj.jsp">로그인</a> |
+		<a href="${cp}/login/login_hj.jsp">로그인</a> |
 		<a href="${cp}/sh/Gaipsh.jsp">회원가입</a><!-- 상훈수정 --> |
 		<a href="${cp}/je/AdminService/AdminLogin.jsp">관리자로그인</a>
 	</c:when>

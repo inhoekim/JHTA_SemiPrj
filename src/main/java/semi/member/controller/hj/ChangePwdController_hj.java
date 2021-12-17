@@ -21,10 +21,10 @@ public class ChangePwdController_hj extends HttpServlet{
 		HloginVoje vo=dao.selectpwd(hlogin_id, jnum);
 		if(vo==null) {	//아이디랑 주민번호가 일치하면 changePwd.jsp페이지로 이동
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/hj/result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/findPwd/result.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/hj/changePwd.jsp").forward(req, resp); 
+			req.getRequestDispatcher("/findPwd/changePwd.jsp").forward(req, resp); 
 		}
 	}
 	@Override
@@ -40,6 +40,6 @@ public class ChangePwdController_hj extends HttpServlet{
 		}else {
 			req.setAttribute("result", "fail");
 		}
-		req.getRequestDispatcher("/hj/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/findPwd/result.jsp").forward(req, resp);
 	}
 }
