@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,8 +9,11 @@
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 	<style type="text/css">
 	    *{
-		text-align: center;
 		font-family: do hyeon; 
+		}
+		div#maindiv{
+			text-align: center;
+
 		}
 		table {
 			margin: auto;
@@ -27,9 +30,6 @@
 			color:white;
 			font-size:20px;
 		}
-		
-	
-	
 	</style>
 	<script type="text/javascript">
 		function WriteBoard() {
@@ -39,7 +39,7 @@
 	</script>
 </head>
 <body>
-<div>
+<div id="maindiv">
 <h1>문의 게시판</h1>
 <div id="a">
 	<form method="post" action="${cp }/service/board/list" name="inform">
