@@ -9,19 +9,33 @@
 	<style type="text/css">
 		* {
 			text-align: center;
-			margin: 5px
+			margin: 5px;
+			font-family: do hyeon; 
+			
 		}
 		
 		table {
-			margin: auto
+			margin: auto;
+			border-radius: 4px;
+			border:1px solid #ff6666;
+			border-collapse: collapse;
+			width:300px;
+			height:200px;
 		}
 		
 		td#content {
 			text-align: left
 		}
+			   
+		th{
+			background-color: #ff6666;
+			color:white; 
+			font-size:20px;
+		}
+		td#a{
+		 background-color: pink;
+		 color :navy;
 		
-		td#title {
-			text-align: left
 		}
 	</style>
 <c:set var="cp" value="${pageContext.request.contextPath }" />
@@ -39,28 +53,28 @@
 </head>
 <body>
 <h3>문의 게시판</h3>
-	<table border="1" heigth=100>
+	<table border="1" >
 		<tr>
-			<td>글번호</td>
+			<td id="a">글번호</td>
 			<td>${vo.service_id }</td>
-			<td>작성날짜</td>
+			<td id="a">작성날짜</td>
 			<td>${vo.created_day }</td>
 		</tr>
 		<tr>
-			<td>작성자</td>
+			<td id="a">작성자</td>
 			<td>${vo.writer }</td>
-			<td>수정날짜</td>
+			<td id="a">수정날짜</td>
 			<td>${vo.updated_day }</td>
 		</tr>
 		<tr>
-			<td>제목</td>
+			<td id="a">제목</td>
 			<td colspan="3" id="title">${vo.title }</td>
 		</tr>
 		<tr>
-			<td>내용</td>
+			<td id="a">내용</td>
 			<td colspan="3" style="white-space:pre;" id="content">${vo.content }</td>
 		</tr>
-	</table>
+	</table><br>
 	
 	   <input type="button" value="답글" onclick="Comment()">
 	   <input type="button" value="삭제" onclick="Delete()">

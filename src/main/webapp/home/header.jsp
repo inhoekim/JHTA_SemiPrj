@@ -21,8 +21,8 @@
 		<c:otherwise>
 			<span>[${sessionScope.hlogin_id}님 반갑습니다]</span>
 			<a href="${cp}/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
-			<a href="${cp}/service/board/list">문의게시판</a>
-			<a href="${cp}/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
+			<a href="${cp}/service/board/list">문의게시판</a> 
+			<a href="${cp}/deleteid">회원탈퇴하기</a>
 			<a href="${cp}/review/main.jsp">리뷰메인</a>
 			<a href="${cp}/logout">로그아웃</a>
 	

@@ -8,16 +8,24 @@
 <title>Insert title here</title>
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 	<style type="text/css">
-		* {
-			text-align: center;
+		    *{
+		text-align: center;
+		font-family: do hyeon; 
 		}
-		
 		table {
-			margin: auto
+			margin: auto;
+			border-radius: 4px;
+			border:1px solid #ff6666;
+			border-collapse: collapse;
+			line-height:1.5;
 		}
-		
 		td#title {
-			text-align: left
+			text-align:left
+		}
+		th{
+			background-color: #ff6666;
+			color:white;
+			font-size:20px;
 		}
 	</style>
 	<script type="text/javascript">
