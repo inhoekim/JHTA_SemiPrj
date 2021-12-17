@@ -7,7 +7,7 @@
 <title>Login</title>
 <style>
 	#loginform{
-		width:400px; height:300px; border:solid 2px #EAEAEA; 
+		width:400px; height:300px; border:solid 2px #ff6666; 
 	}
 /*	#loginbtn{
 		width:50px; height:20px; border:solid 2px #ff6666; background-color: #ff6666; text-align:center;
@@ -28,7 +28,6 @@
 		
 		<p><a href="${pageContext.request.contextPath }/je/Hlogin/findidje.jsp">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd/findPwd.jsp">비밀번호 찾기</a></p>
 		<p>아직 회원이 아니신가요? <a href="${pageContext.request.contextPath }/sh/Gaipsh.jsp">회원가입</a></p>
-		<p><a href="${pageContext.request.contextPath }/je/AdminService/AdminLogin.jsp" style="color:gray">관리자 로그인</a></p>
 
 	</form>
 </div>
