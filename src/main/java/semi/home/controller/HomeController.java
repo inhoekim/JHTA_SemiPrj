@@ -17,7 +17,7 @@ public class HomeController extends HttpServlet{
 	    	spage="/home/main.jsp";
 	    }
 		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("serchbar","/home/searchBar.jsp");
+		req.setAttribute("searchbar","/home/searchBar.jsp");
 		req.setAttribute("main", spage);
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);

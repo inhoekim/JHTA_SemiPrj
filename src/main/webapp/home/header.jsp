@@ -11,10 +11,10 @@
 <div id="memberTab" style="float : right; position: absolute; right:15%;">
 	<c:choose>
 		<c:when test="${empty sessionScope.hlogin_id }">
-			<a href="${cp}/je/AdminService/AdminLogin.jsp">관리자로그인</a>
-			<a href="${cp}/sh/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
+			<a href="${cp}/home?spage=/je/AdminService/AdminLogin.jsp">관리자로그인</a>
+			<a href="${cp}/home?spage=/sh/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
 			 line-height: 40px; color: #ff6666;">회원가입</a>
-			<a href="${cp}/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
+			<a href="${cp}/home?spage=/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
 			border-radius: 4px; line-height: 40px; color: #ffffff;">로그인</a>
 		</c:when>
 		
@@ -29,9 +29,9 @@
 					<div class="alarm_wrap" id="alarm_wrap"></div>
 				</div>
 			</div>
-			<a href="${cp}/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
-			<a href="${cp}/service/board/list">문의게시판</a>
-			<a href="${cp}/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
+			<a href="${cp}/home?spage=/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
+			<a href="${cp}/home?spage=/service/board/list">문의게시판</a>
+			<a href="${cp}/home?spage=/deleteid">회원탈퇴하기</a>
 			<a href="${cp}/review/main.jsp">리뷰메인</a>
 			<a href="${cp}/logout">로그아웃</a>
 		</c:otherwise>
