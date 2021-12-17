@@ -14,7 +14,7 @@
 			<a href="${cp}/home?spage=/je/AdminService/AdminLogin.jsp">관리자로그인</a>
 			<a href="${cp}/home?spage=/home/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
 			 line-height: 40px; color: #ff6666;">회원가입</a>
-			<a href="${cp}/home?spage=/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
+			<a href="${cp}/home?spage=/home/login.jsp" style="background-color: #ff6666; min-width: 82px; 
 			border-radius: 4px; line-height: 40px; color: #ffffff;">로그인</a>
 		</c:when>
 		

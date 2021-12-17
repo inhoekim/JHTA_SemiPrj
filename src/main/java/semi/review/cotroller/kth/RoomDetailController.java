@@ -49,7 +49,10 @@ public class RoomDetailController extends HttpServlet {
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("startPage", startPage);
 		req.setAttribute("endPage", endPage);
-		req.getRequestDispatcher("/review/roomDetail.jsp").forward(req, resp);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/review/roomDetail.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 	
 }

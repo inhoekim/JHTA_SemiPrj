@@ -27,7 +27,10 @@ public class ReviewWriteController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		//int room_id = Integer.parseInt(req.getParameter("room_id"));
 		int room_id = 1; // 더미 값 (삭제 예정)
-		resp.sendRedirect(req.getContextPath() + "/review/reviewWrite.jsp?room_id=" + room_id);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/review/reviewWrite.jsp?room_id=" + room_id);
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -84,7 +87,9 @@ public class ReviewWriteController extends HttpServlet {
 		RoomDao roomDao = RoomDao.getInstance();
 		roomDao.roomRateUpdate(room_id, rate);
 		
-		resp.sendRedirect(req.getContextPath() + "/review/main.jsp");
-		
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/review/list");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }

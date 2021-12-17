@@ -25,6 +25,6 @@ public class LogoutController extends HttpServlet{
 		cook1.setPath("/");
 		resp.addCookie(cook1);
 		
-		resp.sendRedirect("/semiPrj/hj/main_test.jsp");
+		resp.sendRedirect("/semiPrj/home/header.jsp");
 	}
 }

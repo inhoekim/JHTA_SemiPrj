@@ -74,10 +74,6 @@
 		resize: none;
 	}
 	
-	#comment_td {
-		padding: 5 0;
-	}
-	
 	.comment_edit {
 		float: right;
 		padding: 10 10;
@@ -87,11 +83,6 @@
 		color: black;
 		font-weight: bold;
 		text-decoration: none;
-		padding-right: 10px;
-	}
-	
-	#reply_delete {
-		padding-left: 20px;
 		padding-right: 10px;
 	}
 	
@@ -114,7 +105,7 @@
 		<c:if test="${requestScope.src_name != null }">
 			<div class="img_wrap">
 				<span>
-					<img src="/semiPrj/images/img.png" width="400" height="350">
+					<img src="${requestScope.src }" width="400" height="350">
 				</span>
 			</div>
 		</c:if>
@@ -154,22 +145,43 @@
 	</div>
 	<div class="comment_write_wrap">
 		<div class="comment_area">
-			<textarea rows="4" cols="80" id="comment_text_area"></textarea>
+			<textarea rows="4" cols="80" id="comment_text_area" onclick="loginCheck()"></textarea>
 		</div>
 		<div class="comment_btn">
 			<input type="button" value="댓글쓰기" id="comment_btn" onclick="commentsBtn()">
 		</div>
 		<div class="comment_edit">
-			<%-- <c:if test=""> --%>
+			<c:if test="${sessionScope.hlogin_id == vo.hlogin_id }">
 				<input type="button" value="수정" onclick="reviewEdit()">
 				<input type="button" value="삭제" onclick="reviewDel()">
-			<%--</c:if>--%>
+			</c:if>
 		</div>
 	</div>
-	
 </div>
 <script>
 	var xhr = null;
+	
+	function loginCheck() {
+		// 로그인 안 하면 로그인 페이지로
+		let check = '<c:out value="${requestScope.id}"/>';
+		if (check == 'fail') {
+			location.href = '${path}/login';
+		}
+	}
+	
+	/* function getCookie() {
+		let name = 'hlogin_id';
+		// 문서에 있는 쿠키 값 저장
+		let cookie = document.cookie.replace(" ", "");
+		// ; 기준으로 쿠키 나누기
+		cookie = cookie.split(";");
+		// 쿠키 길이만큼 루프
+		for (let i = 0; i < cookie.length; i++) {
+			if (cookie[i].split) {
+				
+			}
+		}
+	} */
 	
 	function commentsList(i, review_id) {
 		xhr = new XMLHttpRequest();
@@ -188,6 +200,7 @@
 				let data = xhr.responseText;
 				let json = JSON.parse(data);
 				let comment_cnt = document.getElementById("comment_max");
+				let id = '<c:out value="${requestScope.id}"/>';
 				// 부모 태그
 				let tbody = document.getElementById("comment_tbody");
 				let comment_paging = document.getElementById("comment_paging");
@@ -230,11 +243,15 @@
 						let tbody = document.getElementById("comment_tbody");
 						let comm_tr = document.createElement("tr");
 						
-						comm_tr.innerHTML = "<td id='comment_td'>" + hlogin_id + "</td>"
-										  + "<td id='comment_td'>" + content + "</td>"
-										  + "<td id='comment_td'>" + created_day 
-										  //+ "&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='reply'>답글</a>"
-										  + "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a>";
+						let del = "</td>";
+						if (hlogin_id == id) {
+						  	del = "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a></td>";
+						  }
+						
+						comm_tr.innerHTML = "<td class='comment_td'>" + hlogin_id + "</td>"
+										  + "<td class='comment_td'>" + content + "</td>"
+										  + "<td class='comment_td'>" + created_day
+										  + del;
 										  //+ "<a href='#' id='reply_edit'>수정</a></td>";
 						
 						tbody.appendChild(comm_tr);
@@ -285,6 +302,12 @@
 	}
 	// 댓글 등록
 	function commentsBtn() {
+		// 로그인 안 하면 로그인 페이지로
+		let check = '<c:out value="${requestScope.id}"/>';
+		if (check == 'fail') {
+			location.href = '${path}/login';
+		}
+		
 		xhr = new XMLHttpRequest();
 		
 		let content = document.getElementById("comment_text_area").value;
@@ -330,8 +353,8 @@
 	}
 	
 	// 리뷰 수정
-	function commentEdit() {
-		
+	function reviewEdit() {
+		location.href = "${path}/review/update?review_id=${vo.review_id}"
 	}
 	
 	// 리뷰 삭제

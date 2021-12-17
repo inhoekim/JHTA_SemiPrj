@@ -50,12 +50,11 @@ public class ImgFileDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "select rv.review_id, src_name "
 					+ "from review rv, files fs "
-					+ "where rv.review_id = fs.review_id and rv.review_id = ?";
+					+ "where rv.review_id = fs.review_id and fs.review_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_id);
 			rs = pstmt.executeQuery();

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	#changepwdform {
-		width:600px; height:220px; border:solid 2px #EAEAEA;
+		width:600px; height:220px; border:solid 2px #ff6666;
 	}
 </style>
 </head>
