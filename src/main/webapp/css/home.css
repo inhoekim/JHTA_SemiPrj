@@ -5,11 +5,10 @@ header {
 }
 
 nav {
-	background-color:#339999;
-	color:white;
 	width:220px;
 	height:100%;
 	float:left;
+	border-right: 1px solid #eeeeee;
 }
 
 footer {
@@ -136,4 +135,21 @@ section {height: 220px;}
 .menu_list {
 	position: absolute;
 	z-index: 1;
+}
+
+input[type=range] { 
+    -webkit-appearance: none;
+    width:70%;
+    height: 3px;
+    background: #ff6666;
+  }
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none; /*기본 스타일을 사용할지 말지 정하기 */
+    height: 13px;
+    width: 13px;
+    border-radius: 15px;
+    outline: 0;
+    border: 1px solid #ff6666;
+    background: #ff6666;
 }

@@ -5,13 +5,16 @@
 
 <head>
 <meta charset="UTF-8">
-<title>HTML Layouts</title>
+<title>우리우리호텔</title>
 <link href="${cp}/css/home.css" rel="stylesheet" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 </head>
 
 
 <body>
-	<jsp:include page="/search/header.html"/>
+	<jsp:include page="/home/header.jsp"/>
 	<jsp:include page="/search/searchBar.jsp"/>
 	<div style="height:100%;">
 		<jsp:include page="/search/nav.jsp"/>
@@ -19,7 +22,7 @@
 		</div>
 	</div>
 
-	<jsp:include page="/search/footer.html"/>
+	<jsp:include page="/home/footer.html"/>
 </body>
 
 <script src="${cp}/js/calendar.js"></script>
@@ -51,6 +54,10 @@
 					}
 				}
 			};
+		let calendarBox = document.getElementById("calendarBox");
+		calendarBox.style.visibility="hidden";
+		let peopleBox = document.getElementById("peopleBox");
+		peopleBox.style.visibility="hidden";
 		xhr.open("post","${cp}/search",true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		let checkIn = document.getElementById("checkInForm").value;
