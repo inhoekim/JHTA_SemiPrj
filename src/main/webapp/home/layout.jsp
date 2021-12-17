@@ -111,4 +111,3 @@
 		printCalendar();
 	}
 </script>
-</html>

@@ -7,6 +7,43 @@
 <meta charset="UTF-8">
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 <title>Insert title here</title>
+<style type="text/css">
+			* {
+			text-align: center;
+			margin: 5px;
+			font-family: do hyeon; 
+			
+		}
+		
+		table {
+			margin: auto;
+			border-radius: 4px;
+			border:1px solid #ff6666;
+			border-collapse: collapse;
+			width:300px;
+			height:200px;
+		}
+		
+		td#content {
+			text-align: left
+		}
+			   
+		th{
+			background-color: #ff6666;
+			color:white; 
+			font-size:20px;
+		}
+		td#a{
+		 background-color: pink;
+		 color :navy;
+		
+		}
+
+
+
+
+
+</style>
 <script type="text/javascript">
 	function rollbackList() {
 		location.href="${cp }/service/board/list";
