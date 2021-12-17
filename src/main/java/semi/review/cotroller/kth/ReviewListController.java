@@ -55,7 +55,9 @@ public class ReviewListController extends HttpServlet {
 		req.setAttribute("endPage", endPage);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/review/roomReviewList.jsp").forward(req, resp);
-		
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/review/roomReviewList.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }
