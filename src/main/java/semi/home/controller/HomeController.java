@@ -14,10 +14,10 @@ public class HomeController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String spage=req.getParameter("spage");
 	    if(spage==null){
+	    	req.setAttribute("searchbar","/home/searchBar.jsp");
 	    	spage="/home/main.jsp";
 	    }
 		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("searchbar","/home/searchBar.jsp");
 		req.setAttribute("main", spage);
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
