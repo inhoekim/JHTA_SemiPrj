@@ -8,7 +8,7 @@
 <div id="memberTab" style="float : right; position: absolute; right:15%;">
 	<c:choose>
 		<c:when test="${empty sessionScope.admin_id }">
-			<a href="${cp}/admin?apage=/je/AdminService/AdminLogin.jsp">관리자로그인</a>
+			<a href="${cp}/admin?apage=/Admin/AdminLogin.html">관리자로그인</a>
 		</c:when>
 		
 		<c:otherwise>

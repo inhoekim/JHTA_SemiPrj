@@ -5,7 +5,6 @@
 <head>
 <style type="text/css">
 	div#serchid {
-		
 		width:300px;
 		height:200px;
 		border: 2px solid #ff6666;	

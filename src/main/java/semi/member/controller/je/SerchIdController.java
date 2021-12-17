@@ -12,7 +12,7 @@ public class SerchIdController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("main", "/FindId/FindId.jsp");
+		req.setAttribute("main", "/home/FindId.jsp");
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/FindId/layoutje.jsp").forward(req, resp);
 	}
