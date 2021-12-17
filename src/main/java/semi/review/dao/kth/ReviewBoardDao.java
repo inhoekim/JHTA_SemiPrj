@@ -273,7 +273,7 @@ public class ReviewBoardDao {
 			JdbcUtil.close(con, cstmt, null);
 		}
 	}
-
+	// 조회수
 	public void viewsUpdate(int review_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -285,6 +285,28 @@ public class ReviewBoardDao {
 					+ "where review_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	// 리뷰 수정
+	public void reviewUpdate(int review_id, String title, String content) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "update review "
+					+ "set title = ?, content = ? "
+					+ "where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, review_id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import semi.member.dao.hj.MemberDao;
 @WebServlet("/main")
 public class MainController_hj extends HttpServlet{
 	@Override
@@ -20,6 +19,8 @@ public class MainController_hj extends HttpServlet{
 		Cookie[] cookies=req.getCookies();
 
 		HashMap<String, String> map=new HashMap<String, String>();
+		
+		req.setAttribute("main", "/hj/main_test.jsp");
 		
 		if(cookies!=null){
 			for(Cookie ck:cookies){
@@ -30,11 +31,11 @@ public class MainController_hj extends HttpServlet{
 				}
 			}
 		}else {
-			resp.sendRedirect(req.getContextPath() + "/hj/main_test.jsp");
+			req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 			return; 
 		}
 		HttpSession session=req.getSession();
 		session.setAttribute("hlogin_id", map.get("hlogin_id"));
-		resp.sendRedirect(req.getContextPath() + "/hj/main_test.jsp");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }	

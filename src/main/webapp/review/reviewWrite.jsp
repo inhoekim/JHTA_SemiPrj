@@ -24,36 +24,127 @@
 	}
 	
 	#review_write_form fieldset label:hover {
-		text-shadow: 0 0 0 #a00; /* 마우스 호버 */
+		text-shadow: 0 0 0 #E4E018; /* 마우스 호버 */
 	}
 	
 	#review_write_form fieldset label:hover ~ label {
-		text-shadow: 0 0 0 #a00;	/* 마우스 호버 뒤에오는 별 색상 */
+		text-shadow: 0 0 0 #E4E018;	/* 마우스 호버 뒤에오는 별 색상 */
 	}
 	
 	#review_write_form fieldset input[type=radio]:checked ~ label {
-		text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
+		text-shadow: 0 0 0 #E4E018; /* 마우스 클릭 체크 */
 	}
 	/* 별점 끝 */
 	
 	.err {
-		font-size: 0.5em;
-		color: blue;
+		font-size: 1em;
+		color: #ff6666;
 	}
 	
 	#content {
 		resize: none;
 	}
+	
+	.review_write {
+		margin: auto;
+		width: 600px;
+	}
+	
+	#star_field {
+		margin-left: 0;
+		padding-left: 0;
+	}
+	
+	#title_div {
+		margin: 10px 0px 10px 0px;
+	}
+	
+	.content_label_div {
+		margin: 10px 0px 10px 0px;
+	}
+	
+	#add_btn_div {
+		clear: both;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	
+	#add_btn {
+		border: 1px solid #ff6666;
+		background-color: rgba(0, 0, 0, 0);
+		color: #ff6666;
+		width: 80px;
+		height: 30px;
+		border-radius: 10px;
+	}
+	
+	#add_btn:hover {
+		color: white;
+		background-color: #ff6666;
+	}
+	
+	#content {
+		border: 1px solid #ff6666;
+		border-radius: 5px;
+	}
+	
+	
+	input[type="text"] {
+		border: 1px solid #ff6666;
+		border-radius: 5px;
+		height: 24px;
+		width: 140px;
+	}
+	
+	input[type="file"] {
+		display: none;
+	}
+	
+	input:focus {
+		outline: 1px solid #ff6666;
+	}
+	
+	textarea:focus {
+		outline: 1px solid #ff6666;
+	}
+	
+	.input_file_btn {
+		border: 1px solid #ff6666;
+		background-color: white;
+		border-radius: 8px;
+		color: #ff6666;
+		cursor: pointer;
+		padding: 4px 21px;
+		float: left;
+	}
+	
+	.input_file_btn:hover {
+		color: white;
+		background-color: #ff6666;
+	}
+	
+	.file_name_div {
+		float: left;
+		margin-right: 5px;
+	}
+	
+	#file_err {
+		clear: both;
+	}
+	
 </style>
 <div class="review_writewrap">
 	<div class="review_write">
 		<form id="review_write_form" method="post" action="${pageContext.request.contextPath }/review/write" enctype="multipart/form-data">
-			<label>제목</label>
+			<div id="title_div">
+				<label id="title_label">제목</label>
+			</div>
+			<div>
+				<input type="text" name="title" id="title" style="width:225px;" onkeyup="titleCheck()">
+				<span id="title_err" class="err"></span>
+			</div>
 			<br>
-			<input type="text" name="title" id="title" onkeyup="titleCheck()">
-			<span id="title_err" class="err"></span>
-			<br>
-			<fieldset>
+			<fieldset id="star_field">
 				<legend>평점</legend>
 				<input type="radio" name="rating" value="5" id="rate1" onclick="rateSelect(event)"><label for="rate1">⭐</label>
 				<input type="radio" name="rating" value="4" id="rate2" onclick="rateSelect(event)"><label for="rate2">⭐</label>
@@ -63,10 +154,10 @@
 			</fieldset>
 			<input type="hidden" name="rate" id="rate">
 			<span id="rate_err" class="err"></span>
-			<br>
-			<label>내용</label>
-			<br>
-			<textarea rows="5" cols="50" name="content" id="content" maxlength="1999" onkeyup="contentCount()"></textarea>
+			<div class="content_label_div">
+				<label>내용</label>
+			</div>
+			<textarea rows="5" cols="30" name="content" id="content" id="content" maxlength="1999" onkeyup="contentCount()"></textarea>
 			<div class="textarea_count">
 				<span id="text_count">0</span> / 2000
 			</div>
@@ -74,15 +165,32 @@
 			<br>
 			<label>첨부파일</label>
 			<br>
-			<input type="file" name="file" id="file">
-			<span id="file_err" class="err"></span>
+			<div class="file_name_div">
+				<input type="text" id="file_name" readonly>
+			</div>
+			<label class="input_file_btn" for="input_file">업로드</label>
+			<div class="file_input_div">
+				<input type="file" class="file" id="input_file" onchange="fileName()">
+			</div>
 			<br>
-			<input type="button" value="등록"  onclick="check()">
+			<span id="file_err" class="err"></span>
+			<div id="add_btn_div">
+				<input type="button" value="등록" id="add_btn" onclick="check()">
+			</div>
 		</form>
 	</div>
 </div>
 <script>
 	var rate = 0;
+	
+	function fileName() {
+		let fileName = document.getElementById("input_file").value;
+		let file_val = document.getElementById("file_name");
+		let sub = fileName.substring(fileName.lastIndexOf('\\') + 1);
+		
+		file_val.value = sub;
+		
+	}
 	
 	function titleCheck() {
 		let title = document.getElementById("title").value;
@@ -118,7 +226,7 @@
 		// input
 		let title = document.getElementById("title").value;
 		let content = document.getElementById("content").value;
-		let file = document.getElementById("file").value;
+		let file = document.getElementById("input_file").value;
 		let hRate = document.getElementById("rate");
 		// 에러 관련 메시지
 		let title_err = document.getElementById("title_err");
