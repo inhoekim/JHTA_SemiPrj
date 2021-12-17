@@ -65,7 +65,7 @@
 <div>
 <% String cp=request.getContextPath(); %>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
->>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj
+
 <c:choose>
 	<c:when test="${empty sessionScope.hlogin_id }">
 		<a href="${cp}/hj/login_hj.jsp">로그인</a> |
@@ -74,11 +74,13 @@
 	</c:when>
 	<c:otherwise>
 		[${sessionScope.hlogin_id }님 반갑습니다.]<br>
-		<a href="${cp}/logout">로그아웃</a>
-		<a href="${cp}/service/board/list">문의게시판</a>
-		<a href="${cp}/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
-		<a href="${cp}/review/main.jsp">리뷰 메인</a>
-		<a href="${cp}/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
+		<div class="menu_list">
+			<a href="<%=cp %>/logout">로그아웃</a>
+			<a href="<%=cp %>/service/board/list">문의게시판</a>
+			<a href="<%=cp %>/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
+			<a href="<%=cp %>/review/main.jsp">리뷰 메인</a>
+			<a href="<%=cp %>/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
+		</div>
 	
 		<div class="header_wrap">
 			<span>[${sessionScope.hlogin_id }님 반갑습니다.] </span>
@@ -91,13 +93,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="menu_list">
-			<a href="<%=cp %>/logout">로그아웃</a>
-			<a href="<%=cp %>/service/board/list">문의게시판</a>
-			<a href="<%=cp %>/je/Hlogin/Deleteidje.html">회원탈퇴하기</a>
-			<a href="<%=cp %>/review/main.jsp">리뷰 메인</a>
-			<a href="<%=cp %>/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
-		</div>
+
 	</c:otherwise>
 </c:choose>
 </div>
