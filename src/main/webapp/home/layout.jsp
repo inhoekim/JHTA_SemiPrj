@@ -15,13 +15,7 @@
 
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.searchBar}"/>	
 	<jsp:include page="${requestScope.main}"/>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
-
-<script src="${cp}/js/calendar.js"></script>
-<script type="text/javascript">
-	printCalendar();
-</script>
 </html>
