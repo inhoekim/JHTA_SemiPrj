@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<div id="loginform" align="center">
+<div id="loginform" align="center"> <!--  -->
 	<h1>로그인</h1>
 	<form method="post" action="<%=request.getContextPath() %>/login">
 		아이디<input type="text" name="hlogin_id"><br>
