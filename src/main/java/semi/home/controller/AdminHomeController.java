@@ -1,4 +1,4 @@
-package semi.hlogin.controller;
+package semi.home.controller;
 
 import java.io.IOException;
 
