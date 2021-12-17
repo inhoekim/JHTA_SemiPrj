@@ -4,39 +4,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../css/home.css" rel="stylesheet" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <title>회원가입</title>
 <style type="text/css">
-		* {
+		.gaip_div {
 			text-align: center;
 			margin: 10px
 		}
-		
-
 	</style>
 </head>
 <body>
-<h2 style="">회원가입</h2>
-<br>
-<div>
-<form id="gaip_chk" method="post" action="<%=request.getContextPath() %>/Gaipsh">
-<input placeholder="아이디 입력" type="text" id= "hlogin_id" name="hlogin_id" maxlength="12" size="20"  style="width: 200pt; height:25pt; border-radius: 5px;">
-	 <input type="button" id= "hcheck_btn" value="중복확인" onclick="openIdChk()" style="width: 65pt; height:27pt; background-color: red;color: white; border: 1px solid white;
-	border-radius: 9px; font-size: 14px; position: absolute; " > <br>
-	 <small id= "hlogin_id_check" style="color: blue; display: inline;"></small>
-	 <br>
-	 <input type="hidden" value="idDup" onkeydown="idUnChk()">
- <input placeholder="비밀번호 입력" type="password" name="pwd" id="hlogin_pass" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
- <input placeholder="비밀번호 확인" type="password" name="pwdChk" id="hlogin_passcheck" maxlength="12" size="20" required  style="width: 200pt; height:25pt; border-radius: 5px;"><br>
-<small id= "pw_text_check" style="color: blue; display: inline;"></small><br>
-<input placeholder="이름 입력"  type="text" name="name" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
-<input  placeholder="주민등록번호 입력" type="text" id="jnum" name="jnum" maxlength="13" style="width: 200pt; height:25pt; border-radius: 5px;"><br>
-<small id= "jnum_text_check" style="color: blue; display: inline;"></small><br>
-<input placeholder="나이 입력" type="text" name="age" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
-<input placeholder="주소 입력"type="text" name="area" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br><br><br>
-	<input type="submit" value="가입하기" style="width: 215pt; height:35pt; background-color: red;color: white; border: 3px solid white;
+
+
+<div class="gaip_div">
+	<h2 style="">회원가입</h2>
+	<br>
+	<form id="gaip_chk" method="post" action="<%=request.getContextPath() %>/Gaipsh">
+	<input placeholder="아이디 입력" type="text" id= "hlogin_id" name="hlogin_id" maxlength="12" size="20"  style="width: 200pt; height:25pt; border-radius: 5px;">
+		 <input type="button" id= "hcheck_btn" value="중복확인" onclick="openIdChk()" style="width: 65pt; height:27pt; background-color: white;color: #ff6666; border: 1px solid #ff6666;
+		border-radius: 9px; font-size: 14px; position: absolute; " > <br>
+		 <small id= "hlogin_id_check" style="color: blue; display: inline;"></small>
+		 <br>
+		 <input type="hidden" value="idDup" onkeydown="idUnChk()">
+	 <input placeholder="비밀번호 입력" type="password" name="pwd" id="hlogin_pass" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+	 <input placeholder="비밀번호 확인" type="password" name="pwdChk" id="hlogin_passcheck" maxlength="12" size="20" required  style="width: 200pt; height:25pt; border-radius: 5px;"><br>
+	<small id= "pw_text_check" style="color: blue; display: inline;"></small><br>
+	<input placeholder="이름 입력"  type="text" name="name" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+	<input  placeholder="주민등록번호 입력" type="text" id="jnum" name="jnum" maxlength="13" style="width: 200pt; height:25pt; border-radius: 5px;"><br>
+	<small id= "jnum_text_check" style="color: blue; display: inline;"></small><br>
+	<input placeholder="나이 입력" type="text" name="age" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+	<input placeholder="주소 입력"type="text" name="area" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br><br><br>
+	<input type="submit" value="가입하기" style="width: 215pt; height:35pt; background-color: #ff6666;color: white; border: 3px solid white;
 	border-radius: 12px; font-size: 16px">
 	</form>
 	</div>
+	
 </body>
 <script type="text/javascript">
 window.onload = function(){
