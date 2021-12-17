@@ -14,7 +14,9 @@
 </head>
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.main }"/><!-- 사이즈 수정 -->
+	<div style="height: 800px;">
+	<jsp:include page="${requestScope.main }"/>
+	</div>
 	<jsp:include page="${requestScope.footer}"/> 
 </body>
 

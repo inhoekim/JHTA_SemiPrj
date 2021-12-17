@@ -22,7 +22,7 @@
 		로그인 유지 <input type="checkbox" name="chk" checked="checked"><br>
 		
 		<input type="submit" value="로그인">
-	<p><a href="${pageContext.request.contextPath }/findid">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd/findPwd.jsp">비밀번호 찾기</a></p>
+	<p><a href="${cp}/home?spage=/home/FindId.jsp">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd/findPwd.jsp">비밀번호 찾기</a></p>
 	<p>아직 회원이 아니신가요? <a href="${pageContext.request.contextPath }/sh/Gaipsh.jsp">회원가입</a></p>
 	</form>
 </div>

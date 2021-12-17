@@ -5,7 +5,6 @@
 <head>
 <style type="text/css">
 	div#serchid {
-		
 		width:300px;
 		height:200px;
 		border: 2px solid #ff6666;	
@@ -13,13 +12,14 @@
 		border-radius:4px;
 		float : right; position: absolute; right:35%; top:25%;
 		position: absolute;
+		text-align:center;
 	}
 	#serchid a{
 	display: inline-block;
 	line-height: 100px;
 	text-decoration:none;
     }
-	
+    
 </style>
 <script type="text/javascript">
 function findId(){
@@ -54,9 +54,8 @@ function findId(){
 		<p style="color: red; font-size: 13px">
 		*주민번호는 "-"를 제외한 13자리를 입력해주세요.</p>
 		<div id="result" style="font-size:25px;color:blue;"></div>	
-		<a href="${pageContext.request.contextPath }/hj/login_hj.jsp" style="background-color: #ff6666; min-width: 82px; 
+		<a href="${cp}/home?spage=/home/login.jsp" style="background-color: #ff6666; min-width: 82px; 
 		border-radius: 4px; line-height: 40px; color: #ffffff; min-width: 82px; ">로그인</a>
   </div>
-
 </body>
 </html>
