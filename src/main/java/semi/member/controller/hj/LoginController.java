@@ -58,13 +58,13 @@ public class LoginController extends HttpServlet{
 			
 			// 12월15일 태형 수정
 			req.setAttribute("list", list);
-			req.getRequestDispatcher("/home/header.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home").forward(req, resp);
 			
 			//resp.sendRedirect("/semiPrj/hj/main_test.jsp");
 		
 		}else {
 			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않습니다.");
-			req.getRequestDispatcher("/home/login.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home?spage=/home/login.jsp").forward(req, resp);
 		}
 	}
 }
