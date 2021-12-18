@@ -17,7 +17,7 @@
 	<div style="height: 800px;">
 	<jsp:include page="${requestScope.main }"/>
 	</div>
-	<jsp:include page="${requestScope.footer}"/> 
+	<jsp:include page="${requestScope.footer}"/>  
 </body>
 
 </html>
