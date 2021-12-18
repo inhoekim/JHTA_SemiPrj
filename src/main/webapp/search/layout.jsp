@@ -18,7 +18,7 @@
 	<jsp:include page="/search/searchBar.jsp"/>
 	<div style="height:100%;">
 		<jsp:include page="/search/nav.jsp"/>
-		<ul id="searchResult" style="list-style: none; float: left; margin-top:20px; width:50%; position: relative; left:11%;">
+		<ul id="searchResult" style="list-style: none; float: left; margin-top:40px; width:50%; position: relative; left:11%;">
 		</ul>
 
 	</div>
@@ -45,10 +45,15 @@
 						let peopleNum = document.getElementById("peopleNum").value;
 						let link = "${cp}/reserve?room=" + json[i].room_id + "&checkIn=" + checkIn + 
 						"&checkOut=" + checkOut + "&people=" + peopleNum;
-						let htmlStr =  "<a href='" + link + "'><div style='width:100%;height:220px;'>";
-						htmlStr += "<div style='width:25%; height:100%; overflow: hidden;'><img src='${cp}/" + json[i].src + "'></div>";
-						htmlStr += "<div><p>객실평점 :" + json[i].rate + "</p>";
-						htmlStr += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,json[i].price) + "원</p></div>";
+						let htmlStr =  "<a href='" + link + "'><div style='width:100%;height:200px;'>";
+						htmlStr += "<div style='width:25%; height:100%; overflow: hidden; float:left;'>";
+						htmlStr += "<img src='${cp}/" + json[i].src + "'></div>";
+						htmlStr += "<div style='display: flex; flex-direction: column; margin-left:20px;'>";
+						htmlStr += "<p style='border:1px solid #474747; color: #474747; width:40px;'>객실 " + json[i].room_id + "</p>";
+						htmlStr += "<p style='font-size:15px; color: #474747'>객실종류: 최대" + json[i].capacity + "인/" + json[i].kind + "</p>";
+						htmlStr += "<p style='font-size:15px; color: #474747'>객실평점: " + json[i].rate + "</p>";
+						htmlStr += "<p style='font-size:22px; text-align:right; margin-right:20px; margin-bottom:0px;'>" + getTotalPrice(checkIn,checkOut,json[i].price).toLocaleString('en') + " 원</p>";
+						htmlStr += "<p style='font-size:13px; text-align:right; margin:0px; margin-right:20px; color: #D7D7D7'>세금 및 수수료 포함</p></div>";
 						htmlStr += "</div></a>";
 						li.innerHTML = htmlStr;
 						searchResult.appendChild(li);
@@ -186,12 +191,16 @@
 			let li = document.createElement("li");
 			let link = "${cp}/reserve?room=" + arr[i].room_id + "&checkIn=" + checkIn + 
 			"&checkOut=" + checkOut + "&people=" + peopleNum;
-			let htmlStr =  "<a href='" + link + "'>";
-			htmlStr += "<p>객실번호:" + arr[i].room_id + "</p>";
-			htmlStr += "<p>객실이미지: " +arr[i].src + "</p>";
-			htmlStr += "<p>객실평점 :" + arr[i].rate + "</p>";
-			htmlStr += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,arr[i].price) + "원</p>";
-			htmlStr += "</a>";
+			let htmlStr =  "<a href='" + link + "'><div style='width:100%;height:200px;'>";
+			htmlStr += "<div style='width:25%; height:100%; overflow: hidden; float:left;'>";
+			htmlStr += "<img src='${cp}/" + arr[i].src + "'></div>";
+			htmlStr += "<div style='display: flex; flex-direction: column; margin-left:20px;'>";
+			htmlStr += "<p style='border:1px solid #474747; color: #474747; width:40px;'>객실 " + arr[i].room_id + "</p>";
+			htmlStr += "<p style='font-size:15px; color: #474747'>객실종류: 최대" + arr[i].capacity + "인/" + arr[i].kind + "</p>";
+			htmlStr += "<p style='font-size:15px; color: #474747'>객실평점: " + arr[i].rate + "</p>";
+			htmlStr += "<p style='font-size:22px; text-align:right; margin-right:20px; margin-bottom:0px;'>" + getTotalPrice(checkIn,checkOut,arr[i].price).toLocaleString('en') + " 원</p>";
+			htmlStr += "<p style='font-size:13px; text-align:right; margin:0px; margin-right:20px; color: #D7D7D7'>세금 및 수수료 포함</p></div>";
+			htmlStr += "</div></a>";
 			li.innerHTML = htmlStr;
 			searchResult.appendChild(li);
 		}
