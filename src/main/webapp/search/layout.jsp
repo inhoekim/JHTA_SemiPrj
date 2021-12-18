@@ -18,8 +18,9 @@
 	<jsp:include page="/search/searchBar.jsp"/>
 	<div style="height:100%;">
 		<jsp:include page="/search/nav.jsp"/>
-		<ul id="searchResult" style="list-style: none; float: left; margin-top:20px;">
+		<ul id="searchResult" style="list-style: none; float: left; margin-top:20px; width:50%; position: relative; left:11%;">
 		</ul>
+
 	</div>
 
 	<jsp:include page="/home/footer.html"/>
@@ -44,12 +45,11 @@
 						let peopleNum = document.getElementById("peopleNum").value;
 						let link = "${cp}/reserve?room=" + json[i].room_id + "&checkIn=" + checkIn + 
 						"&checkOut=" + checkOut + "&people=" + peopleNum;
-						let htmlStr =  "<a href='" + link + "'>";
-						htmlStr += "<p>객실번호:" + json[i].room_id + "</p>";
-						htmlStr += "<p>객실이미지: " + json[i].src + "</p>";
-						htmlStr += "<p>객실평점 :" + json[i].rate + "</p>";
-						htmlStr += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,json[i].price) + "원</p>";
-						htmlStr += "</a>";
+						let htmlStr =  "<a href='" + link + "'><div style='width:100%;height:220px;'>";
+						htmlStr += "<div style='width:25%; height:100%; overflow: hidden;'><img src='${cp}/" + json[i].src + "'></div>";
+						htmlStr += "<div><p>객실평점 :" + json[i].rate + "</p>";
+						htmlStr += "<p>예상가격 :" + getTotalPrice(checkIn,checkOut,json[i].price) + "원</p></div>";
+						htmlStr += "</div></a>";
 						li.innerHTML = htmlStr;
 						searchResult.appendChild(li);
 					}

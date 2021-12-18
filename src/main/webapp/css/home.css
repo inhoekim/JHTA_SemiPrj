@@ -199,18 +199,23 @@ nav {
 	text-align:center;
 }
 
-#searchResult a{
-	height:215px;
+#searchResult a{	
 	text-decoration : none;
 	color : black;
 }
 
 #searchResult li{
+	border: 1px solid #eeeeee;
+	border-radius : 1em;
 	margin: 10px;
 	height: 100%;
 	margin-bottom: 30px;
 }
 
+#searchResult img{
+	height: 100%;
+	border-radius: 1em;
+}
 input[type=range] { 
     -webkit-appearance: none;
     width:70%;

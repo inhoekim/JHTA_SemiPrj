@@ -87,9 +87,6 @@ public class SearchController extends HttpServlet{
 				JSONObject room = (JSONObject)possible.get(i);
 				long totalPrice = ((int)room.get("price")) * day;
 				double rate = ((Double)room.get("rate"));
-				System.out.println(costMin);
-				System.out.println(costMax);
-				System.out.println(totalPrice);
 				if(totalPrice < Integer.parseInt(costMin) || totalPrice > Integer.parseInt(costMax)) continue;
 				if(rate < Integer.parseInt(review)) continue;
 				jsonArr.put(room);
