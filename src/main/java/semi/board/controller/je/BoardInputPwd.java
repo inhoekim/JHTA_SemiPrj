@@ -24,9 +24,17 @@ public class BoardInputPwd extends HttpServlet {
 	    //String content =vo.getContent();
 		//vo.setContent(content.replaceAll("\n","<br>"));
 		req.setAttribute("vo", vo);
-		req.getRequestDispatcher("/je/Service/detail.jsp").forward(req, resp);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/Service/detail.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/je/Service/detail.jsp").forward(req, resp);
 	     }else {
-	    req.getRequestDispatcher("/je/Service/Boarddetailfail.jsp").forward(req, resp);
+	    	req.setAttribute("errMsg", "비밀번호가 맞지 않습니다.");
+	    	req.setAttribute("header", "/home/header.jsp");
+	 		req.setAttribute("main", "/Service/InputPwd.jsp");
+	 		req.setAttribute("footer", "/home/footer.html");
+	 		req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
 	     }
 		}
 	}

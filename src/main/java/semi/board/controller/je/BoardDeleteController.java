@@ -19,9 +19,17 @@ public class BoardDeleteController extends HttpServlet {
 		int n = dao.delete(ref);
 		if (n > 0) {
 			req.setAttribute("result", "success");
+			req.setAttribute("header", "/home/header.jsp");
+			req.setAttribute("main", "/Service/DeleteResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
+			
 		} else {
 			req.setAttribute("result", "false");
+			req.setAttribute("header", "/home/header.jsp");
+			req.setAttribute("main", "/Service/DeleteResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/je/Service/BoardDeleteResult.jsp").forward(req, resp);
 	}
 }
