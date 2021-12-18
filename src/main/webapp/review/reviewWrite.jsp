@@ -170,7 +170,7 @@
 			</div>
 			<label class="input_file_btn" for="input_file">업로드</label>
 			<div class="file_input_div">
-				<input type="file" class="file" id="input_file" onchange="fileName()">
+				<input type="file" class="file" id="input_file" name="file" onchange="fileName()">
 			</div>
 			<br>
 			<span id="file_err" class="err"></span>
@@ -224,9 +224,9 @@
 	
 	function check() {
 		// input
-		let title = document.getElementById("title").value;
-		let content = document.getElementById("content").value;
-		let file = document.getElementById("input_file").value;
+		let title = document.getElementById("title");
+		let content = document.getElementById("content");
+		let file = document.getElementById("input_file");
 		let hRate = document.getElementById("rate");
 		// 에러 관련 메시지
 		let title_err = document.getElementById("title_err");
@@ -239,8 +239,9 @@
 		// form
 		let form = document.getElementById("review_write_form");
 		
-		if (title == "") {
+		if (title.value == "") {
 			title_err.innerHTML = "<br>제목을 입력해주세요.";
+			title.focus();
 			return;
 		}
 		
@@ -251,12 +252,13 @@
 		// 히든에 rate 값 넣기
 		hRate.value = rating;
 		
-		if (content == "" || content.length < 10) {
+		if (content.value == "" || content.value.length < 10) {
 			content_err.innerText = "10자 이상 입력해주세요.";
+			content.focus();
 			return;
 		}
 		
-		let fileName = file.substring(file.lastIndexOf(".") + 1);
+		let fileName = file.value.substring(file.value.lastIndexOf(".") + 1);
 		
 		if (fileName != "" && fileName != 'png' && fileName != 'jpg') {
 			file_err.innerHTML = "<br>png 또는 jpg 파일을 선택해주세요.";

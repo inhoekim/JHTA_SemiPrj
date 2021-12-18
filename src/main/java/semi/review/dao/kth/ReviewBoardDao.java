@@ -74,6 +74,12 @@ public class ReviewBoardDao {
 				int views = rs.getInt("views");
 				int recommend = rs.getInt("recommend");
 				Date created_day = rs.getDate("created_day");
+				
+				if (title.length() > 15) {
+					String sub = title.substring(0, 15) + "...";
+					title = sub;
+				}
+				
 				ReviewBoardVo vo = new ReviewBoardVo(review_id, room_id, hlogin_id, title, content, rate, views, recommend, created_day, created_day);
 				list.add(vo);
 			}

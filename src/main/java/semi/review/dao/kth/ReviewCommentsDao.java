@@ -184,6 +184,12 @@ public class ReviewCommentsDao {
 				int comment_id = rs.getInt("comment_id");
 				String hloginId = rs.getString("hlogin_id");
 				String content = rs.getString("content");
+				
+				if (content.length() > 10) {
+					String sub = content.substring(0, 10) + "...";
+					content = sub;
+				}
+				
 				ReviewCommentsVo vo = new ReviewCommentsVo(comment_id, review_id, hloginId, content, 1, null);
 				list.add(vo);
 			}
