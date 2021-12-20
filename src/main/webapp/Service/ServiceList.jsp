@@ -98,7 +98,7 @@
   </c:if>
 </div>
 <br>
-<a href="${cp }/service/board/list">전체글보기</a> | <a href="${cp }/je/Service/Boardmain.jsp">메인페이지로</a>
+<a href="${cp }/service/board/list">전체글보기</a> | <a href="${cp }/home">메인페이지로</a>
 </div>
 </body>
 </html>
