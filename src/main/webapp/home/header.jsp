@@ -11,18 +11,14 @@
 <div id="memberTab" style="float : right; position: absolute; right:15%;">
 	<c:choose>
 		<c:when test="${empty sessionScope.hlogin_id }">
-<<<<<<< HEAD
 			<a href="${cp}/home?spage=/je/AdminService/AdminLogin.jsp">관리자로그인</a>
-			<a href="${cp}/home?spage=/home/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
-=======
+			<a href="${cp}/home?spage=/home/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;"></a>
 			<a href="${cp}/home?spage=/Admin/Adminlogin.jsp">관리자로그인</a>
 			<a href="${cp}/home?spage=/sh/Gaipsh.jsp" style="border: 1px solid #ff6666; min-width: 82px; border-radius: 4px;
->>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj.git
 			 line-height: 40px; color: #ff6666;">회원가입</a>
 			<a href="${cp}/home?spage=/home/login.jsp" style="background-color: #ff6666; min-width: 82px; 
 			border-radius: 4px; line-height: 40px; color: #ffffff;">로그인</a>
 		</c:when>
-		
 		<c:otherwise>
 			<div class="header_wrap" style="display: inline-block;">
 				<span>[${sessionScope.hlogin_id}님 반갑습니다]</span>
