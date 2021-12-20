@@ -17,9 +17,9 @@
 			<a href="${cp}/admin?apage=/service/admin/list">문의게시판</a> 
 			<a href="${cp}"">회원관리하기</a>
 			<a href="${cp}/admin?apage=/review/main.jsp">리뷰메인</a>
-			<a href="${cp}/admin?apage=/logout">로그아웃</a>
+			<a href="${cp}/home">로그아웃</a>
 	
 		</c:otherwise>
 	</c:choose>
 </div>
-</header>
+</header> 

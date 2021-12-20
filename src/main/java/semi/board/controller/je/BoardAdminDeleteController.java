@@ -14,8 +14,11 @@ public class BoardAdminDeleteController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int ref = Integer.parseInt(req.getParameter("ref"));
+		int lev = Integer.parseInt(req.getParameter("lev"));
+		int step = Integer.parseInt(req.getParameter("step"));
+		int service_id = Integer.parseInt(req.getParameter("service_id"));
 		BoardDaoje dao = new BoardDaoje();
-		int n = dao.delete(ref);
+		int n = dao.delete(ref,lev,step,service_id);
 		if (n > 0) {
 			req.setAttribute("result", "success");
 			req.setAttribute("header", "/Admin/header.jsp");
