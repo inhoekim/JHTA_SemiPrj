@@ -1,62 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
+	pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<%
-	request.setCharacterEncoding("utf-8");
-	String writer = request.getParameter("writer");
-	String title = request.getParameter("title");
-	String content = request.getParameter("content");
-	String snum = request.getParameter("num");
-	
-	int num = 0;
-	
-	if (writer == null) {
-		writer = "";
-		title = "";
-		content = "";
+<style>
+	* {
+		margin: 0;
+		padding: 0;
 	}
 	
-	if (snum != null) {
-		num = Integer.parseInt(snum);
+	li {
+		list-style: none;
 	}
-%>
-<body>
-	<form method="post" action="insert.jsp">
-		<label>작성자</label>
-		<br>
-		<input type="text" name="writer" value="<%=writer %>">
-		<br>
-		<label>제목</label>
-		<br>
-		<input type="text" name="title" value="<%=title %>">
-		<br>
-		<label>내용</label>
-		<br>
-		<textarea name="content" rows="5" cols="50"><%=content %></textarea>
-		<br>
-		<label>첨부파일 개 수</label>
-		<input type="text" name="num" value="<%=num %>">
-		<br>
-		<input type="submit" value="확인">
-	</form>
-	<form method="post" action="insertOk.jsp" enctype="multipart/form-data">
-		<input type="hidden" name="writer" value="<%=writer %>">
-		<input type="hidden" name="writer" value="<%=title %>">
-		<input type="hidden" name="writer" value="<%=content %>">
-		<%
-			for (int i = 1; i <= num; i++) {
-		%>
-			<label>첨부파일<%=i %></label>
-			<input type="file" name="file<%=i %>"><br>
-		<%
-			}
-		%>
-		<input type="submit" value="전송">
-	</form>
-</body>
-</html>
+	
+	.slider_wrapper {
+		position: relative;
+		width: 300px;
+		margin: 0 auto;
+		height: 300px;
+		overflow: hidden;
+	}
+	
+	.slides {
+		position: absolute;
+		left: 0;
+		top: 0;
+		transition: left 0.5s ease-out;
+	}
+	
+	/* :not(:last-child) 마지막 요소는 css 안 줌 */
+	.slides li:not(:last-child) {
+		float: left;
+	}
+	
+	.controls {
+		position: absolute;
+		margin-top: 50px;
+		text-align: center;
+	}
+	
+	/* .controls span{
+		background: #333;
+		color: #fff;
+		padding: 10px 20px;
+		margin:0 10px;
+	} */
+</style>
+<div class="slider_wrapper">
+	<ul class="slides">
+		<li>
+			<div class="slide_content slide01" style="background-color: red; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: orange; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: yellow; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: lime; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: blue; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: skyblue; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: indigo; width:300px; height: 300px"></div>
+		</li>
+		<li>
+			<div class="slide_content slide01" style="background-color: purple; width:300px; height: 300px"></div>
+		</li>
+	</ul>	
+	<a href="#" id="prev"></a>
+	<a href="#" id="next"></a>
+</div>
+<!-- <p class="controls">
+	<span class="prev">prev</span>
+	<span class="next">next</span>
+</p> -->
+<script>
+	// ul
+	var slides = document.querySelector('.slides');
+	// li 배열
+	var slide = document.querySelectorAll('.slides li');
+	// 처음인지 끝인지 구분하는 변수
+	var currentIdx = 0;
+	// 끝인지 마지막인지 확인
+	var slideCount = slide.length;
+	// 이전 버튼
+	var prevBtn = document.querySelector('.prev');
+	// 다음 버튼
+	var nextBtn = document.querySelector('.next');
+	// 이미지 넓이
+	var slideWidth = 300;
+	// 이미지 margin
+	//var slideMargin = 30;
+	
+	//slides.style.width = (slideWidth + slideMargin) * slideCount  - slideMargin + 'px';
+	slides.style.width = slideWidth * slideCount + 'px';
+	
+	// 슬라이드 버튼
+	function moveSlide(num) {
+		//slides.style.left = -num * (slideWidth + slideMargin) + 'px';
+		slides.style.left = -num * slideWidth + 'px';
+		currentIdx = num;
+	}
+	// 다음
+	nextBtn.addEventListener('click', function() {
+		if (currentIdx < slideCount - 2) {
+			moveSlide(currentIdx + 1);
+			console.log(slideCount - 1);
+		} else {
+			moveSlide(0);
+		}
+	});
+	// 이전
+	prevBtn.addEventListener('click', function() {
+		if (currentIdx > 0) {
+			moveSlide(currentIdx - 1);
+		} else {
+			moveSlide(slideCount - 2)
+		}
+	});
+</script>
