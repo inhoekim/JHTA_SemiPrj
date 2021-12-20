@@ -59,12 +59,8 @@
 	</style>
 </head>
 <body>
-<<<<<<< HEAD
-
 <div style="height: 800px;">
 </div>
-
-=======
 	<div style="height: 800px;">
 		<div class="wrap_center">
 		  <div class="container">
@@ -98,8 +94,7 @@
 				
 		}
 	
-
+	
 	</script>
->>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj.git
 </body>
 </html>
