@@ -111,4 +111,10 @@
 		alarmList();
 		printCalendar();
 	}
+	
+	
+	window.onload=funtion(){
+		
+		
+	}
 </script>
