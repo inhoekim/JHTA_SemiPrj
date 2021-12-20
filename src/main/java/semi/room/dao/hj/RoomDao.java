@@ -29,8 +29,8 @@ public class RoomDao {
 			pstmt.setString(2, vo.getKind());
 			pstmt.setInt(3, vo.getCapcity());
 			pstmt.setInt(4, vo.getPrice());
-			pstmt.setString(5, vo.getSrc_name());
-			pstmt.setDouble(6, vo.getRate());
+			pstmt.setDouble(5, vo.getRate());
+			pstmt.setString(6, vo.getSrc_name());
 			return pstmt.executeUpdate();
 		}catch(SQLException s) {
 			s.printStackTrace();
@@ -48,10 +48,22 @@ public class RoomDao {
 			String sql="select * from room where room_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, room_id);
-			re=pstmt.executeQuery();
+			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String kind=rs.getString("kind");
+				int capcity=rs.getInt("capcity");
+				int price=rs.getInt("price");
+				Double rate=rs.getDouble("rate");
+				String src_name=rs.getString("src_name");
+				RoomVo vo=new RoomVo(room_id, kind, capcity, price, rate, src_name);
+				return vo;
 			}
+			return null;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
 	public ArrayList<RoomVo> roomselectAll(){
