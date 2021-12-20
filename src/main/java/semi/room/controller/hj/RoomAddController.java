@@ -1,5 +1,6 @@
 package semi.room.controller.hj;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -13,13 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import semi.img_file.vo.kth.ImgFileVo;
 import semi.room.dao.hj.RoomDao;
+import semi.room.vo.kth.RoomVo;
 @WebServlet("/addroom")
 public class RoomAddController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RoomDao dao=RoomDao.getInstance();
 		
 		ServletContext context = this.getServletContext();
 		String saveDir=context.getRealPath("/images");
@@ -33,13 +33,24 @@ public class RoomAddController extends HttpServlet{
 				new DefaultFileRenamePolicy() //중복 파일명을 위한 객체
 		);
 		int room_id=Integer.parseInt(mr.getParameter("room_id"));
-		String kind=mr.getParameter("kind");
-		int capacity=Integer.parseInt(mr.getParameter("capacity"));
-		int price=Integer.parseInt(mr.getParameter("price"));
-		String src_name=mr.getParameter("src_name");
-		int rete=Integer.parseInt(mr.getParameter("rete"));
+		String kind=mr.getParameter("kind"); //객실등급
+		int capacity=Integer.parseInt(mr.getParameter("capacity")); //객실인원
+		int price=Integer.parseInt(mr.getParameter("price")); //가격
+		Double rate=Double.parseDouble(mr.getParameter("rate")); //객실평점
+		String src_name=mr.getParameter("src_name"); //파일 경로
 		
-		ImgFileVo vo=dao.roomselectAll(room_id);
+		//db저장
+		//File f=new File(saveDir + "\\"); //업로드된 파일정보를 갖는 객체
+		RoomVo vo=new RoomVo(room_id, kind, capacity, price, rate, src_name);
+		RoomDao dao=RoomDao.getInstance();
+		int n=dao.insertRoom(vo);
+		if(n>0) {
+			req.setAttribute("result", "success");
+			req.setAttribute("successMsg", "데이터베이스에 저장 완료");
+		}else {
+			req.setAttribute("result", "fail");
+			req.setAttribute("failMsg", "다시 한 번 확인해 주세요.");
+		}
+		req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
 	}
-	
 }

@@ -18,9 +18,11 @@
 	<input type="text" name="kind"><br>
 	객실인원<br>
 	<input type="text" name="capacity"><br>
+	객실평점<br>
+	<input type="text" name="rate"><br>
 	객실비용<br>
 	<input type="text" name="price"><br>
-	객실사진첨부 <input type="file" name="addfile"><br>
+	객실사진첨부 <input type="file" name="src_name"><br>
 	<input type="submit" value="등록">
 </form>
 </body>
