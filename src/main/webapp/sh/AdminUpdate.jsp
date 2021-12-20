@@ -4,10 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../css/home.css" rel="stylesheet" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<title>회원가입</title>
+<style type="text/css">
+		.adidup_div {
+			text-align: center;
+			margin: 10px;
+			
+		}
+		*{
+		font-family: do hyeon; 
+		}
+	</style>
+<head>
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<h3>관리자 회원정보수정</h3>
+
 <body>
+<div class="adidup_div">
+<h3>관리자 회원정보수정</h3>
 <form id="gaip_chk" method="post" action="<%=request.getContextPath() %>/updateid">
 아이디<input type="text" name="hlogin_id" value="${vo.hlogin_id }" ><br>
 	 
@@ -23,5 +42,6 @@
 	<input type="submit" value="변경하기">
 	<input type="button" value="뒤로가기" onclick="history.back(-1);">
 	</form>
+	</div>
 </body>
 </html>

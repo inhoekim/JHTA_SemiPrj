@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.gaip.util.sh.Utility;
 import semi.member.Vo.je.HloginVoje;
+import semi.member.dao.je.HloginDaoje;
 
-import semi.member.dao.sh.GaipDao;
 
 
 
@@ -20,7 +20,7 @@ public class UpdateGaipAdminController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String hlogin_id=req.getParameter("hlogin_id");
-		GaipDao dao=new GaipDao();
+		HloginDaoje dao=new HloginDaoje();
 		HloginVoje vo=dao.selecthloginid(hlogin_id);
 		if(vo==null) {
 			req.setAttribute("result","fail");
@@ -41,7 +41,7 @@ public class UpdateGaipAdminController extends HttpServlet{
 		String area=req.getParameter("area");
 		int num=Integer.parseInt(req.getParameter("num"));
 		HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, null, num);
-		GaipDao dao=new GaipDao();
+		HloginDaoje dao=new HloginDaoje();
 		int n=dao.adminupdate(vo);
 		if(n>0) {
 			req.setAttribute("result","success");
