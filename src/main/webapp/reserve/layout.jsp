@@ -5,25 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>우리우리호텔</title>
-	<link href="${cp}/css/home.css" rel="stylesheet" type="text/css"/>
+<meta charset="UTF-8">
+<title>우리우리호텔</title>
+<link href="${cp}/css/home.css" rel="stylesheet" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.main}"/>
-	<jsp:include page="${requestScope.footer}"/>
+	<jsp:include page="/home/header.jsp"/>
+	<jsp:include page="/reserve/main.jsp"/>
+	<jsp:include page="/home/footer.html"/>
 </body>
-
-<script src="${cp}/js/dateCalc.js"></script>
-
-<script type="text/javascript">
-window.onload = function() {
-
-	document.getElementById("days").innerText = getday("${param.checkIn}", "${param.checkOut}") + "박";
-	document.getElementById("pay").innerText = "결제금액: " + getTotalPrice("${param.checkIn}", "${param.checkOut}", ${room.price}) + "원";
-}
-
-</script>
 </html>

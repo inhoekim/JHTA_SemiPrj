@@ -199,6 +199,7 @@ nav {
 	text-align:center;
 }
 
+
 #searchResult a{	
 	text-decoration : none;
 	color : black;
@@ -210,6 +211,11 @@ nav {
 	margin: 10px;
 	height: 100%;
 	margin-bottom: 30px;
+}
+
+#searchResult li:hover{
+	box-shadow: 0 0 10px 0.5px gray;
+	transition: all ease 0.2s 0s;
 }
 
 #searchResult img{
@@ -235,4 +241,18 @@ input[type=range]::-webkit-slider-thumb{
     outline: 0;
     border: 1px solid #ff6666;
     background: #ff6666;
+}
+
+/* Reserve영역 */
+
+.reserveForm{
+	text-align: left;
+	margin-top: 30px;	
+}
+
+.reserveForm label {
+	color : #8BA5B2;
+	display: inline-block;
+	width: 70px;
+	margin: 5px;
 }
