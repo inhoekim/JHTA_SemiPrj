@@ -12,8 +12,6 @@
     function ReturnLogin(){
         location.href="${pageContext.request.contextPath }/je/AdminService/AdminLogin.jsp";	
     }
-
-
 </script>
 </head>
 <body>

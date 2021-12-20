@@ -39,11 +39,17 @@ public class BoardAdminCommentController extends HttpServlet{
 		int n=dao.insert(vo);
 		if(n>0) {
 			req.setAttribute("result", "success");
+			req.setAttribute("header", "/Admin/header.jsp");
+			req.setAttribute("main", "/Admin/AdminResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("result", "fail");
+			req.setAttribute("header", "/Admin/header.jsp");
+			req.setAttribute("main", "/Admin/AdminResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/je/AdminService/AdminBoardResult.jsp").forward(req, resp);
-		
 	}
 
 }

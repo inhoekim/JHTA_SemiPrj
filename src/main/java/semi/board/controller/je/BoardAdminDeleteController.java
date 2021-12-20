@@ -18,10 +18,17 @@ public class BoardAdminDeleteController extends HttpServlet{
 		int n = dao.delete(ref);
 		if (n > 0) {
 			req.setAttribute("result", "success");
+			req.setAttribute("header", "/Admin/header.jsp");
+			req.setAttribute("main", "/Admin/AdminResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("result", "false");
+			req.setAttribute("header", "/Admin/header.jsp");
+			req.setAttribute("main", "/Admin/AdminResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/je/AdminService/AdminBoardDeleteResult.jsp").forward(req, resp);
 	}
 }
 
