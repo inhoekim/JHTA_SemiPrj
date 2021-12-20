@@ -40,40 +40,42 @@ public class ReserveController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session =req.getSession();
-		String id = (String) session.getAttribute("hlogin_id");
-		if(id == null || id.equals("")) {
+		String userID = (String) session.getAttribute("hlogin_id");
+		if(userID == null || userID.equals("")) {
 			resp.sendRedirect(req.getContextPath() + "/home?spage=/home/login.jsp");
 			return;
 		}
 		req.setCharacterEncoding("utf-8");
-		int room = Integer.parseInt(req.getParameter("roomID"));
+		int roomID = Integer.parseInt(req.getParameter("roomID"));
 		int people = Integer.parseInt(req.getParameter("people"));
 		String checkIn = req.getParameter("checkIn");
 		String checkOut = req.getParameter("checkOut");
 		ArrayList<Integer> oneArr = new ArrayList<>();
+		oneArr.add(roomID);
 		ReserveDao reserveDao = ReserveDao.getInstance();
 		HashMap<Integer,ArrayList<String>> map = reserveDao.getReserve(oneArr);
 		//예약 가능 확인
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		/*
-		for(String reservation: map.get(room)) {
+		for(String reservation: map.get(roomID)) {
 			try {
 				Date startDay = dateFormat.parse(reservation.split("~")[0]);
 				Date endDay = dateFormat.parse(reservation.split("~")[1]);
 				if(!(endDay.before(dateFormat.parse(checkIn)) || startDay.after(dateFormat.parse(checkOut))
-					|| endDay.equals(dateFormat.parse(checkIn)) || startDay.equals(dateFormat.parse(checkOut)))){
-					System.out.println("("+ room + "번방)");
-					System.out.println("체크인:"+ dateFormat.parse(checkIn) + "//체크아웃" + dateFormat.parse(checkOut) + "는");
-					System.out.println("예약일:" + startDay + "//종료일: " + endDay + " 충돌");
-					flag = false;
+						|| endDay.equals(dateFormat.parse(checkIn)) || startDay.equals(dateFormat.parse(checkOut)))){
+					req.setAttribute("errMsg", "해당 날짜에는 예약을 진행할 수 없습니다. 예약과정이 취소 되었습니다.");
+					req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+					return;
 				}
 			}catch(ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		*/
+		int result = reserveDao.reserve(userID,roomID,checkIn,checkOut);
+		if(result > 0) {
+			
+		}else {
 			
 		}
+	}
 }
 

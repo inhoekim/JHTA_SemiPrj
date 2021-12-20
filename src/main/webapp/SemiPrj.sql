@@ -40,7 +40,7 @@ CREATE TABLE RESERVE (
 	ROOM_ID number(5) NOT NULL,
 	START_DAY varchar2(30) NOT NULL,
 	END_DAY varchar2(30) NOT NULL,
-	STATEMENT number(1) default 1 NOT NULL, -- 1: 예약진행중, 2:예약완료, 3:예약취소 
+	STATEMENT number(1) default 1 NOT NULL, -- 1: 결제대기, 2:예약완료, 3:예약취소 
 	CONSTRAINT FK_RESERVE_HLOGINID FOREIGN KEY(HLOGIN_ID) REFERENCES HLOGIN(HLOGIN_ID)
 );
 
