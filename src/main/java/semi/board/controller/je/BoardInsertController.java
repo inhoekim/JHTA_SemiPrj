@@ -16,7 +16,7 @@ import semi.member.dao.je.BoardDaoje;
 public class BoardInsertController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath() + "/je/Service/Board.jsp");
+		resp.sendRedirect(req.getContextPath() + "/Service/Board.jsp");
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,7 +44,10 @@ public class BoardInsertController extends HttpServlet{
 		}else {
 			req.setAttribute("result", "fail");
 		}
-		req.getRequestDispatcher("/je/Service/BoardResult.jsp").forward(req, resp);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/Service/BoardResult.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
 		
 	}
 

@@ -21,38 +21,67 @@ public class RoomDetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String spageNum = req.getParameter("pageNum");
+//		String spageNum = req.getParameter("pageNum");
 		int room_id = Integer.parseInt(req.getParameter("room_id"));
-		int pageNum = 1;
-		if (spageNum != null) {
-			pageNum = Integer.parseInt(spageNum);
-		}
-		int startRow = (pageNum - 1) * 10 + 1;
-		int endRow = startRow + 4;
+//		int pageNum = 1;
+//		if (spageNum != null) {
+//			pageNum = Integer.parseInt(spageNum);
+//		}
+//		int startRow = (pageNum - 1) * 10 + 1;
+//		int endRow = startRow + 4;
 		
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
-		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, startRow, endRow);
+//		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, startRow, endRow);
+		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, 0, 0);
 		
 		int count = dao.getPageMaxNum(null, null, room_id);
-		int pageCount = (int)Math.ceil(count / 10.0);
-		
-		int startPage = ((pageNum - 1) / 10 * 10) + 3;
-		int endPage = startPage + 2;
-		
-		if (endPage > pageCount) {
-			endPage = pageCount;
-		}
+//		int pageCount = (int)Math.ceil(count / 10.0);
+//		
+//		int startPage = ((pageNum - 1) / 10 * 10) + 3;
+//		int endPage = startPage + 2;
+//		
+//		if (endPage > pageCount) {
+//			endPage = pageCount;
+//		}
 		
 		req.setAttribute("list", list);
-		req.setAttribute("pageNum", pageNum);
+//		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("room_id", room_id);
-		req.setAttribute("pageCount", pageCount);
-		req.setAttribute("startPage", startPage);
-		req.setAttribute("endPage", endPage);
-		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("main", "/review/roomDetail.jsp");
-		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		req.setAttribute("review_cnt", count);
+//		req.setAttribute("header", "/home/header.jsp");
+//		req.setAttribute("main", "/review/roomDetail.jsp");
+//		req.setAttribute("footer", "/home/footer.html");
+//		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/review/roomDetail.jsp").forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int room_id = Integer.parseInt(req.getParameter("room_id"));
+		System.out.println("room_id : " + room_id);
+		ReviewBoardDao dao = ReviewBoardDao.getInstance();
+		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, 0, 0);
+		
+		int count = dao.getPageMaxNum(null, null, room_id);
+		
+		resp.setContentType("text/plain; charset=utf-8");
+		PrintWriter pw = resp.getWriter();
+		
+		JSONArray jsonArr = new JSONArray();
+		JSONObject json = new JSONObject();
+		json.put("review_cnt", count);
+		
+		for (ReviewBoardVo vo : list) {
+			JSONObject json2 = new JSONObject();
+			json2.put("review_id", vo.getReview_id());
+			json2.put("hlogin_id", vo.getHlogin_id());
+			json2.put("content", vo.getContent());
+			json2.put("rate", vo.getRate());
+			json2.put("created_day", vo.getCreated_day());
+			jsonArr.put(json2);
+		}
+		
+		pw.print(jsonArr);
 	}
 	
 }

@@ -18,6 +18,9 @@ public class BoardAdminDtailController extends HttpServlet{
     	BoardDaoje dao = new BoardDaoje();
 		BoardVoje vo = dao.Adminselect(service_id);
 		req.setAttribute("vo", vo);
-		req.getRequestDispatcher("/je/AdminService/Admindetail.jsp").forward(req, resp);
+		req.setAttribute("header", "/Admin/header.jsp");
+		req.setAttribute("main", "/Admin/Admindetail.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
     }
 }

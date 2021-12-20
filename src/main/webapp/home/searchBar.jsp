@@ -6,13 +6,14 @@
 	<form action="${cp}/search" method="post">
 		<div class="checkbar" onclick="openCalendar()" style="width:600px; text-align: center; border-radius: 1em 0em 0em 1em; border: 1px solid black;">
 			<img src="${cp}/images/calendar.png" style="width:40px;height:40px;vertical-align:middle;position:relative;left:3%;">
-			<div style="width:25%; height:100%; display:inline-block; vertical-align: middle; ">
+			<div style="width:25%; height:100%; display:inline-block; vertical-align: middle;">
 				<p style="display:inline-block;">
 					<span style="font-size: 15px;color: #a5a3a3cc;">체크인</span><br>
 					<span id="inDate">날짜추가</span>
 				</p>
 				<input id="checkInForm" name="checkInForm" type="hidden" value="">
 			</div>
+			
 
 			<div style="width:25%; height:100%; display: inline-block; vertical-align: middle;">
 				<p id="nights" style="display:inline-block; line-height: 45px; font-size: 20px;">0박</p>

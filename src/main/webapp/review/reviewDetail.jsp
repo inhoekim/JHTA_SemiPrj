@@ -67,7 +67,7 @@
 	
 	#comment_btn {
 		width: 100px;
-		height: 64px;
+		height: 66px;
 	}
 	
 	#comment_text_area {
@@ -77,6 +77,7 @@
 	.comment_edit {
 		float: right;
 		padding: 10 10;
+		margin-top: 10px;
 	}
 	
 	#reply {
@@ -89,6 +90,51 @@
 	#reply_edit {
 		padding-left: 5px;
 	}
+	
+	textarea {
+		border: 1px solid #ff6666;
+	}
+	
+	textarea:focus {
+		outline: 1px solid #ff6666;
+	}
+	
+	
+	.edit_btn:hover {
+		color: #ff6666;
+		background-color: white;
+	}
+	
+	.edit_btn {
+		width: 100px;
+		height: 40px;
+		border: 1px solid #ff6666;
+		color: white;
+		background-color: #ff6666;
+	}
+	
+	#comment_btn {
+		border: 1px solid #ff6666;
+		color: white;
+		background-color: #ff6666;
+	}
+	
+	#comment_btn:hover {
+		border: 1px solid #ff8080;
+		background-color:#ff8080;
+	}
+	
+	a:link {
+		color: black; 
+		text-decoration: none;
+		font-weight: bold;
+	}
+	
+	.comment_td {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	
 </style>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <c:set var="vo" value="${requestScope.vo }"/>
@@ -152,8 +198,8 @@
 		</div>
 		<div class="comment_edit">
 			<c:if test="${sessionScope.hlogin_id == vo.hlogin_id }">
-				<input type="button" value="수정" onclick="reviewEdit()">
-				<input type="button" value="삭제" onclick="reviewDel()">
+				<input type="button" value="수정" class="edit_btn" onclick="reviewEdit()">
+				<input type="button" value="삭제" class="edit_btn" onclick="reviewDel()">
 			</c:if>
 		</div>
 	</div>
@@ -168,20 +214,6 @@
 			location.href = '${path}/login';
 		}
 	}
-	
-	/* function getCookie() {
-		let name = 'hlogin_id';
-		// 문서에 있는 쿠키 값 저장
-		let cookie = document.cookie.replace(" ", "");
-		// ; 기준으로 쿠키 나누기
-		cookie = cookie.split(";");
-		// 쿠키 길이만큼 루프
-		for (let i = 0; i < cookie.length; i++) {
-			if (cookie[i].split) {
-				
-			}
-		}
-	} */
 	
 	function commentsList(i, review_id) {
 		xhr = new XMLHttpRequest();
@@ -245,7 +277,7 @@
 						
 						let del = "</td>";
 						if (hlogin_id == id) {
-						  	del = "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>삭제</a></td>";
+						  	del = "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>&nbsp;&nbsp;삭제</a></td>";
 						  }
 						
 						comm_tr.innerHTML = "<td class='comment_td'>" + hlogin_id + "</td>"
@@ -304,9 +336,20 @@
 	function commentsBtn() {
 		// 로그인 안 하면 로그인 페이지로
 		let check = '<c:out value="${requestScope.id}"/>';
+		let con = document.getElementById("comment_text_area");
+		
 		if (check == 'fail') {
 			location.href = '${path}/login';
+			return;
 		}
+		
+		if(con.value == "") {
+			alert("내용을 입력하세요.");
+			con.focus();
+			return;
+		}
+		
+		
 		
 		xhr = new XMLHttpRequest();
 		

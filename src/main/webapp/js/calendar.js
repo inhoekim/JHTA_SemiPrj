@@ -9,7 +9,6 @@ function printCalendar(checkIn) {
 	}else {
 		let checkInForm = document.getElementById("checkInForm");
 		let checkOutForm = document.getElementById("checkOutForm");
-		console.log(checkIn);
 		year = (new Date(checkIn)).getFullYear();
 		month = (new Date(checkIn)).getMonth();
 		month += 1;

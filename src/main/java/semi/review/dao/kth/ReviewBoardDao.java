@@ -74,6 +74,12 @@ public class ReviewBoardDao {
 				int views = rs.getInt("views");
 				int recommend = rs.getInt("recommend");
 				Date created_day = rs.getDate("created_day");
+				
+				if (title.length() > 15) {
+					String sub = title.substring(0, 15) + "...";
+					title = sub;
+				}
+				
 				ReviewBoardVo vo = new ReviewBoardVo(review_id, room_id, hlogin_id, title, content, rate, views, recommend, created_day, created_day);
 				list.add(vo);
 			}
@@ -123,30 +129,33 @@ public class ReviewBoardDao {
 		
 		try {
 			con = JdbcUtil.getCon();
-			String sql = "select * from "
-					+ "    ("
-					+ "    select board.*, rownum rnum from "
-					+ "        ("
-					+ "            select * "
-					+ "            from review "
-					+ "            order by review_id desc"
-					+ "        )board"
-					+ "    )where room_id = ? and rnum >= ? and rnum <= ?";
+//			String sql = "select * from "
+//					+ "    ("
+//					+ "    select board.*, rownum rnum from "
+//					+ "        ("
+//					+ "            select * "
+//					+ "            from review "
+//					+ "            order by review_id desc"
+//					+ "        )board"
+//					+ "    )where room_id = ? and rnum >= ? and rnum <= ?";
+			String sql = "select * "
+					   + "from review "
+					   + "where room_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, room_id);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+//			pstmt.setInt(2, startRow);
+//			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				int review_id = rs.getInt("review_id");
-				String hlogin_id = rs.getString("hlogin_id");
+				String hloginId = rs.getString("hlogin_id");
 				String content = rs.getString("content");
 				int rate = rs.getInt("rate");
 				Date created_day = rs.getDate("created_day");
 				
 				// 아이디 익명성
-				//String hlogin_id = hlogin_id.substring(0, 4) + "****";
+				String hlogin_id = hloginId.substring(0, 2) + "***";
 				
 				ReviewBoardVo vo = new ReviewBoardVo(review_id, room_id, hlogin_id, null, content, rate, 0, 0, created_day, null);
 				list.add(vo);

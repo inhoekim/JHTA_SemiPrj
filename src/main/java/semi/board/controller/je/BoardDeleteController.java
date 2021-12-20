@@ -15,13 +15,24 @@ public class BoardDeleteController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int ref = Integer.parseInt(req.getParameter("ref"));
+		int service_id=Integer.parseInt(req.getParameter("service_id"));
+		int lev=Integer.parseInt(req.getParameter("lev"));
+		int step=Integer.parseInt(req.getParameter("step"));
 		BoardDaoje dao = new BoardDaoje();
-		int n = dao.delete(ref);
+		int n = dao.delete(ref,service_id,lev,step);
 		if (n > 0) {
 			req.setAttribute("result", "success");
+			req.setAttribute("header", "/home/header.jsp");
+			req.setAttribute("main", "/Service/DeleteResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
+			
 		} else {
 			req.setAttribute("result", "false");
+			req.setAttribute("header", "/home/header.jsp");
+			req.setAttribute("main", "/Service/DeleteResult.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
 		}
-		req.getRequestDispatcher("/je/Service/BoardDeleteResult.jsp").forward(req, resp);
 	}
 }

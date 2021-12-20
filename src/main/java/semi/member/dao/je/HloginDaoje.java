@@ -8,9 +8,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
+<<<<<<< HEAD
 import semi.member.Vo.je.HloginVoje;
+=======
+import oracle.jdbc.proxy.annotation.Pre;
+>>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj.git
 
 public class HloginDaoje {
+	
+	public boolean Adminlogin(String admin_id,String pwd) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			String sql="select * from admin where admin_id=? and pwd=?";
+			con=db.JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, admin_id);
+			pstmt.setString(2, pwd);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return false;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+		return false;
+		
+	}
 
 	public int update(String pwd,String jnum) {
 		Connection con=null;

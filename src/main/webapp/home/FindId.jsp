@@ -10,12 +10,14 @@
 		border: 2px solid #ff6666;	
 		padding:50px;
 		border-radius:4px;
-		float : right; position: absolute; right:35%; top:25%;
-		position: absolute;
 		text-align:center;
+		position:absolute;
+		top:50%;
+		left:50%; 
+		transform:translate(-50%,-50%);
 	}
 	#serchid a{
-	display: inline-block;
+	display: inline-block; 
 	line-height: 100px;
 	text-decoration:none;
     }
