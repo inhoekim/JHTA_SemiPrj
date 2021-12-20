@@ -62,7 +62,8 @@ public class ReserveController extends HttpServlet{
 				Date endDay = dateFormat.parse(reservation.split("~")[1]);
 				if(!(endDay.before(dateFormat.parse(checkIn)) || startDay.after(dateFormat.parse(checkOut))
 						|| endDay.equals(dateFormat.parse(checkIn)) || startDay.equals(dateFormat.parse(checkOut)))){
-					req.setAttribute("errMsg", "해당 날짜에는 예약을 진행할 수 없습니다. 예약과정이 취소 되었습니다.");
+					req.setAttribute("result", "fail");
+					req.setAttribute("failMsg", "해당 날짜에는 예약을 진행할 수 없습니다. 예약과정이 취소 되었습니다.");	
 					req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
 					return;
 				}
