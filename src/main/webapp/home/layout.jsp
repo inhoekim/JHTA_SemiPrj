@@ -16,7 +16,7 @@
 <body>
 	<jsp:include page="${requestScope.header}"/>
 	<jsp:include page="${requestScope.searchbar}"/>	
-	<div style="height: 800px;">
+	<div style="min-height: 800px; width: 100%;">
 		<jsp:include page="${requestScope.main }"/>
 	</div>
 	<jsp:include page="${requestScope.footer}"/>
@@ -110,6 +110,8 @@
 	
 	window.onload=function(){
 		alarmList();
-		printCalendar();
+		if(typeof(printCalendar) == 'function') {
+			printCalendar();
+		}
 	}
 </script>

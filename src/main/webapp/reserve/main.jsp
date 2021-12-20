@@ -22,7 +22,7 @@
 		<input type="text" placeholder="숫자만 입력해 주세요">
 		<br>
 		<label style="margin-top: 22px;">결제방법</label>
-	    <select id="payment" name="payment">
+	    <select id="payment" name="paymentMethod">
 		    <option value="1">카드결제</option>
 		    <option value="2">휴대폰결제</option>
 		    <option value="3">계좌이체</option>

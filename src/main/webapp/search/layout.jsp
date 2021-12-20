@@ -180,7 +180,9 @@
 	}
 	
 	window.onload = function(){
-		alarmList();
+		if(typeof(alarmList) == 'function') {
+			alarmList();
+		}
 		printCalendar("${param.checkInForm}");
 		let searchResult = document.getElementById("searchResult");
 		let checkIn = document.getElementById("checkInForm").value;

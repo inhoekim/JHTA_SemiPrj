@@ -17,7 +17,7 @@
 <div id="resultform">
 <c:choose>
 	<c:when test="${requestScope.result=='success'}">
-		<h1>"${requestScope.successMsg}</h1><br>
+		<h1>${requestScope.successMsg}</h1><br>
 	</c:when>
 	<c:otherwise>
 		<h1>${requestScope.failMsg}</h1>

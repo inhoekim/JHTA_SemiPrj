@@ -16,11 +16,14 @@ import javax.servlet.http.HttpSession;
 
 import semi.member.Vo.je.HloginVoje;
 import semi.member.dao.sh.GaipDao;
+import semi.payment.dao.PaymentDao;
+import semi.payment.vo.PaymentVo;
 import semi.reserve.dao.ihk.ReserveDao;
 import semi.room.dao.ihk.RoomDao;
 
 @WebServlet("/reserve")
 public class ReserveController extends HttpServlet{
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -48,6 +51,7 @@ public class ReserveController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		int roomID = Integer.parseInt(req.getParameter("roomID"));
 		int people = Integer.parseInt(req.getParameter("people"));
+		int method = Integer.parseInt(req.getParameter("paymentMethod"));
 		String checkIn = req.getParameter("checkIn");
 		String checkOut = req.getParameter("checkOut");
 		ArrayList<Integer> oneArr = new ArrayList<>();
@@ -73,9 +77,33 @@ public class ReserveController extends HttpServlet{
 		}
 		int result = reserveDao.reserve(userID,roomID,checkIn,checkOut);
 		if(result > 0) {
-			
+			//날짜구하기
+			long day = 0;
+			try {
+				day = (dateFormat.parse(checkOut).getTime() - dateFormat.parse(checkIn).getTime());
+				day = day / (24*60*60*1000);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			//방 1박 price 가져오기
+			RoomDao roomDao = RoomDao.getInstance();
+			int totalCost = (int) day * roomDao.selectRoom(roomID).getPrice();
+			//결제 row 등록
+			PaymentDao paymentDao = PaymentDao.getinstance();
+			int n = paymentDao.insert(new PaymentVo(-1,result,method,totalCost,1));
+			if(n > 0) {
+				req.setAttribute("result", "success");
+				req.setAttribute("successMsg", "성공적으로 예약처리를 완료했습니다!");
+				req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+			}else {
+				req.setAttribute("result", "fail");
+				req.setAttribute("failMsg", "결제과정에서 오류가 발생하였습니다. 예약처리에 실패하였습니다!");
+				req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+			}
 		}else {
-			
+			req.setAttribute("result", "fail");
+			req.setAttribute("failMsg", "해당 날짜로는 예약이 불가능합니다. 예약처리에 실패하였습니다!");
+			req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
 		}
 	}
 }

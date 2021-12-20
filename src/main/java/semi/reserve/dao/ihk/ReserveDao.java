@@ -23,20 +23,29 @@ public class ReserveDao {
 	public int reserve(String userID,int roomID,String checkIn,String checkOut) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "Insert into reserve values (seq_reserve, ?, ?, ?, ?, 1)";
+		ResultSet rs = null;
+		String sql = "Insert into reserve values (seq_reserve.nextval, ?, ?, ?, ?, 1, sysdate)";
 		try {
+			con = JdbcUtil.getCon();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			pstmt.setInt(2, roomID);
 			pstmt.setString(3, checkIn);
 			pstmt.setString(4, checkOut);
-			return pstmt.executeUpdate();
-			
+			int result =  pstmt.executeUpdate();
+			if(result > 0) {
+				sql = "select seq_reserve.currval from dual";
+				pstmt = con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				rs.next();
+				return rs.getInt(1);
+			}
+			else return 0;
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return 0;
 		}finally {
-			JdbcUtil.close(con,pstmt,null);
+			JdbcUtil.close(con,pstmt,rs);
 		}
 	}
 	
