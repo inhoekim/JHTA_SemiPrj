@@ -7,11 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style type="text/css">
-	*{padding:5px;
-	  font-family: do hyeon;  
+	*{
+	  font-family: do hyeon;   
 	  }
 			
 	div#inputpwd {
+	    padding:5px;
 		width:300px;
 		height:200px;
 		border: 2px solid #ff6666;	
@@ -43,6 +44,7 @@
 		<form action="${pageContext.request.contextPath }/service/je/inputpwd" method="post">
 			<input type="hidden" name="service_id" value="<%=service_id%>">
 			<input type="password" id="pwd" name="pwd" style="text-align:center;"><br><br>
+			<div style="color:red">${requestScope.errMsg }</div><br>
 			<input type="submit" value="확인" style="width:80px;height:35px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666"> 
 			<input type="button" value="닫기" onclick="rollback()" style="width:80px;height:35px;background-color:#ff6666;border-color:#ff6666;border-radius:4px;" >
 		</form>
