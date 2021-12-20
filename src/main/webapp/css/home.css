@@ -1,15 +1,11 @@
 @charset "UTF-8";
+
+body, html {height: 100%; font-family: do hyeon;}
+
 header {
 	height:110px;
 	border-bottom: 1px solid #eeeeee;
-}
-
-nav {
-	background-color:#339999;
-	color:white;
-	width:220px;
-	height:100%;
-	float:left;
+	text-align: center;
 }
 
 footer {
@@ -29,63 +25,48 @@ footer p{
 	color: #CDCDCD;
 }
 
-header, nav, section { text-align:center;}
-body, html {height: 100%; font-family: do hyeon;}
-section {height: 220px;}
-
 #memberTab a{
 	display: inline-block;
 	line-height: 100px;
 	text-decoration:none;
 }
-.searchBar {
-	margin-top: 15px;
-	text-align: center;
-}
-.calendarBox {
-	margin-top: 20px;
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%);
-	visibility: hidden;
-	width: 900px;
-	height: 250px;
-	background-color: #E3E4E9;
-	box-shadow: 0px 5px 20px 0px;
-	border-radius: 1em;
-	z-index : 1;
+
+
+#hlogin_id_span {
+	font-weight: bold;
 }
 
-.calendar {
-	padding: 10px;
-	width: 50%;
-	float: left;
-	text-align: center;
-	table-layout: fixed;
+
+#alarm_cnt {
+	color: #FFFFFF;
 }
 
-.checkbar{
-	display: inline-block;
-	height: 80px;
+#alarm_chk {
+	border-radius: 5px;
+	border: #58ACFA solid 1px; 
+	color: white;
+	background-color: #58ACFA;
+	margin-right: 5px;
 }
 
-.cdate:hover {
-	border: 1px solid red;
-	border-radius: 100px;
+#alarm_del {
+	border-radius: 5px;
+	border: #F2F2F2 solid 1px; 
+	color: black;
+	background-color: #F2F2F2;
+	margin-left: 5px;
 }
 
-.peopleBox {
-	margin-top: 20px;
-	position: absolute;
-	left: 62%;
-	visibility: hidden;
-	width: 100px;
-	text-align : center;
-	background-color: #E3E4E9;
-	box-shadow: 0px 5px 20px 0px;
-	border-radius: 1em;
-	z-index : 1;
+#alarm_chk:hover {
+	border: #2E9AFE solid 1px; 
+	background-color: #2E9AFE;
 }
+
+#alarm_del:hover {
+	border: #E6E6E6 solid 1px;
+	background-color: #E6E6E6;
+}
+
 
 .alarm_count_div {
 	background-color: #B40404;
@@ -125,13 +106,21 @@ section {height: 220px;}
 	padding: 10 10 0 0;
 }
 
-#alarm_cnt {
-	color: #FFFFFF;
+.alarm_text_div {
+	margin-top: 5px;
 }
 
-#hlogin_id_span {
-	font-weight: bold;
+.alarm_btn_div {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
+
+.alarm_hidden_div {
+	background-color: white;
+	position: absolute;
+	z-index: 2;
+}
+
 
 .content_div {
 	display: block;
@@ -143,13 +132,107 @@ section {height: 220px;}
 	background-color: pink;
 }
 
-.alarm_hidden_div {
-	background-color: white;
-	position: absolute;
-	z-index: 2;
-}
 
 .menu_list {
 	position: absolute;
 	z-index: 1;
+}
+
+.searchBar {
+	margin-top: 15px;
+	text-align: center;
+}
+.calendarBox {
+	margin-top: 20px;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	visibility: hidden;
+	width: 900px;
+	height: 250px;
+	background-color: #E3E4E9;
+	box-shadow: 0px 5px 20px 0px;
+	border-radius: 1em;
+	z-index : 1;
+}
+
+.calendar {
+	padding: 10px;
+	width: 50%;
+	float: left;
+	text-align: center;
+	table-layout: fixed;
+}
+
+.checkbar{
+	display: inline-block;
+	height: 80px;
+	cursor: pointer;
+}
+
+.cdate:hover {
+	border: 1px solid red;
+	border-radius: 100px;
+}
+
+.peopleBox {
+	margin-top: 20px;
+	position: absolute;
+	left: 62%;
+	visibility: hidden;
+	width: 100px;
+	text-align : center;
+	background-color: #E3E4E9;
+	box-shadow: 0px 5px 20px 0px;
+	border-radius: 1em;
+	z-index : 1;
+}
+
+/* Search 영역 CSS */
+
+nav {
+	width:220px;
+	height:100%;
+	float:left;
+	margin-top: 20px;
+	border-right: 1px solid #eeeeee;
+	text-align:center;
+}
+
+#searchResult a{	
+	text-decoration : none;
+	color : black;
+}
+
+#searchResult li{
+	border: 1px solid #eeeeee;
+	border-radius : 1em;
+	margin: 10px;
+	height: 100%;
+	margin-bottom: 30px;
+}
+
+#searchResult img{
+	height: 100%;
+	border-radius: 1em;
+}
+
+#searchResult p{
+	margin:10px;
+}
+input[type=range] { 
+    -webkit-appearance: none;
+    width:70%;
+    height: 3px;
+    background: #ff6666;
+  }
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 13px;
+    width: 13px;
+    border-radius: 15px;
+    outline: 0;
+    border: 1px solid #ff6666;
+    background: #ff6666;
 }

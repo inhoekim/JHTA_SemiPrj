@@ -14,7 +14,7 @@ import semi.member.dao.je.BoardDaoje;
 public class BoardUpdateController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath() + "/je/Service/BoardUpdate.jsp");
+		resp.sendRedirect(req.getContextPath() + "/Service/BoardUpdate.jsp");
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +34,10 @@ public class BoardUpdateController extends HttpServlet{
 		}else {
 			req.setAttribute("result", "false");
 		}
-		req.getRequestDispatcher("/je/Service/BoardResult.jsp").forward(req, resp);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/Service/BoardResult.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/Service/layout.jsp").forward(req, resp);
 	}
 
 }

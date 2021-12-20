@@ -114,3 +114,15 @@ CREATE SEQUENCE SEQ_REVIEW;
 CREATE SEQUENCE SEQ_SERVICE;
 CREATE SEQUENCE SEQ_COMMENTS;
 CREATE SEQUENCE SEQ_FILES;
+
+
+-- 템플릿 Rows
+
+-- room Insert
+insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'images/room/singleRoom1.jpg');
+insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'images/room/singleRoom2.jpg');
+insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'images/room/doubleRoom1.jpg');
+insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'images/room/doubleRoom2.jpg');
+insert into room values (seq_room.nextval, '트윈', 2, 130000, 0, 'images/room/twinRoom1.jpg');
+insert into room values (seq_room.nextval, '트윈', 3, 150000, 0, 'images/room/twinRoom2.jpg');
+insert into room values (seq_room.nextval, '패밀리', 4, 180000, 0, 'images/room/familyRoom1.jpg');

@@ -3,29 +3,41 @@
     
 
 <div class="searchBar">	
-	<div>
-		<div class="checkbar" onclick="openCalendar()" style="width:30%;">
-			<p>체크인</p>
-			<p id="inDate">${param.checkInForm}</p>
-			<input id="checkInForm" name="checkInForm" type="hidden" value="${param.checkInForm}">
+		<div class="checkbar" onclick="openCalendar()" style="width:600px; text-align: center; border-radius: 1em 0em 0em 1em; border: 1px solid black;">
+			<img src="${cp}/images/calendar.png" style="width:40px;height:40px;vertical-align:middle;position:relative;left:3%;">
+			<div style="width:25%; height:100%; display:inline-block; vertical-align: middle; ">
+				<p style="display:inline-block;">
+					<span style="font-size: 15px;color: #a5a3a3cc;">체크인</span><br>
+					<span id="inDate">${param.checkInForm}</span>
+				</p>
+				<input id="checkInForm" name="checkInForm" type="hidden" value="${param.checkInForm}">
+			</div>
+
+			<div style="width:25%; height:100%; display: inline-block; vertical-align: middle;">
+				<p id="nights" style="display:inline-block; line-height: 45px; font-size: 20px;"></p>
+			</div>
+			
+			<div style="width:20%; height:100%; display:inline-block; vertical-align: middle;">
+				<p style="display:inline-block;">
+					<span style="font-size: 15px;color: #a5a3a3cc;">체크아웃</span><br>
+					<span id="outDate">${param.checkOutForm}</span>
+				</p>
+				<input id="checkOutForm" name="checkOutForm" type="hidden" value="${param.checkOutForm}">
+			</div>
 		</div>
 		
-		<div class="checkbar">
-			<p id="nights">0박</p>
-		</div>
-		
-		<div class="checkbar" onclick="openCalendar()" style="width:30%;">
-			<p>체크아웃</p>
-			<p id="outDate">${param.checkOutForm}</p>
-			<input id="checkOutForm" name="checkOutForm" type="hidden" value="${param.checkOutForm}">
-		</div>
-		
-		<div class="checkbar" onclick="openPeopleBox()">
+		<div class="checkbar" onclick="openPeopleBox()" 
+		style="height:80px; vertical-align: middle; border: 1px solid black;
+		margin-left:-6px;width:40px;height: 80px; border-left: 0;border-right: 0;">
 			<p>인원</p>
 			<p id="people">${param.peopleNum}명</p>
 		</div>
 		
-		<input type="submit" value="검색" style="width:50px;font-size:large;margin-left:10px;" onclick="search()">
+		<div style="background-color : #ff6666; display: inline-block; height:82px; width:70px;
+		vertical-align: middle; margin-left:-6px; border-radius: 0em 1em 1em 0em;">
+			<input type="image" src="${cp}/images/search3.png" style="width:30px; height: 30px;margin-top:27px;" onclick="search()">
+		</div>
+		
 		<div id="calendarBox" class="calendarBox">
 		</div>
 		
@@ -36,6 +48,4 @@
 			<input id="peopleNum" name="peopleNum" type="hidden" value="${param.peopleNum}">
 			<input type="button" value="+" onclick="plusPN()" style="width:30px;">
 		</div>
-	</div>
-
 </div>

@@ -33,7 +33,7 @@
 	</style>
 	<script type="text/javascript">
 		function WriteBoard() {
-			location.href = "${cp }/service/board/insert";
+			location.href = "${cp }/insert/serviceboard";
 	
 		}
 	</script>
@@ -71,12 +71,12 @@
 		      </c:forEach>
 		       [답글]
 		</c:if>
-		<a href="/semiPrj/je/Service/InputPwd.jsp?service_id=${vo.service_id }" ><img src="${cp }/je/Event/password.PNG">${ vo.title }</a></td>
+		<a href="${cp }/service/inputpwd?service_id=${vo.service_id }" ><img src="${cp }/images/password.PNG">${ vo.title }</a></td>
 		<td>${ vo.created_day }</td>
 		<td>${ vo.updated_day }</td>
 	</tr>
 </c:forEach> 
-</table>
+</table><br>
 <div>
 <c:if test="${startPage>10 }">
    <a href="${cp }/service/board/list?pageNum=${startPage-1}">[이전페이지]</a>

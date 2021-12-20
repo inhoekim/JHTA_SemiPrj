@@ -26,7 +26,7 @@ public class RoomDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "Select room_id from room where capacity = ?";
+		String sql = "Select room_id from room where capacity >= ?";
 		try {
 			con = JdbcUtil.getCon();
 			pstmt = con.prepareStatement(sql);
@@ -59,7 +59,8 @@ public class RoomDao {
 				int capacity = rs.getInt("capacity");
 				int price = rs.getInt("price");
 				Double rate = rs.getDouble("rate");
-				return new RoomVo(room_id,kind,capacity,price,rate,null);
+				String src = rs.getString("src_name");
+				return new RoomVo(room_id,kind,capacity,price,rate,src);
 			}else return null;
 			
 		}catch(SQLException e) {
