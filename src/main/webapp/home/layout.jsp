@@ -21,9 +21,6 @@
 	</div>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
-
-<<<<<<< HEAD
-=======
 <script src="${cp}/js/calendar.js"></script>
 <script type="text/javascript">
 	var xhr = null;
@@ -115,4 +112,3 @@
 		printCalendar();
 	}
 </script>
->>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj.git
