@@ -11,12 +11,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<jsp:include page="${requestScope.header}"/>
 	<jsp:include page="${requestScope.searchbar}"/>	
-	<div style="min-height: 800px; width: 100%;">
+	<jsp:include page="/home/membership.html"/>
+	<div style="min-height: 600px; width: 100%;">
 		<jsp:include page="${requestScope.main }"/>
 	</div>
 	<jsp:include page="${requestScope.footer}"/>

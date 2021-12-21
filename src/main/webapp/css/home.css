@@ -188,6 +188,9 @@ footer p{
 	z-index : 1;
 }
 
+#membership {
+	font-family: Gowun Batang;
+}
 /* Search 영역 CSS */
 
 nav {
@@ -257,7 +260,7 @@ input[type=range]::-webkit-slider-thumb{
 	margin: 5px;
 }
 
-#page a {
+#paging a {
 	text-decoration:none;
 	color : black;
 	font-size: 18px;

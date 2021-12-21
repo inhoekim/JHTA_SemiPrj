@@ -91,7 +91,7 @@
 	
 </table>
 
-<div id="page" style="margin:30px">
+<div id="paging" style="margin:30px">
 <a href="${cp}/reserve/record?page=${param.page - 10}"><span style="color:#775CE2">이전</span></a>
 <c:forEach var="i" begin="${param.startPage}" end="${param.endPage}">
 	<c:choose>
