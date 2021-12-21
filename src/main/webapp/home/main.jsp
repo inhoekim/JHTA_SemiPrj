@@ -82,29 +82,21 @@ ul.imgs li {
 </style>
 </head>
 <jsp:include page="/home/membership.html"/>
-	<div style="height: 800px;">
-		<div class="slider">
-		    <input type="radio" name="slide" id="slide1" checked>
-		    <input type="radio" name="slide" id="slide2">
-		    <input type="radio" name="slide" id="slide3">
-		    <input type="radio" name="slide" id="slide4">
-		    <ul id="imgholder" class="imgs">
-		        <li><img src="${cp }/images/room/doubleRoom1.jpg"></li>
-		        <li><img src="${cp }/images/room/doubleRoom2.jpg"></li>
-		        <li><img src="${cp }/images/room/singleRoom1.jpg"></li>
-		        <li><img src="${cp }/images/room/singleRoom2.jpg"></li>
-		    </ul>
-		    <div class="bullets">
-		        <label for="slide1">&nbsp;</label>
-		        <label for="slide2">&nbsp;</label>
-		        <label for="slide3">&nbsp;</label>
-		        <label for="slide4">&nbsp;</label>
-		    </div>
-         </div>
+	<div class="img_cal_wrap">
+		<div class="img_change">
+			<div class="container">
+				<ul class="slider-container simple-list" id="slider">
+					<li class="slide"><img src="/semiPrj/images/a.jpg"
+						width="500px" height="500px"></li>
+					<li class="slide"><img src="/semiPrj/images/b.jpg"
+						width="500px" height="500px"></li>
+					<li class="slide"><img src="/semiPrj/images/c.jpg"
+						width="500px" height="500px"></li>
+				</ul>
+				<a href="#" id="prev"></a> <a href="#" id="next"></a>
+			</div>
+		</div>
+		<div class="cal"></div>
 	</div>
-	<script type="text/javascript">
-		
-	
-	</script>
 </body>
 </html>
