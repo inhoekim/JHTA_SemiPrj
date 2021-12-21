@@ -13,16 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.gaip.util.sh.Utility;
 import semi.member.Vo.je.HloginVoje;
+import semi.member.dao.je.HloginDaoje;
 
-import semi.member.dao.sh.GaipDao;
 
 
 
 @WebServlet("/Gaipsh")
 public class GaipController extends HttpServlet{
+	
+
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath() + "/sh/Gaipsh.jsp");
+		resp.sendRedirect(req.getContextPath() + "/home/Gaipsh.jsp");
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,8 +41,8 @@ public class GaipController extends HttpServlet{
 		
 		HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, null,1);
 		
-		GaipDao dao=new GaipDao();
-		int n=dao.insert(vo);
+		HloginDaoje dao=new HloginDaoje();
+		int n=dao.insertsh(vo);
 		
 	
 		if(n>0) {
@@ -48,7 +51,7 @@ public class GaipController extends HttpServlet{
 			req.setAttribute("result","fail");
 		}
 				
-		req.getRequestDispatcher("/hj/login_hj.jsp").forward(req, resp);
+		req.getRequestDispatcher("/home").forward(req, resp);
 	}
 }
 

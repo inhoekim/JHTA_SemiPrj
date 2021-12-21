@@ -19,6 +19,27 @@ public class ReserveDao {
 	public static ReserveDao getInstance() {
 		return reserveDao;
 	}
+	
+	public int reserve(String userID,int roomID,String checkIn,String checkOut) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "Insert into reserve values (seq_reserve, ?, ?, ?, ?, 1)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setInt(2, roomID);
+			pstmt.setString(3, checkIn);
+			pstmt.setString(4, checkOut);
+			return pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+	
 	//매개변수로 전해받은 방번호에 대한 모든 예약내역을 HashMap에 담아서 리턴
 	public HashMap<Integer,ArrayList<String>> getReserve(ArrayList<Integer> rooms){
 		HashMap<Integer,ArrayList<String>> reservations = new HashMap<>();

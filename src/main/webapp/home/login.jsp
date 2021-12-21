@@ -6,24 +6,27 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <style>
-	#loginform{
-		width:400px; height:300px; border:solid 2px #ff6666; 
+	div#loginform{
+		width:400px; height:350px; border:solid 2px #ff6666; border-radius:4px; 
+		text-align: center; margin: auto; margin-top:40px;
 	}
 </style>
 </head>
 <body>
-<div id="loginform" align="center">
+<div id="loginform">
 	<h1>로그인</h1>
 	<form method="post" action="<%=request.getContextPath() %>/login">
-		아이디 <input type="text" name="hlogin_id"><br>
-		비밀번호 <input type="password" name="pwd"><br>
+		<input placeholder="아이디" type="text" name="hlogin_id" style="width: 150pt; height:20pt; border-radius: 5px;"><br>
+		<input placeholder="비밀번호" type="password" name="pwd" style="width: 150pt; height:20pt; border-radius: 5px; margin:3px;"><br>
 		<div style="color:red">${requestScope.errMsg }</div>
 		
-		로그인 유지 <input type="checkbox" name="chk" checked="checked"><br>
-		
-		<input type="submit" value="로그인">
-	<p><a href="${cp}/home?spage=/home/FindId.jsp">아이디 찾기</a> | <a href="${pageContext.request.contextPath }/findPwd/findPwd.jsp">비밀번호 찾기</a></p>
-	<p>아직 회원이 아니신가요? <a href="${pageContext.request.contextPath }/sh/Gaipsh.jsp">회원가입</a></p>
+		로그인 유지 <input type="checkbox" name="chk" checked="checked" style="margin:8px;"><br>
+
+	<p><a href="${cp}/home?spage=/home/FindId.jsp">아이디 찾기</a> | <a href="${cp }/home?spage=/home/findPwd.jsp">비밀번호 찾기</a></p>
+	<p>아직 회원이 아니신가요? <a href="${cp}/home?spage=/home/Gaipsh.jsp">회원가입</a></p> <!-- 상훈수정 -->
+
+		<input type="submit" value="로그인" style="margin:6px; background-color: #ff6666; min-width: 70px; 
+			border: none; border-radius: 4px; line-height: 30px; color: #ffffff;">
 	</form>
 </div>
 </body>

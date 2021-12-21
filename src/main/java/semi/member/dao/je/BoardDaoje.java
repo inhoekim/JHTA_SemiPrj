@@ -121,16 +121,26 @@ public class BoardDaoje {
 		}
 	}
 	
-  public int delete(int ref) {
+  public int delete(int ref,int service_id,int lev,int step) {
 	  Connection con=null;
 	  PreparedStatement pstmt=null;
+	  String sql="";
 	  try {
-		  con=JdbcUtil.getCon();
-		  String sql="delete from service where ref=?";
-		  pstmt=con.prepareStatement(sql);
-		  pstmt.setInt(1, ref);
-		  int n=pstmt.executeUpdate();
-		  return n;
+		  if(lev==0) {
+			  sql="delete from service where ref=?";
+			  con=JdbcUtil.getCon();
+			  pstmt=con.prepareStatement(sql);
+			  pstmt.setInt(1, ref);
+			  int n=pstmt.executeUpdate();
+			  return n;
+		  }else {
+			  sql="delete from service where service_id=?";
+			  con=JdbcUtil.getCon();
+			  pstmt=con.prepareStatement(sql);
+			  pstmt.setInt(1, service_id);
+			  int n=pstmt.executeUpdate();
+			  return n;
+		  }
 	  }catch(SQLException s) {
 		  s.printStackTrace();
 		  return -1;

@@ -9,10 +9,14 @@
 <c:set var="cp" value="${pageContext.request.contextPath }" />
 	<style type="text/css">
 		    *{
-		text-align: center;
+		
 		font-family: do hyeon; 
 		}
+		div#maindiv{
+			text-align: center; 
+		}
 		table {
+		    text-align: center;
 			margin: auto;
 			border-radius: 4px;
 			border:1px solid #ff6666;
@@ -36,8 +40,8 @@
 	</script>
 </head>
 <body>
+	<div id="maindiv">
 	<h1>문의 게시판</h1>
-	<div>
 		<form method="post" action="${cp }/service/admin/list">
 			<select name="field">
 				<option value="writer"
@@ -48,7 +52,6 @@
 				type="submit" value="검색">
 			<!--<input type="button" value="글쓰기" onclick="WriteBoard()">  -->
 		</form>
-	</div>
 	<br>
 	<table border="1" width="800">
 		<tr>
@@ -68,12 +71,12 @@
 		      </c:forEach>
 		       [답글]
 		</c:if> <a
-					href="${cp }/service/admin/detail?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&pwd=${vo.pwd}"><img src="${cp }/je/Event/password.PNG">${ vo.title }</a></td>
+					href="${cp }/service/admin/detail?service_id=${vo.service_id }&ref=${vo.ref}&lev=${vo.lev}&step=${vo.step}&pwd=${vo.pwd}"><img src="${cp }/images/password.PNG">${ vo.title }</a></td>
 				<td>${ vo.created_day }</td>
 				<td>${ vo.updated_day }</td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table><br>
 	<div>
 		<c:if test="${startPage>10 }">
 			<a href="${cp }/service/admin/list?pageNum=${startPage-1}">[이전페이지]</a>
@@ -93,9 +96,10 @@
 		<c:if test="${endPage<pageCount }">
 			<a href="${cp }/service/admin/list?pageNum=${endPage+1}">[다음페이지]</a>
 		</c:if>
-	</div>
-	<br>
+	<br><br>
 	<a href="${cp }/service/admin/list">전체글보기</a> |
 	<a href="${cp }/je/AdminService/Adminmain.jsp">메인페이지로</a>
+	</div>
+	</div>
 </body>
 </html>

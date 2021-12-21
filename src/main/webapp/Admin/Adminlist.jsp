@@ -4,18 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-		* {text-align: center;}
-		     
-		table {margin: auto}
 
+<style type="text/css">
+		    *{
+		text-align: center;
+		font-family: do hyeon; 
+		}
+		table {
+			margin: auto;
+			border-radius: 4px;
+			border:1px solid #ff6666;
+			border-collapse: collapse;
+			line-height:1.5;
+		}
+		td#title {
+			text-align:left
+		}
+		th{
+			background-color: #ff6666;
+			color:white;
+			font-size:20px;
+		}
 	</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<c:set var="cp" value="${pageContext.request.contextPath }" />
 <h2 >회원정보관리     </h2>
-
 
 <table border="1" width="500">
 	<tr>
@@ -40,7 +56,24 @@
 	</c:forEach>
 </table>
 <div>
-	<form method="post" action="${cp }/select/list">
+	<c:forEach var="i" begin="${startPage }" end="${endPage }">
+		<c:choose>
+			<c:when test="${i==pageNum }">
+				<a href="${cp }/sh/Adminlist?pageNum=${i}&keyword=${keyword}&field=${field}">
+				<span style="color=red">${i }</span>
+				</a>
+			</c:when>
+			<c:otherwise>
+				<a href="${cp }/sh/Adminlist?pageNum=${i}&keyword=${keyword}&field=${field}">
+				<span style="color=gray">${i }</span>
+				</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+</div>
+
+<div>
+	<form method="post" action="${cp }/sh/Adminlist">
 		<select name="field">
 			<option value="hlogin_id" <c:if test="${field=='hlogin_id' }">selected</c:if>>아이디</option>
 			<option value="name" <c:if test="${field=='name' }">selected</c:if>>이름</option>

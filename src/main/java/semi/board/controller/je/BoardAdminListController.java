@@ -42,7 +42,10 @@ public class BoardAdminListController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("keyword", keyword);
 		req.setAttribute("field", field);
-		req.getRequestDispatcher("/je/AdminService/AdminBoardList.jsp").forward(req, resp);
+		req.setAttribute("header", "/Admin/header.jsp");
+		req.setAttribute("main", "/Admin/AdminBoardList.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 				
 	}
 

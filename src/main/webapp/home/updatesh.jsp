@@ -1,15 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
+
 <html>
+<style type="text/css">
+		.idup_div {
+			text-align: center;
+			margin: 10px;
+			
+		}
+		*{
+		font-family: do hyeon; 
+		}
+	</style>
 <head>
 <meta charset="UTF-8">
+<link href="../css/home.css" rel="stylesheet" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <title>Insert title here</title>
 <% String cp=request.getContextPath(); %>
 </head>
 <body>
-<h1>내정보보기</h1>
+<div class="idup_div">
+<h3>내정보보기</h3>
 <form id="gaip_chk" method="post" action="<%=request.getContextPath() %>/updateid">
 아이디<input type="text" name="hlogin_id" value="${vo.hlogin_id }" readonly="readonly"><br>
 	 
@@ -24,6 +41,7 @@
 	<input type="submit" value="변경하기">
 	<input type="button" value="뒤로가기" onclick="history.back(-1);">
 	</form>
+	</div>
 </body>
 <script type="text/javascript">
 hlogin_pass = document.getElementById('hlogin_pass');

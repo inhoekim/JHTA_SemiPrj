@@ -23,7 +23,7 @@
     	location.href="${cp}/service/admin/list";
     }
     function AdminMemberlist(){
-    	location.href="${cp}/select/list";
+    	location.href="${cp}/sh/Adminlist";
     }<!-- 상훈수정 -->
     
 </script>

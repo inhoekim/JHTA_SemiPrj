@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import semi.gaip.util.sh.Utility;
-import semi.member.dao.hj.MemberDao;
+import semi.member.dao.je.HloginDaoje;
 import semi.review.dao.kth.ReviewBoardDao;
 import semi.review.dao.kth.ReviewCommentsDao;
 import semi.review.vo.kth.ReviewBoardVo;
@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet{
 		map.put("hlogin_id", hlogin_id);
 		map.put("pwd", pwd);
 
-		MemberDao dao=new MemberDao(); 
+		HloginDaoje dao=new HloginDaoje(); 
 		boolean b=dao.isMember(map);	
 		
 		if(chk!=null){ //체크박스에 체크한 경우 

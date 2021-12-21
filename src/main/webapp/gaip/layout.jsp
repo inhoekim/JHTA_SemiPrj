@@ -14,8 +14,10 @@
 </head>
 
 <body>
-	<jsp:include page="/home/header.jsp"/>
-	<jsp:include page="/reserve/main.jsp"/>
-	<jsp:include page="/home/footer.html"/>
+	<jsp:include page="${requestScope.header}"/>
+	<jsp:include page="${requestScope.gaip}"/> 
+	<jsp:include page="${requestScope.footer}"/>
 </body>
+
+
 </html>
