@@ -25,7 +25,7 @@ public class ReivewUpdateController extends HttpServlet {
 		req.setAttribute("searchBar", "/home/searchBar.jsp");
 		req.setAttribute("main", "/review/reviewEdit.jsp");
 		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -41,6 +41,6 @@ public class ReivewUpdateController extends HttpServlet {
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/list");
 		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
 	}
 }

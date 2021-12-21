@@ -166,7 +166,7 @@ public class ReserveDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		System.out.println("first : " + first + ", end : " + end);
 		String sql= "select * from (select rownum as rnum, temp.* from "
 				+ "(select r.reserve_id, r.room_id, kind, capacity, rm.price, start_day, end_day, reserve_date, r.statement "
 				+ "from reserve r join payment p on r.reserve_id = p.reserve_id "

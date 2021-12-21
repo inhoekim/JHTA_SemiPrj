@@ -282,7 +282,7 @@
 		// 로그인 안 하면 로그인 페이지로
 		let check = '<c:out value="${requestScope.id}"/>';
 		if (check == 'fail' || check == 'guest') {
-			location.href = '${path}/login';
+			location.href = '${path}/home/login.jsp';
 		}
 	}
 	

@@ -580,8 +580,10 @@ td {
 				'application/x-www-form-urlencoded');
 		xhr.send(param);
 	}
-
-	/* window.onload = function() {
-		reviewList();
+	
+	/* window.onload=function(){
+		
+			reviewList();
+		
 	} */
 </script>
