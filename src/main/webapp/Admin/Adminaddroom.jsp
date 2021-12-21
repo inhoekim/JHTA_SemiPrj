@@ -13,7 +13,7 @@
 <h1>숙소 등록</h1>
 <form method="post" action="<%=request.getContextPath() %>/addroom" enctype="multipart/form-data">
 	객실번호<br>
-	<input type="text" name="room_id"><br>
+	<input type="text" name="room_id" readonly="readonly"><br>
 	객실등급<br>
 	<input type="text" name="kind"><br>
 	객실인원<br>

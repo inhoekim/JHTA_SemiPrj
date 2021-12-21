@@ -114,4 +114,21 @@ public class RoomDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public int roomdelete(int room_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getCon();
+			String sql="delete from room where room_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, room_id);
+			return pstmt.executeUpdate();
+		}catch(SQLException s) {
+			s.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+			
+		}
+	}
 }

@@ -22,10 +22,12 @@ public class AdminloginController extends HttpServlet{
 		if(a) {
 			HttpSession session=req.getSession();
 			session.setAttribute("admin_id", admin_id);
-			req.getRequestDispatcher("/admin").forward(req, resp);
+			//req.getRequestDispatcher("/admin").forward(req, resp);
+			resp.sendRedirect(req.getContextPath() + "/admin");
+			
 		}else {
 			req.setAttribute("errMsg", "아이디 또는 비밀번호가 맞지 않습니다.");
-			req.getRequestDispatcher("/admin?apage=/Admin/Adminlogin.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Admin/Adminlogin.jsp").forward(req, resp);
 			
 		}
 	}
