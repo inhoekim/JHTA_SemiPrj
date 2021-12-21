@@ -245,7 +245,7 @@
 	
 	function recommend(num) {
 		let check = '<c:out value="${requestScope.id}"/>';
-		if (check == 'fail') {
+		if (check == 'fail' || check == 'guest') {
 			alert("로그인을 해주세요.");
 			return;
 		}
@@ -281,7 +281,7 @@
 	function loginCheck() {
 		// 로그인 안 하면 로그인 페이지로
 		let check = '<c:out value="${requestScope.id}"/>';
-		if (check == 'fail') {
+		if (check == 'fail' || check == 'guest') {
 			location.href = '${path}/login';
 		}
 	}
@@ -409,7 +409,7 @@
 		let check = '<c:out value="${requestScope.id}"/>';
 		let con = document.getElementById("comment_text_area");
 		
-		if (check == 'fail') {
+		if (check == 'fail' || check == 'guest') {
 			location.href = '${path}/login';
 			return;
 		}
