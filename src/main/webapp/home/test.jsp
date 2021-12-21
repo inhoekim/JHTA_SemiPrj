@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style type="text/css">
-		*{margin:0; padding:0; list-style:none;}
+		*{margin:0; padding:0; list-style:none;font-style:none;}
 		
 	</style>
 </head>

@@ -161,17 +161,17 @@ public class ReserveDao {
 	}
 	
 	//테이블에서 특정범위의 row를 리턴한다. row들은 jstl에서 쉽게 표시될수 있도록 jsonarry에 담는다.
-	public JSONArray getRangeRow(int first, int end) {
+	public JSONArray getRangeRow(int first, int end, String hlogin_id) {
 		JSONArray arr = new JSONArray();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("first : " + first + ", end : " + end);
+
 		String sql= "select * from (select rownum as rnum, temp.* from "
 				+ "(select r.reserve_id, r.room_id, kind, capacity, rm.price, start_day, end_day, reserve_date, r.statement "
 				+ "from reserve r join payment p on r.reserve_id = p.reserve_id "
 				+ "join room rm on r.room_id = rm.room_id "
-				+ "where hlogin_id = 'test' "
+				+ "where hlogin_id = '" + hlogin_id + "'"
 				+ "order by reserve_id desc)temp) "
 				+ "where rnum >= " + first + " and rnum <= " + end;
 		try {

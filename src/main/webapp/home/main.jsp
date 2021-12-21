@@ -6,104 +6,239 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style type="text/css">
-.slider {
-	width: 640px;
-	height: 480px;
-	position: relative;
-	margin: 0 auto;
-	overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
-}
-
-.slider input[type=radio] {
-	display: none;
-}
-
-ul.imgs {
-	padding: 0;
-	margin: 0;
+    * {
+	 margin: 0;
+	 padding: 0;
+	 -webkit-font-smoothing: antialised;
+     }
+     li {
 	list-style: none;
 }
 
-ul.imgs li {
+li div {
+	margin: auto;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 80px;
+	padding-bottom: 50px;
+}
+
+.slider-container {
 	position: absolute;
-	left: 640px;
-	transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
-	padding: 0;
+	width: 100%;
+	left: 0;
+	-webkit-transition: left .3s ease-in;
+	transition: left .3s ease-in;
+}
+
+.slide {
+	position: absolute;
+	width: 100%;
+	/* padding: 0 10%; */
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	overflow: hidden;
+}
+
+.slider-container.animated {
+	-webkit-transition: left .3s ease-in;
+	transition: left .3s ease-in;
+}
+
+/* utility */
+.simple-list {
+	list-style-type: none;
 	margin: 0;
+	padding: 0;
 }
-.bullets{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20px;
-    z-index: 2;
+
+/* 버튼 위치 */
+#prev, #next {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%);
+	z-index: 999999;
+	display: inline-block;
+	height: 5em;
+	width: 5em;
+	border-radius: 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-transition: all .3s ease-in;
+	transition: all .3s ease-in;
 }
-.bullets label{
-    display: inline-block;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,0.55);
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+
+#prev.disabled, #next.disabled {
+	display: none;
 }
-/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
-.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
-    background-color: #fff;
+
+#prev {
+	background-image: url('/semiPrj/images/left-arrow-grey2.png');
+	margin-left: -350px;
 }
-.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
-    background-color: #fff;
+
+#prev:hover {
+	background-image: url('/semiPrj/images/left-arrow-grey.png');
 }
-.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
-    background-color: #fff;
+
+#next {
+	margin-left: 270px;
+	background-image: url('/semiPrj/images/right-arrow-grey2.png');
 }
-.slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
-    background-color: #fff;
+
+#next:hover {
+	background-image: url('/semiPrj/images/right-arrow-grey.png');
 }
-.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
-    left: 0;
-    transition: 0.5s;
-    z-index:1;
-}
-</style>
+     
+    </style>
 </head>
 <jsp:include page="/home/membership.html"/>
-	<div style="height: 800px;">
-		<div class="slider">
-		    <input type="radio" name="slide" id="slide1" checked>
-		    <input type="radio" name="slide" id="slide2">
-		    <input type="radio" name="slide" id="slide3">
-		    <input type="radio" name="slide" id="slide4">
-		    <ul id="imgholder" class="imgs">
-		        <li><img src="${cp }/images/room/doubleRoom1.jpg"></li>
-		        <li><img src="${cp }/images/room/doubleRoom2.jpg"></li>
-		        <li><img src="${cp }/images/room/singleRoom1.jpg"></li>
-		        <li><img src="${cp }/images/room/singleRoom2.jpg"></li>
-		    </ul>
-		    <div class="bullets">
-		        <label for="slide1">&nbsp;</label>
-		        <label for="slide2">&nbsp;</label>
-		        <label for="slide3">&nbsp;</label>
-		        <label for="slide4">&nbsp;</label>
-		    </div>
-         </div>
+	<div class="img_cal_wrap">
+		<div class="img_change">
+			<div class="container">
+				<ul class="slider-container simple-list" id="slider">
+					<li class="slide"><img src="/semiPrj/images/a.jpg"
+						width="500px" height="500px"></li>
+					<li class="slide"><img src="/semiPrj/images/b.jpg"
+						width="500px" height="500px"></li>
+					<li class="slide"><img src="/semiPrj/images/c.jpg"
+						width="500px" height="500px"></li>
+				</ul>
+				<a href="#" id="prev"></a> <a href="#" id="next"></a>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
-		
+	// 슬라이더 시작
+	var slideWrap = document.querySelector('.container');
+	var slideContainer = document.querySelector('.slider-container');
+	var slide = document.querySelectorAll('.slide');
+	var slideHeight = 0;
+	// 이미지 총 개수
+	var slideCount = slide.length;
+	// 인덱스 번호
+	var currentIndex = 0;
+	// setInterval 실행 함수의 변수
+	var timer = null;
+	// 페이저 HTML
+	var pagerHTML = '';
+	var pager = document.querySelector('.pager');
+
+	// 페이저 버튼
+	//var pagerBtn = document.querySelectorAll('.pager span');
+
+	// 버튼
+	var navPrev = document.getElementById('prev');
+	var navNext = document.getElementById('next');
+
+	// 슬라이드의 높이 확인하여 부모의 높이로 지정하기
+	// 대상.offsetHeight (높이 확인)
+	slideHeight = slide[0].offsetHeight;
+	for (let i = 0; i < slideCount; i++) {
+		let slideHei = slide[i].offsetHeight;
+		if (slideHeight < slideHei) {
+			slideHeight = slideHei;
+		}
+	}
+
+	slideWrap.style.height = slideHeight + 'px';
+	slideContainer.style.height = slideHeight + 'px';
+
+	// 슬라이드가 있으면 가로로 배열하기
+
+	for (let i = 0; i < slideCount; i++) {
+		slide[i].style.left = i * 100 + '%';
+		pagerHTML += '<span data-idx="' + i + '">' + (i + 1) + '</span>';
+		pager.innerHTML = pagerHTML;
+	}
+
+	var pagerBtn = document.querySelectorAll('.pager span');
+
+	// 슬라이드 이동 함수
+	function goToSlide(idx) {
+		slideContainer.classList.add('animated');
+		slideContainer.style.left = -100 * idx + '%';
+		// 인덱스 번호 업데이트
+		currentIndex = idx;
+		// 클릭된 요소에만 active 추가
+		// 모든 pagerBtn에 active 제거
+		for (let j = 0; j < pagerBtn.length; j++) {
+			pagerBtn[j].classList.remove('active');
+		}
+		pagerBtn[idx].classList.add('active');
+	}// goToSlide
+
+	// pagerBtn 시작할때 active 적용
+	goToSlide(0);
+
+	// 버튼 클릭하면 슬라이드 이동시키기
+	// 다음버튼을 클릭, 이전 버튼 클릭
+	// 이전
+	navPrev.addEventListener('click', function() {
+		if (currentIndex == 0) { // 마지막 에서 다음 누르면 0번째 인덱스
+			goToSlide(slideCount - 1);
+		} else {
+			goToSlide(currentIndex - 1);
+		}
+	});
+	// 다음 
+	navNext.addEventListener('click', function() {
+		if (currentIndex == slideCount - 1) { // 마지막 에서 다음 누르면 0번째 인덱스
+			goToSlide(0);
+		} else {
+			goToSlide(currentIndex + 1);
+		}
+	});
+
+	// 자동 슬라이드
+	// 4초마다 goToSlide(num); 0, 1, 2, 3, ... 5, 0
+	// setInterval(function, time);	
+
+	// clearInterval(대상)
+
+	// 자동 슬라이드 함수
+	function startAutoSlide() {
+		timer = setInterval(function() {
+			let nextIdx = (currentIndex + 1) % slideCount;
+			goToSlide(nextIdx);
+		}, 4000);
+	}
+
+	startAutoSlide();
+
+	function stopAutoSlide() {
+		clearInterval(timer);
+	}
+
+	/*
+		slideWrap에 마우스 들어오면 할일, 나가면 할일
+	 */
+	slideWrap.addEventListener('mouseenter', function() {
+		stopAutoSlide();
+	});
+
+	slideWrap.addEventListener('mouseleave', function() {
+		startAutoSlide();
+	});
+
+	// pager로 슬라이드 이동하기
+	for (let i = 0; i < pagerBtn.length; i++) {
+		pagerBtn[i].addEventListener('click', function(event) {
+			console.log(event.target.innerText);
+			// innerText 내용 반환
+			// innerHTML 태그를 반환
+			//let pagerNum = event.target.getAttribute('data-idx');
+			let pagerNum = event.target.innerText - 1;
+			goToSlide(pagerNum);
+		});
+	}
+	
 	
 	</script>
 </body>
