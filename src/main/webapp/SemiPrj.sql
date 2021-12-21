@@ -138,3 +138,27 @@ insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'doubleRoom2.
 insert into room values (seq_room.nextval, '트윈', 2, 130000, 0, 'twinRoom1.jpg');
 insert into room values (seq_room.nextval, '트윈', 3, 150000, 0, 'twinRoom2.jpg');
 insert into room values (seq_room.nextval, '패밀리', 4, 180000, 0, 'familyRoom1.jpg');
+
+drop PROCEDURE review_del_proc;
+create or replace procedure review_del_proc -- 리뷰 삭제 프로시저
+(
+    call_review_id number
+)
+as
+begin
+    delete
+    from files f
+    where exists
+    (
+        select review_id
+        from review r
+        where  f.review_id = r.review_id  and f.review_id = call_review_id
+    );
+
+    delete comments
+    where review_id = call_review_id;
+    
+    delete review
+    where review_id = call_review_id;
+end;
+/
