@@ -46,7 +46,11 @@ public class AdminListController extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/Admin/Adminlist.jsp").forward(req, resp);
+		req.setAttribute("header", "/Admin/header.jsp");
+		req.setAttribute("main", "/Admin/Adminlist.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		
+		req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 	}
 
 }

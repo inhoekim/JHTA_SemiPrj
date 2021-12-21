@@ -135,9 +135,39 @@
 		padding-bottom: 10px;
 	}
 	
+	.thumb_btn {
+		text-align: center;
+		margin-top: 12.5px;
+		margin-bottom: 12.5px;
+	}
+	
+	#thumb_up_btn, #thumb_down_btn {
+		display:inline-block;
+		height: 50px;
+		width: 50px;
+	}
+	
+	#thumb_up_btn {
+		background-image: url('/semiPrj/images/thumb-up-50.png');
+		margin-right: 50px;
+	}
+	
+	#thumb_down_btn {
+		background-image: url('/semiPrj/images/thumb-down-50.png');
+		margin-left: 50px;
+	}
+	
+	#thumb_up_span {
+		margin-right: 70px;
+	}
+	
+	#thumb_down_span {
+		margin-left: 70px;
+	}
 </style>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <c:set var="vo" value="${requestScope.vo }"/>
+<c:set var="rvo" value="${requestScope.rVo }"/>
 <div class="review_detail_wrap">
 	<div class="review_area">
 		<div class="rivew_header">
@@ -160,8 +190,12 @@
 				${vo.content   }
 			</p>
 		</div>
-		<div class="btn_wrap">
-			
+		<div class="thumb_btn">
+			<a href="javascript:recommend(1)" id="thumb_up_btn"></a>
+			<a href="javascript:recommend(-1)" id="thumb_down_btn"></a>
+			<br>
+			<span id="thumb_up_span">${rvo.thumb_up }</span>
+			<span id="thumb_down_span">${rvo.thumb_down }</span>
 		</div>
 	</div>
 	<div class="comment_count">
@@ -206,6 +240,43 @@
 </div>
 <script>
 	var xhr = null;
+	// 추천수 업데이트
+	var cookieCheck = '<c:out value="${requestScope.cookieCheck}"/>';
+	
+	function recommend(num) {
+		let check = '<c:out value="${requestScope.id}"/>';
+		if (check == 'fail') {
+			alert("로그인을 해주세요.");
+			return;
+		}
+		
+		if (cookieCheck == 'fail') {
+			alert("추천은 일주일에 한번만 가능합니다.");
+			return;
+		}
+		let	param = 'review_id=' + ${vo.review_id} + '&recommendNum=' + num; 
+		let url = '${pageContext.request.contextPath}/recommend/update';
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				let data = xhr.responseText;
+				let json = JSON.parse(data);
+				
+				let thumb_up_span = document.getElementById('thumb_up_span');
+				let thumb_down_span = document.getElementById('thumb_down_span');
+				
+				let thumb_up = json.thumb_up;
+				let thumb_down = json.thumb_down;
+				cookieCheck = json.cookieCheck;
+				
+				thumb_up_span.innerText = thumb_up;
+				thumb_down_span.innerText = thumb_down;
+			}
+		};
+		xhr.open('post', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(param);
+	}
 	
 	function loginCheck() {
 		// 로그인 안 하면 로그인 페이지로
@@ -405,7 +476,7 @@
 		location.href = "${path}/review/delete?review_id=${vo.review_id}";
 	}
 	
-	window.onload = function() {
+	/* window.onload = function() {
 		commentsList();
-	}
+	} */
 </script>

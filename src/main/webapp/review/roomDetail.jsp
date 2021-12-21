@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="UTF-8">
 <style>
 * {
@@ -103,8 +103,7 @@ li div {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	margin: 0; 
-	padding 0;
+	margin: 0; padding 0;
 	text-align: center;
 }
 
@@ -263,7 +262,6 @@ td {
 .more_btn:hover {
 	box-shadow: inset 0px 0px 3px 0px rgb(77, 71, 71);
 }
-
 </style>
 <div class="img_srd_cal">
 	<div class="img_cal_wrap">
@@ -290,8 +288,7 @@ td {
 				<a href="#" id="prev"></a> <a href="#" id="next"></a>
 			</div>
 		</div>
-		<div class="cal">
-		</div>
+		<div class="cal"></div>
 	</div>
 	<div class="reservation_div">
 		<h3>객실 예약하기</h3>
@@ -321,10 +318,11 @@ td {
 		</table>
 	</div>
 	<div class="review_div">
-		<span class="review_span">객실후기</span> | <span class="review_cnt"><b class="cnt_b">${requestScope.review_cnt }</b>건</span>
+		<span class="review_span">객실후기</span> | <span class="review_cnt"><b
+			class="cnt_b">${requestScope.review_cnt }</b>건</span>
 	</div>
-	<div class="review_list">
-		<c:forEach var="list" items="${requestScope.list }">
+	<div class="review_list" id="review_list">
+		<%-- <c:forEach var="list" items="${requestScope.list }">
 			<div class="review_contnet">
 				<div class="review_header">
 					<c:forEach begin="1" end="${list.rate }">
@@ -338,7 +336,7 @@ td {
 					</p>
 				</div>
 			</div>
-		</c:forEach>
+		</c:forEach> --%>
 	</div>
 	<div class="show_btn">
 		<a href="javascript:moreReview()" class="more_btn">후기 더보기</a>
@@ -469,37 +467,121 @@ td {
 		});
 	}
 	// 슬라이더 끝
-	
+
 	var xhr = null;
 	// 리뷰 개수
 	var review_cnt = 0;
+	// 보여줄 리뷰 최대 수
+	var review_max = 5;
+	// 버튼 누른 횟수
+	var more_cnt = 1;
+	// 객실 번호
+	var room_id = 0;
 	
-	function moreReview() {
+	function reviewList() {
 		xhr = new XMLHttpRequest();
 		let url = '${pageContext.request.contextPath}/room/detail';
 		let param = 'room_id=' + ${requestScope.room_id};
-		xhr.onreadystatechange = function () {
+		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let data = xhr.responseText;
-				let json = JSON.parse(data);
+				var json = JSON.parse(data);
+
+				var jsonLen = json.length;
+				room_id = json[jsonLen - 1].room_id;
 				
-				for (let i = 0; i < json.length; i++) {
-					if (typeof json[i].room_id != "undefined") {
-						review_cnt = json[0].review_cnt;
-						
+				// 부모 div
+				var review_list = document.getElementById('review_list');
+
+				for (let i = 0; i < review_max * more_cnt; i++) {
+					if (typeof json[i].hlogin_id != "undefined") {
 						let review_id = json[i].review_id;
-						let hlogin_id = json[i].hlohin_id;
+						let hlogin_id = json[i].hlogin_id;
 						let content = json[i].content;
 						let rate = json[i].rate;
 						let created_day = json[i].created_day;
-						
+
+						let span = '';
+						for (let i = 0; i < rate; i++) {
+							span += '<span id="star_span">★</span>';
+						}
+
+						div = '<div class="review_contnet">'
+								+ '<div class="review_header">' + span
+								+ '<span class="review_writer">' + hlogin_id
+								+ ' | ' + created_day + '</span>' + '</div>'
+								+ '<div class="review_body">' + '<p>' + content
+								+ '</p>' + '</div></div>';
+
+						review_list.innerHTML += div;
 					}
 				}
+				more_cnt++;
 			}
 		};
-		alert(param);
 		xhr.open('post', url, true);
-		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xhr.send(param);		
+		xhr.setRequestHeader('Content-Type',
+				'application/x-www-form-urlencoded');
+		xhr.send(param);
 	}
+
+	function moreReview() {
+		xhr = new XMLHttpRequest();
+		let url = '${pageContext.request.contextPath}/room/detail';
+		let param = 'room_id=' + room_id;
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				let data = xhr.responseText;
+				var json = JSON.parse(data);
+
+				var jsonLen = json.length;
+				room_id = json[jsonLen - 1].room_id;
+				
+				// 부모 div
+				var review_list = document.getElementById('review_list');
+				review_list.innerHTML = '';
+				
+				let sum = review_max * more_cnt;
+				if (sum > jsonLen) {
+					let show_btn = document.querySelector('.show_btn');
+					show_btn.style.display = "none";
+					sum = jsonLen;
+				}
+				
+				for (let i = 0; i < sum; i++) {
+					if (typeof json[i].hlogin_id != "undefined") {
+		
+						let review_id = json[i].review_id;
+						let hlogin_id = json[i].hlogin_id;
+						let content = json[i].content;
+						let rate = json[i].rate;
+						let created_day = json[i].created_day;
+		
+						let span = '';
+						for (let i = 0; i < rate; i++) {
+							span += '<span id="star_span">★</span>';
+						}
+		
+						div = '<div class="review_contnet">'
+								+ '<div class="review_header">' + span
+								+ '<span class="review_writer">' + hlogin_id
+								+ ' | ' + created_day + '</span>' + '</div>'
+								+ '<div class="review_body">' + '<p>' + content
+								+ '</p>' + '</div></div>';
+		
+						review_list.innerHTML += div;
+					}
+				}
+				more_cnt++;
+			}
+		};
+		xhr.open('post', url, true);
+		xhr.setRequestHeader('Content-Type',
+				'application/x-www-form-urlencoded');
+		xhr.send(param);
+	}
+
+	/* window.onload = function() {
+		reviewList();
+	} */
 </script>

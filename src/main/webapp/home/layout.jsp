@@ -109,6 +109,21 @@
 	
 	window.onload=function(){
 		alarmList();
+		
+		if (typeof commentsList != 'undefined') {
+			commentsList();
+		}
+		
+		if (typeof reviewList != 'undefined') {
+			reviewList();
+		}
+		
 		printCalendar();
 	}
+	
+	window.onload=function(){
+		gaiphsh();
+		
+	}
+	
 </script>
