@@ -15,7 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import semi.room.dao.hj.RoomDao;
-import semi.room.vo.kth.RoomVo;
+import semi.room.vo.ihk.RoomVo;
 @WebServlet("/addroom")
 public class RoomAddController extends HttpServlet{
 	@Override

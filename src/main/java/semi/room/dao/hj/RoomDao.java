@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
-import semi.room.vo.kth.RoomVo;
+import semi.room.vo.ihk.RoomVo;
 
 public class RoomDao {
 	private static RoomDao instance;
@@ -27,7 +27,7 @@ public class RoomDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getRoom_id());
 			pstmt.setString(2, vo.getKind());
-			pstmt.setInt(3, vo.getCapcity());
+			pstmt.setInt(3, vo.getCapacity());
 			pstmt.setInt(4, vo.getPrice());
 			pstmt.setDouble(5, vo.getRate());
 			pstmt.setString(6, vo.getSrc_name());
@@ -102,7 +102,7 @@ public class RoomDao {
 			String sql="update room set kind=?, capcity=?, price=?, src_name=?, rate=? where room_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getKind());
-			pstmt.setInt(2, vo.getCapcity());
+			pstmt.setInt(2, vo.getCapacity());
 			pstmt.setInt(3, vo.getPrice());
 			pstmt.setString(4, vo.getSrc_name());
 			pstmt.setDouble(5, vo.getRate());
