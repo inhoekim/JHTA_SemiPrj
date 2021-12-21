@@ -15,7 +15,7 @@ public class PaymentDao {
 	
 	private PaymentDao() {}
 	
-	public static PaymentDao getinstance() {return paymentDao;}
+	public static PaymentDao getInstance() {return paymentDao;}
 	
 	public int insert(PaymentVo vo) {
 		Connection con = null;
@@ -27,6 +27,42 @@ public class PaymentDao {
 			pstmt.setInt(1, vo.getReserve_id());
 			pstmt.setInt(2, vo.getMethod());
 			pstmt.setInt(3, vo.getPayment());
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}
+
+	//결제확정
+	public int confirmPayment(int reserve_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "Update payment Set statement = 2 where reserve_id = ?";
+		try {
+			con = JdbcUtil.getCon();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reserve_id);
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,pstmt,null);
+		}
+	}	
+	
+	//결제취소
+	public int canclePayment(int reserve_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "Update payment Set statement = 3 where reserve_id = ?";
+		try {
+			con = JdbcUtil.getCon();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reserve_id);
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

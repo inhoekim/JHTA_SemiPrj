@@ -256,3 +256,9 @@ input[type=range]::-webkit-slider-thumb{
 	width: 70px;
 	margin: 5px;
 }
+
+#page a {
+	text-decoration:none;
+	color : black;
+	font-size: 18px;
+}

@@ -89,7 +89,7 @@ public class ReserveController extends HttpServlet{
 			RoomDao roomDao = RoomDao.getInstance();
 			int totalCost = (int) day * roomDao.selectRoom(roomID).getPrice();
 			//결제 row 등록
-			PaymentDao paymentDao = PaymentDao.getinstance();
+			PaymentDao paymentDao = PaymentDao.getInstance();
 			int n = paymentDao.insert(new PaymentVo(-1,result,method,totalCost,1));
 			if(n > 0) {
 				req.setAttribute("result", "success");
