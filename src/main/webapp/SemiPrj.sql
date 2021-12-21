@@ -162,3 +162,4 @@ begin
     where review_id = call_review_id;
 end;
 /
+commit;

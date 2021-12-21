@@ -121,7 +121,5 @@
 		if (typeof reviewList != 'undefined') {
 			reviewList();
 		}
-		
-		gaiphsh();
 	}
 </script>
