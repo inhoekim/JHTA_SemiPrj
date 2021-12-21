@@ -176,7 +176,7 @@ function openIdChk(){//중복버튼을 누르면 실행될 함수
 
 
 
-
+gaiphsh();
 
 
 </script>

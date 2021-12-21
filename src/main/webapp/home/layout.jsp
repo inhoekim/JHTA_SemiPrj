@@ -122,6 +122,6 @@
 			reviewList();
 		}
 		
-		gaiphsh();
+		
 	}
 </script>
