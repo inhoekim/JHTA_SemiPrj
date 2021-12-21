@@ -114,5 +114,15 @@
 		if(typeof(printCalendar) == 'function') {
 			printCalendar();
 		}
+		
+		if (typeof commentsList != 'undefined') {
+			commentsList();
+		}
+		
+		if (typeof reviewList != 'undefined') {
+			reviewList();
+		}
+		
+		printCalendar();
 	}
 </script>

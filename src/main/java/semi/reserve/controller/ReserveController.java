@@ -16,8 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import semi.member.Vo.je.HloginVoje;
 import semi.member.dao.je.HloginDaoje;
+<<<<<<< HEAD
 import semi.payment.dao.PaymentDao;
 import semi.payment.vo.PaymentVo;
+=======
+>>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj
 import semi.reserve.dao.ihk.ReserveDao;
 import semi.room.dao.ihk.RoomDao;
 
