@@ -72,18 +72,18 @@ public class RoomDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="select * fron room";
+			String sql="select * from room";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<RoomVo> list=new ArrayList<RoomVo>();
 			while(rs.next()) {
 				int room_id=rs.getInt("room_id");
 				String kind=rs.getString("kind");
-				int capcity=rs.getInt("capcity");
+				int capacity=rs.getInt("capacity");
 				int price=rs.getInt("price");
-				String src_name=rs.getString("src_name");
 				double rate=rs.getDouble("rate");
-				RoomVo vo=new RoomVo(room_id, kind, capcity, price, null, src_name);
+				String src_name=rs.getString("src_name");
+				RoomVo vo=new RoomVo(room_id, kind, capacity, price, rate, src_name);
 				list.add(vo);
 			}
 			return list;
