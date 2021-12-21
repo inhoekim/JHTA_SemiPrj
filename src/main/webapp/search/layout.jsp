@@ -47,7 +47,7 @@
 						"&checkOut=" + checkOut + "&people=" + peopleNum;
 						let htmlStr =  "<a href='" + link + "'><div style='width:100%;height:200px;'>";
 						htmlStr += "<div style='width:25%; height:100%; overflow: hidden; float:left;'>";
-						htmlStr += "<img src='${cp}/" + json[i].src + "'></div>";
+						htmlStr += "<img src='${cp}/images/room/" + json[i].src + "'></div>";
 						htmlStr += "<div style='display: flex; flex-direction: column; margin-left:20px;'>";
 						htmlStr += "<p style='border:1px solid #474747; color: #474747; width:40px;'>객실 " + json[i].room_id + "</p>";
 						htmlStr += "<p style='font-size:15px; color: #474747'>객실종류: 최대" + json[i].capacity + "인/" + json[i].kind + "</p>";
@@ -195,7 +195,7 @@
 			"&checkOut=" + checkOut + "&people=" + peopleNum;
 			let htmlStr =  "<a href='" + link + "'><div style='width:100%;height:200px;'>";
 			htmlStr += "<div style='width:25%; height:100%; overflow: hidden; float:left;'>";
-			htmlStr += "<img src='${cp}/" + arr[i].src + "'></div>";
+			htmlStr += "<img src='${cp}/images/room/" + arr[i].src + "'></div>";
 			htmlStr += "<div style='display: flex; flex-direction: column; margin-left:20px;'>";
 			htmlStr += "<p style='border:1px solid #474747; color: #474747; width:40px;'>객실 " + arr[i].room_id + "</p>";
 			htmlStr += "<p style='font-size:15px; color: #474747'>객실종류: 최대" + arr[i].capacity + "인/" + arr[i].kind + "</p>";
