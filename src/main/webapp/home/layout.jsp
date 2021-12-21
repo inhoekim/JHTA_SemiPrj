@@ -121,11 +121,7 @@
 		if (typeof reviewList != 'undefined') {
 			reviewList();
 		}
-	}
-	
-	window.onload=function(){
-		gaiphsh();
 		
+		gaiphsh();
 	}
-	
 </script>
