@@ -26,6 +26,10 @@ public class ReviewDetailController extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String hlogin_id = (String)session.getAttribute("hlogin_id");
+		// 로그인을 안 했을 경우
+		if (hlogin_id == null) {
+			hlogin_id = "guest";
+		}
 		
 		Cookie[] cookies = req.getCookies();
 		if (cookies != null) {
