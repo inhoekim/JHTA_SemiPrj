@@ -15,6 +15,7 @@
 		<c:otherwise>
 			<span>[${sessionScope.admin_id}님 반갑습니다]</span>
 			<a href="${cp}/admin?apage=/sh/Adminlist">회원관리하기</a>
+			<a href="${cp}/admin?apage=/listroom">객실관리하기</a>
 			<a href="${cp}/admin?apage=/service/admin/list">문의게시판</a> 
 			<a href="${cp}/admin?apage=/review/main.jsp">리뷰메인</a>
 			<a href="${cp}/home">로그아웃</a>
