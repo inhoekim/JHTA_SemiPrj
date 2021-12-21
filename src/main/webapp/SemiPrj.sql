@@ -29,7 +29,7 @@ CREATE TABLE ROOM (
 	KIND varchar2(15),
 	CAPACITY number(5),
 	PRICE number(10),
-	RATE number(1,3) DEFAULT 0, -- 평점
+	RATE number(2,1) NOT NULL, -- 평점
 	SRC_NAME varchar2(30)
 );
 
@@ -114,27 +114,26 @@ CREATE TABLE RECOMMEND ( -- 추천수 테이블
 DROP SEQUENCE SEQ_ROOM;
 DROP SEQUENCE SEQ_RESERVE;
 DROP SEQUENCE SEQ_PAYMENT;
-DROP SEQUENCE SEQ_REVIEW;
 DROP SEQUENCE SEQ_SERVICE;
 DROP SEQUENCE SEQ_COMMENTS;
 DROP SEQUENCE SEQ_FILES;
+DROP SEQUENCE SEQ_RECOMMEND;
 
 CREATE SEQUENCE SEQ_ROOM;
 CREATE SEQUENCE SEQ_RESERVE;
 CREATE SEQUENCE SEQ_PAYMENT;
-CREATE SEQUENCE SEQ_REVIEW;
 CREATE SEQUENCE SEQ_SERVICE;
 CREATE SEQUENCE SEQ_COMMENTS;
 CREATE SEQUENCE SEQ_FILES;
-
+CREATE SEQUENCE SEQ_RECOMMEND;
 
 -- 템플릿 Rows
 
 -- room Insert
-insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'images/room/singleRoom1.jpg');
-insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'images/room/singleRoom2.jpg');
-insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'images/room/doubleRoom1.jpg');
-insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'images/room/doubleRoom2.jpg');
-insert into room values (seq_room.nextval, '트윈', 2, 130000, 0, 'images/room/twinRoom1.jpg');
-insert into room values (seq_room.nextval, '트윈', 3, 150000, 0, 'images/room/twinRoom2.jpg');
-insert into room values (seq_room.nextval, '패밀리', 4, 180000, 0, 'images/room/familyRoom1.jpg');
+insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'singleRoom1.jpg');
+insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'singleRoom2.jpg');
+insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'doubleRoom1.jpg');
+insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'doubleRoom2.jpg');
+insert into room values (seq_room.nextval, '트윈', 2, 130000, 0, 'twinRoom1.jpg');
+insert into room values (seq_room.nextval, '트윈', 3, 150000, 0, 'twinRoom2.jpg');
+insert into room values (seq_room.nextval, '패밀리', 4, 180000, 0, 'familyRoom1.jpg');
