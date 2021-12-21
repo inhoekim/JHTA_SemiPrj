@@ -112,9 +112,9 @@
 		printCalendar();
 	}
 	
-	
-	window.onload=funtion(){
-		
+	window.onload=function(){
+		gaiphsh();
 		
 	}
+	
 </script>

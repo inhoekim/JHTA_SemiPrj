@@ -24,10 +24,10 @@ public class SelectGaipController extends HttpServlet{
 		HloginVoje vo=dao.selecthloginid(hlogin_id);
 		if(vo==null) {
 			req.setAttribute("result","fail");
-			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home/result.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/sh/updatesh.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home/updatesh.jsp").forward(req, resp);
 		}	
 	}
 }
