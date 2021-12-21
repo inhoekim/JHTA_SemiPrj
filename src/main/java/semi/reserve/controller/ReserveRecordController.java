@@ -40,7 +40,7 @@ public class ReserveRecordController extends HttpServlet{
 		int endPage = startPage + 9;
 		if(endPage > totalPages) endPage = totalPages;
 		
-		JSONArray arr = reserveDao.getRangeRow(first, end);
+		JSONArray arr = reserveDao.getRangeRow(first,end,id);
 		req.setAttribute("jsonArr", arr);
 		String path = "/home?spage=/home/reservation.jsp&page=" + page + "&startPage=" + startPage + "&endPage=" + endPage;
 		req.getRequestDispatcher(path).forward(req, resp);
