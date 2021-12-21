@@ -410,7 +410,7 @@
 		let con = document.getElementById("comment_text_area");
 		
 		if (check == 'fail' || check == 'guest') {
-			location.href = '${path}/login';
+			location.href = '${path}/home/login.jsp';
 			return;
 		}
 		

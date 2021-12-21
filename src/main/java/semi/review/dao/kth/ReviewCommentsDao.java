@@ -174,9 +174,11 @@ public class ReviewCommentsDao {
 					+ "from review r, comments c "
 					+ "where r.review_id = c.review_id "
 					+ "and r.hlogin_id = ? "
+					+ "and not c.hlogin_id = ? "
 					+ "and c.read = 1";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, hlogin_id);
+			pstmt.setString(2, hlogin_id);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -235,9 +237,11 @@ public class ReviewCommentsDao {
 					+ "from comments c, review r "
 					+ "where c.review_id = r.review_id "
 					+ "and read = 1 "
-					+ "and r.hlogin_id = ?";
+					+ "and r.hlogin_id = ? "
+					+ "and not c.hlogin_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, hlogin_id);
+			pstmt.setString(2, hlogin_id);
 			rs = pstmt.executeQuery();
 			rs.next();
 			int count = rs.getInt("cnt");
