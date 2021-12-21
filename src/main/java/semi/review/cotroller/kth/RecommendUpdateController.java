@@ -38,7 +38,6 @@ public class RecommendUpdateController extends HttpServlet {
 		for (Cookie cookie : cookies) {
 			if (cookieReviewId.equals(cookie.getName()) && 
 					cookieHloginId.equals(cookie.getValue())) {
-				System.out.print("들어옴");
 				check = "fail";
 				break;
 			}
@@ -46,7 +45,6 @@ public class RecommendUpdateController extends HttpServlet {
 		
 		// 추천수 쿠키 생성
 		if (check.equals("success")) {
-			System.out.print("들어오면 안됨");
 			Cookie cookie = new Cookie("recommend_" + review_id, cookieHloginId);
 			cookie.setPath("/");
 			cookie.setMaxAge(60 * 60 * 24 * 7); // 쿠키 유효기간

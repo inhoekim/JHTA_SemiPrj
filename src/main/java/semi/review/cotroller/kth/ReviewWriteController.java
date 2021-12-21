@@ -30,7 +30,7 @@ public class ReviewWriteController extends HttpServlet {
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/reviewWrite.jsp?room_id=" + room_id);
 		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -93,6 +93,6 @@ public class ReviewWriteController extends HttpServlet {
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/list");
 		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
 	}
 }

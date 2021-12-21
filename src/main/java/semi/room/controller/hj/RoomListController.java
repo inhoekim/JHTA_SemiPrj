@@ -16,9 +16,9 @@ public class RoomListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RoomDao dao=RoomDao.getInstance();
-		ArrayList<RoomVo> list=dao.roomselectAll(); //객실 전체 정보 보기
+		ArrayList<RoomVo> list=dao.roomselectAll();
 		req.setAttribute("list", list);
-		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("header", "/Admin/header.jsp");
 		req.setAttribute("main", "/Admin/Adminlistroom.jsp");
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);

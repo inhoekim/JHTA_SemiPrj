@@ -26,13 +26,7 @@ public class AlarmListController extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		String hlogin_id = (String)session.getAttribute("hlogin_id");
-		Cookie[] cookies = req.getCookies();
-		
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("hlogin_id")) {
-				hlogin_id = cookie.getValue();
-			}
-		}
+
 		ReviewCommentsDao reviewDao = ReviewCommentsDao.getInstance();
 		ArrayList<ReviewCommentsVo> list = reviewDao.selectReview(hlogin_id);
 		
