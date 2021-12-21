@@ -2,7 +2,6 @@ package semi.room.controller.hj;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,11 +15,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import semi.room.dao.hj.RoomDao;
 import semi.room.vo.ihk.RoomVo;
-@WebServlet("/addroom")
-public class RoomAddController extends HttpServlet{
+@WebServlet("/updateroom")
+public class RoomUpdateController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		ServletContext context = this.getServletContext();
 		String saveDir=context.getRealPath("/images");
 		System.out.println("업로드 경로" + saveDir + "<br>");
@@ -37,23 +35,31 @@ public class RoomAddController extends HttpServlet{
 		int capacity=Integer.parseInt(mr.getParameter("capacity")); //객실인원
 		int price=Integer.parseInt(mr.getParameter("price")); //가격
 		Double rate=Double.parseDouble(mr.getParameter("rate")); //객실평점
-		String src_name=mr.getParameter("src_name"); //파일 경로
+		String src_name=mr.getFilesystemName("src_name");
 		
-		//db저장
-		//File f=new File(saveDir + "\\"); //업로드된 파일정보를 갖는 객체
-		RoomVo vo=new RoomVo(room_id, kind, capacity, price, rate, src_name);
 		RoomDao dao=RoomDao.getInstance();
-		int n=dao.insertRoom(vo);
+		RoomVo vo=dao.roomselect(room_id);
+		
+		int n=0;
+		if(src_name!=null) { //수정할 파일이 전송된 경우 - 기존파일삭제 / 새파일 update
+			String src_name1=vo.getSrc_name(); //이거없어도 되는거 아닌가? / 중복된 변수명이라 src_name1로 변경
+			File f=new File(saveDir + "\\" + src_name);
+			f.delete(); //기존 파일 삭제
+			String newSavefilename=mr.getFilesystemName("src_name");
+			RoomVo vo1=new RoomVo(room_id, kind, capacity, price, rate, newSavefilename);
+			n=dao.roomupdate(vo1);
+		}else { //수정할 파일이 전송되지 않은 경우 기존 파일정보 유지하기
+			RoomVo vo1=new RoomVo(room_id, kind, capacity, price, rate, src_name);
+			n=dao.roomupdate(vo1);
+		}
 		if(n>0) {
 			req.setAttribute("result", "success");
-			req.setAttribute("successMsg", "데이터베이스에 저장 완료");
+			req.setAttribute("successMsg", "객실 수정 완료");
 		}else {
 			req.setAttribute("result", "fail");
 			req.setAttribute("failMsg", "다시 한 번 확인해 주세요.");
 		}
-		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("main", "/Admin/Adminlistroom.jsp");
-		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
 	}
 }
+
