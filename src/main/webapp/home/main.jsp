@@ -32,6 +32,7 @@
 	</style>
 </head>
 <body>
+<jsp:include page="/home/membership.html"/>
 <div style="height: 800px;">
 </div>
 	<div style="height: 800px;">

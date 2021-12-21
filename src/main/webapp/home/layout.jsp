@@ -17,7 +17,6 @@
 <body>
 	<jsp:include page="${requestScope.header}"/>
 	<jsp:include page="${requestScope.searchbar}"/>	
-	<jsp:include page="/home/membership.html"/>
 	<div style="min-height: 600px; width: 100%;">
 		<jsp:include page="${requestScope.main }"/>
 	</div>
