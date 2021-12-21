@@ -18,7 +18,7 @@ import semi.img_file.dao.kth.ImgFileDao;
 import semi.img_file.vo.kth.ImgFileVo;
 import semi.review.dao.kth.ReviewBoardDao;
 import semi.review.vo.kth.ReviewBoardVo;
-import semi.room.dao.kth.RoomDao;
+import semi.room.dao.ihk.RoomDao;
 
 @WebServlet("/review/write")
 public class ReviewWriteController extends HttpServlet {
@@ -65,6 +65,7 @@ public class ReviewWriteController extends HttpServlet {
 		ReviewBoardDao reviewDao = ReviewBoardDao.getInstance();
 		ReviewBoardVo reviewVo = null;
 		System.out.println("그림 : " + org_name);
+		
 		// 이미지 파일이 있을경우
 		if (org_name != null) {
 			// 파일 확장자명 추출

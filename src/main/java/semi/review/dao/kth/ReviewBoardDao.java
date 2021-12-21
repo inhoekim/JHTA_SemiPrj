@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import db.JdbcUtil;
 import semi.img_file.dao.kth.ImgFileDao;
 import semi.img_file.vo.kth.ImgFileVo;
+import semi.review.vo.kth.RecommendVo;
 import semi.review.vo.kth.ReviewBoardVo;
-import semi.review.vo.kth.ReviewCommentsVo;
-import semi.room.dao.kth.RoomDao;
 
 public class ReviewBoardDao {
 	private static ReviewBoardDao instance;
@@ -129,22 +128,11 @@ public class ReviewBoardDao {
 		
 		try {
 			con = JdbcUtil.getCon();
-//			String sql = "select * from "
-//					+ "    ("
-//					+ "    select board.*, rownum rnum from "
-//					+ "        ("
-//					+ "            select * "
-//					+ "            from review "
-//					+ "            order by review_id desc"
-//					+ "        )board"
-//					+ "    )where room_id = ? and rnum >= ? and rnum <= ?";
 			String sql = "select * "
 					   + "from review "
 					   + "where room_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, room_id);
-//			pstmt.setInt(2, startRow);
-//			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -202,7 +190,6 @@ public class ReviewBoardDao {
 		
 		int reviewNum = reviewMaxNum() + 1;
 		
-		
 		try {
 			con = JdbcUtil.getCon();
 			String sql = "insert into review "
@@ -221,6 +208,10 @@ public class ReviewBoardDao {
 			if (imgFileVo != null) {
 				imgFiledao.imgFileInsert(imgFileVo, reviewNum);
 			}
+			
+			// 추천 테이블 등록
+			recommendInsert(reviewNum);
+			
 			return n;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -282,6 +273,7 @@ public class ReviewBoardDao {
 			JdbcUtil.close(con, cstmt, null);
 		}
 	}
+	
 	// 조회수
 	public void viewsUpdate(int review_id) {
 		Connection con = null;
@@ -321,6 +313,97 @@ public class ReviewBoardDao {
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	// 리뷰 추천 테이블에 등록
+	public void recommendInsert(int review_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "insert into recommend "
+					+ "values(seq_recommend.nextval, ?, 0, 0)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	// 리뷰 보드 추천 수 업데이트
+	public void reviewRecommendAdd(int review_id, int recommendNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "update review "
+					+ "set recommend = recommend + ? "
+					+ "where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, recommendNum);
+			pstmt.setInt(2, review_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	// 해당 review_id에 추천 수 등록
+	public void recommendUpdate(RecommendVo vo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "update recommend "
+					+ "set thumb_up = thumb_up + ?, thumb_down = thumb_down + ? "
+					+ "where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, vo.getThumb_up());
+			pstmt.setInt(2, vo.getThumb_down());
+			pstmt.setInt(3, vo.getReview_id());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	// 좋아요, 싫어요 출력
+	public RecommendVo getRecommend(int review_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "select * "
+					+ "from recommend "
+					+ "where review_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int thumb_up = rs.getInt("thumb_up");
+				int thumb_down = rs.getInt("thumb_down");
+				RecommendVo vo = new RecommendVo(0, 0, thumb_up, thumb_down);
+				return vo;
+			}
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
 	

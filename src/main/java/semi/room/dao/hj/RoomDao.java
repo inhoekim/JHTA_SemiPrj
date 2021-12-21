@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db.JdbcUtil;
-import semi.room.vo.kth.RoomVo;
+import semi.room.vo.ihk.RoomVo;
 
 public class RoomDao {
 	private static RoomDao instance;
@@ -26,7 +26,7 @@ public class RoomDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getRoom_id());
 			pstmt.setString(2, vo.getKind());
-			pstmt.setInt(3, vo.getCapcity());
+			pstmt.setInt(3, vo.getCapacity());
 			pstmt.setInt(4, vo.getPrice());
 			pstmt.setString(5, vo.getSrc_name());
 			pstmt.setDouble(6, vo.getRate());
