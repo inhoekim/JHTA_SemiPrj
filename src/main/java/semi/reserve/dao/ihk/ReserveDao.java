@@ -30,7 +30,7 @@ public class ReserveDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "Insert into reserve values (seq_reserve.nextval, ?, ?, ?, ?, 1, sysdate)";
+		String sql = "Insert into reserve values (seq_reserve.nextval, ?, ?, ?, ?, sysdate, 1)";
 		try {
 			con = JdbcUtil.getCon();
 			pstmt = con.prepareStatement(sql);

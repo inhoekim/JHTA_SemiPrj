@@ -17,8 +17,8 @@
 		<th>결제금</th>
 		<th>예약상태</th>
 	</tr>
-
-		<c:forEach var="i" begin="0" end="${requestScope.jsonArr.length() - 1}">
+		<c:if test="${requestScope.jsonArr.length()-1 >= 0}">
+		<c:forEach var="i" begin="0" end="${requestScope.jsonArr.length()-1}">
 		<c:set var="json" value="${requestScope.jsonArr.getJSONObject(i)}"/>
 		<tr style="height:100px; border-bottom: 1px solid #DBDBDB;">
 			<td>
@@ -88,7 +88,7 @@
 			</td>
 		</tr>
 	</c:forEach>
-	
+	</c:if>
 </table>
 
 <div id="paging" style="margin:30px">
