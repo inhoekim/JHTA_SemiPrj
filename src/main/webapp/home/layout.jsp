@@ -122,4 +122,10 @@
 			reviewList();
 		}
 	}
+	
+	window.onload=function(){
+		gaiphsh();
+		
+	}
+	
 </script>

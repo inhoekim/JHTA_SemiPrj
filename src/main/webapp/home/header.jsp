@@ -28,8 +28,9 @@
 					<div class="alarm_wrap" id="alarm_wrap"></div>
 				</div>
 			</div>
+
 			<a href="${cp}/reserve/record">예약내역</a>
-			<a href="${cp}/home?spage=/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
+			<a href="${cp}/selecthloginid?hlogin_id=${sessionScope.hlogin_id}">내정보</a> <!-- 상훈 내정보보기 -->
 			<a href="${cp}/service/board/list">문의게시판</a>
 			<a href="${cp}/home?spage=/home/DeleteId.jsp">회원탈퇴하기</a>
 			<a href="${cp}/review/main.jsp">리뷰게시판</a>

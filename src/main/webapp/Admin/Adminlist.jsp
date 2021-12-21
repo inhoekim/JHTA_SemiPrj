@@ -6,7 +6,7 @@
 <head>
 
 <style type="text/css">
-		    *{
+		    .listadmin{
 		text-align: center;
 		font-family: do hyeon; 
 		}
@@ -31,7 +31,21 @@
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }" />
+
+<div class="listadmin">
 <h2 >회원정보관리     </h2>
+<div>
+	<form method="post" action="${cp }/sh/Adminlist">
+		<select name="field">
+			<option value="hlogin_id" <c:if test="${field=='hlogin_id' }">selected</c:if>>아이디</option>
+			<option value="name" <c:if test="${field=='name' }">selected</c:if>>이름</option>
+			<option value="num" <c:if test="${field=='num' }">selected</c:if>>회원상태</option>
+		</select>
+		<input type="text" name="keyword" value="${keyword }">
+		<input type="submit" value="검색">
+	</form>
+	
+</div>
 
 <table border="1" width="500">
 	<tr>
@@ -71,18 +85,7 @@
 		</c:choose>
 	</c:forEach>
 </div>
-
-<div>
-	<form method="post" action="${cp }/sh/Adminlist">
-		<select name="field">
-			<option value="hlogin_id" <c:if test="${field=='hlogin_id' }">selected</c:if>>아이디</option>
-			<option value="name" <c:if test="${field=='name' }">selected</c:if>>이름</option>
-			<option value="num" <c:if test="${field=='num' }">selected</c:if>>회원상태</option>
-		</select>
-		<input type="text" name="keyword" value="${keyword }">
-		<input type="submit" value="검색">
-	</form>
-	
 </div>
+
 </body>
 </html>

@@ -48,7 +48,11 @@
 	</div>
 </body>
 <script type="text/javascript">
-window.onload = function(){
+
+
+
+
+function gaiphsh(){
 	
 	// 변수 선언 id값 넣기
 	hchek_btn = document.getElementById('hcheck_btn');

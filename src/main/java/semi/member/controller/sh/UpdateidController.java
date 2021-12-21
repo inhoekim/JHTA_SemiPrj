@@ -21,11 +21,16 @@ public class UpdateidController extends HttpServlet{
 		HloginVoje vo=dao.selecthloginid(hlogin_id);
 		if(vo==null) {
 			req.setAttribute("result","fail");
-			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home/result.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/home/updatesh.jsp").forward(req, resp);
-		}	
+			req.setAttribute("header", "/home/header.jsp");
+			req.setAttribute("main", "/home/updatesh.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			
+			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
+		}
+
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
