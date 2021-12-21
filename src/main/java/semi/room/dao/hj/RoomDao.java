@@ -102,7 +102,7 @@ public class RoomDao {
 			String sql="update room set kind=?, capcity=?, price=?, src_name=?, rate=? where room_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getKind());
-			pstmt.setInt(2, vo.getCapcity());
+			pstmt.setInt(2, vo.getCapacity());
 			pstmt.setInt(3, vo.getPrice());
 			pstmt.setString(4, vo.getSrc_name());
 			pstmt.setDouble(5, vo.getRate());
