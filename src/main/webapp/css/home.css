@@ -82,9 +82,10 @@ footer p{
 
 .alarm_hidden_div {
 	overflow-y: auto;
-	width: 175px;
-	height: 300px;
+	width: 120px;
+	max-height: 215px;
 	border: skyblue solid 1px;
+	left: 75px;
 	scrollbar-color: #D4AA70 #e4e4e4;
 }
 /* 스크롤바 설정 */

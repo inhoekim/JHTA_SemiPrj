@@ -236,8 +236,17 @@
 		// 평점
 		let rating = rate;
 		
+		// 공백 체크
+		let blank = /^\s+|\s+$/g;
+		
 		// form
 		let form = document.getElementById("review_write_form");
+		if (title.value.replace(blank, '') == '') {
+			title_err.innerHTML = "<br>제목을 입력해주세요.";
+			title.focus();
+			return;
+		}
+		
 		
 		if (title.value == "") {
 			title_err.innerHTML = "<br>제목을 입력해주세요.";
@@ -251,6 +260,21 @@
 		}
 		// 히든에 rate 값 넣기
 		hRate.value = rating;
+		
+		
+		
+		// 문자열 사이 공백 체크
+		/* var strBlank = /[\s]/g;
+		if(strBlank.test(content.value) == true){
+		    alert('문자열 사이 공백');
+		    return;
+		} */
+		
+		if (content.value.replace(blank, '') == '') {
+			content_err.innerHTML = "내용을 입력해주세요.";
+			content.focus();
+			return;
+		}
 		
 		if (content.value == "" || content.value.length < 10) {
 			content_err.innerText = "10자 이상 입력해주세요.";

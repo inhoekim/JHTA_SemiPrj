@@ -30,11 +30,12 @@
 	
 	.review_search {
 		text-align: center;
-		padding: 10px;
+		margin-top: 5px;
 	}
 	
 	.paging {
 		text-align: center;
+		margin-top: 10px;
 	}
 	
 	#title {
@@ -57,9 +58,14 @@
 	#search_btn {
 		border: 1px solid #ff6666;
 		border-radius: 5px;
-		color: #ff6666;
-		background-color: white;
+		color: white;
+		background-color: #ff6666;
 		height: 24px;
+	}
+	
+	#search_btn:hover {
+		background-color: white;
+		color: #ff6666;
 	}
 	
 	input:focus {
@@ -78,11 +84,6 @@
 	
 	option {
 		outline: 1px solid #ff6666;
-	}
-	
-	#search_btn:hover {
-		background-color: #ff6666;
-		color: white;
 	}
 	
 	a:link {
@@ -133,17 +134,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="review_search">
-		<form method="post" action="${path }/review/list">
-			<select class="search_select" name="field">
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-				<option value="hlogin_id">아이디</option>
-			</select>
-			<input type="text" class="text_search" name="keyword">
-			<input type="submit" id="search_btn" value="검색">
-		</form>
-	</div>
 	<div class="paging">
 		<c:if test="${rs.startPage > 10 }">
 			<a href="${path }/review/list?pageNum=${rs.startPage - 1}&field=${rs.field}&keyword=${rs.keyword}">이전</a>
@@ -162,12 +152,17 @@
 			<a href="${path }/review/list?pageNum=${rs.endPage + 1}&field=${rs.field}&keyword=${rs.keyword}">다음</a>
 		</c:if>
 	</div>
+	<div class="review_search">
+		<form method="post" action="${path }/review/list">
+			<select class="search_select" name="field">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+				<option value="hlogin_id">아이디</option>
+			</select>
+			<input type="text" class="text_search" name="keyword">
+			<input type="submit" id="search_btn" value="검색">
+		</form>
+	</div>
 </div>
 <script>
-
-	function aa() {
-		
-	}
-	
-	
 </script>
