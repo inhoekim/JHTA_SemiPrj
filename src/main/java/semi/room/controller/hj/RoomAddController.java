@@ -40,7 +40,7 @@ public class RoomAddController extends HttpServlet{
 		String src_name=mr.getParameter("src_name"); //파일 경로
 		
 		//db저장
-		//File f=new File(saveDir + "\\"); //업로드된 파일정보를 갖는 객체 
+		//File f=new File(saveDir + "\\"); //업로드된 파일정보를 갖는 객체
 		RoomVo vo=new RoomVo(room_id, kind, capacity, price, rate, src_name);
 		RoomDao dao=RoomDao.getInstance();
 		int n=dao.insertRoom(vo);
