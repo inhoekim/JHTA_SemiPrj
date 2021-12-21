@@ -21,7 +21,6 @@
 	</div>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
-
 <script src="${cp}/js/calendar.js"></script>
 <script type="text/javascript">
 	var xhr = null;

@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.member.dao.je.HloginDaoje;
 
 
-import semi.member.dao.sh.GaipDao;
+
+
 
 @WebServlet("/idcheck")
 public class IdCheckController extends HttpServlet {
@@ -28,7 +30,7 @@ public class IdCheckController extends HttpServlet {
 			
 			
 	
-			GaipDao dao=new GaipDao();
+			HloginDaoje dao=new HloginDaoje();
 			int n=dao.idChk(hlogin_id);
 			System.out.println(n);
 			resp.setContentType("text/plain;charset=utf-8");
