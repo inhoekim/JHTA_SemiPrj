@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import semi.member.Vo.je.HloginVoje;
-import semi.member.dao.sh.GaipDao;
+import semi.member.dao.je.HloginDaoje;
 import semi.payment.dao.PaymentDao;
 import semi.payment.vo.PaymentVo;
 import semi.reserve.dao.ihk.ReserveDao;
@@ -34,7 +34,7 @@ public class ReserveController extends HttpServlet{
 		}
 		req.setCharacterEncoding("utf-8");
 		RoomDao roomDao = RoomDao.getInstance();
-		HloginVoje userVo = new GaipDao().selecthloginid(id);
+		HloginVoje userVo = new HloginDaoje().selecthloginid(id);
 		req.setAttribute("user", userVo);
 		req.setAttribute("room", roomDao.selectRoom(Integer.parseInt(req.getParameter("room"))));
 		req.getRequestDispatcher("/reserve/layout.jsp").forward(req, resp);
