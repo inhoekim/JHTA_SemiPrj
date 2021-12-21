@@ -122,7 +122,5 @@
 		if (typeof reviewList != 'undefined') {
 			reviewList();
 		}
-		
-		printCalendar();
 	}
 </script>
