@@ -23,6 +23,19 @@ function printCalendar(checkIn) {
 	}
 }
 
+function printCalendar2(checkIn) {
+	let today = new Date();
+	let month = today.getMonth() + 1;
+	let year = today.getFullYear();
+
+	setCalendar(1,year,month);
+
+	if(day!="0") {
+		document.getElementById("nights").innerText= day + "박";
+		highlighting(day);
+	}
+}
+
 function setCalendar(type,year,month) {
 	if(month == 13) {
 	year++;

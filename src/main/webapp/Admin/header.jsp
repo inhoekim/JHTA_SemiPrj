@@ -3,7 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String cp=request.getContextPath(); %>
 <header>
+
 <a href="${cp}/admin">
+
 <h2 style= "line-height:50px; display: inline; position: absolute; left:15%; color: #ff6666;">Uri Uri Hotel</h2></a>
  
 <div id="memberTab" style="float : right; position: absolute; right:15%;">

@@ -153,6 +153,7 @@
 				<input type="radio" name="rating" value="1" id="rate5" onclick="rateSelect(event)"><label for="rate5">⭐</label>
 			</fieldset>
 			<input type="hidden" name="rate" id="rate">
+			<input type="hidden" name="room_id" value="${requestScope.room_id }">
 			<span id="rate_err" class="err"></span>
 			<div class="content_label_div">
 				<label>내용</label>

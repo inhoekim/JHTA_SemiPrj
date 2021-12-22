@@ -16,7 +16,6 @@
 
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<jsp:include page="${requestScope.searchbar}"/>	
 	<div style="min-height: 600px; width: 100%;">
 		<jsp:include page="${requestScope.main }"/>
 	</div>
@@ -72,7 +71,7 @@
 				alarm_cnt.innerText = alarmCount;
 			}
 		};
-		xhr.open('get', url, true);
+		xhr.open('get', url, false);
 		xhr.send();
 	}
 	

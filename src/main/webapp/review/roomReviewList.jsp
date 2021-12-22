@@ -99,6 +99,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="rs" value="${requestScope }"/>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<!-- 리뷰 댓글수 카운트 -->
+<c:set var="list2" value="${requestScope.list2 }"/>
 <div class="review_listwrap">
 	<h2>리뷰 게시판</h2>
 	<table class="review_list" width="800px">
@@ -122,11 +124,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="list" items="${requestScope.list }">
+			<c:forEach var="list" items="${requestScope.list }" varStatus="status">
 				<tr class="review_td">
 					<td id="num">${list.review_id }</td>
 					<td id="id">${list.hlogin_id }</td>
-					<td id="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }</a></td>
+					<td id="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }&nbsp;
+						<c:if test="${list2[status.index] != 0 }">
+							[${list2[status.index] }]
+						</c:if>
+					</a></td>
 					<td id="created_day">${list.created_day }</td>
 					<td id="views">${list.views }</td>
 					<td id="recommend">${list.recommend }</td>

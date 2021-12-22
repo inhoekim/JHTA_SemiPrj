@@ -26,10 +26,9 @@ public class AlarmListController extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		String hlogin_id = (String)session.getAttribute("hlogin_id");
-
+		
 		ReviewCommentsDao reviewDao = ReviewCommentsDao.getInstance();
 		ArrayList<ReviewCommentsVo> list = reviewDao.selectReview(hlogin_id);
-		System.out.println("알람 크기 : " + list.size());
 		int alarmCount = reviewDao.alarmCount(hlogin_id);
 		
 		resp.setContentType("text/plain; charset=utf-8");
