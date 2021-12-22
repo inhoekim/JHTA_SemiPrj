@@ -33,6 +33,7 @@ public class LoginController extends HttpServlet{
 		String pwd=Utility.encoding(req.getParameter("pwd")); //비밀번호 암호화로 Utility추가: String pwd=Utility.encoding(req.getParameter("pwd"));
 		//12-14일 13시 상훈 수정
 		String chk=req.getParameter("chk");
+		
 		System.out.println("ho");
 		HashMap<String, String> map=new HashMap<String, String>();
 		map.put("hlogin_id", hlogin_id);
@@ -46,8 +47,6 @@ public class LoginController extends HttpServlet{
 			cook1.setMaxAge(60*60); //60분 -테스트중이라 10초
 			cook1.setPath("/");
 			resp.addCookie(cook1);
-		}else {
-			
 		}
 		if(b) {
 			// 12월15일 태형 수정
