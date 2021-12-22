@@ -68,7 +68,7 @@ function setCalendar(type,year,month) {
 }
 
 function prev(year,month,flag){
-	resetAll();
+	reset();
 	if(flag) {
 		setCalendar(1,year,month-1);
 		setCalendar(2,year,month);
@@ -80,7 +80,7 @@ function prev(year,month,flag){
 
 }
 function next(year,month,flag){
-	resetAll();
+	reset();
 	if(flag) {
 		setCalendar(1,year,month);
 		setCalendar(2,year,month+1);
@@ -90,13 +90,7 @@ function next(year,month,flag){
 	}
 }
 
-function resetAll(){
-	//interaction Bar Reset
-	document.getElementById("checkInForm").value="";
-	document.getElementById("checkOutForm").value="";
-	document.getElementById("inDate").innerText="선택없음";
-	document.getElementById("outDate").innerText="선택없음";
-	document.getElementById("nights").innerText="0박";
+function reset(){
 	//Calendar Reset
 	let calendarBox = document.getElementById("calendarBox");
 	let calendar = document.getElementsByClassName("calendar");
