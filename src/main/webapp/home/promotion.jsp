@@ -30,8 +30,8 @@
 	position:absolute;
 	width:100%;
 	left: 0;
-	-webkit-transition: left .3s ease-in;
-	transition: left .3s ease-in;
+	-webkit-transition: left .7s ease-in;
+	transition: left .7s ease-in;
 	}
 	.slide1{
 	position: absolute;
@@ -42,8 +42,8 @@
 	overflow: hidden;
 	}
 	.slider-container1.animated{
-	-webkit-transition:left .5s ease-in;
-	transition:left .5s ease-in;
+	-webkit-transition:left .7s ease-in;
+	transition:left .7s ease-in;
 	}
 	.simple-list1 {
 	list-style-type: none;
@@ -121,9 +121,9 @@
 	}
 	    
 	#prev1.disabled, #next1.disables{display:none;}     
-	#prev1{background-image:url('/semiPrj/images/left-arrow-grey2.png'); margin-left:-400px;} 
+	#prev1{background-image:url('/semiPrj/images/left-arrow-grey2.png'); margin-left:-570px;} 
 	#prev1:hover{background-image:url('/semiPrj/images/left-arrow-grey.png');}
-	#next1{margin-left:400px;background-image:url('/semiPrj/images/right-arrow-grey2.png');}
+	#next1{margin-left:520px;background-image:url('/semiPrj/images/right-arrow-grey2.png');}
 	#next1:hover{background-image:url('/semiPrj/images/right-arrow-grey.png)';}
 </style>
 </head>
@@ -151,6 +151,14 @@
 			 프리미엄 스파 패키지를 만나보세요!</span>
 			</a>
 		</div>
+		<div class="content1" style="width:300px; height;300px;display:inline-block;">
+			<a href="" class="swiper-slide1"><!-- 해당 룸 예약창으로 -->
+			 <span class="image1"><img  src="${cp }/images/promotion6.png"  alt="사진4"></span>
+			 <span class="title">
+			 <h3>연말 프리미엄 레스토랑</h3>
+			 특별한 연말 우리우리 호텔에서!</span>
+			</a>	
+		</div>
 		</div>
 			</li>
 	   <li class="slide1">
@@ -171,11 +179,6 @@
 			 코로나도 걱정없는 룸 서비스</span>
 			</a>	
 		</div>
-		</div>
-		</li>
-	
-		<li class="slide1">
-		<div>
 		<div class="content1" style="width:300px; height;300px;display:inline-block;">
 			<a href="" class="swiper-slide1"><!-- 해당 룸 예약창으로 -->
 			 <span class="image1"><img  src="${cp }/images/promotion5.jpg" alt="사진4"></span>
@@ -184,20 +187,13 @@
 			 와인과 함께 특별한 날을 맞이해 보세요</span>
 			</a>	
 		</div>
-		<div class="content1" style="width:300px; height;300px;display:inline-block;">
-			<a href="" class="swiper-slide1"><!-- 해당 룸 예약창으로 -->
-			 <span class="image1"><img  src="${cp }/images/promotion6.png"  alt="사진4"></span>
-			 <span class="title">
-			 <h3>연말 프리미엄 레스토랑</h3>
-			 특별한 연말 우리우리 호텔에서!</span>
-			</a>	
 		</div>
-		</div>
-	</li>  
+		</li>
+ 
 		</ul>
 		<p class="pager1">
 		</p>
-		<a href="#" id="prev1"></a><a href="#" id="next1"></a>
+		<a href="javascript:void(0)#" id="prev1"></a><a href="javascript:void(0)#" id="next1"></a>
 	</div>
 </div>
 	
