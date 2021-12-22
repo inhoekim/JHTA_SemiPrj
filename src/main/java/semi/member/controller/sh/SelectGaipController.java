@@ -27,7 +27,10 @@ public class SelectGaipController extends HttpServlet{
 			req.getRequestDispatcher("/home/result.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/home/updatesh.jsp").forward(req, resp);
+			req.setAttribute("header", "/home/header.jsp");
+			req.setAttribute("main", "/home/updatesh.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 		}	
 	}
 }

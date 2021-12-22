@@ -28,7 +28,7 @@ public class UpdateidController extends HttpServlet{
 			req.setAttribute("main", "/home/updatesh.jsp");
 			req.setAttribute("footer", "/home/footer.html");
 			
-			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 		}
 
 	}
@@ -50,6 +50,9 @@ public class UpdateidController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.getRequestDispatcher("/hj/main_test.jsp").forward(req, resp);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/home/successupdate.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }

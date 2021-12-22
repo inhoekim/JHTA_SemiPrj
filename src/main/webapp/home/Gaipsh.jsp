@@ -13,7 +13,7 @@
 		.gaip_div {
 			text-align: center;
 			margin: 10px;
-			
+			margin-top:80px;
 		}
 		*{
 		font-family: do hyeon; 
