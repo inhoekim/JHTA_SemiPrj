@@ -27,7 +27,11 @@ public class UpdateGaipAdminController extends HttpServlet{
 			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/sh/AdminUpdate.jsp").forward(req, resp);
+			req.setAttribute("header", "/Admin/header.jsp");
+			req.setAttribute("main", "/Admin/AdminUpdate.jsp");
+			req.setAttribute("footer", "/home/footer.html");
+			req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/sh/AdminUpdate.jsp").forward(req, resp);
 		}	
 	}
 	@Override
@@ -48,6 +52,6 @@ public class UpdateGaipAdminController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/home/result.jsp").forward(req, resp);
 	}
 }

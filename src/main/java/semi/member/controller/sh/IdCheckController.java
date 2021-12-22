@@ -19,7 +19,7 @@ import semi.member.dao.je.HloginDaoje;
 public class IdCheckController extends HttpServlet {
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			resp.sendRedirect(req.getContextPath() + "/sh/Gaipsh.jsp");
+			resp.sendRedirect(req.getContextPath() + "/home/Gaipsh.jsp");
 		}
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
