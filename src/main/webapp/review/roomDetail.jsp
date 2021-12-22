@@ -290,8 +290,20 @@ td {
 			</div>
 		</div>
 		<!-- 달력 -->
-		<div id="calbox">
-			
+		<div id="calbox" style="height: 100%; border-bottom: 1px solid #D8D8D8">
+			<div id="calendarBox" style="height: 50%"></div>
+			<div id="informBox" style="height: 50%; line-height: 50px; text-align: center;">
+				<p style="margin-top: 20px; color: #bbbbbb">※원하시는 날짜를 클릭하여 예약을 진행할 수 있습니다. 하이라이팅 표시가 꺼져있는 날짜는 예약이 불가능합니다. </p>
+				
+				<br>
+				<p style="font-size: 20px">체크인 날짜 : 
+				<span id="inDate">선택없음</span>
+				</p>
+				
+				<p>
+				<span id="nights" style="border: 2px solid #ff6666; border-radius: 1em;">0박</span></p>
+				<p style="font-size: 20px">체크아웃 날짜 : <span id="outDate">선택없음</span></p>
+			</div>
 		</div>
 	</div>
 	
@@ -321,8 +333,8 @@ td {
 					<td>
 						<form action="${cp}/reserve" method="get">
 						<input type="hidden" name="room" value="${room.room_id}">
-						<input type="hidden" id="checkIn" name="checkIn" value="2021-12-23">
-						<input type="hidden" id="checkOut" name="checkOut" value="2021-12-25">
+						<input type="hidden" id="checkInForm" name="checkIn" value="">
+						<input type="hidden" id="checkOutForm" name="checkOut" value="">
 						<input type="submit" value="예약하기" class="reservation_btn">
 						</form>
 					</td>

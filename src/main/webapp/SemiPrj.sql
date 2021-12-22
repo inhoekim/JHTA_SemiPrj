@@ -132,7 +132,6 @@ CREATE SEQUENCE SEQ_RECOMMEND;
 
 -- room Insert
 insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'singleRoom1.jpg');
-insert into room values (seq_room.nextval, '싱글', 1, 100000, 0, 'singleRoom2.jpg');
 insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'doubleRoom1.jpg');
 insert into room values (seq_room.nextval, '더블', 2, 130000, 0, 'doubleRoom2.jpg');
 insert into room values (seq_room.nextval, '트윈', 2, 130000, 0, 'twinRoom1.jpg');
