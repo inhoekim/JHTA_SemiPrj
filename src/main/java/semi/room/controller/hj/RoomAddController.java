@@ -24,7 +24,7 @@ public class RoomAddController extends HttpServlet{
 		
 		ServletContext context = this.getServletContext();
 		String saveDir=context.getRealPath("/images");
-		System.out.println("업로드 경로" + saveDir + "<br>");
+		//System.out.println("업로드 경로" + saveDir + "<br>");
 		
 		MultipartRequest mr=new MultipartRequest(
 				req, 

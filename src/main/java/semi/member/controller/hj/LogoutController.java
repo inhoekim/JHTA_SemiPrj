@@ -15,15 +15,14 @@ public class LogoutController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String hlogin_id=req.getParameter("hlogin_id");
-		String pwd=req.getParameter("pwd");
-
-		HttpSession session=req.getSession();
-		session.invalidate();
 		
 		Cookie cook1=new Cookie("hlogin_id",hlogin_id);
 		cook1.setMaxAge(0);
 		cook1.setPath("/");
 		resp.addCookie(cook1);
+
+		HttpSession session=req.getSession();
+		session.invalidate();
 		
 		resp.sendRedirect(req.getContextPath() + "/home");
 	}
