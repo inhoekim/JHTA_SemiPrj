@@ -30,7 +30,7 @@
 	position:absolute;
 	width:100%;
 	left: 0;
-	-webkit-transition: left .3s ease-in;
+	-webkit-transition: left .4s ease-in;
 	transition: left .3s ease-in;
 	}
 	.slide{
@@ -49,8 +49,8 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-    }
-	#prev,
+    } 
+	#prev, 
 	#next{
 		position:absolute;
 		top:50%;
@@ -121,9 +121,9 @@
 	}
 	    
 	#prev.disabled, #next.disables{display:none;}     
-	#prev{background-image:url('/semiPrj/images/left-arrow-grey2.png'); margin-left:-400px;} 
-	#prev:hover{background-image:url('/semiPrj/images/left-arrow-grey.png');}
-	#next{margin-left:400px;background-image:url('/semiPrj/images/right-arrow-grey2.png');}
+	#prev{background-image:url('/semiPrj/images/left-arrow-grey2.png'); margin-left:-570px;}  
+	#prev:hover{background-image:url('/semiPrj/images/left-arrow-grey.png');} 
+	#next{margin-left:520px;background-image:url('/semiPrj/images/right-arrow-grey2.png');}
 	#next:hover{background-image:url('/semiPrj/images/right-arrow-grey.png)';}
 </style>
 </head>
@@ -152,6 +152,14 @@
 			 넓은 거실과 패밀리 패키지를 함께 누려보세요!</span>
 			</a>
 		</div>
+		<div class="content" style="width:300px; height;300px;display:inline-block;">
+			<a href="" class="swiper-slide"><!-- 해당 룸 예약창으로 -->
+			 <span class="image"><img  src="${cp }/images/room/twinRoom2.jpg"  alt="사진4"></span>
+			 <span class="title">
+			 <h3>연말 호캉스는 우리우리호텔에서</h3>
+			 스파와 함께 연말 맞이 호캉스를 누려보세요!</span>
+			</a>	
+		</div>
 		</div>
 			</li>
 	   <li class="slide">
@@ -172,11 +180,6 @@
 			 스파와 함께 연말 맞이 호캉스를 누려보세요!</span>
 			</a>	
 		</div>
-		</div>
-		</li>
-	
-		<li class="slide">
-		<div>
 		<div class="content" style="width:300px; height;300px;display:inline-block;">
 			<a href="" class="swiper-slide"><!-- 해당 룸 예약창으로 -->
 			 <span class="image"><img  src="${cp }/images/room/twinRoom1.jpg" alt="사진4"></span>
@@ -185,20 +188,12 @@
 			 넷플릭스와 함께 맞는 연말</span>
 			</a>	
 		</div>
-		<div class="content" style="width:300px; height;300px;display:inline-block;">
-			<a href="" class="swiper-slide"><!-- 해당 룸 예약창으로 -->
-			 <span class="image"><img  src="${cp }/images/room/twinRoom2.jpg"  alt="사진4"></span>
-			 <span class="title">
-			 <h3>연말 호캉스는 우리우리호텔에서</h3>
-			 스파와 함께 연말 맞이 호캉스를 누려보세요!</span>
-			</a>	
 		</div>
-		</div>
-	</li>  
+		</li>
 		</ul>
 		<p class="pager">
 		</p>
-		<a href="#" id="prev"></a><a href="#" id="next"></a>
+		<a href="javascript:void(0)#" id="prev"></a><a href="javascript:void(0)#" id="next"></a>
 	</div>
 </div>
 <div style="top:100px;position:relative;">      
