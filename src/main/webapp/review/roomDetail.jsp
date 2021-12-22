@@ -254,7 +254,7 @@ td {
 }
 
 .more_btn {
-	padding: 10 15 10 15;
+	padding: 10px 15px 10px 15px;
 	border: #ff6666 solid 1px;
 	color: #ff6666;
 	text-decoration: none;

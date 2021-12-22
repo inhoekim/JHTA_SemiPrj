@@ -154,7 +154,10 @@ begin
         from review r
         where  f.review_id = r.review_id  and f.review_id = call_review_id
     );
-
+    
+    delete recommend
+    where review_id = call_review_id;
+    
     delete comments
     where review_id = call_review_id;
     
