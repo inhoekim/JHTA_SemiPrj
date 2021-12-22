@@ -90,6 +90,7 @@ public class ReviewDetailController extends HttpServlet {
 		req.setAttribute("cookieCheck", cookieCheck);
 		req.setAttribute("rVo", rVo);
 		req.setAttribute("vo", vo);
+		req.setAttribute("hlogin_id", hlogin_id);
 		req.setAttribute("src_name", src_name);
 		req.setAttribute("src", saveDir + "/" + src_name);
 		req.setAttribute("header", "/home/header.jsp");

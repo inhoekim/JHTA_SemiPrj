@@ -109,7 +109,7 @@
 	
 	window.onload=function(){
 		alarmList();
-		printCalendar();
+		//printCalendar();
 		if (typeof commentsList != 'undefined') {
 			commentsList();
 		}

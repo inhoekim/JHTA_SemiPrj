@@ -245,7 +245,7 @@
 	
 	function recommend(num) {
 		let check = '<c:out value="${requestScope.hlogin_id}"/>';
-		if (check == 'guest') {
+		if (check == 'guest' || check == '') {
 			alert("로그인을 해주세요.");
 			return;
 		}
@@ -281,7 +281,7 @@
 	function loginCheck() {
 		// 로그인 안 하면 로그인 페이지로
 		let check = '<c:out value="${requestScope.hlogin_id}"/>';
-		if (check == 'guest') {
+		if (check == 'guest' || check == '') {
 			location.href = '${path}/home/login.jsp';
 		}
 	}
@@ -409,7 +409,7 @@
 		let check = '<c:out value="${requestScope.hlogin_id}"/>';
 		let con = document.getElementById("comment_text_area");
 		
-		if (check == 'guest') {
+		if (check == 'guest' || check == '') {
 			location.href = '${path}/home/login.jsp';
 			return;
 		}
@@ -420,7 +420,7 @@
 		// form
 		let comment = document.getElementById("comment_text_area");
 		if (comment.value.replace(blank, '') == '') {
-			title_err.innerHTML = "<br>제목을 입력해주세요.";
+			alert("내용을 입력하세요.");
 			title.focus();
 			return;
 		}
