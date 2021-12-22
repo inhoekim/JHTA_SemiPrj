@@ -39,7 +39,8 @@ public class ReviewListController extends HttpServlet {
 		ArrayList<ReviewBoardVo> list = dao.reviewList(startRow, endRow, field, keyword);
 		
 		int count = dao.getPageMaxNum(field, keyword, 0);
-		
+		// 리뷰 댓글수 추출
+		ArrayList<Integer> list2 = dao.reviewCommentsCount();
 		int pageCount = (int)Math.ceil(count / 10.0);
 		int startPage = (pageNum - 1) / 10 * 10 + 1;
 		int endPage = startPage + 9;
@@ -49,6 +50,7 @@ public class ReviewListController extends HttpServlet {
 		}
 		
 		req.setAttribute("list", list);
+		req.setAttribute("list2", list2);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("startPage", startPage);

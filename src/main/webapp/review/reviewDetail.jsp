@@ -349,7 +349,7 @@
 						let del = "</td>";
 						if (hlogin_id == id) {
 						  	del = "<a href='javascript:commentDel(" + comment_id + ")' id='reply_delete'>&nbsp;&nbsp;삭제</a></td>";
-						  }
+						}
 						
 						comm_tr.innerHTML = "<td class='comment_td'>" + hlogin_id + "</td>"
 										  + "<td class='comment_td'>" + content + "</td>"
@@ -475,8 +475,4 @@
 	function reviewDel() {
 		location.href = "${path}/review/delete?review_id=${vo.review_id}";
 	}
-	
-	/* window.onload = function() {
-		commentsList();
-	} */
 </script>

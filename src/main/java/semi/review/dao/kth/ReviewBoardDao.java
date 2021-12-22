@@ -407,4 +407,32 @@ public class ReviewBoardDao {
 		}
 	}
 	
+	// 해당 리뷰 댓글 수 출력
+	public ArrayList<Integer> reviewCommentsCount() {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = JdbcUtil.getCon();
+			String sql = "select r.review_id, nvl(count(c.review_id), 0) cnt "
+					+ "from review r, comments c "
+					+ "where r.review_id = c.review_id(+) "
+					+ "group by r.review_id "
+					+ "order by r.review_id desc";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int cnt = rs.getInt("cnt");
+				list.add(cnt);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }
