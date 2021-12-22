@@ -22,7 +22,7 @@ public class DeleteGaipAdminController extends HttpServlet{
 	
 		if(n>0) {
 			
-			resp.sendRedirect(req.getContextPath() +"/select/list");//목록을 보여주는 리스트컨트롤러로 이동
+			resp.sendRedirect(req.getContextPath() +"/Admin/Adminlist");
 		}else {
 			req.setAttribute("result", "fail");
 			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);

@@ -50,8 +50,10 @@ public class GaipController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
-				
-		req.getRequestDispatcher("/home").forward(req, resp);
+		req.setAttribute("header", "/home/header.jsp");
+		req.setAttribute("main", "/home/hello.jsp");
+		req.setAttribute("footer", "/home/footer.html");
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 	}
 }
 
