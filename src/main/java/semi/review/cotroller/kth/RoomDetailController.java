@@ -42,7 +42,7 @@ public class RoomDetailController extends HttpServlet {
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/roomDetail.jsp");
 		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
+		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
 //		req.getRequestDispatcher("/review/roomDetail.jsp").forward(req, resp);
 	}
 	

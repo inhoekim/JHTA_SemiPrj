@@ -244,8 +244,8 @@
 	var cookieCheck = '<c:out value="${requestScope.cookieCheck}"/>';
 	
 	function recommend(num) {
-		let check = '<c:out value="${requestScope.id}"/>';
-		if (check == 'fail' || check == 'guest') {
+		let check = '<c:out value="${requestScope.hlogin_id}"/>';
+		if (check == 'guest' || check == '') {
 			alert("로그인을 해주세요.");
 			return;
 		}
@@ -280,8 +280,8 @@
 	
 	function loginCheck() {
 		// 로그인 안 하면 로그인 페이지로
-		let check = '<c:out value="${requestScope.id}"/>';
-		if (check == 'fail' || check == 'guest') {
+		let check = '<c:out value="${requestScope.hlogin_id}"/>';
+		if (check == 'guest' || check == '') {
 			location.href = '${path}/home/login.jsp';
 		}
 	}
@@ -303,7 +303,7 @@
 				let data = xhr.responseText;
 				let json = JSON.parse(data);
 				let comment_cnt = document.getElementById("comment_max");
-				let id = '<c:out value="${requestScope.id}"/>';
+				let id = '<c:out value="${requestScope.hlogin_id}"/>';
 				// 부모 태그
 				let tbody = document.getElementById("comment_tbody");
 				let comment_paging = document.getElementById("comment_paging");
@@ -406,11 +406,22 @@
 	// 댓글 등록
 	function commentsBtn() {
 		// 로그인 안 하면 로그인 페이지로
-		let check = '<c:out value="${requestScope.id}"/>';
+		let check = '<c:out value="${requestScope.hlogin_id}"/>';
 		let con = document.getElementById("comment_text_area");
 		
-		if (check == 'fail' || check == 'guest') {
+		if (check == 'guest' || check == '') {
 			location.href = '${path}/home/login.jsp';
+			return;
+		}
+		
+		// 공백 체크
+		let blank = /^\s+|\s+$/g;
+		
+		// form
+		let comment = document.getElementById("comment_text_area");
+		if (comment.value.replace(blank, '') == '') {
+			alert("내용을 입력하세요.");
+			title.focus();
 			return;
 		}
 		

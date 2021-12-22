@@ -26,10 +26,12 @@ public class ReviewDetailController extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String hlogin_id = (String)session.getAttribute("hlogin_id");
+		
 		// 로그인을 안 했을 경우
 		if (hlogin_id == null) {
 			hlogin_id = "guest";
 		}
+		
 		
 		Cookie[] cookies = req.getCookies();
 		if (cookies != null) {
@@ -76,13 +78,7 @@ public class ReviewDetailController extends HttpServlet {
 		RecommendVo rVo = dao.getRecommend(review_id);
 		ImgFileDao imgFileDao = ImgFileDao.getInstance();
 		String src_name = imgFileDao.getImage(review_id);
-		// 자바스크립트에서 로그인 여부 확인
-		String id = "";
-		if (hlogin_id != null) {
-			id = hlogin_id;
-		} else {
-			id = "fail";
-		}
+		
 		// 디렉터리 주소
 		ServletContext context = this.getServletContext();
 		
@@ -92,9 +88,9 @@ public class ReviewDetailController extends HttpServlet {
 		String saveDir = change.substring(change.lastIndexOf("/semiPrj"));
 		
 		req.setAttribute("cookieCheck", cookieCheck);
-		req.setAttribute("id", id);
 		req.setAttribute("rVo", rVo);
 		req.setAttribute("vo", vo);
+		req.setAttribute("hlogin_id", hlogin_id);
 		req.setAttribute("src_name", src_name);
 		req.setAttribute("src", saveDir + "/" + src_name);
 		req.setAttribute("header", "/home/header.jsp");

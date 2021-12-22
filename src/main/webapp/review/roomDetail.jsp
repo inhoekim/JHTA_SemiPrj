@@ -137,7 +137,6 @@ li div {
 	width: 50%;
 	height: 700px;
 	float: left;
-	background-color: #D8D8D8;
 }
 
 .cal {
@@ -254,7 +253,7 @@ td {
 }
 
 .more_btn {
-	padding: 10 15 10 15;
+	padding: 10px 15px 10px 15px;
 	border: #ff6666 solid 1px;
 	color: #ff6666;
 	text-decoration: none;
@@ -262,6 +261,10 @@ td {
 
 .more_btn:hover {
 	box-shadow: inset 0px 0px 3px 0px rgb(77, 71, 71);
+}
+
+.calbox {
+	padding-top: 80px;
 }
 </style>
 <div class="img_srd_cal">
@@ -286,11 +289,11 @@ td {
 					<span data-idx="7">7</span>
 					<span data-idx="8">8</span> -->
 				</p>
-				<a href="#" id="prev"></a> <a href="#" id="next"></a>
+				<a href="javascript:void(0)" id="prev"></a> <a href="javascript:void(0)" id="next"></a>
 			</div>
 		</div>
 		<!-- 달력 -->
-		<div id="calbox" style="height: 100%; border-bottom: 1px solid #D8D8D8">
+		<div id="calbox" class="calbox" style="height: 100%; border-bottom: 1px solid #D8D8D8">
 			<div id="calendarBox" style="height: 50%"></div>
 			<div id="informBox" style="height: 50%; line-height: 50px; text-align: center;">
 				<p style="margin-top: 20px; color: #bbbbbb">※원하시는 날짜를 클릭하여 예약을 진행할 수 있습니다. 하이라이팅 표시가 꺼져있는 날짜는 예약이 불가능합니다. </p>
@@ -306,8 +309,6 @@ td {
 			</div>
 		</div>
 	</div>
-	
-	
 	<div class="reservation_div">
 		<h3>객실 예약하기</h3>
 		<table>
@@ -347,21 +348,6 @@ td {
 			class="cnt_b">${requestScope.review_cnt }</b>건</span>
 	</div>
 	<div class="review_list" id="review_list">
-		<%-- <c:forEach var="list" items="${requestScope.list }">
-			<div class="review_contnet">
-				<div class="review_header">
-					<c:forEach begin="1" end="${list.rate }">
-						<span id="star_span">★</span>
-					</c:forEach>
-					<span class="review_writer">${list.hlogin_id } | ${list.created_day }</span>
-				</div>
-				<div class="review_body">
-					<p>
-						${list.content }
-					</p>
-				</div>
-			</div>
-		</c:forEach> --%>
 	</div>
 	<div class="show_btn">
 		<a href="javascript:moreReview()" class="more_btn">후기 더보기</a>
@@ -531,7 +517,7 @@ td {
 							span += '<span id="star_span">★</span>';
 						}
 
-						div = '<div class="review_contnet">'
+						div = '<div class="review_contnet" onclick="reviewBoardMove(' + review_id + ')" style="cursor: pointer;">'
 								+ '<div class="review_header">' + span
 								+ '<span class="review_writer">' + hlogin_id
 								+ ' | ' + created_day + '</span>' + '</div>'
@@ -604,6 +590,10 @@ td {
 		xhr.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
 		xhr.send(param);
+	}
+	
+	function reviewBoardMove(review_id) {
+		location.href= '${pageContext.request.contextPath}/review/detail?review_id=' + review_id;
 	}
 	
 	/* window.onload=function(){
