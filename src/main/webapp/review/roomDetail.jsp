@@ -240,6 +240,7 @@ td {
 	border-radius: 5px;
 	color: white;
 	background-color: #ff6666;
+	cursor: pointer;
 }
 
 .reservation_btn:hover {
@@ -288,8 +289,13 @@ td {
 				<a href="#" id="prev"></a> <a href="#" id="next"></a>
 			</div>
 		</div>
-		<div class="cal"></div>
+		<!-- 달력 -->
+		<div id="calbox">
+			
+		</div>
 	</div>
+	
+	
 	<div class="reservation_div">
 		<h3>객실 예약하기</h3>
 		<table>
@@ -301,18 +307,25 @@ td {
 			</colgroup>
 			<thead>
 				<tr>
-					<th>객실</th>
+					<th>객실번호</th>
 					<th>인원</th>
-					<th>객실요금</th>
+					<th>객실요금(1박기준)</th>
 					<th>예약하기</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>101호</td>
-					<td>2인</td>
-					<td>39800</td>
-					<td><input type="button" value="예약하기" class="reservation_btn"></td>
+					<td>${room.room_id}</td>
+					<td>${room.kind}(${room.capacity}인)</td>
+					<td>${room.price}원</td>
+					<td>
+						<form action="${cp}/reserve" method="get">
+						<input type="hidden" name="room" value="${room.room_id}">
+						<input type="hidden" id="checkIn" name="checkIn" value="2021-12-23">
+						<input type="hidden" id="checkOut" name="checkOut" value="2021-12-25">
+						<input type="submit" value="예약하기" class="reservation_btn">
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>

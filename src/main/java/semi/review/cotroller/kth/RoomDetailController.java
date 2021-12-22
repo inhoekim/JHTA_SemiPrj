@@ -15,6 +15,8 @@ import org.json.JSONObject;
 
 import semi.review.dao.kth.ReviewBoardDao;
 import semi.review.vo.kth.ReviewBoardVo;
+import semi.room.dao.ihk.RoomDao;
+import semi.room.vo.ihk.RoomVo;
 
 @WebServlet("/room/detail")
 public class RoomDetailController extends HttpServlet {
@@ -26,12 +28,12 @@ public class RoomDetailController extends HttpServlet {
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		
 		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, 0, 0);
-		
-		
+		RoomVo roomVo =  RoomDao.getInstance().selectRoom(room_id);
 		int count = dao.getPageMaxNum(null, null, room_id);
 		
 		req.setAttribute("list", list);
 		req.setAttribute("room_id", room_id);
+		req.setAttribute("room", roomVo);
 		req.setAttribute("review_cnt", count);
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/roomDetail.jsp");
