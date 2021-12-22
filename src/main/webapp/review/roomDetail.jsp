@@ -286,7 +286,7 @@ td {
 					<span data-idx="7">7</span>
 					<span data-idx="8">8</span> -->
 				</p>
-				<a href="#" id="prev"></a> <a href="#" id="next"></a>
+				<a href="javascript:void(0)" id="prev"></a> <a href="javascript:void(0)" id="next"></a>
 			</div>
 		</div>
 		<!-- 달력 -->
