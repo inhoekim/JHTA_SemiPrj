@@ -1,29 +1,4 @@
-function printCalendar(checkIn) {
-	let day = 0;
-	let month = 0;
-	let year = 0;
-	if(checkIn == "undefined" || checkIn == null || checkIn == "") {
-		let today = new Date();
-		month = today.getMonth() + 1;
-		year = today.getFullYear();
-	}else {
-		let checkInForm = document.getElementById("checkInForm");
-		let checkOutForm = document.getElementById("checkOutForm");
-		year = (new Date(checkIn)).getFullYear();
-		month = (new Date(checkIn)).getMonth();
-		month += 1;
-		day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
-		day = Math.ceil(day);
-	}
-	setCalendar(1,year,month);
-	setCalendar(2,year,month+1);
-	if(day!="0") {
-		document.getElementById("nights").innerText= day + "박";
-		highlighting(day);
-	}
-}
-
-function printCalendar2() {
+function printCalendar() {
 	let today = new Date();
 	let month = today.getMonth() + 1;
 	let year = today.getFullYear();
@@ -45,7 +20,7 @@ function setCalendar(type,year,month) {
 	//윤년계산
 	if((year%400==0) || ((year%4==0) && year%100 !=0)) {endDay[1]=29;}
 
-	calHTML = "<table class='calendar'>" +
+	calHTML = "<table class='calendar' style='margin:0; height: 100%'>" +
 		"<colgroup> " +
 		"<col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/><col width='14%'/>" +
 		"</colgroup>" +
@@ -98,7 +73,7 @@ function prev(year,month,flag){
 		setCalendar(1,year,month-1);
 		setCalendar(2,year,month);
 	}
-	else {
+	else {	
 		setCalendar(3,year,month-1);
 	}
 	
@@ -119,13 +94,12 @@ function resetAll(){
 	//interaction Bar Reset
 	document.getElementById("checkInForm").value="";
 	document.getElementById("checkOutForm").value="";
-	document.getElementById("inDate").innerText="날짜추가";
-	document.getElementById("outDate").innerText="날짜추가";
+	document.getElementById("inDate").innerText="선택없음";
+	document.getElementById("outDate").innerText="선택없음";
 	document.getElementById("nights").innerText="0박";
 	//Calendar Reset
 	let calendarBox = document.getElementById("calendarBox");
 	let calendar = document.getElementsByClassName("calendar");
-	calendarBox.removeChild(calendar[1]);
 	calendarBox.removeChild(calendar[0]);
 }
 
@@ -160,7 +134,6 @@ function checkin(event,year,month){
 			day = Math.ceil(day);
 			nights.innerText = day + "박";
 			highlighting(day); //달력에 하이라이팅 표시
-			document.getElementById("calendarBox").style.visibility="hidden";
 		}
 	//새롭게 체크인 날짜 결정
 	}else{
@@ -176,40 +149,6 @@ function checkin(event,year,month){
 	}	
 }
 
-function openCalendar(){
-	let calendarBox = document.getElementById("calendarBox");
-	let peopleBox = document.getElementById("peopleBox");
-	if(calendarBox.style.visibility == "" || calendarBox.style.visibility == "hidden") {
-		calendarBox.style.visibility = "visible";
-		peopleBox.style.visibility = "hidden";
-	}
-	else calendarBox.style.visibility = "hidden";
-}
-
-function openPeopleBox(){
-	let calendarBox = document.getElementById("calendarBox");
-	let peopleBox = document.getElementById("peopleBox");
-	if(peopleBox.style.visibility == "" || peopleBox.style.visibility == "hidden") {
-		calendarBox.style.visibility = "hidden";
-		peopleBox.style.visibility = "visible";
-	}
-	else peopleBox.style.visibility = "hidden";
-}
-
-function plusPN(){
-	let num = Number(document.getElementById("pn").innerText);
-	document.getElementById("pn").innerText = num + 1;
-	document.getElementById("peopleNum").value = num + 1;
-	document.getElementById("people").innerText = (num + 1) + "명";
-}
-
-function minusPN(){
-	if(document.getElementById("pn").innerText > 0) {
-		document.getElementById("pn").innerText -= 1;
-		document.getElementById("peopleNum").value -= 1;
-		document.getElementById("people").innerText = document.getElementById("peopleNum").value + "명";
-	}
-}
 
 function highlighting(day) {
 	for(let i = 0; i <= day; i++) {

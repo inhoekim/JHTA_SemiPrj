@@ -21,7 +21,7 @@
 	</div>
 	<jsp:include page="${requestScope.footer}"/>
 </body>
-<script src="${cp}/js/calendar.js"></script>
+<script src="${cp}/js/calendar2.js"></script>
 <script type="text/javascript">
 	var xhr = null;
 	function alarmList() {
@@ -109,7 +109,7 @@
 	
 	window.onload=function(){
 		alarmList();
-		
+		printCalendar();
 		if (typeof commentsList != 'undefined') {
 			commentsList();
 		}

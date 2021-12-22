@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 import db.JdbcUtil;
 import semi.room.vo.ihk.RoomVo;
@@ -70,6 +72,13 @@ public class RoomDao {
 		}finally {
 			JdbcUtil.close(con,pstmt,rs);
 		}
+	}
+	
+	//room에 해당하는 예약기록을 HashMap<year-month,ArrayList<day>> 느낌으로 넣어서 리턴
+	public HashMap<String, ArrayList<String>> getReserves(int room){
+		HashMap<String, ArrayList<String>> map = new HashMap<>();
+		Date today = new Date();
+		return map;
 	}
 	
 	// 리뷰 작성(평점 불러오기)
