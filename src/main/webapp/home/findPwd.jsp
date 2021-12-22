@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
 <style>
+	*{font-family: do hyeon; } 
 	div#changepwdform {
 		width:600px; height:250px; border:solid 2px #ff6666; border-radius:4px; 
 		text-align: center; margin: auto; margin-top:40px;

@@ -29,9 +29,10 @@ public class RoomDeleteController extends HttpServlet{
 		}
 		int n=dao.roomdelete(room_id);
 		if(n>0) {
-			resp.sendRedirect("/Admin/Adminlistroom.jsp");
+			resp.sendRedirect(req.getContextPath() + "/listroom");
 		}else {
-			System.out.println("<h1>삭제 실패</h1>");
+			req.setAttribute("result", "fail");
+			req.getRequestDispatcher("/member/result.jsp").forward(req, resp);
 		}
 	}
 }
