@@ -109,7 +109,10 @@
 	
 	window.onload=function(){
 		alarmList();
-		//printCalendar();
+		let calendarBox = document.getElementById("calendarBox")
+		if(calendarBox != null) {
+			printCalendar();
+		}
 		if (typeof commentsList != 'undefined') {
 			commentsList();
 		}
