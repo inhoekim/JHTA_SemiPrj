@@ -63,8 +63,8 @@
 		border-radius:50%;
 		background-position: center center;
 		background-repeat: no-repeat;
-		-webkit-transition:all .3s ease-in;
-		transition:all .3s ease-in;
+		-webkit-transition:all .4s ease-in;
+		transition:all .4s ease-in;
 		width:50px;
 		height:30px;     
 		 

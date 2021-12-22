@@ -193,7 +193,7 @@
 		</ul>
 		<p class="pager">
 		</p>
-		<a href="javascript:void(0)#" id="prev"></a><a href="javascript:void(0)#" id="next"></a>
+		<a href="javascript:void(0)" id="prev"></a><a href="javascript:void(0)" id="next"></a>
 	</div>
 </div>
 <div style="top:100px;position:relative;">      
@@ -262,8 +262,8 @@
 			timer = setInterval(function(){
 				let nextIdx = (currentIndex + 1)%slideCount;
 				goToSlide(nextIdx);
-			},4000);
-		}
+			},3000);
+		}     
 		startAutoSlide();
 		
 		function stopAutoSlide(){
