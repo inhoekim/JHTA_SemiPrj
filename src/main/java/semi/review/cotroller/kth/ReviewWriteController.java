@@ -26,6 +26,7 @@ public class ReviewWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		int room_id = Integer.parseInt(req.getParameter("room_id"));
+		req.setAttribute("room_id", room_id);
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/reviewWrite.jsp?room_id=" + room_id);
 		req.setAttribute("footer", "/home/footer.html");
