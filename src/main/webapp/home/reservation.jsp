@@ -48,9 +48,12 @@
 			<td>
 			<c:set var="today" value="<%=java.sql.Timestamp.valueOf(java.time.LocalDate.now().atStartOfDay())%>"/>
 			<fmt:parseDate var="checkinDay" value="${json.get('start_day')}" pattern="yyyy-MM-dd"/>
+			<fmt:parseDate var="checkoutDay" value="${json.get('end_day')}" pattern="yyyy-MM-dd"/>
 			<c:set var="ms" value="${checkinDay.getTime()-today.getTime()}" />
+			<c:set var="reviewMs" value="${checkoutDay.getTime()-today.getTime()}" />
 			<fmt:parseNumber var="remainDay" integerOnly="true" value="${ms/24*60*60*1000 }"/>
-			
+			<fmt:parseNumber var="reviewDay" integerOnly="true" value="${reviewMs/24*60*60*1000 }"/>
+
 			<c:choose>
 			<c:when test= "${json.get('statement') == 1}">
 				<p>결제대기</p>
@@ -73,6 +76,14 @@
 					<a href="${cp}/reserve/cancle?reserve_id=${json.get('reserve_id')}" style="text-decoration: none;">
 					<button type="button" style="border:1px solid #ff6666; border-radius: 1em; font-family: 'Do Hyeon'; width:50px; height: 25px; cursor: pointer;">
 					<span style="font-size: 16px; color : #ff6666">취소</span>
+					</button>
+					</a>
+				</c:when>
+				
+				<c:when test="${reviewDay <= 0}">
+					<a href="${cp}/review/write?room_id=${json.get('room_id')}" style="text-decoration: none;">
+					<button type="button" style="border:1px solid #775CE2; border-radius: 1em; font-family: 'Do Hyeon'; width:70px; height: 25px; cursor: pointer;">
+						<span style="font-size: 16px; color : #775CE2">리뷰쓰기</span>
 					</button>
 					</a>
 				</c:when>
