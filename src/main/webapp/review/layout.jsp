@@ -72,7 +72,7 @@
 				alarm_cnt.innerText = alarmCount;
 			}
 		};
-		xhr.open('get', url, true);
+		xhr.open('get', url, false);
 		xhr.send();
 	}
 	
