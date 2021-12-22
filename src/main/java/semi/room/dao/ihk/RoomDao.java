@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -77,8 +80,39 @@ public class RoomDao {
 	//room에 해당하는 예약기록을 HashMap<year-month,ArrayList<day>> 느낌으로 넣어서 리턴
 	public HashMap<String, ArrayList<String>> getReserves(int room){
 		HashMap<String, ArrayList<String>> map = new HashMap<>();
-		Date today = new Date();
-		return map;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		DateFormat df = new SimpleDateFormat("yyyy-M");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		try {
+			con = JdbcUtil.getCon();
+			for(int i = 0; i < 12; i++) {
+				sql = "select * from reserve where room_id = ? and statement != 3 and start_day like '" + df.format(cal.getTime()) +"%'";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, room);
+				ArrayList<String> arrDay = new ArrayList<>();
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					int startDay = Integer.parseInt(rs.getString("start_day").split("-")[2]);
+					int endDay =  Integer.parseInt(rs.getString("end_day").split("-")[2]);
+					for(int day= startDay ; day < endDay; day++) {
+						String temp = new SimpleDateFormat("yyyyM").format(cal.getTime()) + day;
+						arrDay.add(temp);
+					}
+					map.put(new SimpleDateFormat("yyyyM").format(cal.getTime()), arrDay);
+				}
+				cal.add(Calendar.MONTH, 1);
+			}
+			return map;
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con,pstmt,rs);
+		}
 	}
 	
 	// 리뷰 작성(평점 불러오기)

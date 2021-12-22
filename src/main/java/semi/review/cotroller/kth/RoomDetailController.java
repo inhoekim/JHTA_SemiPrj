@@ -3,6 +3,7 @@ package semi.review.cotroller.kth;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +30,11 @@ public class RoomDetailController extends HttpServlet {
 		
 		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, 0, 0);
 		RoomVo roomVo =  RoomDao.getInstance().selectRoom(room_id);
+		HashMap<String, ArrayList<String>> map = RoomDao.getInstance().getReserves(room_id);
+		
 		int count = dao.getPageMaxNum(null, null, room_id);
 		
+		req.setAttribute("reserve", map);
 		req.setAttribute("list", list);
 		req.setAttribute("room_id", room_id);
 		req.setAttribute("room", roomVo);
