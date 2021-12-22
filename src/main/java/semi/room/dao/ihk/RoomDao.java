@@ -11,6 +11,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import db.JdbcUtil;
 import semi.room.vo.ihk.RoomVo;
 
@@ -78,8 +81,8 @@ public class RoomDao {
 	}
 	
 	//room에 해당하는 예약기록을 HashMap<year-month,ArrayList<day>> 느낌으로 넣어서 리턴
-	public HashMap<String, ArrayList<String>> getReserves(int room){
-		HashMap<String, ArrayList<String>> map = new HashMap<>();
+	public JSONObject getReserves(int room){
+		JSONObject json = new JSONObject();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		DateFormat df = new SimpleDateFormat("yyyy-M");
@@ -93,20 +96,20 @@ public class RoomDao {
 				sql = "select * from reserve where room_id = ? and statement != 3 and start_day like '" + df.format(cal.getTime()) +"%'";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, room);
-				ArrayList<String> arrDay = new ArrayList<>();
 				rs = pstmt.executeQuery();
+				ArrayList<String> arr = new ArrayList<>();
 				while(rs.next()) {
 					int startDay = Integer.parseInt(rs.getString("start_day").split("-")[2]);
 					int endDay =  Integer.parseInt(rs.getString("end_day").split("-")[2]);
 					for(int day= startDay ; day < endDay; day++) {
 						String temp = new SimpleDateFormat("yyyyM").format(cal.getTime()) + day;
-						arrDay.add(temp);
+						arr.add(temp);
 					}
-					map.put(new SimpleDateFormat("yyyyM").format(cal.getTime()), arrDay);
 				}
+				json.put(new SimpleDateFormat("yyyyM").format(cal.getTime()), arr);
 				cal.add(Calendar.MONTH, 1);
 			}
-			return map;
+			return json;
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return null;

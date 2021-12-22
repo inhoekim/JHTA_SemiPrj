@@ -61,7 +61,6 @@
 <input type="hidden" name="roomID" value="${room.room_id}">
 <input type="hidden" name="checkIn" value="${param.checkIn}">
 <input type="hidden" name="checkOut" value="${param.checkOut}">
-<input type="hidden" name="people" value="${param.people}">
 </form>
 </div>
 

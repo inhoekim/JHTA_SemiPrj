@@ -34,7 +34,7 @@ function setCalendar(type,year,month) {
 			"<th><input type='button' id='nextMonth' value='>' onclick='next("+ year + "," + (month) + "," + true + ")'></th></tr>";
 	}else if(type == 3){
 		calHTML += "<th><input type='button' value='<' onclick='prev("+ year + "," + (month) + ")'></th>" +
-			"<th colspan='5'>"+ year +"년"+ month +"월</th>" +
+			"<th colspan='5'><span id='year'>"+ year +"</span>년<span id='month'>"+ month +"</span>월</th>" +
 			"<th><input type='button' value='>' onclick='next("+ year + "," + (month) + ")'></th></tr>";
 	}
 		
@@ -67,29 +67,6 @@ function setCalendar(type,year,month) {
 	calendarBox.innerHTML += calHTML;
 }
 
-function prev(year,month,flag){
-	reset();
-	if(flag) {
-		setCalendar(1,year,month-1);
-		setCalendar(2,year,month);
-	}
-	else {	
-		setCalendar(3,year,month-1);
-	}
-	
-
-}
-function next(year,month,flag){
-	reset();
-	if(flag) {
-		setCalendar(1,year,month);
-		setCalendar(2,year,month+1);
-	}
-	else {
-		setCalendar(3,year,month+1);
-	}
-}
-
 function reset(){
 	//Calendar Reset
 	let calendarBox = document.getElementById("calendarBox");
@@ -112,10 +89,12 @@ function checkin(event,year,month){
 	//체크아웃 날짜 결정
 	}else if(checkOutForm.value == "") {
 		//체크아웃 날짜 결정이 미확정된 상태에서 결정한 체크인 날짜보다 이전 날짜를 선택한 경우
-		if(new Date(checkInForm.value) > new Date(year,month-1,event.innerText)) {
+		if(new Date(checkInForm.value) >= new Date(year,month-1,event.innerText)) {
 			let str = checkInForm.value.split("-");
 			let td = document.getElementById(str[0]+str[1]+str[2]);
-			td.style.backgroundColor = "";
+			if(td != null) {
+				td.style.backgroundColor = "";
+			}
 			checkInForm.value = year + "-" + month + "-" + event.innerText;
 			inDate.innerHTML = checkInForm.value;
 			event.style.backgroundColor = "#FEC5E5";
@@ -123,17 +102,16 @@ function checkin(event,year,month){
 		}else{
 			checkOutForm.value = year + "-" + month + "-" + event.innerText;
 			outDate.innerHTML = checkOutForm.value;
-			event.style.backgroundColor = "#FEC5E5";
 			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 			day = Math.ceil(day);
 			nights.innerText = day + "박";
-			highlighting(day); //달력에 하이라이팅 표시
+			highlighting(); //달력에 하이라이팅 표시
 		}
 	//새롭게 체크인 날짜 결정
 	}else{
 		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 		day = Math.ceil(day);
-		disHighlighting(day); //달력에 표시된 하이라이팅 지우기
+		disHighlighting(); //달력에 표시된 하이라이팅 지우기
 		checkInForm.value = year + "-" + month + "-" + event.innerText;
 		inDate.innerHTML = checkInForm.value;
 		checkOutForm.value = "";
@@ -144,22 +122,40 @@ function checkin(event,year,month){
 }
 
 
-function highlighting(day) {
+function highlighting() {
+	let nights = document.getElementById("nights").innerText;
+	let day = nights.split('박')[0];
 	for(let i = 0; i <= day; i++) {
 	let temp = new Date(checkInForm.value);
 	temp.setDate(temp.getDate() + i);
 	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
 	let td = document.getElementById(td_str);
-	td.style.backgroundColor= "#FEC5E5";
+	if(td != null) {td.style.backgroundColor= "#FEC5E5";}
 	}
 }
 
-function disHighlighting(day){
+function disHighlighting(){
+	let nights = document.getElementById("nights").innerText;
+	let day = nights.split('박')[0];
 	for(let i = 0; i <= day; i++) {
-	let temp = new Date(checkInForm.value);
-	temp.setDate(temp.getDate() + i);
-	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
-	let td = document.getElementById(td_str);
-	td.style.backgroundColor= "";
+		let temp = new Date(checkInForm.value);
+		temp.setDate(temp.getDate() + i);
+		let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+		let td = document.getElementById(td_str);
+		if(td != null) {td.style.backgroundColor= "";}
+	}
+}
+
+function offDate(map){
+	let year = document.getElementById("year").innerText;
+	let month = document.getElementById("month").innerText;
+	let offDays = map[year+''+month];
+	for(let i = 0; i < offDays.length; i++) {
+		let date = document.getElementById(offDays[i]);
+		if(date != "undefined" && date != null) {
+			date.className = "";
+			date.style.color = "#cdcdcd";
+			date.onclick = null;
+		}
 	}
 }

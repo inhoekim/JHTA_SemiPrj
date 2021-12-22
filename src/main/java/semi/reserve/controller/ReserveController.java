@@ -52,7 +52,6 @@ public class ReserveController extends HttpServlet{
 		}
 		req.setCharacterEncoding("utf-8");
 		int roomID = Integer.parseInt(req.getParameter("roomID"));
-		int people = Integer.parseInt(req.getParameter("people"));
 		int method = Integer.parseInt(req.getParameter("paymentMethod"));
 		String checkIn = req.getParameter("checkIn");
 		String checkOut = req.getParameter("checkOut");

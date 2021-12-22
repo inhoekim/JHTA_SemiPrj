@@ -107,11 +107,33 @@
 		
 	}
 	
+	function prev(year,month,flag){
+		if(new Date(year,month-1,1) >= new Date()){
+		reset();
+		setCalendar(3,year,month-1);
+		highlighting();
+		offDate(JSON.parse('${reserve}'));
+		}
+	}
+	
+	function next(year,month,flag){
+		let dt = new Date();
+		dt.setDate(dt.getDate()+300);
+		if(new Date(year,month-1,1) <= dt) {
+			reset();
+			setCalendar(3,year,month+1);
+			highlighting();
+			offDate(JSON.parse('${reserve}'));
+		}
+	}
+	
+	
 	window.onload=function(){
 		alarmList();
 		let calendarBox = document.getElementById("calendarBox")
 		if(calendarBox != null) {
 			printCalendar();
+			offDate(JSON.parse('${reserve}'));
 		}
 		if (typeof commentsList != 'undefined') {
 			commentsList();

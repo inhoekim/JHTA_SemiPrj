@@ -110,10 +110,10 @@
 	
 	window.onload=function(){
 		alarmList();
-		if(typeof(printCalendar) == 'function') {
+		let calendarBox = document.getElementById("calendarBox")
+		if(calendarBox != null) {
 			printCalendar();
 		}
-		
 		if (typeof commentsList != 'undefined') {
 			commentsList();
 		}
