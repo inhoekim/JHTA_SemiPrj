@@ -51,8 +51,7 @@ public class ReviewWriteController extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String hlogin_id = (String)session.getAttribute("hlogin_id");
-		//int room_id = Integer.parseInt(mr.getParameter("room_id"));
-		int room_id = 1; // 더미 값 (삭제 예정)
+		int room_id = Integer.parseInt(mr.getParameter("room_id"));
 		int rate = Integer.parseInt(mr.getParameter("rate"));
 		String title = mr.getParameter("title");
 		String content = mr.getParameter("content");
