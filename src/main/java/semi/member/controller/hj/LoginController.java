@@ -46,6 +46,8 @@ public class LoginController extends HttpServlet{
 			cook1.setMaxAge(60*60); //60분 -테스트중이라 10초
 			cook1.setPath("/");
 			resp.addCookie(cook1);
+		}else {
+			
 		}
 		if(b) {
 			// 12월15일 태형 수정

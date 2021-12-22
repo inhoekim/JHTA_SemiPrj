@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>changePwd.jsp</title>
 <style>
+	*{font-family: do hyeon; } 
 	#changepwd1{
 		width:500px; height:220px; border:solid 2px #ff6666; border-radius:4px; 
 		text-align: center; margin: auto; margin-top:40px;

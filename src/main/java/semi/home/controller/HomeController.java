@@ -22,4 +22,4 @@ public class HomeController extends HttpServlet{
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp); 
 	}
 }
- 
+  

@@ -23,14 +23,13 @@ public class RoomDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="insert into room values(?,?,?,?,?,?)";
+			String sql="insert into room values(seq_room.nextval,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getRoom_id());
-			pstmt.setString(2, vo.getKind());
-			pstmt.setInt(3, vo.getCapacity());
-			pstmt.setInt(4, vo.getPrice());
-			pstmt.setDouble(5, vo.getRate());
-			pstmt.setString(6, vo.getSrc_name());
+			pstmt.setString(1, vo.getKind());
+			pstmt.setInt(2, vo.getCapacity());
+			pstmt.setInt(3, vo.getPrice());
+			pstmt.setDouble(4, vo.getRate());
+			pstmt.setString(5, vo.getSrc_name());
 			return pstmt.executeUpdate();
 		}catch(SQLException s) {
 			s.printStackTrace();
@@ -51,11 +50,11 @@ public class RoomDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String kind=rs.getString("kind");
-				int capcity=rs.getInt("capcity");
+				int capacity=rs.getInt("capacity");
 				int price=rs.getInt("price");
 				Double rate=rs.getDouble("rate");
 				String src_name=rs.getString("src_name");
-				RoomVo vo=new RoomVo(room_id, kind, capcity, price, rate, src_name);
+				RoomVo vo=new RoomVo(room_id, kind, capacity, price, rate, src_name);
 				return vo;
 			}
 			return null;
@@ -99,13 +98,13 @@ public class RoomDao {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="update room set kind=?, capcity=?, price=?, src_name=?, rate=? where room_id=?";
+			String sql="update room set kind=?, capacity=?, price=?, rate=?, src_name=? where room_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getKind());
 			pstmt.setInt(2, vo.getCapacity());
 			pstmt.setInt(3, vo.getPrice());
-			pstmt.setString(4, vo.getSrc_name());
-			pstmt.setDouble(5, vo.getRate());
+			pstmt.setDouble(4, vo.getRate());
+			pstmt.setString(5, vo.getSrc_name());
 			return pstmt.executeUpdate();
 		}catch(SQLException s) {
 			s.printStackTrace();
