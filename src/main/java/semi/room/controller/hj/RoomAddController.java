@@ -45,14 +45,15 @@ public class RoomAddController extends HttpServlet{
 		RoomDao dao=RoomDao.getInstance();
 		int n=dao.insertRoom(vo);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath() + "/listroom");
+			req.setAttribute("check", "success1");
+			req.setAttribute("successMsg1", "객실 등록 완료");
 		}else {
-			req.setAttribute("result", "fail");
-			req.setAttribute("failMsg", "다시 한 번 확인해 주세요.");
+			req.setAttribute("check", "fail1");
+			req.setAttribute("failMsg1", "다시 한 번 확인해 주세요.");
 		}
 		req.setAttribute("header", "/Admin/header.jsp");
 		req.setAttribute("main", "/Admin/Adminaddroom.jsp");
 		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+		req.getRequestDispatcher("/home?spage=/Admin/result.jsp").forward(req, resp);
 	}
 }

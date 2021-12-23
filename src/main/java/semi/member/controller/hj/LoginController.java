@@ -40,7 +40,6 @@ public class LoginController extends HttpServlet{
 
 		HloginDaoje dao=new HloginDaoje(); 
 		boolean b=dao.isMember(map);
-		System.out.println("====================" + b);
 		
 		if(b) {
 			if(chk!=null){ //체크박스에 체크한 경우 
