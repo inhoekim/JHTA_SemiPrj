@@ -151,7 +151,7 @@
 			goToSlide(pagerNum);
 		});
 	}
-	
+	/* -------------------------------------------------------- */
 	var slideWrap1 = document.querySelector('.container1');
 	var slideContainer1 = document.querySelector('.slider-container1');
 	var slide1 = document.querySelectorAll('.slide1');
@@ -165,11 +165,11 @@
 	var navPrev1 = document.getElementById('prev1');
 	var navNext1 = document.getElementById('next1');
 	
-	slideHeight = slide1[0].offsetHeight;
+	slideHeight1 = slide1[0].offsetHeight;
 	for(let i=0;i<slideCount1; i++){
 		let slideHei = slide1[i].offsetHeight;
-		if(slideHeight < slideHei){
-			slideHeight = slideHei;
+		if(slideHeight1 < slideHei){
+			slideHeight1 = slideHei;
 		}
 	}
 	
