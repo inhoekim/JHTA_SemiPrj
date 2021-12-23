@@ -127,7 +127,7 @@ function checkin(event,year,month){
 		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 		day = Math.ceil(day);
 		disHighlighting(); //달력에 표시된 하이라이팅 지우기
-		checkInForm.value = year + "-" + numberpad(month) + "-" + numberpad(event.innerText);
+		checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 		inDate.innerHTML = checkInForm.value;
 		checkOutForm.value = "";
 		nights.innerText = "0박";
@@ -164,7 +164,7 @@ function disHighlighting(){
 function offDate(map){
 	let year = document.getElementById("year").innerText;
 	let month = document.getElementById("month").innerText;
-	let offDays = map[year+''+month];
+	let offDays = map[year+''+numberPad(month)];
 	for(let i = 0; i < offDays.length; i++) {
 		let date = document.getElementById(offDays[i]);
 		if(date != "undefined" && date != null) {

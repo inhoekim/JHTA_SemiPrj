@@ -24,7 +24,6 @@ public class HomeController extends HttpServlet{
 		req.setAttribute("main", spage);
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp); 
-		System.out.println(RoomDao.getInstance().getReserves(1));
 	}
 }
   
