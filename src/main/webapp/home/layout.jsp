@@ -116,9 +116,11 @@
 		if (alarmCheck != 'guest' && alarmCheck != '') {
 			alarmList();
 		}
+
 		if(typeof(printCalendar) == 'function') {
 
 		alarmList();
+
 		let calendarBox = document.getElementById("calendarBox")
 		if(calendarBox != null) {
 
