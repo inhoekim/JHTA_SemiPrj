@@ -17,7 +17,7 @@
 <body>
 	<jsp:include page="${requestScope.header}"/>
 	<jsp:include page="${requestScope.searchbar}"/>	
-	<div style="min-height: 1400px; width: 100%;"> 
+	<div style="min-height: 800px; width: 100%;"> 
 		<jsp:include page="${requestScope.main }"/>
 	</div>
 	<jsp:include page="${requestScope.footer}"/>
@@ -104,28 +104,24 @@
 		
 		if (div.style.display == "none") {
 			alarm_hidden_div.style.display = "block";
-		} else {
+		} else { 
 			alarm_hidden_div.style.display = "none";
 		}
 		
 	}
 	
 	window.onload=function(){
-
+		let calendarBox = document.getElementById("calendarBox")
+		if(calendarBox != null) {
+			printCalendar();
+		}
 		// 로그인 안 하면 알람 기능x
 		if (idChk != 'guest' && idChk != '') {
 			alarmList();
-		}
-
-		let calendarBox = document.getElementById("calendarBox")
-		if(calendarBox != null) {
-
-			printCalendar();
-		}
+		}	
 		if (typeof commentsList != 'undefined') {
 			commentsList();
-		}
-		
+		}		
 		if (typeof reviewList != 'undefined') {
 			reviewList();
 		}
