@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <style>
 * {
-	margin: 0;
-	padding: 0;
 	/* 웹에 있는 모서리에 있는 글씨는 거칠다 그래서
   		 -webkit-font-smoothing: antialised;를 사용하면
   		 부드럽게 바꿔준다.
@@ -298,10 +296,9 @@ td {
 			<div id="informBox" style="height: 50%; line-height: 50px; text-align: center;">
 				<p style="margin-top: 20px; color: #bbbbbb">※원하시는 날짜를 클릭하여 예약을 진행할 수 있습니다. 하이라이팅 표시가 꺼져있는 날짜는 예약이 불가능합니다. </p>
 				
-				<br>
 				<p style="font-size: 20px">체크인 날짜 : 
 				<span id="inDate">선택없음</span>
-				</p>
+				</p>	
 				
 				<p>
 				<span id="nights" style="border: 2px solid #ff6666; border-radius: 1em;">0박</span></p>
