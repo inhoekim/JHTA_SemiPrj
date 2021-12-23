@@ -6,10 +6,10 @@
 		<p style="font-size: 25px;color: #474747; margin-bottom: 5px;">가격범위</p>
 		<span>최소</span> <input type="range" id="costMin" min="0" max="1000000" step="1000" value="0" oninput="rangeBar(this,'cmin')">
 		<br>
-		<span style="margin-top:4px;vertical-align: middle;display:inline-block">최대</span> <input type="range" id="costMax" min="0" max="1000000" step="1000" value="1000000" oninput="rangeBar(this,'cmax')">
+		<span style="margin-top:4px;vertical-align: middle;display:inline-block">최대</span> <input type="range" id="costMax" min="0" max="5000000" step="1000" value="5000000" oninput="rangeBar(this,'cmax')">
 		<br>
 		<span id="cmin">0원이상</span>
-		<span id="cmax">1000000원이하</span>
+		<span id="cmax">5000000원이하</span>
 	</div>
 	
 	<div>

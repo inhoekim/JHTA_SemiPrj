@@ -333,7 +333,7 @@ td {
 						<input type="hidden" name="room" value="${room.room_id}">
 						<input type="hidden" id="checkInForm" name="checkIn" value="">
 						<input type="hidden" id="checkOutForm" name="checkOut" value="">
-						<input type="submit" value="예약하기" class="reservation_btn">
+						<input type="submit" value="예약하기" class="reservation_btn" onclick="return canSearch()">
 						</form>
 					</td>
 				</tr>

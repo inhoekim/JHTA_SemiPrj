@@ -49,11 +49,14 @@
 			<c:set var="today" value="<%=java.sql.Timestamp.valueOf(java.time.LocalDate.now().atStartOfDay())%>"/>
 			<fmt:parseDate var="checkinDay" value="${json.get('start_day')}" pattern="yyyy-MM-dd"/>
 			<fmt:parseDate var="checkoutDay" value="${json.get('end_day')}" pattern="yyyy-MM-dd"/>
-			<c:set var="ms" value="${checkinDay.getTime()-today.getTime()}" />
-			<c:set var="reviewMs" value="${checkoutDay.getTime()-today.getTime()}" />
-			<fmt:parseNumber var="remainDay" integerOnly="true" value="${ms/24*60*60*1000 }"/>
-			<fmt:parseNumber var="reviewDay" integerOnly="true" value="${reviewMs/24*60*60*1000 }"/>
-
+			<c:set var="now" value="<%=new java.util.Date()%>"/>
+			<fmt:parseNumber var="checkinDate" value="${checkinDay.time / (1000*60*60*24)}" integerOnly="true"/>
+			<fmt:parseNumber var="checkoutDate" value="${checkoutDay.time / (1000*60*60*24)}" integerOnly="true"/>
+			<fmt:parseNumber var="nowDate" value="${now.time / (1000*60*60*24)}" integerOnly="true"/>
+			
+			<c:set var="remainDay" value="${checkinDate-nowDate + 1}" />
+			<c:set var="reviewDay" value="${checkoutDate-nowDate + 1}" />
+			
 			<c:choose>
 			<c:when test= "${json.get('statement') == 1}">
 				<p>결제대기</p>
