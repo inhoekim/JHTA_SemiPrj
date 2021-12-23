@@ -73,11 +73,11 @@ function setCalendar(type,year,month) {
 		if((i+first_date-1)%7 ==0) {
 			calHTML += "</tr>";
 			if(new Date(year,month-1,i,23,59) < today) {calHTML += "<tr><td style='color:rgb(205,205,205);'>" + i + "</td>";}
-			else {calHTML += "<tr><td id='"+(""+year+month+i)+"' class='cdate' style='color:red' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>";}
+			else {calHTML += "<tr><td id='"+(""+year+numberPad(month)+numberPad(i))+"' class='cdate' style='color:red' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>";}
 			
 		}
 		else if(new Date(year,month-1,i,23,59) < today) {calHTML += "<td style='color:rgb(205,205,205);'>" + i + "</td>";}
-		else {calHTML += "<td id='"+(""+year+month+i)+"' class='cdate' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>"; 	}
+		else {calHTML += "<td id='"+(""+year+numberPad(month)+numberPad(i))+"' class='cdate' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>"; 	}
 		
 	}
 	calHTML += "</table>";
@@ -142,12 +142,12 @@ function checkin(event,year,month){
 			let str = checkInForm.value.split("-");
 			let td = document.getElementById(str[0]+str[1]+str[2]);
 			td.style.backgroundColor = "";
-			checkInForm.value = year + "-" + month + "-" + event.innerText;
+			checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 			inDate.innerHTML = checkInForm.value;
 			event.style.backgroundColor = "#FEC5E5";
 		//체크아웃 날짜 확정
 		}else{
-			checkOutForm.value = year + "-" + month + "-" + event.innerText;
+			checkOutForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 			outDate.innerHTML = checkOutForm.value;
 			event.style.backgroundColor = "#FEC5E5";
 			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
@@ -161,7 +161,7 @@ function checkin(event,year,month){
 		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 		day = Math.ceil(day);
 		disHighlighting(day); //달력에 표시된 하이라이팅 지우기
-		checkInForm.value = year + "-" + month + "-" + event.innerText;
+		checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 		inDate.innerHTML = checkInForm.value;
 		checkOutForm.value = "";
 		nights.innerText = "0박";
@@ -209,7 +209,7 @@ function highlighting(day) {
 	for(let i = 0; i <= day; i++) {
 	let temp = new Date(checkInForm.value);
 	temp.setDate(temp.getDate() + i);
-	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+	let td_str = "" + temp.getFullYear() + numberPad((temp.getMonth() + 1)) + numberPad(temp.getDate());
 	let td = document.getElementById(td_str);
 	td.style.backgroundColor= "#FEC5E5";
 	}
@@ -219,7 +219,7 @@ function disHighlighting(day){
 	for(let i = 0; i <= day; i++) {
 	let temp = new Date(checkInForm.value);
 	temp.setDate(temp.getDate() + i);
-	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+	let td_str = "" + temp.getFullYear() + numberPad((temp.getMonth() + 1)) + numberPad(temp.getDate());
 	let td = document.getElementById(td_str);
 	td.style.backgroundColor= "";
 	}

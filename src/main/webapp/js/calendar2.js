@@ -55,11 +55,11 @@ function setCalendar(type,year,month) {
 		if((i+first_date-1)%7 ==0) {
 			calHTML += "</tr>";
 			if(new Date(year,month-1,i,23,59) < today) {calHTML += "<tr><td style='color:rgb(205,205,205);'>" + i + "</td>";}
-			else {calHTML += "<tr><td id='"+(""+year+month+i)+"' class='cdate' style='color:red' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>";}
+			else {calHTML += "<tr><td id='"+(""+year+numberPad(month)+numberPad(i))+"' class='cdate' style='color:red' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>";}
 			
 		}
 		else if(new Date(year,month-1,i,23,59) < today) {calHTML += "<td style='color:rgb(205,205,205);'>" + i + "</td>";}
-		else {calHTML += "<td id='"+(""+year+month+i)+"' class='cdate' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>"; 	}
+		else {calHTML += "<td id='"+(""+year+numberPad(month)+numberPad(i))+"' class='cdate' onclick='checkin(this," + year + "," + month + ")'>" + i + "</td>"; 	}
 		
 	}
 	calHTML += "</table>";
@@ -83,7 +83,7 @@ function checkin(event,year,month){
 	let nights = document.getElementById("nights");
 	//체크인 날짜 결정
 	if(checkInForm.value == "") {
-		checkInForm.value = year + "-" + month + "-" + event.innerText;
+		checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 		inDate.innerHTML = checkInForm.value;
 		event.style.backgroundColor = "#FEC5E5";
 	//체크아웃 날짜 결정
@@ -95,12 +95,12 @@ function checkin(event,year,month){
 			if(td != null) {
 				td.style.backgroundColor = "";
 			}
-			checkInForm.value = year + "-" + month + "-" + event.innerText;
+			checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 			inDate.innerHTML = checkInForm.value;
 			event.style.backgroundColor = "#FEC5E5";
 		//체크인 날짜보다 이후 날짜를 선택한 경우
 		}else{
-			checkOutForm.value = year + "-" + month + "-" + event.innerText;
+			checkOutForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 			day = Math.ceil(day);
 			nights.innerText = day + "박";
@@ -111,7 +111,7 @@ function checkin(event,year,month){
 				if(td != null) {
 					td.style.backgroundColor = "";
 				}
-				checkInForm.value = year + "-" + month + "-" + event.innerText;
+				checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
 				inDate.innerHTML = checkInForm.value;
 				checkOutForm.value = "";
 				nights.innerText = "0박";
@@ -127,7 +127,7 @@ function checkin(event,year,month){
 		let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 		day = Math.ceil(day);
 		disHighlighting(); //달력에 표시된 하이라이팅 지우기
-		checkInForm.value = year + "-" + month + "-" + event.innerText;
+		checkInForm.value = year + "-" + numberpad(month) + "-" + numberpad(event.innerText);
 		inDate.innerHTML = checkInForm.value;
 		checkOutForm.value = "";
 		nights.innerText = "0박";
@@ -143,7 +143,7 @@ function highlighting() {
 	for(let i = 0; i <= day; i++) {
 	let temp = new Date(checkInForm.value);
 	temp.setDate(temp.getDate() + i);
-	let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+	let td_str = "" + temp.getFullYear() + numberPad((temp.getMonth() + 1)) + numberPad(temp.getDate());
 	let td = document.getElementById(td_str);
 	if(td != null) {td.style.backgroundColor= "#FEC5E5";}
 	}
@@ -155,7 +155,7 @@ function disHighlighting(){
 	for(let i = 0; i <= day; i++) {
 		let temp = new Date(checkInForm.value);
 		temp.setDate(temp.getDate() + i);
-		let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+		let td_str = "" + temp.getFullYear() + numberPad((temp.getMonth() + 1)) + numberPad(temp.getDate());
 		let td = document.getElementById(td_str);
 		if(td != null) {td.style.backgroundColor= "";}
 	}
@@ -182,11 +182,16 @@ function haveBlockDate() {
 	for(let i = 0; i <= day; i++) {
 		let temp = new Date(checkIn);
 		temp.setDate(temp.getDate() + i);
-		let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+		let td_str = "" + temp.getFullYear() + numberPad((temp.getMonth() + 1)) + numberPad(temp.getDate());
 		let td = document.getElementById(td_str);
 		if(td != null && td.className != "cdate") {
 			return true;
 		}
 	}
 	return false;
+}
+
+function numberPad(n) {
+    n = n + '';
+    return n.length >= 2 ? n : '0' + n;
 }
