@@ -52,7 +52,8 @@ function findId(){
   <div id="serchid">
 		<span style="font-size:25px">주민번호를 입력해 주세요</span><br><br>
 		<input type="text" id="jnum" placeholder="1111111111111">
-		<input type="submit" value="찾기" onclick="findId()">
+		<input type="submit" value="찾기" onclick="findId()" style="cursor: pointer;background-color: white; min-width:50px; 
+		border-radius: 4px; line-height: 20px; color: #ff6666">
 		<p style="color: red; font-size: 13px">
 		*주민번호는 "-"를 제외한 13자리를 입력해주세요.</p>
 		<div id="result" style="font-size:25px;color:blue;"></div>	

@@ -23,8 +23,8 @@ public class RoomAddController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		
 		ServletContext context = this.getServletContext();
-		String saveDir=context.getRealPath("/images");
-		//System.out.println("업로드 경로" + saveDir + "<br>");
+		String saveDir=context.getRealPath("/images/room/");
+		System.out.println("업로드 경로" + saveDir + "<br>");
 		
 		MultipartRequest mr=new MultipartRequest(
 				req, 
@@ -34,26 +34,22 @@ public class RoomAddController extends HttpServlet{
 				new DefaultFileRenamePolicy() //중복 파일명을 위한 객체
 		);
 		String kind=mr.getParameter("kind"); //객실등급
-		int capacity=Integer.parseInt(mr.getParameter("capacity")); //객실인원
-		int price=Integer.parseInt(mr.getParameter("price")); //가격
-		Double rate=Double.parseDouble(mr.getParameter("rate")); //객실평점
+		String capacity=mr.getParameter("capacity"); //객실인원
+		String price=mr.getParameter("price"); //가격
+		String rate=mr.getParameter("rate"); //객실평점
 		String src_name=mr.getFilesystemName("src_name"); //파일 경로
-		
+		if(kind.equals("") || capacity.equals("") || rate.equals("") || price.equals("") || src_name.equals("")){
+			req.setAttribute("result", "fail");
+			req.getRequestDispatcher("/Admin/AdminResult.jsp").forward(req, resp);
+		}
 		//db저장
 		//File f=new File(saveDir + "\\"); //업로드된 파일정보를 갖는 객체
-		RoomVo vo=new RoomVo(0, kind, capacity, price, rate, src_name);
+		RoomVo vo=new RoomVo(0, kind, Integer.parseInt(capacity), Integer.parseInt(price), Double.parseDouble(rate), src_name);
 		RoomDao dao=RoomDao.getInstance();
 		int n=dao.insertRoom(vo);
+		
 		if(n>0) {
-			req.setAttribute("check", "success1");
-			req.setAttribute("successMsg1", "객실 등록 완료");
-		}else {
-			req.setAttribute("check", "fail1");
-			req.setAttribute("failMsg1", "다시 한 번 확인해 주세요.");
+			resp.sendRedirect(req.getContextPath() + "/listroom");
 		}
-		req.setAttribute("header", "/Admin/header.jsp");
-		req.setAttribute("main", "/Admin/Adminaddroom.jsp");
-		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home?spage=/Admin/result.jsp").forward(req, resp);
 	}
 }
