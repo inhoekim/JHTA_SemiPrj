@@ -88,7 +88,7 @@
 			<option value="num" <c:if test="${field=='num' }">selected</c:if>>회원상태</option>
 		</select>
 		<input type="text" name="keyword" value="${keyword }">
-		<input type="submit" value="검색">
+		<input type="submit" value="검색" >
 	</form>
 	
 </div>
