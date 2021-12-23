@@ -36,7 +36,7 @@ function findId(){
 			if(find==true){
 				div.innerHTML="아이디 : " + json.hlogin_id;
 			}else{
-				div.innerHTML="해당정보를 가진 아이디를 찾을 수 없습니다.";
+				div.innerHTML="해당정보를 가진 아이디를" +"<br>" +"찾을 수 없습니다.";
 				
 			}  
 		}

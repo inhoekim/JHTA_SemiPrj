@@ -34,8 +34,8 @@
 		<div style="color:red; font-size:14px;">*탈퇴하시면 모든 정보가 사라집니다. 정말 탈퇴하시겠습니까?
 		<input type="checkbox" id="check" name="check"></div>
 		<div id="result"></div>
-		<input type="button" value="탈퇴하기" onclick="openDelete()" style="width:80px;height:35px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:15px;"> 
-		<input type="button" value="취소" onclick="rollback()" style="width:80px;height:35px;background-color:#ff6666;border-color:#ff6666;border-radius:4px;font-size:15px;" ><br>
+		<input type="button" value="탈퇴하기" onclick="openDelete()" style="width:80px;height:35px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:15px;cursor: pointer;"> 
+		<input type="button" value="취소" onclick="rollback()" style="width:80px;height:35px;background-color:#ff6666;border-color:#ff6666;border-radius:4px;font-size:15px;cursor: pointer;" ><br>
 		
 	</form> 
 </div>

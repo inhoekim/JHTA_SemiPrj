@@ -101,8 +101,8 @@ function Update(){
 		</table>
 		<p style="color: red; font-size: 14px">
 		*비밀번호는 필수 입력 사항입니다.</p>
-		<input type="button" value="수정하기" onclick="Update()" style="width:80px;height:30px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:14px;">
-		<input type="button" value="게시판" onclick="ReturnList()" style="width:80px;height:30px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;font-size:14px;">
+		<input type="button" value="수정하기" onclick="Update()" style="width:80px;height:30px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:14px;cursor: pointer;">
+		<input type="button" value="게시판" onclick="ReturnList()" style="width:80px;height:30px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;font-size:14px;cursor: pointer;">
 		
      </form>
    </div>
