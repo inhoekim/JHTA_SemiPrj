@@ -68,7 +68,6 @@
 </div>
 
 <script type="text/javascript">
-
 	var slideWrap = document.querySelector('.container');
 	var slideContainer = document.querySelector('.slider-container');
 	var slide = document.querySelectorAll('.slide');
