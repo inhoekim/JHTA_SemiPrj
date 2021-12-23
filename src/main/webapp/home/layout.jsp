@@ -25,7 +25,7 @@
 <script src="${cp}/js/calendar.js"></script>
 <script type="text/javascript">
 	var xhr = null;
-	var alarmCheck = '<c:out value="${sessionScope.hlogin_id}"/>';
+	var idChk = '<c:out value="${sessionScope.hlogin_id}"/>';
 	function alarmList() {
 		xhr = new XMLHttpRequest();
 		let url = '${cp}/alarm/list';
@@ -112,7 +112,7 @@
 	
 	window.onload=function(){
 		// 로그인 안 하면 알람 기능x
-		if (alarmCheck != 'guest' && alarmCheck != '') {
+		if (idChk != 'guest' && idChk != '') {
 			alarmList();
 		}
 		let calendarBox = document.getElementById("calendarBox")

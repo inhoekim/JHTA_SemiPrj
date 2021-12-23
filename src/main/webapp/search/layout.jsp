@@ -30,7 +30,7 @@
 <script src="${cp}/js/dateCalc.js"></script>
 <script type="text/javascript">
 	var xhr = null;
-	var alarmCheck = '<c:out value="${sessionScope.hlogin_id}"/>';
+	var idChk = '<c:out value="${sessionScope.hlogin_id}"/>';
 	
 	function search(){
 		let xhr = new XMLHttpRequest();
@@ -190,7 +190,7 @@
 	
 	window.onload = function(){
 		// 로그인 안 하면 알람 기능x
-		if (alarmCheck != 'guest' && alarmCheck != '') {
+		if (idChk != 'guest' && idChk != '') {
 			alarmList();
 		}
 		printCalendar("${param.checkInForm}");
