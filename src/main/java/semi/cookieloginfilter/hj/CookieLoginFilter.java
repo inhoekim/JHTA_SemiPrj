@@ -12,7 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-@WebFilter("/home/*")
+@WebFilter("/*")
 public class CookieLoginFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -25,6 +25,7 @@ public class CookieLoginFilter implements Filter{
 		HttpSession session=req2.getSession();
 		
 		Cookie[] cook=req2.getCookies();
+		
 		if(cook==null){
 			System.out.println("<h1>쿠키가 존재하지 않습니다.</h1>");
 		}else {

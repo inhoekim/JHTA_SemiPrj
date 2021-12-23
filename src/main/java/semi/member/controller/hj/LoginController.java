@@ -34,21 +34,21 @@ public class LoginController extends HttpServlet{
 		//12-14일 13시 상훈 수정
 		String chk=req.getParameter("chk");
 		
-		System.out.println("ho");
 		HashMap<String, String> map=new HashMap<String, String>();
 		map.put("hlogin_id", hlogin_id);
 		map.put("pwd", pwd);
 
 		HloginDaoje dao=new HloginDaoje(); 
-		boolean b=dao.isMember(map);	
+		boolean b=dao.isMember(map);
+		System.out.println("====================" + b);
 		
-		if(chk!=null){ //체크박스에 체크한 경우 
-			Cookie cook1=new Cookie("hlogin_id",hlogin_id);
-			cook1.setMaxAge(60*60); //60분 -테스트중이라 10초
-			cook1.setPath("/");
-			resp.addCookie(cook1);
-		}
 		if(b) {
+			if(chk!=null){ //체크박스에 체크한 경우 
+				Cookie cook1=new Cookie("hlogin_id",hlogin_id);
+				cook1.setMaxAge(60*60); //60분
+				cook1.setPath("/");
+				resp.addCookie(cook1);
+			}
 			// 12월15일 태형 수정
 			// 알람 기능
 			ReviewCommentsDao reviewDao = ReviewCommentsDao.getInstance();
