@@ -219,20 +219,24 @@ public class HloginDaoje {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public int admindelete(String hlogin_id) {
+	public int updateadmin2(String hlogin_id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		try {
-			con=JdbcUtil.getCon();
-			String sql="delete from hlogin where hlogin_id=?";
+			String sql="update hlogin set num=2 where hlogin_id = ?";
+			con=db.JdbcUtil.getCon();
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,hlogin_id);
-			return pstmt.executeUpdate();
+			pstmt.setString(1, hlogin_id);
+			
+			int n=pstmt.executeUpdate();
+			return n;
+			
 		}catch(SQLException s) {
 			s.printStackTrace();
 			return -1;
 		}finally {
-			JdbcUtil.close(con, pstmt, null);
+			db.JdbcUtil.close(con,pstmt,rs);
 		}
 	}
 	public int adminupdate(HloginVoje vo) {
@@ -240,16 +244,14 @@ public class HloginDaoje {
 		PreparedStatement pstmt=null;
 		try {
 			con=JdbcUtil.getCon();
-			String sql="update hlogin set pwd=?,name=?,jnum=?,age=?,area=?,regdate=?,num=?, where id=?";
+			String sql="update hlogin set pwd=?,name=?,jnum=?,age=?,area=? where hlogin_id=?";
 			pstmt=con.prepareStatement(sql);		
 			pstmt.setString(1,vo.getPwd());
 			pstmt.setString(2,vo.getName());
 			pstmt.setString(3,vo.getJnum());
 			pstmt.setInt(4,vo.getAge());
 			pstmt.setString(5,vo.getArea());
-			pstmt.setDate(6,(Date) vo.getRegdate());
-			pstmt.setInt(7,vo.getNum());
-			pstmt.setString(8,vo.getHlogin_id());
+			pstmt.setString(6,vo.getHlogin_id());
 			return pstmt.executeUpdate();
 		}catch(SQLException s) {
 			s.printStackTrace();

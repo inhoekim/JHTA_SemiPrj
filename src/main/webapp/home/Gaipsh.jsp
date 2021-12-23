@@ -28,7 +28,7 @@
 	<form onsubmit="return gaipSubmit();" id="gaip_chk" method="post" action="<%=request.getContextPath() %>/Gaipsh">
 	<input placeholder="아이디 입력" type="text" id= "hlogin_id" name="hlogin_id" maxlength="12" size="20"  style="width: 200pt; height:25pt; border-radius: 5px;">
 		 <input type="button" id= "hcheck_btn" value="중복확인" onclick="openIdChk()" style="width: 65pt; height:27pt; background-color: white;color: #ff6666; border: 1px solid #ff6666;
-		border-radius: 9px; font-size: 14px; position: absolute; " > <br>
+		border-radius: 9px; font-size: 14px; position: absolute; " ><br>
 		 <small id= "hlogin_id_check" style="color: blue; display: inline;"></small>
 		 <br>
 		 <input type="hidden" id="idChkYn" value='N'>
@@ -49,9 +49,6 @@
 </body>
 <script type="text/javascript">
 
-
-
-
 function gaiphsh(){
 	
 	// 변수 선언 id값 넣기
@@ -61,18 +58,24 @@ function gaiphsh(){
 	jnum_text_check = document.getElementById('jnum_text_check');
 	jnum = document.getElementById('jnum');
 	gaip_btn = document.getElementById('gaip_btn');
-	
-		
+	hlogin_name = document.getElementById('hlogin_name');
+
 	
 	hlogin_passcheck.addEventListener('keyup', function(){
 		pw = document.getElementById('hlogin_pass').value;
 		pw2 = document.getElementById('hlogin_passcheck').value;
 		var chekText = document.getElementById('pw_text_check').innerText
-		//비밀번호 비교
-		if(pw2 == '' || pw2 == null){
-			document.getElementById('pw_text_check').style.color = 'black';
-			document.getElementById('pw_text_check').innerText = '비밀번호와 동일하게 입력해주세요';
-		} 
+		
+		
+		
+		var regPwd = /^[A-Za-z0-9+]*$/;
+
+		if(!regPwd.test(pw)) {
+			alert('비밀번호 형식이 잘못됬습니다.\n영문 및 숫자로만 입력하세요.');
+			
+			
+		}
+
 		
 		if(pw == pw2){ // 비밀번호, 확인이랑 일치할때
 			console.log(pw);
@@ -85,6 +88,8 @@ function gaiphsh(){
 			document.getElementById('pw_text_check').innerText = '비밀번호와 일치 하지 않습니다';
 		}
 	})
+	
+
 	
 	jnum.addEventListener('keyup', function(){
 		jnum = document.getElementById('jnum').value;
@@ -105,7 +110,6 @@ function gaiphsh(){
 			document.getElementById('jnum_text_check').innerText = '주민등록번호 양식이 일치합니다';
 		}
 	})
-	
 	gaip_btn.addEventListener('click', function(){
 		
 	})
@@ -121,12 +125,15 @@ function gaipSubmit(){
 	if(document.getElementById('idChkYn').value != 'Y'){
 		alert("중복확인을 해주세요.");
 		console.log(document.getElementById('idChkYn').value);
+		
 		return false;
 	}
+	
 	if(document.getElementById('hlogin_pass').value == null || document.getElementById('hlogin_pass').value == ''){
 		alert("비밀번호를 입력해주세요.");
 		return false;
 	}
+	
 	if(document.getElementById('hlogin_name').value == null || document.getElementById('hlogin_name').value == ''){
 		alert("이름를 입력해주세요.");
 		return false;
@@ -148,6 +155,17 @@ function gaipSubmit(){
 	
 }
 function openIdChk(){//중복버튼을 누르면 실행될 함수
+	
+	var inputId = document.getElementById('hlogin_id').value;
+	var regId = /^[A-Za-z0-9+]*$/;
+
+	if(!regId.test(inputId)) {
+		alert('아이디 형식이 잘못됬습니다.\n영문 및 숫자로만 입력하세요.');
+		document.getElementById('hlogin_id').focus;
+		return false;
+	}
+
+	
 	let xhr=new XMLHttpRequest();
 
 	xhr.onreadystatechange=function(){

@@ -25,6 +25,17 @@ public class HloginVoje {
 		this.regdate = regdate;
 		this.num = num;
 	}
+	
+	public HloginVoje(String hlogin_id, String pwd, String name, String jnum, int age, String area) {
+		super();
+		this.hlogin_id = hlogin_id;
+		this.pwd = pwd;
+		this.name = name;
+		this.jnum = jnum;
+		this.area = area;
+		this.age = age;
+	}
+	
 
 	public String getHlogin_id() {
 		return hlogin_id;
