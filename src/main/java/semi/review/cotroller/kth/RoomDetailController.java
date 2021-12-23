@@ -30,11 +30,11 @@ public class RoomDetailController extends HttpServlet {
 		
 		ArrayList<ReviewBoardVo> list =  dao.roomDetailReview(room_id, 0, 0);
 		RoomVo roomVo =  RoomDao.getInstance().selectRoom(room_id);
-		HashMap<String, ArrayList<String>> map = RoomDao.getInstance().getReserves(room_id);
+		JSONObject json = RoomDao.getInstance().getReserves(room_id);
 		
 		int count = dao.getPageMaxNum(null, null, room_id);
 		
-		req.setAttribute("reserve", map);
+		req.setAttribute("reserve", json);
 		req.setAttribute("list", list);
 		req.setAttribute("room_id", room_id);
 		req.setAttribute("room", roomVo);

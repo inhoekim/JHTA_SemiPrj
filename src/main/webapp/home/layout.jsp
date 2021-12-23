@@ -111,14 +111,19 @@
 	}
 	
 	window.onload=function(){
+<<<<<<< HEAD
 		// 로그인 안 하면 알람 기능x
 		if (alarmCheck != 'guest' && alarmCheck != '') {
 			alarmList();
 		}
 		if(typeof(printCalendar) == 'function') {
+=======
+		alarmList();
+		let calendarBox = document.getElementById("calendarBox")
+		if(calendarBox != null) {
+>>>>>>> branch 'master' of https://github.com/inhoekim/JHTA_SemiPrj
 			printCalendar();
 		}
-		
 		if (typeof commentsList != 'undefined') {
 			commentsList();
 		}
