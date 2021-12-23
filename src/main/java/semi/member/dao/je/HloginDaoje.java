@@ -372,7 +372,9 @@ public class HloginDaoje {
 	// 호정 dao 시작점@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	public boolean isMember(HashMap<String, String> map) {
 		String id=map.get("hlogin_id");
+		System.out.println("*************************************************"+ id);
 		String pwd=map.get("pwd");
+		System.out.println("*************************************************"+pwd);
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
