@@ -62,11 +62,22 @@
 				<span style="font-size: 16px; color : #ff6666">취소</span>
 				</button>
 				</a>
+				
+				<c:when test="${remainDay le 1}">
+				<a href="${cp}/reserve/payment?reserve_id=${json.get('reserve_id')}" style="text-decoration: none;" onclick="return confirm('정말로 결제하시겠습니까? 결제시 예약을 취소할 수 없습니다')">
+				<button type="button" style="background-color: #ff6666; border-radius: 1em; border: 0px; font-family: 'Do Hyeon'; width:50px; height: 25px; cursor: pointer;">
+				<span style="font-size: 16px; color : white;">결제</span>
+				</button>
+				</a>
+				</c:when>
+				
+				<c:otherwise>
 				<a href="${cp}/reserve/payment?reserve_id=${json.get('reserve_id')}" style="text-decoration: none;">
 				<button type="button" style="background-color: #ff6666; border-radius: 1em; border: 0px; font-family: 'Do Hyeon'; width:50px; height: 25px; cursor: pointer;">
 				<span style="font-size: 16px; color : white;">결제</span>
 				</button>
 				</a>
+				</c:otherwise>
 
 			</c:when>
 			<c:when test="${json.get('statement') == 2}">

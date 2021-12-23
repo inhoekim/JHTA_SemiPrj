@@ -3,7 +3,7 @@
 
 
 <div class="img_change1">  
-	<h1 style="text-align: center;font-size:50px; font-weight: 100">UrI Promotion</h1>                            
+	<h1 style="text-align: center;font-size:50px; font-weight: 100">Uri Promotion</h1>                            
 	<div class="container1">   
 		<ul class="slider-container1 simple-list1" id="slider1">       
 			<li class="slide1" style="align-content: center;">

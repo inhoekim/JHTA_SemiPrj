@@ -110,6 +110,10 @@
 		
 	}
 	
+	function payment(){
+		
+	}
+	
 	window.onload=function(){
 		let calendarBox = document.getElementById("calendarBox")
 		if(calendarBox != null) {

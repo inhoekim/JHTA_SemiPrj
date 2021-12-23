@@ -267,7 +267,7 @@ td {
 </style>
 <div class="img_srd_cal">
 	<div class="img_cal_wrap">
-		<div class="img_change">
+		<div class="img_change" style="margin: 0px;">
 			<div class="container">
 				<ul class="slider-container simple-list" id="slider">
 					<li class="slide"><img src="/semiPrj/images/a.jpg"
@@ -277,7 +277,7 @@ td {
 					<li class="slide"><img src="/semiPrj/images/c.jpg"
 						width="500px" height="500px"></li>
 				</ul>
-				<p class="pager">
+				<p class="pager" style="margin-top: 250px">
 					<!-- <span data-idx="1">1</span>
 					<span data-idx="2">2</span>
 					<span data-idx="3">3</span>
