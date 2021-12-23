@@ -30,6 +30,8 @@
 <script src="${cp}/js/dateCalc.js"></script>
 <script type="text/javascript">
 	var xhr = null;
+	var alarmCheck = '<c:out value="${sessionScope.hlogin_id}"/>';
+	
 	function search(){
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
@@ -103,6 +105,13 @@
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let data = xhr.responseText;
 				let json = JSON.parse(data);
+				
+				// 로그인 안 하면 알람 기능x
+				let check = '<c:out value="${sessionScope.hlogin_id}"/>';
+				if (check == 'guest' || check == '') {
+					return;
+				}
+				
 				let alarm_wrap = document.getElementById("alarm_wrap");
 				let alarm_cnt = document.getElementById("alarm_cnt");
 				
@@ -180,7 +189,8 @@
 	}
 	
 	window.onload = function(){
-		if(typeof(alarmList) == 'function') {
+		// 로그인 안 하면 알람 기능x
+		if (alarmCheck != 'guest' && alarmCheck != '') {
 			alarmList();
 		}
 		printCalendar("${param.checkInForm}");
