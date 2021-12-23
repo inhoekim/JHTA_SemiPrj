@@ -86,7 +86,7 @@ public class RoomDao {
 		JSONObject json = new JSONObject();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		DateFormat df = new SimpleDateFormat("yyyy-M");
+		DateFormat df = new SimpleDateFormat("yyyy-MM");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
