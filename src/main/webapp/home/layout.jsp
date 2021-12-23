@@ -111,12 +111,15 @@
 	}
 	
 	window.onload=function(){
+
 		// 로그인 안 하면 알람 기능x
 		if (idChk != 'guest' && idChk != '') {
 			alarmList();
 		}
+
 		let calendarBox = document.getElementById("calendarBox")
 		if(calendarBox != null) {
+
 			printCalendar();
 		}
 		if (typeof commentsList != 'undefined') {
