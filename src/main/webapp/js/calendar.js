@@ -198,7 +198,7 @@ function plusPN(){
 }
 
 function minusPN(){
-	if(document.getElementById("pn").innerText >= 1) {
+	if(document.getElementById("pn").innerText > 1) {
 		document.getElementById("pn").innerText -= 1;
 		document.getElementById("peopleNum").value -= 1;
 		document.getElementById("people").innerText = document.getElementById("peopleNum").value + "명";
