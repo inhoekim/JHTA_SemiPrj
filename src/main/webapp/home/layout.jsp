@@ -104,7 +104,7 @@
 		
 		if (div.style.display == "none") {
 			alarm_hidden_div.style.display = "block";
-		} else {
+		} else { 
 			alarm_hidden_div.style.display = "none";
 		}
 		
