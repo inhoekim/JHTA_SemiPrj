@@ -42,8 +42,8 @@
 	overflow: hidden;
 	}
 	.slider-container.animated{
-	-webkit-transition:left .5s ease-in;
-	transition:left .5s ease-in;
+	-webkit-transition:left .4s ease-in;
+	transition:left .4s ease-in;
 	}
 	.simple-list {
 	list-style-type: none;
