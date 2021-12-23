@@ -441,9 +441,11 @@
 		let param = 'review_id=' + ${vo.review_id} + '&content=' + content; 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				
 				let data = xhr.responseText;
 				let json = JSON.parse(data);
+				
+				let comment_text_area = document.getElementById("comment_text_area");
+				comment_text_area.value = '';
 				
 				commentsList();
 				
