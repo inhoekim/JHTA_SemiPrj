@@ -31,7 +31,7 @@
 	width:100%;
 	left: 0;
 	-webkit-transition: left .4s ease-in;
-	transition: left .3s ease-in;
+	transition: left .4s ease-in;
 	}
 	.slide{
 	position: absolute;
@@ -42,8 +42,8 @@
 	overflow: hidden;
 	}
 	.slider-container.animated{
-	-webkit-transition:left .3s ease-in;
-	transition:left .3s ease-in;
+	-webkit-transition:left .5s ease-in;
+	transition:left .5s ease-in;
 	}
 	.simple-list {
 	list-style-type: none;
