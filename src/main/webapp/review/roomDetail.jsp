@@ -501,6 +501,10 @@ td {
 				var jsonLen = json.length;
 				room_id = json[jsonLen - 1].room_id;
 				
+				if (review_max > jsonLen) {
+					review_max = jsonLen;
+				}
+				
 				// 부모 div
 				var review_list = document.getElementById('review_list');
 
