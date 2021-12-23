@@ -11,10 +11,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+</head>
 </head>
 <body>
 	<jsp:include page="${requestScope.header}"/>
-	<div style="height: 800px;">
+	<div style="min-height: 800px; width: 100%;"> 
 	<jsp:include page="${requestScope.main }"/>
 	</div>
 	<jsp:include page="${requestScope.footer}"/>  
