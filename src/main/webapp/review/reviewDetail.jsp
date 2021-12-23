@@ -282,7 +282,7 @@
 		// 로그인 안 하면 로그인 페이지로
 		let check = '<c:out value="${requestScope.hlogin_id}"/>';
 		if (check == 'guest' || check == '') {
-			location.href = '${path}/home/login.jsp';
+			location.href = '${path}/home?spage=/home/login.jsp';
 		}
 	}
 	
@@ -410,7 +410,7 @@
 		let con = document.getElementById("comment_text_area");
 		
 		if (check == 'guest' || check == '') {
-			location.href = '${path}/home/login.jsp';
+			location.href = '${path}/home?spage=/home/login.jsp';
 			return;
 		}
 		
