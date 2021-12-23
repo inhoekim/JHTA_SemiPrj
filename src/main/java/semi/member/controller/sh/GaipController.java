@@ -50,6 +50,7 @@ public class GaipController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
+		
 		resp.sendRedirect(req.getContextPath() + "/home");
 	}
 }

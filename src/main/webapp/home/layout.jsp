@@ -110,8 +110,15 @@
 		
 	}
 	
-	function payment(){
-		
+	function canSearch(){
+		let checkInForm = document.getElementById("checkInForm").value;
+		let checkOutForm = document.getElementById("checkOutForm").value;
+		let peopleNum = document.getElementById("peopleNum").value;
+		if(checkInForm == "" || checkOutForm == "" || peopleNum == "") {
+			window.alert("체크인, 체크아웃, 인원을 올바르게 입력해주세요");
+			return false;
+		}
+		return true;
 	}
 	
 	window.onload=function(){

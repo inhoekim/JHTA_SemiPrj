@@ -129,6 +129,15 @@
 		}
 	}
 	
+	function canSearch(){
+		let checkInForm = document.getElementById("checkInForm").value;
+		let checkOutForm = document.getElementById("checkOutForm").value;
+		if(checkInForm == "" || checkOutForm == "" || peopleNum == "") {
+			window.alert("체크인-체크아웃 날짜를 올바르게 입력해주세요");
+			return false;
+		}
+		return true;
+	}
 	
 	window.onload=function(){
 		// 로그인 안 하면 알람 기능x
