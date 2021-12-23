@@ -219,7 +219,7 @@
 	startAutoSlide1();
 	
 	function stopAutoSlide1(){
-		clearInterval(timer);
+		clearInterval(timer1);
 	}
 	
 	slideWrap1.addEventListener('mouseenter', function(){
