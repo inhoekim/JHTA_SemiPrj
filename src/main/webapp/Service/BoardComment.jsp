@@ -101,8 +101,8 @@
 			</table>
 			<p style="color: red; font-size: 14px;">
 		*비밀번호는 변경하실 수 없습니다.</p>
-		<input type="button" value="등록" onclick="ShowList()" style="width:80px;height:30px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:20px;">
-		<input type="button" value="취소" onclick="ReturnMain()" style="width:80px;height:30px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;font-size:20px;">
+		<input type="button" value="등록" onclick="ShowList()" style="width:80px;height:30px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:20px;cursor: pointer;">
+		<input type="button" value="취소" onclick="ReturnMain()" style="width:80px;height:30px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;font-size:20px;cursor: pointer;">
 </form>
 </div>
 </body>

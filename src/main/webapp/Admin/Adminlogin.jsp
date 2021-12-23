@@ -34,8 +34,8 @@
 		아이디 <input type="text" name="admin_id" id="admin_id"><br>
 		비밀번호 <input type="password" name="pwd" id="pwd"><br><br> 
 		<div style="color:red">${requestScope.errMsg }</div><br>
-		<input type="submit" value="로그인" style="width:80px;height:25px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666">
-		<input type="button" value="취소" onclick="rollback()" style="width:80px;height:25px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666"> 
+		<input type="submit" value="로그인" style="width:80px;height:25px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;cursor: pointer;">
+		<input type="button" value="취소" onclick="rollback()" style="width:80px;height:25px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;cursor: pointer;"> 
 	</form> 
  </div>
 </body>
