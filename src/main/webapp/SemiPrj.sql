@@ -27,9 +27,9 @@ CREATE TABLE ADMIN (
 
 CREATE TABLE ROOM (
 	ROOM_ID	number(10) PRIMARY KEY,
-	KIND varchar2(15),
-	CAPACITY number(5),
-	PRICE number(10),
+	KIND varchar2(15) NOT NULL,
+	CAPACITY number(5) NOT NULL,
+	PRICE number(10) NOT NULL,
 	RATE number(2,1) NOT NULL, -- 평점
 	SRC_NAME varchar2(30)
 );
