@@ -98,14 +98,29 @@ function checkin(event,year,month){
 			checkInForm.value = year + "-" + month + "-" + event.innerText;
 			inDate.innerHTML = checkInForm.value;
 			event.style.backgroundColor = "#FEC5E5";
-		//체크아웃 날짜 확정
+		//체크인 날짜보다 이후 날짜를 선택한 경우
 		}else{
 			checkOutForm.value = year + "-" + month + "-" + event.innerText;
-			outDate.innerHTML = checkOutForm.value;
 			let day = (new Date(checkOutForm.value) - new Date(checkInForm.value)) / (1000 * 60 * 60 * 24);
 			day = Math.ceil(day);
 			nights.innerText = day + "박";
-			highlighting(); //달력에 하이라이팅 표시
+			//체크인 날짜와 체크아웃 날짜 사이에 예약이 불가능한 일자가 존재하는 경우
+			if(haveBlockDate()) {
+				let str = checkInForm.value.split("-");
+				let td = document.getElementById(str[0]+str[1]+str[2]);
+				if(td != null) {
+					td.style.backgroundColor = "";
+				}
+				checkInForm.value = year + "-" + month + "-" + event.innerText;
+				inDate.innerHTML = checkInForm.value;
+				checkOutForm.value = "";
+				nights.innerText = "0박";
+				event.style.backgroundColor = "#FEC5E5";
+			//체크인-체크아웃 날짜가 올바르게 확정된 경우
+			}else {
+				outDate.innerHTML = checkOutForm.value;
+				highlighting(); //달력에 하이라이팅 표시
+			}
 		}
 	//새롭게 체크인 날짜 결정
 	}else{
@@ -158,4 +173,20 @@ function offDate(map){
 			date.onclick = null;
 		}
 	}
+}
+
+function haveBlockDate() {
+	let checkIn = document.getElementById("checkInForm").value;
+	let nights = document.getElementById("nights").innerText;
+	let day = nights.split('박')[0];
+	for(let i = 0; i <= day; i++) {
+		let temp = new Date(checkIn);
+		temp.setDate(temp.getDate() + i);
+		let td_str = "" + temp.getFullYear() + (temp.getMonth() + 1) + temp.getDate();
+		let td = document.getElementById(td_str);
+		if(td != null && td.className != "cdate") {
+			return true;
+		}
+	}
+	return false;
 }

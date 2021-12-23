@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -92,21 +93,36 @@ public class RoomDao {
 		String sql = "";
 		try {
 			con = JdbcUtil.getCon();
+			ArrayList<String> arr = new ArrayList<>();
 			for(int i = 0; i < 12; i++) {
-				sql = "select * from reserve where room_id = ? and statement != 3 and start_day like '" + df.format(cal.getTime()) +"%'";
+				String yymm = new SimpleDateFormat("yyyyMM").format(cal.getTime());
+				DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+				sql = "select * from reserve where room_id = ? and statement != 3 and start_day like '" 
+				+ df.format(cal.getTime()) +"%' order by start_day";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, room);
 				rs = pstmt.executeQuery();
-				ArrayList<String> arr = new ArrayList<>();
 				while(rs.next()) {
-					int startDay = Integer.parseInt(rs.getString("start_day").split("-")[2]);
-					int endDay =  Integer.parseInt(rs.getString("end_day").split("-")[2]);
-					for(int day= startDay ; day < endDay; day++) {
-						String temp = new SimpleDateFormat("yyyyM").format(cal.getTime()) + day;
-						arr.add(temp);
+					try {
+						Calendar startCal = Calendar.getInstance();
+						startCal.setTime(df2.parse(rs.getString("start_day")));
+						Calendar endCal =  Calendar.getInstance();
+						endCal.setTime(df2.parse(rs.getString("end_day")));
+						while(startCal.compareTo(endCal) != 0) {
+							String temp = new SimpleDateFormat("yyyyMM").format(startCal.getTime());
+							if(!yymm.equals(temp)) {
+								json.put(yymm, arr);
+								yymm = temp;
+								arr = new ArrayList<>();
+							}
+							arr.add(temp + "" + new SimpleDateFormat("dd").format(startCal.getTime()));
+							startCal.add(Calendar.DATE, 1);
+						}	
+					}catch (ParseException e) {
+						e.printStackTrace();
 					}
 				}
-				json.put(new SimpleDateFormat("yyyyM").format(cal.getTime()), arr);
+				json.put(yymm, arr);
 				cal.add(Calendar.MONTH, 1);
 			}
 			return json;

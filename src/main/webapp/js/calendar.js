@@ -23,13 +23,6 @@ function printCalendar(checkIn) {
 	}
 }
 
-function printCalendar2() {
-	let today = new Date();
-	let month = today.getMonth() + 1;
-	let year = today.getFullYear();
-	setCalendar(3,year,month);
-}
-
 function setCalendar(type,year,month) {
 	if(month == 13) {
 	year++;
@@ -138,7 +131,8 @@ function checkin(event,year,month){
 	let nights = document.getElementById("nights");
 	//체크인 날짜 결정
 	if(checkInForm.value == "") {
-		checkInForm.value = year + "-" + month + "-" + event.innerText;
+		checkInForm.value = year + "-" + numberPad(month) + "-" + numberPad(event.innerText);
+		console.log(checkInForm.value);
 		inDate.innerHTML = checkInForm.value;
 		event.style.backgroundColor = "#FEC5E5";
 	//체크아웃 날짜 결정
@@ -229,4 +223,9 @@ function disHighlighting(day){
 	let td = document.getElementById(td_str);
 	td.style.backgroundColor= "";
 	}
+}
+
+function numberPad(n) {
+    n = n + '';
+    return n.length >= 2 ? n : '0' + n;
 }

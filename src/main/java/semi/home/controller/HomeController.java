@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import semi.room.dao.ihk.RoomDao;
 @WebServlet("/home")
 public class HomeController extends HttpServlet{
 	@Override
@@ -22,6 +24,8 @@ public class HomeController extends HttpServlet{
 		req.setAttribute("main", spage);
 		req.setAttribute("footer", "/home/footer.html");
 		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp); 
+		System.out.println(RoomDao.getInstance().getReserves(1));
+		
 	}
 }
   
