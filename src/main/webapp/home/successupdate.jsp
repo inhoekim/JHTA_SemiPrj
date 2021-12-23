@@ -21,7 +21,7 @@
 <body>
 <div class="hello">
 <h2>내정보 수정완료!</h2>
-<p><a href="${cp}/home">홈으로</a></p>
+<p><a href="${cp}/home">홈으로</a>
 	
 			
 		

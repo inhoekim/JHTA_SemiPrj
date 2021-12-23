@@ -44,7 +44,7 @@
 <table border="1">
 	<tr>
 		<th>아이디</th><th>비밀번호</th><th>이름</th><th>주민번호</th><th>나이</th><th>주소</th><th>가입일</th><th>회원상태</th>
-	<!--	<th>수정</th>    <th>삭제</th> -->
+<th>회원정보수정</th>    <th>회원탈퇴</th>
 	</tr>
 	<c:forEach var="vo" items="${ list }">
 		<tr>
@@ -58,8 +58,8 @@
 			<td>${vo.num }</td>
 		  
 		
-		   <!--  <td><a href="<%=request.getContextPath()%>/Admin/update?hlogin_id=${vo.hlogin_id}">수정</a></td>
-		  <td><a href="<%=request.getContextPath()%>/Admin/delete?hlogin_id=${vo.hlogin_id}">삭제</a></td> -->
+		<td><a href="<%=request.getContextPath()%>/Admin/update?hlogin_id=${vo.hlogin_id}">수정</a></td>
+		  <td><a href="<%=request.getContextPath()%>/Admin/delete?hlogin_id=${vo.hlogin_id}">탈퇴</a></td> 
 		</tr>
 		
 	</c:forEach>

@@ -43,8 +43,8 @@ public class UpdateGaipAdminController extends HttpServlet{
 		String jnum=req.getParameter("jnum");
 		int age=Integer.parseInt(req.getParameter("age"));
 		String area=req.getParameter("area");
-		int num=Integer.parseInt(req.getParameter("num"));
-		HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area, null, num);
+		
+		HloginVoje vo=new HloginVoje(hlogin_id, pwd, name, jnum, age, area);
 		HloginDaoje dao=new HloginDaoje();
 		int n=dao.adminupdate(vo);
 		if(n>0) {
@@ -52,6 +52,10 @@ public class UpdateGaipAdminController extends HttpServlet{
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.getRequestDispatcher("/home/result.jsp").forward(req, resp);
+		req.setAttribute("header", "/Admin/header.jsp");
+		req.setAttribute("main", "/sh/Adminlist");
+		req.setAttribute("footer", "/home/footer.html");
+		
+		req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
 	}
 }
