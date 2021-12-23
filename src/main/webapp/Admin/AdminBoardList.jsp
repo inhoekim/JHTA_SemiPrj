@@ -49,7 +49,7 @@
 				<option value="title"
 					<c:if test="${field=='title' }">selected</c:if>>제목</option>
 			</select> <input type="text" name="keyword" value="${keyword }"  style="text-align:left"> <input
-				type="submit" value="검색">
+				type="submit" value="검색" style="width:60px;height:25px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666">
 			<!--<input type="button" value="글쓰기" onclick="WriteBoard()">  -->
 		</form>
 	<br>
