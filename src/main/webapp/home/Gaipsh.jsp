@@ -40,7 +40,7 @@
 	<input  placeholder="주민등록번호 입력" type="text" id="jnum" name="jnum" maxlength="13" style="width: 200pt; height:25pt; border-radius: 5px;"><br>
 	<small id= "jnum_text_check" style="color: blue; display: inline;"></small>
 	<br>
-	<input placeholder="나이 입력" type="text" name="age" id="hlogin_age" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
+	<input placeholder="나이 입력" type="text" name="age" onkeyup="this.value = checkNumber(this.value)" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br>
 	<input placeholder="주소 입력"type="text" name="area" id="hlogin_area" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br><br><br><br>
 	<input type="submit" value="가입하기" id="gaip_btn" style="width: 215pt; height:35pt; background-color: #ff6666;color: white; border: 3px solid white;
 	border-radius: 12px; font-size: 16px">
@@ -48,7 +48,12 @@
 	</div>
 </body>
 <script type="text/javascript">
-
+function checkNumber(value) {
+	   if (isNaN(value)) {
+	      alert("나이를 숫자로만 입력해주세요");
+	      return "";
+	   } else return value;
+	}
 function gaiphsh(){
 	
 	// 변수 선언 id값 넣기
@@ -59,6 +64,31 @@ function gaiphsh(){
 	jnum = document.getElementById('jnum');
 	gaip_btn = document.getElementById('gaip_btn');
 	hlogin_name = document.getElementById('hlogin_name');
+//	hlogin_age = document.getElementById('hlogin_age');
+	hlogin_area = document.getElementById('hlogin_area');
+	
+	
+/*	hlogin_age.addEventListener('keypress', function(){
+		agechk = document.getElementById('hlogin_age').value;
+		var regAge = /[0-9]/g;
+		if(!regAge.test(agechk))
+			alert('나이는 숫자로만 입력해주세요');
+	})*/
+	
+	hlogin_area.addEventListener('keypress', function(){
+		areachk = document.getElementById('hlogin_area').value;
+		var regArea = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g; 
+		if(!regArea.test(areachk))
+			alert('주소은 한글로만 입력해주세요');
+	})
+	
+	
+	hlogin_name.addEventListener('keypress', function(){
+		namechk = document.getElementById('hlogin_name').value;
+		var regName = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g; 
+		if(!regName.test(namechk))
+			alert('이름은 한글로만 입력해주세요');
+	})
 
 	
 	hlogin_passcheck.addEventListener('keyup', function(){
@@ -94,6 +124,9 @@ function gaiphsh(){
 	jnum.addEventListener('keyup', function(){
 		jnum = document.getElementById('jnum').value;
         var juminRule=/[0-9]{13}$/
+    			
+    			
+    		
 
         if(jnum == '' || jnum == null){
 			document.getElementById('jnum_text_check').style.color = 'black';

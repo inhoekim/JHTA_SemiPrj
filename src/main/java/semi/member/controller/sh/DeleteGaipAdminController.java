@@ -24,7 +24,7 @@ public class DeleteGaipAdminController extends HttpServlet{
 			resp.sendRedirect(req.getContextPath() +"/sh/Adminlist");
 		}else {
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/sh/result.jsp").forward(req, resp);
+			
 		}		
 	}
 }
