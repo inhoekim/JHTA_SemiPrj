@@ -24,6 +24,7 @@
 <script src="${cp}/js/calendar2.js"></script>
 <script type="text/javascript">
 	var xhr = null;
+	var alarmCheck = '<c:out value="${sessionScope.hlogin_id}"/>';
 	function alarmList() {
 		xhr = new XMLHttpRequest();
 		let url = '${cp}/alarm/list';
@@ -31,6 +32,7 @@
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let data = xhr.responseText;
 				let json = JSON.parse(data);
+				
 				let alarm_wrap = document.getElementById("alarm_wrap");
 				let alarm_cnt = document.getElementById("alarm_cnt");
 				
@@ -108,7 +110,10 @@
 	}
 	
 	window.onload=function(){
-		alarmList();
+		// 로그인 안 하면 알람 기능x
+		if (alarmCheck != 'guest' && alarmCheck != '') {
+			alarmList();
+		}
 		let calendarBox = document.getElementById("calendarBox")
 		if(calendarBox != null) {
 			printCalendar();
