@@ -21,10 +21,7 @@ public class ReviewDeleteController extends HttpServlet {
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		boolean check = dao.reviewDelete(review_id);
 		
-		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("main", "/review/list");
-		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
+		resp.sendRedirect(req.getContextPath() + "/review/list");
 	}
 	
 }

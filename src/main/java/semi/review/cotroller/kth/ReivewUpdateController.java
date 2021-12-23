@@ -38,9 +38,6 @@ public class ReivewUpdateController extends HttpServlet {
 		ReviewBoardDao dao = ReviewBoardDao.getInstance();
 		dao.reviewUpdate(review_id, title, content);
 		
-		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("main", "/review/list");
-		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/review/layout.jsp").forward(req, resp);
+		resp.sendRedirect(req.getContextPath() + "/review/list");
 	}
 }
