@@ -54,6 +54,7 @@
 		border-radius: 4px;
 		border-color: #ff6666;
 		font-size:18px; 
+		cursor: pointer;
 	}
 	
 	#d {
@@ -64,6 +65,7 @@
 		border-radius: 4px;
 		border-color: #ff6666;
 		font-size:18px; 
+		cursor: pointer;
 	}
 </style>
 <c:set var="cp" value="${pageContext.request.contextPath }" />

@@ -93,8 +93,8 @@
 	    <td id="c"><input type="password" name="pwd" id="pwd" value=<%=pwd %> readonly="readonly" style="width:400px;height:20px;font-size:18px;"></td>
 	    </tr>
 	    </table><br><br>  
-		<input type="button" value="등록" onclick="ShowList()" style="width:80px;height:30px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:20px;">
-		<input type="button" value="취소" onclick="ReturnMain()" style="width:80px;height:30px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;font-size:20px;">
+		<input type="button" value="등록" onclick="ShowList()" style="width:80px;height:30px;color:#ff6666;background-color:white;border-radius:4px;border-color:#ff6666;font-size:20px;cursor: pointer;">
+		<input type="button" value="취소" onclick="ReturnMain()" style="width:80px;height:30px;color:white;background-color:#ff6666;border-radius:4px;border-color:#ff6666;font-size:20px;cursor: pointer;">
 </form>
 </div>
 </body>

@@ -30,7 +30,7 @@ public class ReserveRecordController extends HttpServlet{
 			if(page <= 0) page = 1;
 		}
 		ReserveDao reserveDao = ReserveDao.getInstance();
-		int totalRows = reserveDao.getRowCount();
+		int totalRows = reserveDao.getRowCount(id);
 		int totalPages = (int) Math.ceil(totalRows / 5.0);
 		if(totalPages == 0) totalPages = 1;
 		if(page > totalPages) page = totalPages;

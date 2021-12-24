@@ -49,13 +49,12 @@ public class UpdateGaipAdminController extends HttpServlet{
 		int n=dao.adminupdate(vo);
 		if(n>0) {
 			req.setAttribute("result","success");
+			resp.sendRedirect(req.getContextPath() + "/admin?apage=/sh/Adminlist");
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.setAttribute("header", "/Admin/header.jsp");
-		req.setAttribute("main", "/sh/Adminlist");
-		req.setAttribute("footer", "/home/footer.html");
 		
-		req.getRequestDispatcher("/Admin/layout.jsp").forward(req, resp);
+		
+		
 	}
 }

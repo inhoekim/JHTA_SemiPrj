@@ -63,17 +63,22 @@
 				}
 			};
 		let calendarBox = document.getElementById("calendarBox");
-		calendarBox.style.visibility="hidden";
-		let peopleBox = document.getElementById("peopleBox");
-		peopleBox.style.visibility="hidden";
-		xhr.open("post","${cp}/search",true);
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		let checkIn = document.getElementById("checkInForm").value;
 		let checkOut = document.getElementById("checkOutForm").value;
 		let peopleNum = document.getElementById("peopleNum").value;
 		let costMin = document.getElementById("costMin").value;
 		let costMax = document.getElementById("costMax").value;
 		let review = document.getElementById("review").value;
+		let peopleBox = document.getElementById("peopleBox");
+		if(checkIn =="" || checkOut == "") {
+			window.alert("체크인-체크아웃 날짜를 올바르게 지정해주세요");
+			return false;
+		}
+		calendarBox.style.visibility="hidden";
+		peopleBox.style.visibility="hidden";
+		
+		xhr.open("post","${cp}/search",true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		let param = "checkInForm=" + checkIn + "&checkOutForm=" + checkOut + "&peopleNum=" + peopleNum 
 		+ "&costMin=" + costMin + "&costMax=" + costMax + "&review=" + review;
 		xhr.send(param);

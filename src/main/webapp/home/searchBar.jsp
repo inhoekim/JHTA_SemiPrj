@@ -37,7 +37,7 @@
 		
 		<div style="background-color : #ff6666; display: inline-block; height:82px; width:70px;
 		vertical-align: middle; margin-left:-6px; border-radius: 0em 1em 1em 0em;">
-			<input type="image" src="${cp}/images/search3.png" style="width:30px; height: 30px;margin-top:27px;">
+			<input type="image" src="${cp}/images/search3.png" style="width:30px; height: 30px;margin-top:27px;" onclick="return canSearch()">
 		</div>
 		
 		<div id="calendarBox" class="calendarBox">

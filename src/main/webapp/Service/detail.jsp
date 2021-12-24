@@ -51,7 +51,8 @@
 		color:#ff6666;
 		background-color:white;
 		border-radius:4px;
-		border-color:#ff6666
+		border-color:#ff6666;
+		cursor: pointer;
 		}
 		#d{
 		width:60px;
@@ -60,6 +61,7 @@
 		background-color:#ff6666;
 		border-radius:4px;
 		border-color:#ff6666;
+		cursor: pointer;
 		}			
 	</style>
 	<script type="text/javascript">

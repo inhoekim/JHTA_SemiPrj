@@ -31,6 +31,7 @@
 		border-radius:4px;
 		border-color:#ff6666;
 		font-size:15px;
+		cursor: pointer;
 		} 
 		#d{      
 		width:100px;
@@ -40,6 +41,7 @@
 		border-radius:4px;
 		border-color:#ff6666;
 		font-size:15px;
+		cursor: pointer;
 		}	
 				
 </style>

@@ -48,12 +48,11 @@ public class UpdateidController extends HttpServlet{
 		int n=dao.updateid(vo);
 		if(n>0) {
 			req.setAttribute("result","success");
+			resp.sendRedirect(req.getContextPath() + "/home?spage=/home/successupdate.jsp");
 		}else {
 			req.setAttribute("result","fail");
 		}
-		req.setAttribute("header", "/home/header.jsp");
-		req.setAttribute("main", "/home/successupdate.jsp");
-		req.setAttribute("footer", "/home/footer.html");
-		req.getRequestDispatcher("/home/layout.jsp").forward(req, resp);
+		
+		
 	}
 }
