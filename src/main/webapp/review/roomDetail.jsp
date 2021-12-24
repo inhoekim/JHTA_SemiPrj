@@ -579,7 +579,7 @@ td {
 							span += '<span id="star_span">★</span>';
 						}
 		
-						div = '<div class="review_contnet">'
+						div = '<div class="review_contnet" onclick="reviewBoardMove(' + review_id + ')" style="cursor: pointer;">'
 								+ '<div class="review_header">' + span
 								+ '<span class="review_writer">' + hlogin_id
 								+ ' | ' + created_day + '</span>' + '</div>'
