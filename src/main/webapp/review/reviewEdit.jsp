@@ -1,6 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	.review_writewrap {
+		width: auto;
+	    height: auto;
+	    margin: auto;
+	}
+	
+	.review_write {
+		width: 20%;
+		margin: auto;
+	}
+	
+	#content {
+		resize: none;
+	}
+</style>
 <c:set var="vo" value="${requestScope.vo }"/>
 <div class="review_writewrap">
 	<div class="review_write">
@@ -18,17 +39,13 @@
 			</div>
 				<span id="content_err" class="err"></span>
 			<br>
-			<input type="button" value="등록"  onclick="check()">
-			<input type="reset" value="다시 작성" onclick="reset()">
+			<div class="">
+				<input type="button" value="등록"  onclick="check()">
+			</div>
 		</form>
 	</div>
 </div>
 <script>
-	function reset() {
-		let span = document.getElementById("text_count");
-		span.innerHTML = "0";
-	}
-	
 	function titleCheck() {
 		let title = document.getElementById("title").value;
 		let title_err = document.getElementById("title_err");
@@ -72,5 +89,18 @@
 		}
 		
 		form.submit();
-	} 
+	}
+	
+	getCount();
+	
+	function getCount() {
+		let content = document.getElementById("content").value;
+		let span = document.getElementById("text_count");
+		span.innerHTML = content.length;
+	}
+	
+	
+	/* window.onload = function(){
+		getList();
+	} */
 </script>

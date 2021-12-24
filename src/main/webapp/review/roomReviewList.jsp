@@ -97,6 +97,7 @@
 </style>
 <!-- background-image: url('/semiPrj/images/search2.png'); -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="rs" value="${requestScope }"/>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!-- 리뷰 댓글수 카운트 -->
@@ -124,18 +125,36 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:choose>
+				<c:when test="${empty requestScope.list }">
+					<c:set var="chk" value="fail"/>
+				</c:when>
+				<c:otherwise>
+					<c:set var="chk" value="sussess"/>
+				</c:otherwise>
+			</c:choose>
 			<c:forEach var="list" items="${requestScope.list }" varStatus="status">
 				<tr class="review_td">
-					<td id="num">${list.review_id }</td>
-					<td id="id">${list.hlogin_id }</td>
-					<td id="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }&nbsp;
-						<c:if test="${list2[status.index] != 0 }">
-							[${list2[status.index] }]
-						</c:if>
-					</a></td>
-					<td id="created_day">${list.created_day }</td>
-					<td id="views">${list.views }</td>
-					<td id="recommend">${list.recommend }</td>
+					<%-- <c:choose>
+						<c:when test="${empty list }">
+							<td colspan="6">검색된 결과가 없습니다.</td>
+						</c:when>
+						<c:otherwise> --%>
+							<c:if test="${chk eq fail }">
+								<td colspan="6">검색된 결과가 없습니다.</td>
+							</c:if>
+							<td id="num">${list.review_id }</td>
+							<td id="id">${list.hlogin_id }</td>
+							<td id="title"><a href="${path }/review/detail?review_id=${list.review_id}">${list.title }&nbsp;
+								<c:if test="${list2[status.index] != 0 }">
+									[${list2[status.index] }]
+								</c:if>
+							</a></td>
+							<td id="created_day">${list.created_day }</td>
+							<td id="views">${list.views }</td>
+							<td id="recommend">${list.recommend }</td>
+						<%-- </c:otherwise>
+					</c:choose> --%>
 				</tr>
 			</c:forEach>
 		</tbody>

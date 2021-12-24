@@ -141,14 +141,15 @@ public class ReserveDao {
 	}
 	
 	//테이블의 row 총 갯수 리턴
-	public int getRowCount() {
+	public int getRowCount(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql= "select count(reserve_id) from reserve";
+		String sql= "select count(reserve_id) from reserve where hlogin_id = ?";
 		try {
 			con = JdbcUtil.getCon();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			rs.next();
 			return rs.getInt(1);
