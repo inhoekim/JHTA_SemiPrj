@@ -18,7 +18,7 @@ public class RoomDeleteController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int room_id=Integer.parseInt(req.getParameter("room_id"));
 		ServletContext context = this.getServletContext();
-		String saveDir=context.getRealPath("/images");
+		String saveDir=context.getRealPath("/images/room/");
 		
 		//파일삭제
 		RoomDao dao=RoomDao.getInstance();

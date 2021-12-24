@@ -408,7 +408,7 @@ public class ReviewBoardDao {
 	}
 	
 	// 해당 리뷰 댓글 수 출력
-	public ArrayList<Integer> reviewCommentsCount(String field, String keyword) {
+	public ArrayList<Integer> reviewCommentsCount(int startRow, int endRow, String field, String keyword) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -417,21 +417,35 @@ public class ReviewBoardDao {
 		try {
 			con = JdbcUtil.getCon();
 			if (field == null || keyword.equals("")) {
-				sql = "select r.review_id, nvl(count(c.review_id), 0) cnt "
-						+ "from review r, comments c "
-						+ "where r.review_id = c.review_id(+) "
-						+ "group by r.review_id "
-						+ "order by r.review_id desc";
+				sql = "select * from "
+						+ "						   ("
+						+ "						   select board.*, rownum rnum from "
+						+ "						        ("
+						+ "						           select r.review_id, nvl(count(c.review_id), 0) cnt "
+						+ "						from review r, comments c "
+						+ "						where r.review_id = c.review_id(+) "
+						+ "						group by r.review_id "
+						+ "						order by r.review_id desc"
+						+ "						        )board"
+						+ "						    )where rnum >= ? and rnum <= ?";
 				
 			} else {
-				sql = "select r.review_id, nvl(count(c.review_id), 0) cnt "
-						+ "from review r, comments c "
-						+ "where r.review_id = c.review_id(+) "
+				sql = "select * from "
+						+ "						   ("
+						+ "						   select board.*, rownum rnum from "
+						+ "						        ("
+						+ "						           select r.review_id, nvl(count(c.review_id), 0) cnt "
+						+ "						from review r, comments c "
+						+ "						where r.review_id = c.review_id(+) "
 						+ "and r." + field + " like '%" + keyword + "%' "
-						+ "group by r.review_id "
-						+ "order by r.review_id desc";
+						+ "						group by r.review_id "
+						+ "						order by r.review_id desc"
+						+ "						        )board"
+						+ "						    )where rnum >= ? and rnum <= ?";
 			}
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int cnt = rs.getInt("cnt");

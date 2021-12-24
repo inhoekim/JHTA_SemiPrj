@@ -43,7 +43,7 @@ public class ReviewListController extends HttpServlet {
 		
 		int count = dao.getPageMaxNum(field, keyword, 0);
 		// 리뷰 댓글수 추출
-		ArrayList<Integer> list2 = dao.reviewCommentsCount(field, keyword);
+		ArrayList<Integer> list2 = dao.reviewCommentsCount(startRow, endRow, field, keyword);
 		int pageCount = (int)Math.ceil(count / 10.0);
 		int startPage = (pageNum - 1) / 10 * 10 + 1;
 		int endPage = startPage + 9;

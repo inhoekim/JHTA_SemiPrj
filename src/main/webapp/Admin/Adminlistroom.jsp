@@ -50,7 +50,7 @@
 		</tr>
 	</c:forEach>
 </table>
-<h3><a href="<%=request.getContextPath() %>/Admin/Adminaddroom.jsp">객실 추가하기</a></h3>
+<h3><a href="<%=request.getContextPath() %>/admin/addroom">객실 추가하기</a></h3>
 </div>
 </body>
 </html>
