@@ -43,6 +43,8 @@
 	
 	#content {
 		resize: none;
+		border: 1px solid #ff6666;
+		border-radius: 5px;
 	}
 	
 	.review_write {
@@ -55,7 +57,7 @@
 		padding-left: 0;
 	}
 	
-	#title_div {
+	.title_div {
 		margin: 10px 0px 10px 0px;
 	}
 	
@@ -82,12 +84,6 @@
 		color: white;
 		background-color: #ff6666;
 	}
-	
-	#content {
-		border: 1px solid #ff6666;
-		border-radius: 5px;
-	}
-	
 	
 	input[type="text"] {
 		border: 1px solid #ff6666;
@@ -132,11 +128,23 @@
 		clear: both;
 	}
 	
+	.img_wrap {
+	    position: relative;
+	    top: -402px;
+	    left: 260px;
+	}
+	
+	#room_img {
+		position: relative;
+	    top: -365px;
+	    left: 72px;
+	}
+	
 </style>
 <div class="review_writewrap">
 	<div class="review_write">
 		<form id="review_write_form" method="post" action="${pageContext.request.contextPath }/review/write" enctype="multipart/form-data">
-			<div id="title_div">
+			<div class="title_div">
 				<label id="title_label">제목</label>
 			</div>
 			<div>
@@ -177,6 +185,10 @@
 			<span id="file_err" class="err"></span>
 			<div id="add_btn_div">
 				<input type="button" value="등록" id="add_btn" onclick="check()">
+			</div>
+			<div class="img_wrap">
+				<span id="room_img">객실 이미지</span>
+				<img src="${requestScope.src }" width="400" height="350">
 			</div>
 		</form>
 	</div>

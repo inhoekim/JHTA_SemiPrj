@@ -19,6 +19,7 @@ import semi.img_file.vo.kth.ImgFileVo;
 import semi.review.dao.kth.ReviewBoardDao;
 import semi.review.vo.kth.ReviewBoardVo;
 import semi.room.dao.ihk.RoomDao;
+import semi.room.vo.ihk.RoomVo;
 
 @WebServlet("/review/write")
 public class ReviewWriteController extends HttpServlet {
@@ -26,7 +27,20 @@ public class ReviewWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		int room_id = Integer.parseInt(req.getParameter("room_id"));
+		
+		RoomDao dao = RoomDao.getInstance();
+		RoomVo vo = dao.selectRoom(room_id);
+		
+		// 디렉터리 주소
+		ServletContext context = this.getServletContext();
+		
+		// 주소 경로 html에 맞게 변경
+		String path = context.getRealPath("/images/room");
+		String change = path.replace("\\", "/");
+		String saveDir = change.substring(change.lastIndexOf("/semiPrj"));
+		
 		req.setAttribute("room_id", room_id);
+		req.setAttribute("src", saveDir + "/" + vo.getSrc_name());
 		req.setAttribute("header", "/home/header.jsp");
 		req.setAttribute("main", "/review/reviewWrite.jsp?room_id=" + room_id);
 		req.setAttribute("footer", "/home/footer.html");
