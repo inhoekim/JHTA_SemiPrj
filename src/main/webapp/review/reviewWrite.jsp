@@ -47,11 +47,6 @@
 		border-radius: 5px;
 	}
 	
-	.review_write {
-		margin: auto;
-		width: 600px;
-	}
-	
 	#star_field {
 		margin-left: 0;
 		padding-left: 0;
@@ -129,19 +124,34 @@
 	}
 	
 	.img_wrap {
-	    position: relative;
-	    top: -402px;
-	    left: 260px;
+		
+		display:inline-block;
+		width: 500px;
+		height: 500px;
+		vertical-align: middle;
+		border-right : 1px solid #eeeeee;
 	}
+		
+	.review_writewrap {text-align: center; height: 600px}
 	
-	#room_img {
-		position: relative;
-	    top: -365px;
-	    left: 72px;
+	.review_write { 
+		display: inline-block;
+		text-align: left;
+		height: 600px;
+		vertical-align: middle;
+		margin-top: 40px;
+		margin-left: 40px;
+		width: 300px;
 	}
 	
 </style>
 <div class="review_writewrap">
+
+	<div class="img_wrap">
+		<img src="${requestScope.src }" width="400" height="350">
+		<p style="text-align: center; font-size: 18px; font-weight: 600">${vo.room_id}번객실 : ${vo.kind}(${vo.capacity}인), 평균평점(${vo.rate}점)</p>
+	</div>
+
 	<div class="review_write">
 		<form id="review_write_form" method="post" action="${pageContext.request.contextPath }/review/write" enctype="multipart/form-data">
 			<div class="title_div">
@@ -186,10 +196,7 @@
 			<div id="add_btn_div">
 				<input type="button" value="등록" id="add_btn" onclick="check()">
 			</div>
-			<div class="img_wrap">
-				<span id="room_img">객실 이미지</span>
-				<img src="${requestScope.src }" width="400" height="350">
-			</div>
+
 		</form>
 	</div>
 </div>

@@ -39,6 +39,7 @@ public class ReviewWriteController extends HttpServlet {
 		String change = path.replace("\\", "/");
 		String saveDir = change.substring(change.lastIndexOf("/semiPrj"));
 		
+		req.setAttribute("vo", vo);
 		req.setAttribute("room_id", room_id);
 		req.setAttribute("src", saveDir + "/" + vo.getSrc_name());
 		req.setAttribute("header", "/home/header.jsp");
