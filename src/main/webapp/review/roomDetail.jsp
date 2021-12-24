@@ -498,6 +498,11 @@ td {
 				var jsonLen = json.length;
 				room_id = json[jsonLen - 1].room_id;
 				
+				if (jsonLen - 1 <= 5) {
+					let show_btn = document.querySelector('.show_btn');
+					show_btn.style.display = "none";
+				}
+				
 				if (review_max > jsonLen) {
 					review_max = jsonLen;
 				}
