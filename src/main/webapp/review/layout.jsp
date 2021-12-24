@@ -147,5 +147,6 @@
 		if (typeof reviewList != 'undefined') {
 			reviewList();
 		}
+		
 	}
 </script>
