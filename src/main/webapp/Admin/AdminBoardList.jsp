@@ -98,7 +98,7 @@
 		</c:if>
 	<br><br>
 	<a href="${cp }/service/admin/list">전체글보기</a> |
-	<a href="${cp }/je/AdminService/Adminmain.jsp">메인페이지로</a>
+	<a href="${cp }/admin">메인페이지로</a>
 	</div>
 	</div>
 </body>
