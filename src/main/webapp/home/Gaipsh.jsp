@@ -35,7 +35,7 @@
 		 <small id= "hlogin_id_check" style="color: blue; display: inline;"></small>
 		 <br>
 		 <input type="hidden" id="idChkYn" value='N'>
-	 <input placeholder="비밀번호 입력 3자리이상" type="password" name="pwd" id="hlogin_pass" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br>
+	 <input placeholder="비밀번호 입력 4자리이상" type="password" name="pwd" id="hlogin_pass" maxlength="12" size="20" style="width: 200pt; height:25pt; border-radius: 5px;"><br>
 		<small id= "pw_text_first" style="color: blue; display: inline;"></small>
 		<br>
 	 <input placeholder="비밀번호 확인" type="password" name="pwdChk" id="hlogin_passcheck" maxlength="12" size="20" required  style="width: 200pt; height:25pt; border-radius: 5px;"><br>
@@ -106,11 +106,11 @@ function gaiphsh(){
 		
 		var regPwd = /^[A-Za-z0-9+]*$/;
 
-		if(!regPwd.test(pw) ||pw.length < 3) {
+		if(!regPwd.test(pw) ||pw.length <= 3) {
 			document.getElementById('pw_text_first').style.color = 'red';
 			document.getElementById('pw_text_first').innerText = '잘못된 비밀번호 입니다.';
 		}else{
-			if(pw.length >= 3){
+			if(pw.length > 3){
 				document.getElementById('pw_text_first').style.color = 'black';
 				document.getElementById('pw_text_first').innerText = '올바른 비밀번호 입니다.';
 			}
@@ -179,9 +179,10 @@ function gaipSubmit(){
 	if(document.getElementById('hlogin_pass').value == null || document.getElementById('hlogin_pass').value == ''){
 		alert("비밀번호를 입력해주세요.");
 		return false;
-	}else if(!regPwd.test(document.getElementById('hlogin_pass').value)) {
-		document.getElementById("hlogin_pass").focus();
-		return false;
+	}else if((!regPwd.test(document.getElementById('hlogin_pass').value)) || (document.getElementById('hlogin_pass').value.length <=3)) {
+	      document.getElementById("hlogin_pass").focus();
+	      return false;
+		
 	}else if(document.getElementById('hlogin_pass').value != document.getElementById('hlogin_passcheck').value){
 		document.getElementById("hlogin_passcheck").focus();
 		return false;
