@@ -145,7 +145,7 @@ public class ReserveDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql= "select count(reserve_id) from reserve where id = ?";
+		String sql= "select count(reserve_id) from reserve where hlogin_id = ?";
 		try {
 			con = JdbcUtil.getCon();
 			pstmt = con.prepareStatement(sql);
