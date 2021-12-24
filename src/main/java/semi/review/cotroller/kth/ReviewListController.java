@@ -61,7 +61,7 @@ public class ReviewListController extends HttpServlet {
 		req.setAttribute("field", field);
 		req.setAttribute("keyword", keyword);
 		
-		if ("test1".equals(admin_id)) {
+		if ("admin1".equals(admin_id)) {
 			req.setAttribute("header", "/Admin/header.jsp");
 			req.setAttribute("main", "/review/roomReviewList.jsp");
 			req.setAttribute("footer", "/home/footer.html");
