@@ -24,7 +24,7 @@ public class RoomAddController extends HttpServlet{
 		
 		ServletContext context = this.getServletContext();
 		String saveDir=context.getRealPath("/images/room/");
-		System.out.println("업로드 경로" + saveDir + "<br>");
+		//System.out.println("업로드 경로" + saveDir + "<br>");
 		
 		MultipartRequest mr=new MultipartRequest(
 				req, 
@@ -40,7 +40,7 @@ public class RoomAddController extends HttpServlet{
 		String src_name=mr.getFilesystemName("src_name"); //파일 경로
 		if(kind.equals("") || capacity.equals("") || rate.equals("") || price.equals("") || src_name.equals("")){
 			req.setAttribute("result", "fail");
-			req.getRequestDispatcher("/Admin/AdminResult.jsp").forward(req, resp);
+			req.getRequestDispatcher("/admin?apage=/Admin/AdminResult.jsp").forward(req, resp);
 		}
 		//db저장
 		//File f=new File(saveDir + "\\"); //업로드된 파일정보를 갖는 객체

@@ -21,7 +21,7 @@
 	<input placeholder="아이디" type="text" name="hlogin_id" style="width: 150pt; height:20pt; border-radius: 5px;"><br>
 	<input placeholder="주민번호" type="text" name="jnum" style="width: 150pt; height:20pt; border-radius: 5px; margin:3px;"><br>
 <input type="submit" value="확인" style=" margin:6px; background-color: #ff6666; min-width: 70px; 
-			border: none; border-radius: 4px; line-height: 30px; color: #ffffff;">
+			border: none; border-radius: 4px; line-height: 30px; color: #ffffff; cursor: pointer;">
 </form>
 </div>
 </body>

@@ -31,18 +31,27 @@ public class ChangePwdController_hj extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+//		String pwd=req.getParameter("pwd");
 		String hlogin_id=req.getParameter("hlogin_id");
+//		if(pwd.equals("")) {
+//			req.setAttribute("result", "fail");
+//			req.setAttribute("failMsg", "비밀번호을 변경하지 못 했습니다.");
+//			req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+//		}
 		String pwd=Utility.encoding(req.getParameter("pwd"));
-		HloginVoje vo=new HloginVoje(hlogin_id, pwd, pwd, hlogin_id, 0, pwd, null, 0);
+		
+		HloginVoje vo=new HloginVoje(hlogin_id, pwd, null, null, 0, null, null, 0);
 		HloginDaoje dao=new HloginDaoje();
 		int n=dao.changepwd(vo);
 		if(n>0) {
 			req.setAttribute("result", "success");
 			req.setAttribute("successMsg", "비밀번호 변경이 완료되었습니다!");
-		}else {
-			req.setAttribute("result", "fail");
-			req.setAttribute("failMsg", "변경에 실패했습니다. 다시 한 번 확인해 주세요.");
 		}
 		req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+//		else {
+//			req.setAttribute("result", "fail");
+//			req.setAttribute("failMsg", "변경에 실패했습니다.<br> 다시 한 번 확인해 주세요.");
+//			req.getRequestDispatcher("/home?spage=/home/result.jsp").forward(req, resp);
+//		}
 	}
 }

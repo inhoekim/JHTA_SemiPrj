@@ -23,7 +23,7 @@
 		<h1>${requestScope.failMsg}</h1>
 	</c:otherwise>
 </c:choose>
-<a href="${cp}/home">메인페이지로</a>
+<a href="${cp}/home">메인 페이지로</a>
 </div>
 </body>
 </html>
