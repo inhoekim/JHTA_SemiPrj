@@ -26,7 +26,9 @@
 			</td>
 		
 			<td>
+				<a href="${cp}/room/detail?room_id=${json.get('room_id')}" style="text-decoration: none; color : black;">
 				<p>${json.get("room_id")}번객실 (${json.get("kind")}/최대${json.get("capacity")}인)</p>
+				</a>
 			</td>
 			
 			<td>
