@@ -4,7 +4,9 @@
 
 ![대문(세미)](https://user-images.githubusercontent.com/90288195/156496837-6c13996b-9e65-42df-a993-5f43c82645da.png) &nbsp; <br><br>
 <img src="https://img.shields.io/badge/Java-v11-007396?&logo=java&logoColor=white&style=flat/"> &nbsp;
-<img src="https://img.shields.io/badge/Oracle-v11g-F80000?&logo=ORACLE&logoColor=red&style=flat"> &nbsp;
+<img src="https://img.shields.io/badge/Oracle-v11g-F80000?&logo=ORACLE&logoColor=red&style=flat"> &nbsp;<br>
+  
+  <b>(프로젝트기간) 22.12.10 ~ 22.12.24</b>
   
 </div>
 
@@ -30,3 +32,14 @@
 |-------------|-----------------------------------|
 |![리뷰평쓰기](https://user-images.githubusercontent.com/90288195/156504867-d02ea5cb-bfdd-493a-9b58-5272c95d000d.gif)|![각종상호작용](https://user-images.githubusercontent.com/90288195/156505416-ca414cc8-1c2a-4f81-adac-bfc3e288f230.gif)|
 
+## :book:테이블구조 소개
+
+<div align=center>
+
+![image](https://user-images.githubusercontent.com/90288195/156506079-2f36df02-79d8-4fea-ad2a-0b19ff673761.png) <br>
+  (링크) https://www.erdcloud.com/d/RyoHBNHRhGv9hhSf5
+  
+</div>  
+
+## :family: Contributor
+| [김태형](https://github.com/kth01) | [김호정](https://github.com/hoj93) | [염지은](https://github.com/duawldms) | [한상훈](https://github.com/gkstkdgns123) | 김인회 |
