@@ -26,6 +26,7 @@
 |----------------------|--------------------------|
 |![예약페이지](https://user-images.githubusercontent.com/90288195/156504756-4e1adb86-e73f-4727-bd88-ac840a270106.gif)|![예약확인](https://user-images.githubusercontent.com/90288195/156504765-b12af90d-f98a-462b-a8ac-4b03e5f4ea1d.gif)|
 
-|:+1:리뷰평쓰기|
-|-------------|
-|![리뷰평쓰기](https://user-images.githubusercontent.com/90288195/156504867-d02ea5cb-bfdd-493a-9b58-5272c95d000d.gif)|
+|:+1:리뷰평쓰기|:two_men_holding_hands:기타 상호작용|
+|-------------|-----------------------------------|
+|![리뷰평쓰기](https://user-images.githubusercontent.com/90288195/156504867-d02ea5cb-bfdd-493a-9b58-5272c95d000d.gif)|![각종상호작용](https://user-images.githubusercontent.com/90288195/156505416-ca414cc8-1c2a-4f81-adac-bfc3e288f230.gif)|
+
